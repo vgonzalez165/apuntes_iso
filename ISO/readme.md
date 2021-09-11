@@ -6,7 +6,7 @@ Apuntes del módulo de "Implantación de Sistemas Operativos" del 1er curso del 
 
 El módulo se va a dividir en las siguientes unidades de trabajo:
 
-- [UT01. Teoría de Sistemas Operativos](UT01/teoria_SO.md)
+- [UT01. Teoría de Sistemas Operativos](UT01_Teoria_SO/teoria_SO.md)
 - UT02. Virtualización
 - UT03. Windows 10. Instalación
 - UT04. Windows 10. Gestión del almacenamiento
