@@ -15,4 +15,4 @@ El módulo se va a dividir en las siguientes unidades de trabajo:
 - UT07. Windows Server. Gestión de dominios
 - UT08. Linux. Instalación
 - UT09. Linux. Administración del sistema
-- UTXX. Powershell
+- [UTXX. Powershell](UTXX_Powershell/powershell.md)
