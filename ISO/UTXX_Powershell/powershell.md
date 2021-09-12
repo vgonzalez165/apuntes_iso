@@ -30,20 +30,28 @@ Si vamos a trabajar con Powershell es conveniente preparar el entorno de trabajo
 
 Tras instalarlo podremos acceder a uno u otro entorno ejecutando los comandos `powershell.exe` o `pwsh.exe`. Como trabajaremos con diversos terminales o intérpretes de comandos, una opción recomendable es instalar **Windows Terminal** (accesible desde la tienda), que permite integrar diversos terminales en diferentes pestañas.
 
-Si quieres personalizar más Windows Terminal tienes múltiples guías por internet, como https://terminaldelinux.com/terminal/wsl/configurar-windows-terminal/ o https://www.developerro.com/2020/11/18/custom-windows-terminal/.
+Si quieres personalizar más Windows Terminal tienes múltiples guías por internet, por ejemplo [aquí](https://terminaldelinux.com/terminal/wsl/configurar-windows-terminal/) o [aquí](https://www.developerro.com/2020/11/18/custom-windows-terminal/).
 
-Un complemento de Powershell es el editor **Powershell ISE**, un editor que ya viene instalado en Windows 10 y que permite el trabajo con scripts de Powershell. Sin embargo, este editor es bastante limitado y además, solo compatible con Powershell (no con Core). Por ello, en caso de querer realizar scripts de Powershell, lo ideal es utilizar el editor Visual Studio Code con el plugin de Powershell. En la web https://docs.microsoft.com/es-es/powershell/scripting/dev-cross-plat/vscode/using-vscode?view=powershell-7.1 se explican los pasos a realizar para configurar este editor.
-1.3.- EJECUCIÓN DE SCRIPTS
-Cuando intentamos ejecutar un script de PowerShell realizado por nosotros la primera vez nos dará un mensaje de error. Esto se debe a la política de ejecución que está definida y que determina cómo se ejecutan los scripts.  Por defecto la política de ejecución está definida como Restricted lo que significa que los scripts creados por ti no tienen permisos de ejecución.
-Se puede comprobar la política que tenemos con la orden Get-ExecutionPolicy.
-Podemos cambiar la política que se va a utilizar con el cmdlet Set-ExecutionPolicy que admite uno de los siguientes valores:
-•	RemoteSigned: permite ejecutar cualquier script que nosotros creemos, pero si descargamos algún script de Internet solo podremos ejecutarlo si está firmado por un publicador de confianza (trusted Publisher).
-•	AllSigned: todos los scripts, incluso los creados por ti, deben ser firmados por un publicador de confianza.
-•	Unrestricted: todos los scripts, sea cual sea su origen, pueden ser ejecutados.
+Un complemento de Powershell es el editor **Powershell ISE**, un editor que ya viene instalado en Windows 10 y que permite el trabajo con scripts de Powershell. Sin embargo, este editor es bastante limitado y además, solo compatible con Powershell (no con Core). Por ello, en caso de querer realizar scripts de Powershell, lo ideal es utilizar el editor [**Visual Studio Code**](https://code.visualstudio.com/) con el [plugin de Powershell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell). En la [documentación de Microsoft](https://docs.microsoft.com/es-es/powershell/scripting/dev-cross-plat/vscode/using-vscode?view=powershell-7.1) se explican los pasos a realizar para configurar este editor.
+
+
+## 1.3.- EJECUCIÓN DE SCRIPTS
+
+Cuando intentamos ejecutar un script de PowerShell realizado por nosotros la primera vez nos dará un mensaje de error. Esto se debe a la política de ejecución que está definida y que determina cómo se ejecutan los scripts.  Por defecto la política de ejecución está definida como *Restricted* lo que significa que los scripts creados por ti no tienen permisos de ejecución. Se puede comprobar la política que tenemos con la orden `Get-ExecutionPolicy`.
+
+Podemos cambiar la política que se va a aplicar en el sistema con el cmdlet `Set-ExecutionPolicy` que admite uno de los siguientes valores:
+
+- `RemoteSigned`: permite ejecutar cualquier script que nosotros creemos, pero si descargamos algún script de Internet solo podremos ejecutarlo si está firmado por un publicador de confianza (trusted Publisher).
+- `AllSigned`: todos los scripts, incluso los creados por ti, deben ser firmados por un publicador de confianza.
+- `Unrestricted`: todos los scripts, sea cual sea su origen, pueden ser ejecutados.
+
 Por lo tanto, antes de crear nuestros propios scripts debemos verificar la política de ejecución que tiene nuestro equipo y, en caso de tener restringida la ejecución de scripts, debemos introducir la siguiente orden:
-PS C:\>Set-ExecutionPolicy RemoteSigned
 
-1.4.-NOMENCLATURA DE CMDLETS
+```powershell
+PS C:\>Set-ExecutionPolicy RemoteSigned
+```
+
+## 1.4.-NOMENCLATURA DE CMDLETS
 Los cmdlets utilizan un sistema de nombres con la estructura “verbo-sustantivo”: el nombre de cada cmdlets consta de un verbo estándar y un sustantivo concreto. Los verbos expresan acciones concretas mientras que los sustantivos describen siempre a qué se aplica un comando.
 A menudo se reconoce la función de un comando con sólo leer su nombre, y suele ser evidente el nombre que debe utilizarse para un comando nuevo. Por ejemplo, un comando nuevo que apague el ordenador se podría llamar stop-computer.
 Para obtener una lista de todos los comandos que incluyen un verbo concreto invocaremos Get-Command con el parámetro –Verb. 
