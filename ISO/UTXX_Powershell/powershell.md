@@ -74,12 +74,13 @@ Microsoft ha querido hacer Powershell fácil de aprender para todos los usuarios
 
 Algunos comandos de MS-DOS y de Bash que se pueden utilizar en Powershell son:
 
-| 	   |       |		 | 	    | 	   | 	  | 	 |     |
-|----------|----------|----------|----------|----------|----------|----------|----------|
-| cat	   | dir      |	mount	 | rm	    | cd	   | echo	  | move	 | rmdir    |
-| chdir	   | erase	  | popd	 | sleep	| clear	   | h	      | ps	     | sort     |
-| cls	   | history  | pushd	 | tee	    | copy	   | kill	  | pwd	     | type     |
-| del	   | lp	      | r	     | write	| diff	   | ls	      | ren	     |          |
+| 	       |            |		     | 	        | 	       | 	      | 	     |          |
+|----------|------------|------------|----------|----------|----------|----------|----------|
+| `cat`	   | `dir`      |	`mount`	 | `rm`	    | `cd`	   | `echo`	  | `move`	 | `rmdir`  |
+| `chdir`  | `erase`	| `popd`	 | `sleep`	| `clear`  | `h`	  | `ps`	 | `sort`   |
+| `cls`	   | `history`  | `pushd`	 | `tee`	| `copy`   | `kill`	  | `pwd`	 | `type`   |
+| `del`	   | `lp`	    | `r`	     | `write`	| `diff`   | `ls`	  | `ren`	 |          |
+| 	       |            |		     | 	        | 	       | 	      | 	     |          |
 
 
 Mientras que los alias descritos anteriormente buscan la compatibilidad de los nombres de otras interfaces, PowerShell dispone de otros alias que buscan la concisión en la escritura que están basados en nombres abreviados de verbos y sustantivos comunes. Por ejemplo, `Get-Item` dispone del alias `gi` mientras que el de `Get-Command` será `gcm`.
