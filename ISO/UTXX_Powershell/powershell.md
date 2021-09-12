@@ -74,7 +74,6 @@ Microsoft ha querido hacer Powershell fácil de aprender para todos los usuarios
 
 Algunos comandos de MS-DOS y de Bash que se pueden utilizar en Powershell son:
 
-|----------|----------|----------|----------|----------|----------|----------|----------|
 | cat	   | dir      |	mount	 | rm	    | cd	   | echo	  | move	 | rmdir    |
 | chdir	   | erase	  | popd	 | sleep	| clear	   | h	      | ps	     | sort     |
 | cls	   | history  | pushd	 | tee	    | copy	   | kill	  | pwd	     | type     |
