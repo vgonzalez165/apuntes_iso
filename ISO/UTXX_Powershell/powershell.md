@@ -51,36 +51,49 @@ Por lo tanto, antes de crear nuestros propios scripts debemos verificar la polí
 PS C:\>Set-ExecutionPolicy RemoteSigned
 ```
 
+
 ## 1.4.-NOMENCLATURA DE CMDLETS
-Los cmdlets utilizan un sistema de nombres con la estructura “verbo-sustantivo”: el nombre de cada cmdlets consta de un verbo estándar y un sustantivo concreto. Los verbos expresan acciones concretas mientras que los sustantivos describen siempre a qué se aplica un comando.
-A menudo se reconoce la función de un comando con sólo leer su nombre, y suele ser evidente el nombre que debe utilizarse para un comando nuevo. Por ejemplo, un comando nuevo que apague el ordenador se podría llamar stop-computer.
-Para obtener una lista de todos los comandos que incluyen un verbo concreto invocaremos Get-Command con el parámetro –Verb. 
+
+Los cmdlets utilizan un sistema de nombres con la estructura “verbo-sustantivo”: el nombre de cada cmdlets consta de un verbo estándar y un sustantivo concreto. Los verbos expresan acciones concretas mientras que los sustantivos describen siempre a qué se aplica un comando. La idea detrás de esto es crear un entorno autodescriptivo y uniforme de forma que los comandos sean más fáciles de recordar para los usuarios y que les permita hacerse una idea de su objetivo a partir de su nombre. Por ejemplo, el comando `Sopt-Computer` se puede identificar fácilmente como el comando que sirve para apagar el ordenador.
+
+Esta uniformidad en la nomenclatura también es útil para conocer los comandos que afectan a un elemento determinado (nombre) o que realizan una tarea en concreto (verbo). Para ello debemos utilizar el comando `Get-Command` con los parámetros `-Noun` o `–Verb` respectivamente. Tras el parámetro indicamos el nombre o verbo que deseemos y nos mostrará todos los comandos que hay en el sistema que utilizan dicho nombre o verbo.
+
+```powershell
 PS C:\>Get-Command –Verb Get
-El parámetro –Noun es más útil todavía ya que permite ver una familia de comandos que se aplican al mismo tipo de objeto. 
 PS C:\>Get-Command –Noun Service
-Respecto a los parámetros que admiten los cmdlets se fomenta que estén normalizados, es decir, que sean descriptivos y que normalmente un parámetro con resultado similar sea el mismo para diferentes cmdlets.
-Los nombres de los parámetros se utilizan siempre con un guión (-) como prefijo para que Windows los identifique como tales. Por ejemplo, en Get-Command –Name Clear-Host el parámetro es –Name.
-Un parámetro que admiten todos los cmdlets es -? que invoca la ayuda del comando. Igualmente hay una serie de parámetros que son bastantes comunes: Whatif, Confirm, Verbose, Debug, Warn, ErrorAction, ErrorVariable, OutVariable y OutBuffer.
-Otras formas de obtener las ayudas de un comando son:
-PS C:\> Get-Help get-childitem
-PS C:\> man get-childitem
-PS C:\> help get-childitem
-1.5.- USAR NOMBRES DE COMANDOS FAMILIARES
-PowerShell permite definir alias para los comandos de forma que se puede hacer referencia al mismo comando utilizando diferentes nombres.
-Por ejemplo, hay una función interna denominada Clear-Host que borra la ventana y que cuenta con dos alias: cls y clear. El uso de cualquiera de las tres formas producirá el mismo resultado.
-A continuación, se indican algunos comandos comunes de cmd.exe y UNIX que se pueden utilizar en PowerShell.
-cat	dir	mount	rm	cd	echo	move	rmdir
-chdir	erase	popd	sleep	clear	h	ps	sort
-cls	history	pushd	tee	copy	kill	pwd	type
-del	lp	r	write	diff	ls	ren	
-Mientras que los alias descritos anteriormente buscan la compatibilidad de los nombres de otras interfaces, PowerShell dispone de otros alias que buscan la concisión en la escritura que están basados en nombres abreviados de verbos y sustantivos comunes.
-Por ejemplo, Get-Item dispone del alias gi mientras que el de Get-Command será gcm.
-Se pueden crear nuevos alias mediante el cmdlet  Set-Alias. 
+```
+
+Respecto a los parámetros que admiten los cmdlets se fomenta que estén normalizados, es decir, que sean descriptivos y que normalmente un parámetro con resultado similar sea el mismo para diferentes cmdlets. Los nombres de los parámetros se utilizan siempre con un guión (-) como prefijo para que Windows los identifique como tales. Por ejemplo, en `Get-Command –Name Clear-Host` el parámetro es `–Name`.
+
+Hay una serie de parámetros que son comunes a todos los comandos. Probablemente el más importante de todos es `-?`, que muestra la ayuda del comando, pero hay otros muchos como: `Whatif`, `Confirm`, `Verbose`, `Debug`, `Warn`, `ErrorAction`, `ErrorVariable`, `OutVariable` y `OutBuffer`.
+
+
+## 1.5.- NOMBRES DE COMANDOS FAMILIARES
+
+Microsoft ha querido hacer Powershell fácil de aprender para todos los usuarios, especialmente para aquellos que ya saben utilizar otro intérprete de comandos como MS-DOS o Bash. Por ello, permite crear **alias** para los comandos, de forma que se pueda hacer referencia al mismo comando utilizando diferentes nombres. Por ejemplo, hay comando denominado `Clear-Host` que borra el contenido de la ventana que dispone de dos alias: `cls` y `clear`, que son los nombres de los comandos que realizan esa misma función en MS-DOS y en Bash respectivamente. Cualquiera de las tres formas se puede utilizar indistintamente ya que todas hacen referencia al mismo comando y por tanto producen el mismo resultado.
+
+Algunos comandos de MS-DOS y de Bash que se pueden utilizar en Powershell son:
+
+|----------|----------|----------|----------|----------|----------|----------|----------|
+| cat	   | dir      |	mount	 | rm	    | cd	   | echo	  | move	 | rmdir    |
+| chdir	   | erase	  | popd	 | sleep	| clear	   | h	      | ps	     | sort     |
+| cls	   | history  | pushd	 | tee	    | copy	   | kill	  | pwd	     | type     |
+| del	   | lp	      | r	     | write	| diff	   | ls	      | ren	     |          |
+
+
+Mientras que los alias descritos anteriormente buscan la compatibilidad de los nombres de otras interfaces, PowerShell dispone de otros alias que buscan la concisión en la escritura que están basados en nombres abreviados de verbos y sustantivos comunes. Por ejemplo, `Get-Item` dispone del alias `gi` mientras que el de `Get-Command` será `gcm`.
+
+También es posible crear nuestros propios alias mediante el comando `Set-Alias` con los parámetros `name` para indicar el nombre del alias y `-Value` para el comando al que hará referencia el alias.
+
+```powershell
 PS C:\> Set-Alias –Name gi –Value Get-Item
 PS C:\> Set-Alias –Name sl –Value Set-Location
-También se pueden utilizar alias utilizando la siguiente sintaxis: 
-PS C:\> New-Item alias:cl –value c:\windows\system32\calc.exe
-PS C:\> New-Item alias:gi –value Get-Item
+```
+
+Adicionalmente podemos usar el parámetro `-option` para definir el comportamiento y el ámbito del alias. Las diferentes opciones son:
+
+- `None`: es la opción por defecto. Los alias se pueden usar y borrar en cualquier momento.
+
 Otra posibilidad con los alias es definir su comportamiento y ámbito (desde donde pueden ser vistos). Las opciones de ámbito disponibles son:
 •	None: un alias que se puede usar y borrar en cualquier momento. Es la opción por defecto.
 •	Constant: estos alias no pueden ser borrados ni se puede cambiar su valor durante la sesión.
