@@ -97,100 +97,198 @@ Adicionalmente podemos usar el parámetro `-option` para definir el comportamien
 - `None`: es la opción por defecto. Los alias se pueden usar y borrar en cualquier momento.
 
 Otra posibilidad con los alias es definir su comportamiento y ámbito (desde donde pueden ser vistos). Las opciones de ámbito disponibles son:
-•	None: un alias que se puede usar y borrar en cualquier momento. Es la opción por defecto.
-•	Constant: estos alias no pueden ser borrados ni se puede cambiar su valor durante la sesión.
-•	ReadOnly: son similares a los constant pero pueden ser borrados o modificados si se especifica el parámetro Force al borrarlos o modificarlos.
-•	Private: estos alias solo pueden ser vistos en el ámbito actual
-•	AllScope: pueden ser vistos desde cualquier ámbito.
+
+- **None**: un alias que se puede usar y borrar en cualquier momento. Es la opción por defecto.
+- **Constant**: estos alias no pueden ser borrados ni se puede cambiar su valor durante la sesión.
+- **ReadOnly**: son similares a los constant pero pueden ser borrados o modificados si se especifica el parámetro Force al borrarlos o modificarlos.
+- **Private**: estos alias solo pueden ser vistos en el ámbito actual
+- **AllScope**: pueden ser vistos desde cualquier ámbito.
+
 Un ejemplo sería: 
+
+```powershell
 PS C:\> New-Item alias:cl –value C:\windows\system32\calc.exe –options “AllScope, Constant”
-El nombre de un alias puede ser modificado mediante el cmdlet Rename-Item simplemente pasándole el parámetro –newname de la forma: 
+```
+
+El nombre de un alias puede ser modificado mediante el cmdlet ```Rename-Item``` simplemente pasándole el parámetro ```–newname``` de la forma: 
+
+```powershell
 PS C:\> Rename-Item alias:np –newname note
+```
+
 Recuerda que cualquier alias que crees durante una sesión es válido solamente para esa instancia de PowerShell. En el momento en que cierres la ventana esos alias dejarán de existir.
-Para eliminar un alias antes de cerrar la sesión se puede hacer con el cmdlet Remove-Item de la forma: 
+
+Para eliminar un alias antes de cerrar la sesión se puede hacer con el cmdlet ```Remove-Item``` de la forma: 
+
+```powershell
 PS C:\> Remove-Item alias:se
-Todos los alias del sistema están almacenados en el denominado dispositivo de alias (alias drive) que es un dispositivo lógico para almacenar alias.
-Los dispositivos lógicos (logical drive) de PowerShell son similares a las unidades de disco que siempre hemos conocido para acceder a discos físicos, lógicos o de red (C:,…) pero que permiten almacenar otra información: una especie de base de datos de PowerShell. 
+```
+
+Todos los alias del sistema están almacenados en el denominado **dispositivo de alias** (alias drive) que es un dispositivo lógico para almacenar alias. Los **dispositivos lógicos** (logical drive) de PowerShell son similares a las unidades de disco que siempre hemos conocido para acceder a discos físicos, lógicos o de red (C:,…) pero que permiten almacenar otra información: una especie de base de datos de PowerShell. 
+
 Como decíamos hay uno en concreto que sirve para almacenar todos los alias denominado alias:. Para acceder a él introducimos la siguiente orden: 
+
+```powershell
 PS C:\> Set-Location alias:
 PS alias:\> Get-Childitem *
+```
+
 Como a estas alturas ya sabemos utilizar alias estarás pensando que es mucho más fácil realizar la operación anterior de la siguiente manera: 
+
+```powershell
 PS C:\> cd alias:
 PS alias:\> dir
+```
 
-1.6.- OBTENCIÓN DE AYUDA
+## 1.6.- OBTENCIÓN DE AYUDA
+
 Powershell tiene cientos de cmdlets, cada uno con un gran número de parámetros. Esto hace que sea imposible conocerlos todos, por lo que tendremos que recurrir frecuentemente a la ayuda.
-El primer sitio para recurrir a la ayuda es en la propia Web de Microsoft, en la URL https://docs.microsoft.com/es-es/powershell/, aquí hay disponibles en castellano guías, manuales y recursos de todo tipo, por lo que es un sitio al que deberás acudir frecuentemente si deseas perfeccionar tus conocimientos de Powershell.
-Si queremos obtener información sobre un determinado comando también hay varias opciones para hacerlo desde la línea de comandos.
-A partir de la versión 3, la ayuda de Powershell no se distribuye con el sistema, por lo que es conveniente descargarla manualmente. Además, puede haber actualizaciones, por lo que es conveniente descargar la última versión de esta de Internet. Para ello usaremos el siguiente comando:
-PS C:\> Update-Help
-Los tres comandos que más útiles nos serán para obtener la ayuda son Get-Command, Get-Help y Get-Member. El tercero lo veremos algo más adelante, así que veamos antes los dos primeros.
-1.6.1.- GET-HELP
-Es el comando principal para buscar la ayuda de otro comando. Simplemente necesitamos pasarle el nombre del otro comando con el parámetro -name para que nos proporcione la ayuda completa de dicho comando.
-PS C:\> Get-Help -Name Get-Process
-La información que nos muestra la ayuda de un comando es la siguiente:
-•	Nombre del comando
-•	Sinopsis
-•	Sintaxis
-•	Descripción 
-•	Vínculos relacionados
-•	Comentarios
-Aunque eso puede parecer mucha información, la realidad es que las entradas de la ayuda tienen muchos más apartados que nos pueden ser interesantes, como para qué sirven los parámetros o ejemplos de utilización. Si queremos una salida completa de la ayuda entonces tendremos que utilizar el parámetro -full.
-PS C:\> Get-Help -Name Get-Process -Full
-Como se puede apreciar, ahora la ayuda obtenida es bastante más extensa, incluyendo también una explicación detallada de cada parámetro, ejemplos de uso, …
-El comando Get-Help muestra toda la información en la página de forma continua. Si queremos que nos muestre la ayuda página a página podemos utilizar la función Help.
-PS C:\> Help -Name Get-Process -Full
-El resultado es muy similar con la diferencia de que ahora se muestra página a página por pantalla, requiriendo la pulsación de la barra espaciadora para pasar a la siguiente página y pudiendo navegar utilizando las teclas de cursor.
-El comando Get-Help tiene otros muchos parámetros, lo más útiles son:
-•	-Examples: muestra únicamente ejemplos de uso del comando indicado por name
-•	-Online: abre la ayuda en el navegador Web
-•	-ShowWindow: muestra la ayuda en una ventana emergente.
-•	-Parameter Nombre: muestra únicamente del parámetro cuyo nombre se indique
 
-1.6.2.- GET-COMMAND
-Este comando nos servirá para encontrar otros comandos. Powershell tiene cientos e incluso miles de cmdlets, por lo que es casi imposible conocer el nombre de todos. El comando Get-Command nos ayudará a encontrar el comando que estemos buscando.
-Si lo ejecutamos directamente, sin parámetros, mostrará todos los comandos disponibles en nuestro sistema:
-PS C:\> Get-Command 
-Pero cuando es realmente útil este comando es al utilizar los parámetros -Verb y -Noun. Hay que recordar que la nomenclatura de todos los cmdlets es consistente, utilizando todos ellos una combinación de verbo y nombre, es decir, qué hace (verbo) y con qué lo hace (nombre). Por ejemplo, el comando Get-Help es el comando que obtiene (Get) la ayuda (Help).
+El primer sitio para recurrir a la ayuda es en la propia [Web de Microsoft](https://docs.microsoft.com/es-es/powershell/), aquí hay disponibles en castellano guías, manuales y recursos de todo tipo, por lo que es un sitio al que deberás acudir frecuentemente cuando tengas cualquier duda sobre Powershell.
+
+Si queremos obtener información sobre un determinado comando también hay varias opciones para hacerlo desde la línea de comandos.En este caso, lo primero que habría que hacer es actualizar la ayuda para poder tener en nuestro equipo la última versión de la misma. Para ello simplemente debemos ejecutar el comando ```Update-Help``` y esperar unos minutos a que la descargue de Internet y la instale.
+
+Hay tres comandos relativos a la ayuda en Powershell: ```Get-Command```, ```Get-Help``` y ```Get-Member```. El tercero lo vamos a dejar para más adelante, así que veamos como funcionan los dos primeros.
+
+
+### 1.6.1.- GET-HELP
+
+Es el comando principal para buscar la ayuda de otro comando. Simplemente necesitamos pasarle el nombre del otro comando con el parámetro ```-name``` para que nos proporcione la ayuda completa de dicho comando.
+
+```powershell
+PS C:\> Get-Help -Name Get-Process
+```
+
+La información que nos muestra la ayuda de un comando es la siguiente:
+- Nombre del comando
+- Sinopsis
+- Sintaxis
+- Descripción 
+- Vínculos relacionados
+- Comentarios
+
+Aunque eso puede parecer mucha información, la realidad es que las entradas de la ayuda tienen muchos más apartados que 
+nos pueden ser interesantes, como para qué sirven los parámetros o ejemplos de utilización. Si queremos una salida completa de la ayuda entonces tendremos que utilizar el parámetro ```-full```.
+
+```powershell
+PS C:\> Get-Help -Name Get-Process -Full
+```
+
+Como se puede apreciar, ahora la ayuda obtenida es bastante más extensa, incluyendo también una explicación detallada de cada parámetro, ejemplos de uso, …
+
+Un comando equivalente pero que muestra la ayuda página a página es ```Help```. El resultado es muy similar con la diferencia de que ahora se muestra página a página por pantalla, requiriendo la pulsación de la barra espaciadora para pasar a la siguiente página y pudiendo navegar utilizando las teclas de cursor.
+
+El comando ```Get-Help``` tiene otros muchos parámetros, lo más útiles son:
+- ```-Examples```: muestra únicamente ejemplos de uso del comando indicado por name
+- ```-Online```: abre la ayuda en el avegador Web
+- ```-ShowWindow```: muestra la ayuda en una ventana emergente.
+- -```Parameter Nombre```: muestra únicamente del parámetro cuyo nombre se indique
+
+### 1.6.2.- GET-COMMAND
+
+Este comando nos servirá para encontrar otros comandos. Powershell tiene cientos e incluso miles de cmdlets, por lo que es casi imposible conocer el nombre de todos. El comando ```Get-Command``` nos ayudará a encontrar el comando que estemos buscando.
+
+Si lo ejecutamos directamente, sin parámetros, mostrará todos los comandos disponibles en nuestro sistema, Pero cuando es realmente útil este comando es al utilizar los parámetros ```-Verb``` y ```-Noun```. Hay que recordar que la nomenclatura de todos los cmdlets es consistente, utilizando todos ellos una combinación de verbo y nombre, es decir, qué hace (verbo) y con qué lo hace (nombre). Por ejemplo, el comando ```Get-Help``` es el comando que obtiene (Get) la ayuda (Help).
+
 Por tanto, podemos obtener una lista de todos los comandos que tengan un nombre o verbo determinado utilizando los parámetros anteriores. Por ejemplo:
+
+```powershell
 PS C:\> Get-Command -Noun Process
+```
+
 Con el comando anterior podemos ver todos los cmdlets que realizan alguna operación con procesos.
 
-1.7.- AYUDAS AL ESCRIBIR LOS COMANDOS
+## 1.7.- AYUDAS AL ESCRIBIR LOS COMANDOS
+
 La primera herramienta de la consola para buscar comandos es autocompletar, que consiste en rellenar el comando que queremos al pulsar la tecla tabulador después de haber tecleado las primeras letras de un comando. Si hay un único comando que comience con esas teclas lo completará, si hubiera más de uno, completará con el primero en orden alfabético y, tras cada nueva pulsación de la tecla tabulador, irá mostrando el resto de los comandos que comiencen por dichas letras.
+
 Cuando queremos recurrir a algún comando que hayamos introducido recientemente, podemos utilizar las teclas de cursor. Cada vez que tecleemos cursor arriba navegará hacia atrás en el historial mostrando el comando previo al que se ve en pantalla. De forma análoga, el cursor abajo avanzará al siguiente comando.
 Pero, si queremos más opciones para trabajar con el historial, tenemos una serie de comando relacionados con el historial.
-El primero de ellos es Get-History, que mostrará numerados todos los comandos que hemos introducido previamente en la sesión actual.
-Los parámetros más relevantes para este comando son:
-•	-Id: Si pasamos como identificador un valor numérico correspondiente a una orden del historial nos mostrará únicamente esa orden.
-•	-Count: Por defecto se muestran todos los comandos desde que se inició la sesión. Con este parámetro podemos indicar cuántos comandos se mostrarán, bien desde el último introducido o bien desde el comando indicado si se utiliza en combinación con el parámetro -Id.
-Si queremos volver a ejecutar un comando que ya está en el historial podemos utilizar el cmdlet Invoke-History. Podemos ejecutarlo sin parámetros, en cuyo caso volverá a ejecutar el último comando del historial, o utilizar el parámetro -Id para indicar el número de entrada del historial que se ejecutará.
-Para agilizar la ejecución de comandos del historial podemos utilizar r, que es el alias de Invoke-History. De igual manera, un alias para Get-History es h.
-Si queremos buscar dentro del historial de una forma rápida, tenemos las combinaciones de teclas Ctrl-R y Ctrl-S, la primera para buscar hacia atrás y la segunda para buscar hacia adelante. Cuando pulsamos Ctrl-R cambiará el prompt y nos pedirá que introduzcamos un texto. Al introducirlo, se mostrará el último comando ejecutado que contenga dicho texto. Con cada nueva pulsación de Ctrl-R retrocederemos en el historial buscando más comandos que contengan el texto, mientras que si pulsamos las teclas Ctrl-S avanzaremos en el historial.
-Algo que hay que destacar respecto a la búsqueda en el historial es que se obtendrán resultados de la propia sesión o de anteriores, mientras que el comando Get-History solo muestra las entradas de la sesión actual.
-Si queremos borrar el historial de nuestra máquina, solo tenemos que ejecutar el comando Clear-History que vacía por completo el historial.
-Sin embargo, podemos ser más precisos utilizando algunos de los parámetros disponibles. Podemos borrar entradas individuales con el parámetro -Id. Por ejemplo, si queremos borrar las entradas con identificador 5 y 9 ejecutaríamos la siguiente orden.
+
+El primero de ellos es ```Get-History```, que mostrará numerados todos los comandos que hemos introducido previamente en la sesión actual. Los parámetros más relevantes para este comando son:
+
+- ```-Id```: Si pasamos como identificador un valor numérico correspondiente a una orden del historial nos mostrará únicamente esa orden.
+- ```-Count```: Por defecto se muestran todos los comandos desde que se inició la sesión. Con este parámetro podemos indicar cuántos comandos se mostrarán, bien desde el último introducido o bien desde el comando indicado si se utiliza en combinación con el parámetro ```-Id```.
+  
+Si queremos volver a ejecutar un comando que ya está en el historial podemos utilizar el cmdlet ```Invoke-History```. Podemos ejecutarlo sin parámetros, en cuyo caso volverá a ejecutar el último comando del historial, o utilizar el parámetro ```-Id``` para indicar el número de entrada del historial que se ejecutará.
+
+Para agilizar la ejecución de comandos del historial podemos utilizar ```r```, que es el alias de ```Invoke-History```. De igual manera, un alias para ```Get-History``` es ```h```.
+
+Si queremos buscar dentro del historial de una forma rápida, tenemos las combinaciones de teclas ```Ctrl-R``` y ```Ctrl-S```, la primera para buscar hacia atrás y la segunda para buscar hacia adelante. Cuando pulsamos ```Ctrl-R``` cambiará el prompt y nos pedirá que introduzcamos un texto. Al introducirlo, se mostrará el último comando ejecutado que contenga dicho texto. Con cada nueva pulsación de ```Ctrl-R``` retrocederemos en el historial buscando más comandos que contengan el texto, mientras que si pulsamos las teclas ```Ctrl-S``` avanzaremos en el historial.
+
+Algo que hay que destacar respecto a la búsqueda en el historial es que se obtendrán resultados de la propia sesión o de anteriores, mientras que el comando ```Get-History``` solo muestra las entradas de la sesión actual.
+
+Si queremos borrar el historial de nuestra máquina, solo tenemos que ejecutar el comando ```Clear-History``` que vacía por completo el historial. Sin embargo, podemos ser más precisos utilizando algunos de los parámetros disponibles. Podemos borrar entradas individuales con el parámetro ```-Id```. Por ejemplo, si queremos borrar las entradas con identificador 5 y 9 ejecutaríamos la siguiente orden.
+
+```powershell
 PS C:\> Clear-History -Id 5, 9
-También podemos eliminar un número concreto de entradas con el parámetro -Count. En el siguiente ejemplo, se eliminan las 5 entradas anteriores a la que tiene como identificador el número 11, mientras que en el segundo ejemplo se eliminan las últimas 5 entradas al combinarlo con el parámetro -Newest.
+```
+
+También podemos eliminar un número concreto de entradas con el parámetro ```-Count```. En el siguiente ejemplo, se eliminan las 5 entradas anteriores a la que tiene como identificador el número 11, mientras que en el segundo ejemplo se eliminan las últimas 5 entradas al combinarlo con el parámetro ```-Newest```.
+
+```powershell
 PS C:\> Clear-History -Count 5 -Id 11
 PS C:\> Clear-History -Count 5 -Newest
-Por último, se pueden filtrar las entradas eliminadas según contengan una cadena usando el parámetro -CommandLine. En el siguiente ejemplo se eliminan todas las entradas del historial que contienen el texto Help y también las que finalizan con el texto Newest.
+```
+
+Por último, se pueden filtrar las entradas eliminadas según contengan una cadena usando el parámetro ```-CommandLine```. En el siguiente ejemplo se eliminan todas las entradas del historial que contienen el texto Help y también las que finalizan con el texto Newest.
+
+```powershell
 PS C:\> Clear-History -CommandLine *Help*, *Newest
+```
+
 Otra utilidad interesante para realizar con el historial es exportarlo para posteriormente importarlo en una máquina diferente o en la misma máquina en otra sesión. Para conseguir esto debemos exportar el historial a un fichero, que podrá ser en formato XML o CSV y posteriormente importarlo en el otro equipo.
+
 Para exportarlo podemos usar una de las siguientes órdenes, la primera si queremos utilizar el formato XML y la segunda para el caso de querer utilizar el formato CSV.
+
+```powershell
 PS C:\> Get-History | Export-Clixml -Path ‘C:\history.xml’
 PS C:\> Get-History | Export-CSV -Path ‘C:\history.csv’
-Si tienes curiosidad, puedes ver el contenido del fichero exportado con el comando Get-Content, que muestra el contenido de un archivo de texto.
+```
+
+Si tienes curiosidad, puedes ver el contenido del fichero exportado con el comando ```Get-Content```, que muestra el contenido de un archivo de texto.
+
+```powershell
 PS C:\> Get-Content ‘C:\history.xml’
+```
+
 Para importarlo, el proceso es similar, pero utilizando el comando Add-History de la siguiente forma.
+
+```powershell
 PS C:\> Import-Clixml -Path ‘C:\history.xml’ | Add-History
 PS C:\> Import-CSV -Path ‘C:\history.csv’ | Add-History
+```
 
-2.- CONTROL DE LA SALIDA CON PIPELINES
-El pipeline, representado por el símbolo barra vertical (|), es utilizado para combinar diversos cmdlets de forma que la salida de uno es enviada a la entrada del siguiente, de forma muy similar a cómo se hace en Linux. 
-2.1.- OBJETOS EN POWERSHELL
-Un aspecto importante al trabajar con el pipeline, sobre todo si has trabajado antes con Linux, es que Powershell es un Shell orientado a objetos, y, por tanto, la información que se intercambia entre los comandos son objetos. Este enfoque difiere mucho del que podemos encontrar en el intérprete de comandos de Linux o en MS-DOS. En estos sistemas los comandos realizan algún tipo de acción y devuelven simplemente un texto para poder mostrar por pantalla el resultado de dicha acción.
-Un objeto se puede entender como una abstracción de un elemento, por ejemplo, un usuario, un proceso o un fichero. Cada objeto tiene una serie de propiedades, que son las características intrínsecas de dicho objeto, y una serie de métodos, que son las acciones que se pueden realizar sobre dicho objeto.
+# 2.- CONTROL DE LA SALIDA CON PIPELINES
+
+El **pipeline**, representado por el símbolo barra vertical (|), es utilizado para combinar diversos cmdlets de forma que la salida de uno es enviada a la entrada del siguiente, de forma muy similar a cómo se hace en Linux. 
+ 
+
+## 2.1.- OBJETOS EN POWERSHELL
+
+Un aspecto importante al trabajar con el pipeline, sobre todo si has trabajado antes con Linux, es que Powershell es un Shell **orientado a objetos**, y, por tanto, la información que se intercambia entre los comandos son objetos.
+
+Un **objeto** se puede entender como una abstracción de un elemento, por ejemplo, un usuario, un proceso o un fichero. Cada objeto tiene una serie de **propiedades**, que son las características intrínsecas de dicho objeto, y una serie de **métodos**, que son las acciones que se pueden realizar sobre dicho objeto.
+
+Por ejemplo, cuando en MS-DOS ejecutamos la orden:
+
+```powershell
+C:\> dir c:\datos\*.txt
+```
+
+Cuando ejecutamos esa orden el sistema mira el contenido del directorio ```C:\datos``` buscando los ficheros que tengan extensión txt y, a partir del mismo, genera una salida por pantalla, es decir, una secuencia de caracteres, que muestran el contenido de dicho directorio. Si quisiéramos realizar algún tipo de operación automatizada con la salida de este comando, tendremos que trabajar con esa secuencia de caracteres que ha generado. Por ejemplo, podríamos guardar todos esos caracteres en un fichero, o filtrarlos para que muestre todas las líneas que contengan una determinada cadena.
+
+Veamos ahora la orden equivalente en Powershell, que será:
+
+```powershell
+C:\> Get-Item C:\datos\*.txt
+```
+
+Si la ejecutamos veremos que la salida es muy similar a la del comando anterior, pero sin embargo lo que hace es muy diferente. El comando obtiene el listado de ficheros del disco, pero lo hace como una lista de objetos, cada uno de los cuales representando cada fichero. Una vez que tiene esta lista de objeto mira a ver que hay que hacer con ellos: si tiene que enviárselos a otro comando mediante el pipeline (como veremos un poco más adelante) le enviará la lista de objetos; en cambio, si tiene que mostrar la salida por pantalla tomará esos objetos y verá cuál es la representación más adecuada para mostrársela al usuario, momento en el que dejarán de ser un conjunto de objetos para ser una secuencia de caracteres.
+
+
+Este enfoque difiere mucho del que podemos encontrar en el intérprete de comandos de Linux o en MS-DOS. En estos sistemas los comandos realizan algún tipo de acción y devuelven simplemente un texto para poder mostrar por pantalla el resultado de dicha acción.
+
 Por ejemplo, cuando ejecutamos el comando Get-LocalUser -Name Victor obtenemos información sobre la cuenta de usuario llamada Victor. Cuando ejecutamos 
 
  
@@ -204,11 +302,15 @@ En la imagen anterior ejecutamos el comando Get-LocalUser -Name Victor que devue
 
 En la imagen anterior podemos ver que el comando Get-LocalUser devuelve objetos del tipo Microsoft.Powershell.Commands.LocalUser, y, a continuación, se nos muestran los métodos y propiedades de estos objetos. Por ejemplo, el objeto usuario tiene un método denominado Clone() que, como su nombre indica, servirá para clonar el usuario al que corresponde ese objeto; o, una propiedad denominada Description que almacenará una cadena de texto con la descripción introducida cuando se creó el usuario.
 
-2.2.- EL PIPELINE
+
+## 2.2.- EL PIPELINE
 Es más fácil ver esto con un ejemplo, así que partiremos del cmdlet Get-Process, que obtiene información de los procesos del sistema al que invocaremos con el modificador -name. Por defecto, se obtiene la siguiente salida:
  
 Veamos algunas opciones de uso del pipeline.
-2.1.- REDIRECCIÓN A OTRO COMANDO
+
+
+## 2.1.- REDIRECCIÓN A OTRO COMANDO
+
 Un uso del pipeline es obtener la referencia a algún objeto para utilizar como entrada de otro comando. Por ejemplo, supongamos que queremos terminar el proceso correspondiente a la calculadora, para lo cual necesitamos el comando Stop-Process. 
 Mirando la ayuda de este comando veremos que requiere el identificador del proceso que queremos terminar, por lo que sería necesario conocer antes este número, por ejemplo, mediante el comando anterior.
  
@@ -216,7 +318,9 @@ Sin embargo, es más sencillo enlazar ambos comandos en una línea de la siguien
  
 Observa que esto es útil incluso si tenemos varias instancias de un proceso. En el siguiente ejemplo se ve que hay ocho instancias del proceso Teams, las cuales son recogidas todas por el comando Get-Process y enviadas a Stop-Process.
  
-2.2.- OBTENER PROPIEDADES DEL OBJETO
+
+# 2.2.- OBTENER PROPIEDADES DEL OBJETO
+
 Como hemos dicho, la salida de los comandos de Powershell son objetos, cada uno de los cuales tiene una serie de propiedades, aunque en la salida por defecto únicamente es muestran las más importantes. Si queremos ver todas las propiedades de un objeto lo podemos hacer con el comando Get-Member de la siguiente forma:
 PS C:\> Get-Process -Name Calculator | Get-Member
 
@@ -224,7 +328,9 @@ PS C:\> Get-Process -Name Calculator | Get-Member
 Ahora que ya sabemos qué propiedades tienen los objetos del tipo proceso podemos personalizar la salida del comando mediante Select-Object, de forma que me muestre las propiedades que me interesan. Por ejemplo, en la siguiente imagen se muestran el identificador, consumo de CPU y los hilos del proceso.
 PS C:\> Get-Process -Name Calculator | Select-Object Id, CPU, Threads
 
-2.3.- ORDENAR, AGRUPAR Y MEDIR LA SALIDA DE UN COMANDO
+
+# 2.3.- ORDENAR, AGRUPAR Y MEDIR LA SALIDA DE UN COMANDO
+
 Hay comandos que proporcionan un gran número de elementos al ejecutarse por lo que puede ser conveniente manipular dicha salida para que sea más fácilmente comprensible. Para ello utilizaremos los cmdlets Sort-Object, Goup-Object y Measure-Object, que ordenan, agrupan y cuentan respectivamente.
 Al comando Sort-Object hay que pasarle como parámetro la propiedad por la que queramos que nos ordene la salida, por ejemplo, podemos ordenador todos los procesos del sistema por uso de CPU. Admite algunos parámetros que podemos ver en la ayuda (Get-Help Sort-Object), pero probablemente el más utilizado sea -Descending para mostrar los resultados ordenados en orden descendente.
 Además, aprovecharemos este ejemplo para mostrar cómo se pueden enlazar varios comandos mediante pipelines, para ello obtenemos todos los procesos del sistema, seleccionamos qué propiedades queremos que se muestren y finalmente los ordenamos según el consumo de CPU en orden descendente, es decir, que los primeros sean los que mayor consumo de CPU tengan.
@@ -236,7 +342,9 @@ PS C:\> Get-Process | Group-Object Name, CPU
 Y por último, podemos utilizar el comando Measure-Object para contar los objetos que proporciona el comando del que obtiene la salida. Por ejemplo, con la siguiente orden contaremos el número de procesos que hay en el sistema.
 PS C:\> Get-Process | Measure-Object
 
-2.4.- FILTRADO DE OBJETOS
+
+# 2.4.- FILTRADO DE OBJETOS
+
 La mayoría de los comandos devuelven un conjunto de objetos que normalmente queremos filtrar. Por ejemplo, el comando Get-Process permite filtrar la salida por nombre indicando el parámetro -Name, de forma que únicamente nos muestre aquellos procesos cuyo nombre se ajuste a nombre que hemos indicado como parámetros.
 Si queremos más opciones de filtrado, tenemos a nuestra disposición el comando Where-Object, el cual recibe un conjunto de objetos (normalmente pasados mediante pipeline) y los filtra mediante algún criterio, de forma que en su salida proporciona únicamente los objetos que cumplan el criterio especificado.
 Para usar este comando, lo primero que tenemos que conocer son los operadores de comparación, que son los siguientes:
@@ -256,40 +364,60 @@ Los operadores -like y -notlike se utilizan para realizar comparaciones de caden
 Por ejemplo, si queremos localizar el proceso correspondiente al programa Word y no sabemos exactamente como se llama podemos hacer una búsqueda de la siguiente forma, representando cadenas que contengan la cadena word en su interior y que pueden tener cualquier cadena tanto antes como después.
 PS C:\> Get-Process | Where-Object Name -like *word*
 
-2.5.- FORMATEANDO DE LA SALIDA
+
+# 2.5.- FORMATEANDO DE LA SALIDA
+
 Cuando ejecutamos un comando en Powershell vemos un texto con la salida del comando, pero en realidad cualquier comando devuelve uno o varios objetos y lo que se nos muestra por pantalla son las propiedades más relevantes de dichos objetos en un formato predeterminado. Sin embargo, es posible modificar tanto las propiedades que se nos muestran de cada objeto, como el formato en que se hace.
 Powershell tiene cinco cmdlets para el formato de la salida de comandos, de los que nosotros veremos Format-List, Format-Table y Format-Wide.
-2.5.1.- FORMAT-WIDE
+
+
+### 2.5.1.- FORMAT-WIDE
+
 Este comando muestra únicamente una propiedad de cada objeto, mostrando todos estos valores en una tabla. Como alternativa más breve se puede utilizar el alias fw.
 Los parámetros más destacables de este comando son:
 •	-Property: para indicar si queremos que se muestre una propiedad diferente a la que muestra por defecto.
 •	-Column: que mediante un valor numérico señalará cuántas columnas tendrá la tabla con los resultados mostrados.
-2.5.2.- FORMAT-TABLE
+
+### 2.5.2.- FORMAT-TABLE
+
 Formatea la salida del comando redireccionado en forma de tabla donde mostrará un objeto en cada fila y las propiedades más relevante en las columnas. El alias para este comando es ft.
 Un parámetro útil con Format-Table es -AutoSize, que adapta el tamaño de la salida para que se ajuste al tamaño disponible en la pantalla y así evitar que se recorte la salida.
-2.5.3.- FORMAT-LIST
+
+
+# 2.5.3.- FORMAT-LIST
+
 Por último, Format-List muestra la salida del comando como una lista de propiedades, indicando cada una de estas propiedades en una línea diferente.
 
 
  
-3.- CONTROLANDO HYPER-V CON POWERSHELL
+# 3.- CONTROLANDO HYPER-V CON POWERSHELL
+
 Powershell dispone de un módulo específico para trabajar con máquinas virtuales de Hyper-V el cual se puede instalar cuando habilitamos la característica de Administración de Hyper-V.
 Podemos ver todos los comandos incluidos en el módulo con la siguiente orden, que nos muestra más de 200 comandos relacionados con máquinas virtuales.
 PS C:\> Get-Command -Module hyper-v
 Veamos los comandos que más útiles nos pueden ser:
-3.1.- LISTADO DE MÁQUINAS VIRTUALES
+
+
+## 3.1.- LISTADO DE MÁQUINAS VIRTUALES
+
 Con el comando Get-VM obtendremos un listado de las máquinas virtuales actualmente administradas en nuestro equipo.
 PS C:\> Get-VM
 Podemos utilizar un filtro para mostrar solamente las máquinas que nos interesen. En las siguientes órdenes se muestran únicamente las máquinas virtuales que se encuentran en ejecución en un momento determinado. Observa que ambas sintaxis son equivalentes y se pueden utilizar indistintamente una u otra.
 PS C:\> Get-VM | Where-Object {$_.State -eq ‘Running’}
 PS C:\> Get-VM | Where-Object State -eq ‘Running’
-3.2.- INICIAR Y APAGAR MÁQUINAS VIRTUALES
+
+
+## 3.2.- INICIAR Y APAGAR MÁQUINAS VIRTUALES
+
 Como seguro que ya te imaginas, los comandos para iniciar y apagar máquinas virtuales son Start-VM y Stop-VM. Ambas utilizan el parámetro -Name para hacer referencia a la máquina que se va a iniciar o apagar. 
 PS C:\> Start-VM -Name “Windows 10”
 También podemos utilizar el pipeline para realizar arranques o paradas de todas las máquinas virtuales o de un conjunto de ellas, por ejemplo, con la siguiente orden se paran todas las máquinas que estén arrancadas:
 PS C:\> Get-VM | Where-Object State -eq ‘Running’ | Stop-VM
 Si por algún motivo la máquina virtual se hubiera colgado y no respondiera a la orden de parada se podría utilizar el parámetro -Force para forzar el apagado. Ten en cuenta que esto es equivalente a apagar una máquina física tirando del cable de corriente, por lo que puede haber pérdida de datos o tener alguna inconsistencia en el sistema de ficheros.
-3.3.- SUSPENDER E HIBERNAR MÁQUINAS VIRTUALES
+
+
+# 3.3.- SUSPENDER E HIBERNAR MÁQUINAS VIRTUALES
+
 De forma análoga a como podemos hacer con una máquina física, es posible suspender e hibernar las máquinas virtuales.
 Suspender una máquina virtual supone congelar su ejecución en el momento actual y quedará en este estado hasta que la volvamos a iniciar con el comando Resume-VM.
 PS C:\> Suspend-VM -Name ‘Win10’
@@ -297,17 +425,26 @@ PS C:\> Resume-VM -Name ‘Win10’
 La diferencia cuando guardamos una máquina virtual (el equivalente a hibernar) es que se congela la máquina y además el contenido de su memoria se vuelca al disco, por lo que se liberará la memoria que esté ocupando la máquina virtual. El comando para realizar esta tarea es Save-VM, mientras que se debe restaurar con Start-VM.
 PS C:\> Save-VM -Name ‘Win10’
 PS C:\> Start-VM -Name ‘Win10’
-3.4. MEDIR EL CONSUMO DE RECURSOS DE UNA MÁQUINA VIRTUAL
+
+
+## 3.4. MEDIR EL CONSUMO DE RECURSOS DE UNA MÁQUINA VIRTUAL
+
 En entornos con múltiples máquinas virtuales puede ser útil hacer un seguimiento de los recursos consumidos por cada una de las máquinas. Para hacer esto primero hay que habilitar la medición de recursos en las máquinas virtuales con la siguiente orden:
 PS C:\> Enable-VMResourceMetering -VMName ‘Win10’
 Una vez habilitada la medición de recursos podemos comprobar el consumo de recursos con el comando:
 PS C:\> Measure-VM -Name ‘Win10’
-3.5.- OBTENER LOS RECURSOS DEL ANFITRIÓN
+
+
+## 3.5.- OBTENER LOS RECURSOS DEL ANFITRIÓN
+
 En ocasiones nos puede interesar conocer los recursos disponibles en el equipo que está ejecutando Hyper-V, por ejemplo, para saber cuanta memoria RAM tiene o el número de núcleos del procesador. Esto lo podemos conseguir con el comando Get-VMHost. 
 PS C:\> Get-VMHost
 Recuerda que puedes combinarlo con el comando Select-Objetc para seleccionar las propiedades que se mostrarán. También puedes utilizar el comodín (*) para indicar que se muestren todas las propiedades.
 PS C:\> Get-VMHost | Select-Object *
-3.6.- OTROS COMANDOS PARA TRABAJAR CON HYPER-V
+
+
+## 3.6.- OTROS COMANDOS PARA TRABAJAR CON HYPER-V
+
 Hay otros muchos comandos que nos permiten realizar cualquier función que nos imaginemos sobre las máquinas virtuales. En especial, hay una serie de comandos que nos permitirán crear tanto discos como máquinas virtuales directamente desde la línea de comandos, pero que se salen del ámbito de estudio de este curso.
 Si estás muy interesado, puedes obtener más información en las páginas de ayuda de Hyper-V con Powershell de Microsotf o también hay un manual bastante detallado en https://statemigration.com/save-time-on-hyper-v-using-powershell/.
 
