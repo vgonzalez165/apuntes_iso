@@ -508,18 +508,18 @@ Tabla resumen de comandos
 
 | Comando           | Alias         | Descripción                                   |
 |-------------------|---------------|-----------------------------------------------|
-| `Add-Content`     | ac            | Añade contenido a un fichero                  |
-| `Clear-Host`      | cls, clear    | Borra la pantalla                             |
-| `Clear-Item`      | cli           | Borra el contenido de un fichero, pero no el propio fichero |
-| `Copy-Item`       | copy, cp, cpi | Copia un fichero o directorio                 |
-| `Get-ChildItem`   | dir, ls, gci  | Muestra el contenido de un directorio         |
-| `Get-Content`     | type, cat, gc | Muestra el contenido de un fichero            |
-| `Get-Item`        | gi            | ????????????????????????                      |
-| `Get-ItemProperty`| gp            | Obtiene una propiedad de un fichero o directorio |
+| `Add-Content`     | `ac`            | Añade contenido a un fichero                  |
+| `Clear-Host`      | `cls`, `clear`    | Borra la pantalla                             |
+| `Clear-Item`      | `cli`           | Borra el contenido de un fichero, pero no el propio fichero |
+| `Copy-Item`       | `copy`, `cp`, `cpi` | Copia un fichero o directorio                 |
+| `Get-ChildItem`   | `dir`, `ls`, `gci`  | Muestra el contenido de un directorio         |
+| `Get-Content`     | `type`, `cat`, `gc` | Muestra el contenido de un fichero            |
+| `Get-Item`        | `gi`            | ????????????????????????                      |
+| `Get-ItemProperty`| `gp`            | Obtiene una propiedad de un fichero o directorio |
 | `Join-Path`       | -             | Une dos partes de una ruta, p.e. una unidad de disco y un nombre de fichero |
-| `Move-Item`       | mi, mv, move  | Mueve ficheros y directorios                  |
-| `New-Item`        | ni            | Crea un fichero o directorio                  |
-| `Remove-Item`     | ri, rm, rmdir, del, erase, rd | Borra un fichero o directorio |
-| `Rename-Item`     | ren, rni      | Renombra un fichero o directorio              |
-| `Set-Location`    | cd, chdir, sl | Cambia el directorio de trabajo al directorio especificado |
+| `Move-Item`       | `mi`, `mv`, `move`  | Mueve ficheros y directorios                  |
+| `New-Item`        | `ni`            | Crea un fichero o directorio                  |
+| `Remove-Item`     | `ri`, `rm`, `rmdir`, `del`, `erase`, `rd` | Borra un fichero o directorio |
+| `Rename-Item`     | `ren`, `rni`      | Renombra un fichero o directorio              |
+| `Set-Location`    | `cd`, `chdir`, `sl` | Cambia el directorio de trabajo al directorio especificado |
 | `Test-Path`       | -             | Devuelve True si la ruta indicada existe      |
