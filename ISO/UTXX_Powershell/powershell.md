@@ -521,5 +521,42 @@ Tabla resumen de comandos
 | `New-Item`        | `ni`            | Crea un fichero o directorio                  |
 | `Remove-Item`     | `ri`, `rm`, `rmdir`, `del`, `erase`, `rd` | Borra un fichero o directorio |
 | `Rename-Item`     | `ren`, `rni`      | Renombra un fichero o directorio              |
-| `Set-Location`    | `cd`, `chdir`, `sl` | Cambia el directorio de trabajo al directorio especificado |
+| `Set-Location`    | `cd`, `chdir` | Cambia el directorio de trabajo al directorio especificado |
 | `Test-Path`       | -             | Devuelve True si la ruta indicada existe      |
+
+
+## 4.1.- Navegación por el sistema de ficheros
+
+### 4.1.1.- Directorio de trabajo
+
+El sistema de ficheros en Windows es una estructura arborescente o jerárquica donde la raíz de dicho árbol es cada una de las unidades de almacenamiento que tengamos en el sistema, y cada nodo será, o bien un **fichero** o bien una **carpeta**. Los ficheros contienen datos, mientras que las carpetas o directorios son meros contenedores que sirven para almacenar en su interior tanto directorios como otras carpetas. 
+
+Cuando abrimos una terminal de Powershell, siempre nos encontraremos en algún punto de ese árbol, que puede ser en el directorio raíz o bien en alguna de las carpetas del árbol. El directorio en el que nos entramos en cada momento se llama **directorio de trabajo** y es importante tener claro en todo momento cuál es, ya que las órdenes de Powershell que requieren un fichero como parámetro lo buscarán por defecto en el directorio de trabajo (salvo que se indique explícitamente la ruta).
+
+Hay dos formas de saber cuál es el directorio de trabajo:
+
+- Cuando estamos en la línea de comandos del Powershell siempre se muestra el directorio de trabajo actual en el **promp**, el texto que aparece antes del cursor que espera que introduzcamos un comando.
+- Con el comando `Get-Location` o su alias `pwd`.
+
+La forma de representar los directorios es mediante la enumeración de todos los directorios que hay que atravesar desde el directorio raíz hasta el directorio indicado partiendo siempre desde la letra de la unidad en que se encuentra y separando los directorios con el símbolo barra invertida (`\`) o bien el símbolo barra (`/`). Windows no distingue entre mayúsculas y minúsculas, por lo que es indiferente utilizar unas u otras en las rutas.
+
+Así, por ejemplo, la ruta `C:\Usuarios\victor\Documents` hace referencia al directorio `Documents`, que se encuentra dentro del directorio victor, que a su vez está dentro de `Usuarios` que está ubicado en la unidad de almacenamiento `C:`
+
+Cuando indicamos una ruta de esta forma se dice que utilizamos **rutas absolutas**, ya que identifica unívocamente el directorio independientemente del directorio de trabajo en el que nos encontremos.
+
+La alternativa es el uso de **rutas relativas**
+
+Para obtener el contenido de un directorio debemos utilizar el comando `Get-ChildItem`, que muestra todos los ficheros y directorios que hay en un directorio que se le pase como parámetro, o del directorio de trabajo si no se le pasa ninguno.
+
+
+### 4.1.2.- Navegación por el sistema de ficheros
+
+Para movernos por el árbol de directorios debemos utilizar el comando `Set-Location`, o su alias `cd`. Como parámetro hay que indicarle la ruta del directorio al que nos queremos mover, el cual pasará a ser el directorio de trabajo.
+
+Para indicar el directorio al que nos queremos desplazar hay dos opciones:
+
+* Mediante **rutas absolutas**, en las que se indica la ruta del directorio 
+
+* Mediante **rutas relativas**,
+
+El comando más útil para navegar por el sistema de ficheros es `Get-ChildItem`, que devuelve 
