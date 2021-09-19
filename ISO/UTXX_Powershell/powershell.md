@@ -198,9 +198,12 @@ PS C:\> Get-Command -Noun Process
 
 Con el comando anterior podemos ver todos los cmdlets que realizan alguna operación con procesos.
 
+
 ## 1.7.- AYUDAS AL ESCRIBIR LOS COMANDOS
 
-La primera herramienta de la consola para buscar comandos es autocompletar, que consiste en rellenar el comando que queremos al pulsar la tecla tabulador después de haber tecleado las primeras letras de un comando. Si hay un único comando que comience con esas teclas lo completará, si hubiera más de uno, completará con el primero en orden alfabético y, tras cada nueva pulsación de la tecla tabulador, irá mostrando el resto de los comandos que comiencen por dichas letras.
+La primera herramienta de la consola para buscar comandos es autocompletar, que consiste en rellenar el comando que queremos al pulsar la **tecla tabulador** después de haber tecleado las primeras letras de un comando. Si hay un único comando que comience con esas teclas lo completará, si hubiera más de uno, completará con el primero en orden alfabético y, tras cada nueva pulsación de la tecla tabulador, irá mostrando el resto de los comandos que comiencen por dichas letras.
+
+El uso del tabulador también es útil si no conocemos los parámetros de un comando, si tras el guión que precede a todos los parámetros pulsamos la tecla tabulador ira iterando sobre todos los parámetros que admite el comando.
 
 Cuando queremos recurrir a algún comando que hayamos introducido recientemente, podemos utilizar las teclas de cursor. Cada vez que tecleemos cursor arriba navegará hacia atrás en el historial mostrando el comando previo al que se ve en pantalla. De forma análoga, el cursor abajo avanzará al siguiente comando.
 Pero, si queremos más opciones para trabajar con el historial, tenemos una serie de comando relacionados con el historial.
@@ -318,7 +321,7 @@ Sin embargo, es más sencillo enlazar ambos comandos en una línea de la siguien
 Observa que esto es útil incluso si tenemos varias instancias de un proceso. En el siguiente ejemplo se ve que hay ocho instancias del proceso Teams, las cuales son recogidas todas por el comando Get-Process y enviadas a Stop-Process.
  
 
-# 2.2.- OBTENER PROPIEDADES DEL OBJETO
+## 2.2.- OBTENER PROPIEDADES DEL OBJETO
 
 Como hemos dicho, la salida de los comandos de Powershell son objetos, cada uno de los cuales tiene una serie de propiedades, aunque en la salida por defecto únicamente es muestran las más importantes. Si queremos ver todas las propiedades de un objeto lo podemos hacer con el comando ```Get-Member``` de la siguiente forma:
 
@@ -378,18 +381,80 @@ Name            CPU StartTime
 Calculator 0,734375 14/09/2021 22:45:57
 ```
 
+## 2.3.- ORDENAR, AGRUPAR Y MEDIR LA SALIDA DE UN COMANDO
+
+Hay comandos que proporcionan un gran número de elementos al ejecutarse por lo que puede ser conveniente manipular dicha salida para que sea más fácilmente comprensible. Para ello utilizaremos los cmdlets `Sort-Object`, `Group-Object` y `Measure-Object`, que ordenan, agrupan y cuentan respectivamente.
+
+### 2.3.1.- Ordenando con el comando `Sort-Object`
+
+El comando `Sort-Object` admite un conjunto de objetos como entrada y devuelve es mismo conjunto de objetos pero **ordenados** según el valor de la propiedad que se indique. 
+
+Por ejemplo, para ordenar los procesos que se están ejecutando actualmente en el sistema ordenados por uso de CPU ejecutaríamos la orden:
+
+```powershell
+PS C:\> get-process | Sort-Object cpu
+
+ NPM(K)    PM(M)      WS(M)     CPU(s)      Id  SI ProcessName
+ ------    -----      -----     ------      --  -- -----------
+     12     3,74       2,68       0,00    1616   0 amdfendrsr
+     19     6,27       9,71       0,00    1908   0 svchost
+     13     3,62       6,50       0,00    1964   0 svchost
+     14    17,88      20,35       0,00    2064   0 svchost
+...
+```
+
+El parámetro más relevante de este comando es `-Descending`, que ordena la salida de mayor a menor.
+
+### 2.3.2.- Agrupando con `Group-Object`
+
+El comando `Group-Object` recoge un conjunto de objetos y, en lugar de mostrarlos todos secuencialmente, los agrupa en función del valor de la propiedad que indiquemos.
+
+Veámoslo con un ejemplo. El comando `Get-Service` nos devuelve todos los servicios que hay en el sistema de la siguiente forma:
+
+```powershell
+PS C:\> Get-Service
+
+Status   Name               DisplayName
+------   ----               -----------
+Stopped  AarSvc_1f230e      Agent Activation Runtime_1f230e
+Running  AdobeARMservice    Adobe Acrobat Update Service
+Stopped  AJRouter           Servicio de enrutador de AllJoyn
+Stopped  ALG                Servicio de puerta de enlace de nivel…
+```
+
+Si quisiéramos saber cuántos están actualmente en ejecución tendríamos que contarlos manualmente. La mejor alternativa es utilizar `Group-Object` para agruparlos por la propiedad `status`, lo que los agrupará en función del valor de estado de cada servicio y además nos indicará cuántos hay en cada grupo.
+
+```powershell
+PS C:\> Get-Service | Group-Object -Property status
+
+Count Name                      Group
+----- ----                      -----
+  168 Stopped                   {AarSvc_1f230e, AJRouter, ALG, AppIDSvc…}
+  103 Running                   {AdobeARMservice, AMD Crash Defender Service, AMD External Events Utility, Appinfo…}
+```
+
+Incluso podríamos indicar más de una propiedad para que agrupe en función de las diferentes combinaciones de los valores de dicha propiedad.
+
+```powershell
+PS C:\> Get-Service | Group-Object -Property Status,StartType
+
+Count Name                      Group
+----- ----                      -----
+    6 Stopped, Automatic        {dbupdate, edgeupdate, gpsvc, gupdate…}
+  150 Stopped, Manual           {AarSvc_1f230e, AJRouter, ALG, AppIDSvc…}
+   11 Stopped, Disabled         {AppVClient, DialogBlockingService, MsKeyboardFilter, NetTcpPortSharing…}
+   61 Running, Automatic        {AdobeARMservice, AMD Crash Defender Service, AMD External Events Utility, AudioEndpoi…
+   43 Running, Manual           {Appinfo, AppXSvc, BthAvctpSvc, cbdhsvc_1f230e…}
+```
+
+### 2.3.3.- Midiendo con el `Measure-Object`
+
+Este comando realiza cálculos con los valores de las propiedades de un objeto. En el caso de propiedades numéricas puede calcular el mínimo, el máximo, la suma y el promedio. En el caso de propiedades de tipo texto puede contar y calcular el número de líneas, palabras y caracteres.
 
 
-# 2.3.- ORDENAR, AGRUPAR Y MEDIR LA SALIDA DE UN COMANDO
 
-Hay comandos que proporcionan un gran número de elementos al ejecutarse por lo que puede ser conveniente manipular dicha salida para que sea más fácilmente comprensible. Para ello utilizaremos los cmdlets Sort-Object, Goup-Object y Measure-Object, que ordenan, agrupan y cuentan respectivamente.
-Al comando Sort-Object hay que pasarle como parámetro la propiedad por la que queramos que nos ordene la salida, por ejemplo, podemos ordenador todos los procesos del sistema por uso de CPU. Admite algunos parámetros que podemos ver en la ayuda (Get-Help Sort-Object), pero probablemente el más utilizado sea -Descending para mostrar los resultados ordenados en orden descendente.
-Además, aprovecharemos este ejemplo para mostrar cómo se pueden enlazar varios comandos mediante pipelines, para ello obtenemos todos los procesos del sistema, seleccionamos qué propiedades queremos que se muestren y finalmente los ordenamos según el consumo de CPU en orden descendente, es decir, que los primeros sean los que mayor consumo de CPU tengan.
 
-PS C:\> Get-Process | Select-Object Name, Id, CPU | Sort-Object CPU -Descending
 
-El siguiente comando para reorganizar la salida es Group-Object, que agrupa los objetos según la propiedad que se especifique.
-PS C:\> Get-Process | Group-Object Name, CPU
 Y por último, podemos utilizar el comando Measure-Object para contar los objetos que proporciona el comando del que obtiene la salida. Por ejemplo, con la siguiente orden contaremos el número de procesos que hay en el sistema.
 PS C:\> Get-Process | Measure-Object
 
@@ -544,19 +609,32 @@ Así, por ejemplo, la ruta `C:\Usuarios\victor\Documents` hace referencia al dir
 
 Cuando indicamos una ruta de esta forma se dice que utilizamos **rutas absolutas**, ya que identifica unívocamente el directorio independientemente del directorio de trabajo en el que nos encontremos.
 
-La alternativa es el uso de **rutas relativas**
+La alternativa es el uso de **rutas relativas**, en ellas se indica el camino que hay que seguir para llegar al directorio que se desea partiendo del directorio de trabajo actual, en lugar de hacerlo desde el directorio raíz. Estas rutas se identifican fácilmente porque **no comienzan por una letra de unidad**, y, para saber a qué directorio apuntan, debemos saber cuál es el directorio de trabajo actual.
 
-Para obtener el contenido de un directorio debemos utilizar el comando `Get-ChildItem`, que muestra todos los ficheros y directorios que hay en un directorio que se le pase como parámetro, o del directorio de trabajo si no se le pasa ninguno.
+Si por ejemplo, nuestro directorio de trabajo actual es `C:\Usuarios` y tenemos la ruta `vgonzalez\Documents`, sabemos que hace referencia al directorio `Documents`, que se encuentra dentro de `vgonzalez`, que a su vez está en el directorio `Usuarios` del disco `C:`. Un buen hábito es utilizar un directorio especial llamado `.` que se encuentra en todos los directorios y que apunta a él mismo para preceder las rutas locales, de forma que se enfatiza el hecho de que sea una ruta local y mejora la legibilidad. De esta forma, la ruta anterior la podíamos poner de la forma `.\vgonzalez\Documents`.
+
+Cuando descendemos en el árbol de directorios, como en el ejemplo anterior, simplemente hay que poner los nombres de todos los directorios por los que se pasa. Sin embargo, hay ocasiones en que necesitaremos **subir por el árbol de directorios**. Para esos casos necesitamos poder hacer referencia al **directorio padre** de un directorio, y eso se consigue con otro directorio especial, presente en todos los directorios, denominado `..`.
+
+Así, si por ejemplo estamos en el directorio `D:\apuntes\ISO\UT01` y queremos hacer referencia al directorio `D:\apuntes\ISO\UT02` mediante una ruta relativa, la indicaríamos de la forma `..\UT02`, que indica, *vete al directorio padre del actual y ahí entra al subdirectorio `UT02`*.
+
+Por norma general es equivalente el uso de rutas absolutas o relativas, por lo que siempre haremos uso de aquellas que nos resulten más cortas o con las que nos encontremos más cómodos. Hay una excepción a esta norma, y es cuando utilicemos rutas dentro de ficheros, por ejemplo, scripts o ficheros de configuración. En esos casos **siempre debemos utilizar rutas absolutas**, ya que no podemos garantizar que en el momento en que se vaya a ejecutar el script o leer el fichero de configuración el directorio de trabajo sea el que esperamos.
 
 
 ### 4.1.2.- Navegación por el sistema de ficheros
 
 Para movernos por el árbol de directorios debemos utilizar el comando `Set-Location`, o su alias `cd`. Como parámetro hay que indicarle la ruta del directorio al que nos queremos mover, el cual pasará a ser el directorio de trabajo.
 
-Para indicar el directorio al que nos queremos desplazar hay dos opciones:
+Para ver el contenido de un directorio utilizaremos el comando `Get-ChildItem` (o sus alias `dir` o `ls`), que mostrará todos los ficheros y directorios que se encuentran dentro del directorio de trabajo actual si no hemos indicado ningún directorio como parámetros, o del directorio que hayamos pasado como parámetro.
 
-* Mediante **rutas absolutas**, en las que se indica la ruta del directorio 
+```powershell
+PS C:\apuntes_iso> Get-ChildItem
 
-* Mediante **rutas relativas**,
+    Directory: C:\apuntes_iso
 
-El comando más útil para navegar por el sistema de ficheros es `Get-ChildItem`, que devuelve 
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          12/09/2021     9:48                iso
+-a---          12/09/2021     9:33            220 readme.md
+
+```
+
