@@ -6,11 +6,11 @@
 
 Esta unidad es una breve introducción a los sistemas operativos. Los apartados son:
 
-- Introducción a los sistemas operativos
-- Historia de los sistemas operativos
-- Componentes de un sistema operativo
-- Arquitectura de los sistemas operativos
-- Clasificación de los sistemas operativos
+- [Introducción a los sistemas operativos](UT01_Teoria_SO/01_introducción.md)
+- [Historia de los sistemas operativos](UT01_Teoria_SO/02_historia.md)
+- [Componentes de un sistema operativo](UT01_Teoria_SO/03_componentes.md)
+- [Arquitectura de los sistemas operativos](UT01_Teoria_SO/04_arquitectura.md)
+- [Clasificación de los sistemas operativos](UT01_Teoria_SO/05_clasificación.md)
 
 ### Prácticas
 
