@@ -18,3 +18,10 @@ Otro ejemplo es el modo 8086 virtual disponible en los procesadores de 32 bits d
 - **Micronúcleo o microkernel**: una tendencia reciente es quitar lo posible del modo kernel, dejando un microkernel mínimo que provee un conjunto de primitivas o llamadas mínimas para implementar los servicios básicos. Sus ventajas son una reducción de la complejidad y la descentralización de los fallos. Algunos ejemplos son Amoeba, Minix, Hurd o Symbian.
 - **Sistemas por módulos**: es el enfoque de la mayoría de los sistemas modernos. El núcleo está formado por módulos independientes entre sí. Los módulos se cargan en el núcleo cuando se necesiten, ya sea en tiempo de ejecución o durante el arranque. Ejemplos: Linux (con el comando lsmod se pueden ver los módulos cargados) o Solaris.
 
+
+
+[**< Anterior**: 3. Componentes de los sistemas operativos](03_componentes.md)
+
+[**Volver** Menú de la UT01](index_UT01.md)
+
+[**Siguiente>**: 5. Clasificación de los sistemas operativos](05_clasificación.md)

@@ -42,3 +42,6 @@ Hay varias razones por las que un sistema operativo debe estar en continua evolu
 - **Correcciones**: un sistema operativo es un programa muy complejo con millones de líneas de código, por lo que es habitual que con el tiempo se detecten fallos y problemas de seguridad. Por tanto, será necesario ir solucionando estos bugs a medida que se detecten mediante parches y actualizaciones.
 
 
+[**Volver** Menú de la UT01](index_UT01.md)
+
+[**Siguiente>**: 2. Historia de los sistemas operativos](02_historia.md)
