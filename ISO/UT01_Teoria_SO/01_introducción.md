@@ -1,7 +1,5 @@
 # 1.- INTRODUCCIÓN A LOS SISTEMAS OPERATIVOS
 
-# 1.1.- Sistemas operativos
-
 Un **sistema operativo** es un programa que controla la ejecución de los programas y actúa como interfaz entre el usuario de un computador y el hardware de este. 
 
 El sistema operativo tiene dos funciones principales:
@@ -18,14 +16,14 @@ De estas dos funciones se pueden inferir tres objetivos que el sistema operativo
 Veamos con más detalle estos tres objetivos:
 
 
-### 1.1.1- El sistema operativo como interfaz usuario/computadora
+## 1.1- El sistema operativo como interfaz usuario/computadora
 
 El primer objetivo del sistema operativo es simplificar el manejo del ordenador para el usuario. A muy bajo nivel, un ordenador es una máquina muy compleja cuyo funcionamiento no tiene que conocer el usuario. 
 Para simplificar el manejo, el sistema operativo crea una serie de capas de abstracciones, en las que el sistema operativo enmascara el trabajo a bajo nivel con el equipo mediante conceptos más familiares para el usuario.
 
 Por ejemplo, a bajo nivel, un disco duro magnético es una superficie magnetizable que tiene la capacidad de almacenar bits que son accesibles mediante el movimiento de un cabezal magnético. Pero los sistemas operativos crean una abstracción mediante la que vemos todo ese almacenamiento como una serie de archivos y carpetas. Cuando el usuario abre un archivo, no necesita saber nada del funcionamiento interno del disco duro, ni de movimientos del cabezal, simplemente hace doble click en el icono que representa dicho archivo.
 
-### 1.1.2.- Eficiencia en la gestión de recursos
+## 1.2.- Eficiencia en la gestión de recursos
 
 Un ordenador tiene una serie de recursos (CPU, memoria, periféricos, …) cuyo uso debe compartir entre todos los procesos que están en ejecución en el sistema. Esto es más importante incluso en sistemas multiusuario en los que el sistema operativo debe repartir los recursos no solo entre procesos, sino también entre usuarios. 
 Es su labor realizar un reparto ordenado de dichos recursos, llevando un control de quien está usando cada recurso, concediendo solicitudes de uso de estos y mediando entre diferentes procesos y usuarios que estén en conflicto.
@@ -35,7 +33,7 @@ La compartición o multiplexaje de recursos se puede realizar de dos formas en f
 - **Multiplexaje en el espacio**: en este caso, cada proceso recibe una parte del recurso. El ejemplo más claro es la memoria RAM, donde cada proceso tendrá un espacio asignado por el sistema operativo.
 
 
-### 1.1.3.- Facilidad de evolución del sistema operativo
+## 1.3.- Facilidad de evolución del sistema operativo
 
 Hay varias razones por las que un sistema operativo debe estar en continua evolución:
 

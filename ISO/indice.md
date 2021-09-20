@@ -6,11 +6,11 @@
 
 Esta unidad es una breve introducción a los sistemas operativos. Los apartados son:
 
-- [Introducción a los sistemas operativos](UT01_Teoria_SO/01_introducción.md)
-- [Historia de los sistemas operativos](UT01_Teoria_SO/02_historia.md)
-- [Componentes de un sistema operativo](UT01_Teoria_SO/03_componentes.md)
-- [Arquitectura de los sistemas operativos](UT01_Teoria_SO/04_arquitectura.md)
-- [Clasificación de los sistemas operativos](UT01_Teoria_SO/05_clasificación.md)
+1. [Introducción a los sistemas operativos](UT01_Teoria_SO/01_introducción.md)
+2. [Historia de los sistemas operativos](UT01_Teoria_SO/02_historia.md)
+3. [Componentes de un sistema operativo](UT01_Teoria_SO/03_componentes.md)
+4. [Arquitectura de los sistemas operativos](UT01_Teoria_SO/04_arquitectura.md)
+5. [Clasificación de los sistemas operativos](UT01_Teoria_SO/05_clasificación.md)
 
 ### Prácticas
 
@@ -26,11 +26,11 @@ En esta unidad se va a proporcionar una visión global de la virtualización. Co
 
 Para cerrar la unidad nos centraremos en dos hipervisores, uno de tipo uno (Hyper-V) y otro de tipo dos (VirtualBox). El primero es el que utilizaremos para las unidades relativas a Windows 10 y Server, mientras que el segundo es el que usaremos en el último trimestre con Linux.
 
-- Conceptos básicos. Definición. Ventajas e inconvenientes de la virtualización
-- Tipos de máquinas virtuales
-- Tipos de hipervisores
-- Oracle VirtualBox
-- Microsoft Hyper-V
+1. Conceptos básicos. Definición. Ventajas e inconvenientes de la virtualización
+2. Tipos de máquinas virtuales
+3. Tipos de hipervisores
+4. Oracle VirtualBox
+5. Microsoft Hyper-V
 
 ### Prácticas
 
