@@ -102,8 +102,8 @@ Aunque al principio tenía una licencia propia que restringía la actividad come
 
 
 
-[**< Anterior: 1. Introducción a los Sistemas Operativos**](01_introducción.md)
+[**< Anterior**: 1. Introducción a los Sistemas Operativos](01_introducción.md)
 
-[**Volver al menú de la UT01**](index_UT01.md)
+[**Volver** - Menú de la UT01**](index_UT01.md)
 
-[**Siguiente: 3. Componentes de un sistema operativo**](03_componentes.md)
+[**Siguiente>**: 3. Componentes de un sistema operativo](03_componentes.md)
