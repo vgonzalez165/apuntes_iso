@@ -100,3 +100,9 @@ Y aquí dejamos a Richard Stallman para viajar a Holanda, allí, un profesor de 
 
 Aunque al principio tenía una licencia propia que restringía la actividad comercial, en 1992 lo vinculó a la licencia GNU GPL que había desarrollado Richard Stallman, lo que permitió completar aquello que faltaba en el proyecto GNU: el kernel. El resultado es el sistema operativo que conocemos actualmente como **GNU/Linux**.
 
+
+
+
+|                                       |                           |                                     |
+|---------------------------------------|---------------------------|-------------------------------------|
+| [<Anterior](01_introducción.md)       | [Volver](../index.md)     | [Siguiente>](03_componentes.md)     |
