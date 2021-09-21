@@ -1,3 +1,5 @@
+![Carátula UT01](imgs/caratula_ut01.png)
+
 # UT01. TEORÍA DE SISTEMAS OPERATIVOS
 
 En esta primera unidad de trabajo abordaremos los sistemas operativos desde la perspectiva que nos ofrecen los últimos 70 años de evolución de los mismos, partiendo de los primeros ordenadores en los años 60 que incorporaron un sistema operativo y analizando la evolución que han tenido a lo largo del tiempo.

@@ -1,3 +1,5 @@
+![Carátula UT11](imgs/caratula_ut11.png)
+
 # UT11. LINUX. ADMINISTRACIÓN
 
 PONER EL RESUMEN DE LA UNIDAD

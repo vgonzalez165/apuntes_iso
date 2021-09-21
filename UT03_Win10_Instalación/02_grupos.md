@@ -1,3 +1,5 @@
+![Carátula UT03](imgs/caratula_ut03.png)
+
 # 2.- GESTIÓN DE GRUPOS EN WINDOWS
 
 Los grupos son otro de los denominados principales de seguridad de Windows, y, al igual que sucedía con los usuarios, son una parte fundamental en las tareas de administración del sistema, permitiendo asignar permisos y derechos a conjuntos de usuarios en lugar de hacerlo individualmente.

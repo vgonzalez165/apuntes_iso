@@ -1,3 +1,5 @@
+![Carátula UT04](imgs/caratula_ut04.png)
+
 # UT04. WINDOWS 10. GESTIÓN DEL ALMACENAMIENTO
 
 Un aspecto muy importante de la administración de cualquier sistema operativo es la gestión del almacenamiento. Por ello, se dedicará esta unidad completa a abordar la administración del almacenamiento en Windows desde diferentes niveles, tratando temas como pueden ser el particionamiento de discos, discos básicos y dinámicos o los permisos NTFS.

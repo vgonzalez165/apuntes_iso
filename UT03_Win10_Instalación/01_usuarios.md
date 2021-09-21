@@ -1,3 +1,5 @@
+![Carátula UT03](imgs/caratula_ut03.png)
+
 # 1.- GESTIÓN DE USUARIOS EN WINDOWS
 
 Las cuentas de usuario y los grupos son un elemento muy importante en la administración de un sistema operativo, ya que a través de ellos se gestiona toda la seguridad del sistema mediante los permisos sobre el sistema de ficheros y a través de los derechos de usuario. Todo lo que un usuario puede hacer en el sistema está validado a través de sus credenciales.

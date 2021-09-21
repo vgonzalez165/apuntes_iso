@@ -1,3 +1,5 @@
+![Carátula UT02](imgs/caratula_ut02.png)
+
 # UT02. VIRTUALIZACIÓN
 
 En esta unidad se va a proporcionar una visión global de la virtualización. Comenzamos con una breve introducción a la virtualización, terminología, ventajas e inconvenientes y evolución. A continuación, hablaremos de tipos de máquinas virtuales y tipos de hipervisores.

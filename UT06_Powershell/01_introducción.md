@@ -1,3 +1,4 @@
+![Carátula UT06](imgs/caratula_ut06.png)
 
 # 1.- INTRODUCCIÓN
 

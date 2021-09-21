@@ -1,3 +1,5 @@
+![Carátula UT02](imgs/caratula_ut02.png)
+
 # 3.- TIPOS DE HIPERVISORES
 
 El hipervisor o monitor de máquina virtual es la aplicación que permite aplicar diversas técnicas de virtualización.

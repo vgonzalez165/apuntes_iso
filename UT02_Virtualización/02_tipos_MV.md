@@ -1,3 +1,5 @@
+![Carátula UT02](imgs/caratula_ut02.png)
+
 # 2.- TIPOS DE MÁQUINAS VIRTUALES
 
 En base a su funcionalidad podemos distinguir dos tipos de máquinas virtuales:

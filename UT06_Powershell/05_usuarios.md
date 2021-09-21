@@ -1,3 +1,5 @@
+![Carátula UT06](imgs/caratula_ut06.png)
+
 # 3.- USUARIOS Y GRUPOS DESDE POWERSHELL
 
 Powershell dispone de comandos para automatizar fácilmente la administración de usuarios y grupos en un sistema. Estos comandos se pueden dividir en tres grupos: los relacionados con los usuarios, los relacionados con los grupos, y los relacionados con la pertenencia a grupos, que se identifican respectivamente por los nombres `LocalUser`, `LocalGroup` y `LocalGroupMember`.

@@ -1,3 +1,5 @@
+![Carátula UT02](imgs/caratula_ut02.png)
+
 # 1. CONCEPTOS BÁSICOS DE VIRTUALIZACIÓN
 
 ## 1.1.- Definición de máquina virtual

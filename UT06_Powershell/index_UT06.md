@@ -1,3 +1,5 @@
+![Carátula UT06](imgs/caratula_ut06.png)
+
 # UT06. POWERSHELL
 
 PONER EL RESUMEN DE LA UNIDAD

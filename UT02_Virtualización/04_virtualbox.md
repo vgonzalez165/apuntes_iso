@@ -1,3 +1,5 @@
+![Carátula UT02](imgs/caratula_ut02.png)
+
 # 4.- ORACLE VIRTUALBOX
 
 
