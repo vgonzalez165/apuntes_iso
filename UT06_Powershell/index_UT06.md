@@ -1,6 +1,8 @@
-### Contenidos
+# UT06. POWERSHELL
 
 PONER EL RESUMEN DE LA UNIDAD
+
+### Contenidos
 
 1. [Introducción a Powershell](01_introducción.md)
 2. [Objetos y el pipeline](02_pipelines.md)
@@ -12,7 +14,6 @@ PONER EL RESUMEN DE LA UNIDAD
 
 
 ### Prácticas
-
 
 
 

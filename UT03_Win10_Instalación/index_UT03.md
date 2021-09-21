@@ -1,6 +1,8 @@
-### Contenidos
+# UT03. WINDOWS 10. INSTALACIÓN Y PRIMEROS PASOS
 
-PONER EL RESUMEN DE LA UNIDAD
+Comenzamos con el primer sistema operativo que veremos este curso, Windows 10, abordando las tareas básicas de administración del sistema como son la gestión de usuarios y grupos, las herramientas de administración del equipo o las opciones disponibles en el panel de control. Todo lo que veremos en esta unidad y en las siguientes no se limitará a aumentar nuestros conocimiento de Windows 10, sino que servirá para establecer una sólida base que nos ayudará a comprender y administrar mejor el sistema operativo Windows Server que veremos en la segunda evaluación.
+
+### Contenidos
 
 1. [Gestión de usuarios](01_usuarios.md)
 2. [Gestión de grupos](02_grupos.md)
@@ -20,5 +22,5 @@ PONER EL RESUMEN DE LA UNIDAD
 - PR0405: Usuarios y grupos con Powershell.
 
 
-
+***
 [Volver al índice principal](../index.md)
