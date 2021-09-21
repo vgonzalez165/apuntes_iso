@@ -1,6 +1,6 @@
 ![Carátula UT01](imgs/caratula_ut01.png)
 
-# (UT01) 1.- INTRODUCCIÓN A LOS SISTEMAS OPERATIVOS
+# 1.- INTRODUCCIÓN A LOS SISTEMAS OPERATIVOS
 
 Un **sistema operativo** es un programa que controla la ejecución de los programas y actúa como interfaz entre el usuario de un computador y el hardware de este. 
 

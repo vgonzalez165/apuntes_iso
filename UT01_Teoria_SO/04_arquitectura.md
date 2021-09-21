@@ -1,4 +1,6 @@
-# (UT01) 4.- ARQUITECTURA DE LOS SISTEMAS OPERATIVOS
+![Carátula UT01](imgs/caratula_ut01.png)
+
+# 4.- ARQUITECTURA DE LOS SISTEMAS OPERATIVOS
 
 Según su arquitectura los sistemas operativos pueden ser:
 

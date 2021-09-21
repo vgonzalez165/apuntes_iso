@@ -1,4 +1,6 @@
-# (UT01) 3.- COMPONENTES DE LOS SISTEMAS OPERATIVOS
+![Carátula UT01](imgs/caratula_ut01.png)
+
+# 3.- COMPONENTES DE LOS SISTEMAS OPERATIVOS
 
 Por norma general, se suele considerar que un sistema operativo está formado por tres capas: el núcleo o kernel, los servicios del sistema operativo y el intérprete de mandatos o Shell.
 

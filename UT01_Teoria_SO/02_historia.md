@@ -1,4 +1,6 @@
-# (UT01) 2.- HISTORIA DE LOS SISTEMAS OPERATIVOS
+![Carátula UT01](imgs/caratula_ut01.png)
+
+# 2.- HISTORIA DE LOS SISTEMAS OPERATIVOS
 
 La historia de los ordenadores se descompone en generaciones, que corresponden con grandes avances tecnológicos que han supuesto un punto de inflexión en su evolución. Estas generaciones han sido:
 
