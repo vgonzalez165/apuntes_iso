@@ -1,17 +1,17 @@
 # 1.- INDICE DE CONTENIDOS DEL CURSO
 
-[**UT01.- Teoría de Sistemas Operativos**](UT01_Teoria_SO/index_UT01.md)
+### [UT01.- Teoría de Sistemas Operativos](UT01_Teoria_SO/index_UT01.md)
 
 Esta unidad es una breve introducción a los sistemas operativos. 
 
-[**UT02.- Virtualización**](UT02_Virtualización/index_UT02.md)
+## [UT02.- Virtualización](UT02_Virtualización/index_UT02.md)
 
 En esta unidad se va a proporcionar una visión global de la virtualización. Comenzamos con una breve introducción a la virtualización, terminología, ventajas e inconvenientes y evolución. A continuación, hablaremos de tipos de máquinas virtuales y tipos de hipervisores.
 
 Para cerrar la unidad nos centraremos en dos hipervisores, uno de tipo uno (Hyper-V) y otro de tipo dos (VirtualBox). El primero es el que utilizaremos para las unidades relativas a Windows 10 y Server, mientras que el segundo es el que usaremos en el último trimestre con Linux.
 
 
-[**UT03.- Windows 10. Instalación y primeros pasos**](UT03_Win10_Instalación/index_UT03.md)
+[UT03.- Windows 10. Instalación y primeros pasos](UT03_Win10_Instalación/index_UT03.md)
 
 Introducción a Windows 10 y ya se verá qué más.
 
