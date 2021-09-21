@@ -1,4 +1,4 @@
-# 3.- COMPONENTES DE LOS SISTEMAS OPERATIVOS
+# (UT01) 3.- COMPONENTES DE LOS SISTEMAS OPERATIVOS
 
 Por norma general, se suele considerar que un sistema operativo está formado por tres capas: el núcleo o kernel, los servicios del sistema operativo y el intérprete de mandatos o Shell.
 
@@ -24,6 +24,7 @@ Es el componente que se encuentra al más alto nivel, en contacto directo con el
 
 El intérprete de comandos puede ser textual, en el que el usuario introduce los comandos en modo texto siguiendo una sintaxis determinada, o gráfico, en el que el usuario interacciona a través de una interfaz gráfica mediante un ratón o dispositivo similar.
 
+***
 
 [**< Anterior**: 2. Historia de los sistemas operativos](02_historia.md)
 

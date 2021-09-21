@@ -1,4 +1,4 @@
-# 2.- HISTORIA DE LOS SISTEMAS OPERATIVOS
+# (UT01) 2.- HISTORIA DE LOS SISTEMAS OPERATIVOS
 
 La historia de los ordenadores se descompone en generaciones, que corresponden con grandes avances tecnológicos que han supuesto un punto de inflexión en su evolución. Estas generaciones han sido:
 
@@ -101,6 +101,7 @@ Y aquí dejamos a Richard Stallman para viajar a Holanda, allí, un profesor de 
 Aunque al principio tenía una licencia propia que restringía la actividad comercial, en 1992 lo vinculó a la licencia GNU GPL que había desarrollado Richard Stallman, lo que permitió completar aquello que faltaba en el proyecto GNU: el kernel. El resultado es el sistema operativo que conocemos actualmente como **GNU/Linux**.
 
 
+***
 
 [**< Anterior**: 1. Introducción a los Sistemas Operativos](01_introducción.md)
 

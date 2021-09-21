@@ -1,4 +1,4 @@
-# 1.- INDICE DE CONTENIDOS DEL CURSO
+# INDICE DE CONTENIDOS DEL CURSO
 
 ### [UT01.- Teoría de Sistemas Operativos](UT01_Teoria_SO/index_UT01.md)
 

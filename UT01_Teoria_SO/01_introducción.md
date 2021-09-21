@@ -1,4 +1,6 @@
-# 1.- INTRODUCCIÓN A LOS SISTEMAS OPERATIVOS
+![Carátula UT01](imgs/caratula_ut01.png)
+
+# (UT01) 1.- INTRODUCCIÓN A LOS SISTEMAS OPERATIVOS
 
 Un **sistema operativo** es un programa que controla la ejecución de los programas y actúa como interfaz entre el usuario de un computador y el hardware de este. 
 
@@ -18,10 +20,10 @@ Veamos con más detalle estos tres objetivos:
 
 ## 1.1- El sistema operativo como interfaz usuario/computadora
 
-El primer objetivo del sistema operativo es simplificar el manejo del ordenador para el usuario. A muy bajo nivel, un ordenador es una máquina muy compleja cuyo funcionamiento no tiene que conocer el usuario. 
-Para simplificar el manejo, el sistema operativo crea una serie de capas de abstracciones, en las que el sistema operativo enmascara el trabajo a bajo nivel con el equipo mediante conceptos más familiares para el usuario.
+El primer objetivo del sistema operativo es simplificar el manejo del ordenador para el usuario. A muy bajo nivel, un ordenador es una máquina muy compleja cuyo funcionamiento no tiene que conocer el usuario. Para simplificar el manejo, el sistema operativo crea una serie de capas de **abstracciones**, en las que el sistema operativo enmascara el trabajo a bajo nivel con el equipo mediante conceptos más familiares para el usuario.
 
 Por ejemplo, a bajo nivel, un disco duro magnético es una superficie magnetizable que tiene la capacidad de almacenar bits que son accesibles mediante el movimiento de un cabezal magnético. Pero los sistemas operativos crean una abstracción mediante la que vemos todo ese almacenamiento como una serie de archivos y carpetas. Cuando el usuario abre un archivo, no necesita saber nada del funcionamiento interno del disco duro, ni de movimientos del cabezal, simplemente hace doble click en el icono que representa dicho archivo.
+
 
 ## 1.2.- Eficiencia en la gestión de recursos
 
@@ -42,6 +44,8 @@ Hay varias razones por las que un sistema operativo debe estar en continua evolu
 - **Correcciones**: un sistema operativo es un programa muy complejo con millones de líneas de código, por lo que es habitual que con el tiempo se detecten fallos y problemas de seguridad. Por tanto, será necesario ir solucionando estos bugs a medida que se detecten mediante parches y actualizaciones.
 
 
-[**Volver** Menú de la UT01](index_UT01.md)
+*** 
 
-[**Siguiente>**: 2. Historia de los sistemas operativos](02_historia.md)
+[**Volver** al menú de la UT01](index_UT01.md)
+
+[**Siguiente>** 2. Historia de los sistemas operativos](02_historia.md)

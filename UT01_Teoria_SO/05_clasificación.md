@@ -1,4 +1,4 @@
-# 5.- CLASIFICACIÓN DE LOS SISTEMAS OPERATIVOS
+# (UT01) 5.- CLASIFICACIÓN DE LOS SISTEMAS OPERATIVOS
 
 Hay diversos métodos de clasificación de sistemas operativos en función del aspecto en que nos fijemos. Hay que tener en cuenta también que muchas clasificaciones se han ido diluyendo a lo largo del tiempo habiendo una separación muy difusa entre las diferentes categorías.
 
@@ -35,6 +35,8 @@ Hay diversos métodos de clasificación de sistemas operativos en función del a
 - **Sistemas en red**: mantienen varios equipos conectados entre sí para compartir recursos e información, pero manteniendo cada una autonomía en cuando a capacidad de proceso. Ejemplos: Novell Netware, Windows Server, Banyan VINES, …
 - **Sistemas distribuidos**: conjunto de equipos interconectados que se reparten los diferentes trabajos de forma transparente para el usuario. Ejemplos: Amoeba, Sprite, …
 
+
+***
 
 [**< Anterior**: 4. Arquitectura de los sistemas operativos](01_introducción.md)
 
