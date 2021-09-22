@@ -9,20 +9,21 @@
 5. [Microsoft Hyper-V](05_hiper-v.md)
 
 
-
 ## 3.- TIPOS DE HIPERVISORES
 
-El hipervisor o monitor de máquina virtual es la aplicación que permite aplicar diversas técnicas de virtualización.
+La solución software que permite crear máquinas virtuales se denomina **hipervisor**. Hay multiples hipervisores, pero en general se pueden dividir en dos grandes grupos:
 
-Los hipervisores pueden ser de dos tipos:
-Hipervisores tipo 1
-Hipervisores tipo 2
-Adicionalmente, hay otro enfoque diferente en la virtualización, que son los contenedores.
+- Hipervisores tipo 1
+- Hipervisores tipo 2
 
-Hipervisores de tipo 1
-También se denominan unhosted, nativos o bare metal.
-El hipervisor se ejecuta directamente sobre el hardware.
-No hay sistema operativo debajo del hipervisor.
+Adicionalmente, hay otro enfoque diferente en la virtualización que no se podría incluir en ninguno de los dos tipos , que son los contenedores.
+
+
+### 3.1.- Hipervisores de tipo 1
+
+También se denominan **unhosted**, **nativos** o **bare metal**. Este tipo de hipervisores no se instalan sobre ningún sistema operativo, sino que se ejecutan directamente sobre el hardware. En realidad, lo normal es que el propio hipervisor incluya su propio sistema operativo, el cual únicamente incluye las funciones estrictamente necesarias para ejecutar el hipervisor. Por ejemplo, VMWare ESXi incluye se propio kernel, llamado VMkernel, y algunas aplicaciones básicas de Linux (como un servidor `ssh` o un intérprete bash)
+
+
 Normalmente son sistemas operativos muy ligeros que únicamente contienen el software de virtualización.
 La administración se suele hacer de forma remota desde otro equipo (p.e. a través de una interfaz web)
 

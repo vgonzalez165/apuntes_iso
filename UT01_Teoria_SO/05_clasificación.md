@@ -8,7 +8,7 @@
 2. [Historia de los sistemas operativos](02_historia.md)
 3. [Componentes de un sistema operativo](03_componentes.md)
 4. [Arquitectura de los sistemas operativos](04_arquitectura.md)
-5. [Clasificación de los sistemas operativos](05_clasificación.md)
+5. [**Clasificación de los sistemas operativos**](05_clasificación.md)
 
 
 ## 5.- CLASIFICACIÓN DE LOS SISTEMAS OPERATIVOS
