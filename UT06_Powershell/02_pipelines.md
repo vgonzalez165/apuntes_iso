@@ -27,16 +27,16 @@ C:\> Get-Item C:\datos\*.txt
 
 Si la ejecutamos veremos que la salida es muy similar a la del comando anterior, pero sin embargo lo que hace es muy diferente. El comando obtiene el listado de ficheros del disco, pero lo hace como una **lista de objetos**, cada uno de los cuales representando cada fichero. Una vez que tiene esta lista de objeto mira a ver que hay que hacer con ellos: si tiene que enviárselos a otro comando mediante el pipeline (como veremos un poco más adelante) le enviará la lista de objetos; en cambio, si tiene que mostrar la salida por pantalla tomará esos objetos y verá cuál es la representación más adecuada para mostrársela al usuario, momento en el que dejarán de ser un conjunto de objetos para ser una secuencia de caracteres.
 
-Con este enfoque, podemos enviar la salida del comando xxxxxxxxxxx
+Con este enfoque, podemos enviar la salida del comando **xxxxxxxxxxx**
 
 
 
 Podemos saber qué tipo de objetos devuelve un comando de Powershell canalizando la salida al comando Get-Member, que muestra información por pantalla del objeto que se le envía.
  
-En la imagen anterior ejecutamos el comando Get-LocalUser -Name Victor que devuelve un objeto de tipo Microsoft.Powershell.Commands.LocalUser que se corresponde con el usuario cuyo nombre es Victor. Este objeto contiene toda la información sobre dicho usuario, la cual se almacena en las propiedades del mismo. Por ejemplo, la fecha de caducidad de la cuenta del usuario se almacena en la propiedad AccountExpires. 
+En la imagen anterior ejecutamos el comando `Get-LocalUser -Name Victor` que devuelve un objeto de tipo Microsoft.Powershell.Commands.LocalUser que se corresponde con el usuario cuyo nombre es Victor. Este objeto contiene toda la información sobre dicho usuario, la cual se almacena en las propiedades del mismo. Por ejemplo, la fecha de caducidad de la cuenta del usuario se almacena en la propiedad AccountExpires. 
 
 
-En la imagen anterior podemos ver que el comando Get-LocalUser devuelve objetos del tipo Microsoft.Powershell.Commands.LocalUser, y, a continuación, se nos muestran los métodos y propiedades de estos objetos. Por ejemplo, el objeto usuario tiene un método denominado Clone() que, como su nombre indica, servirá para clonar el usuario al que corresponde ese objeto; o, una propiedad denominada Description que almacenará una cadena de texto con la descripción introducida cuando se creó el usuario.
+En la imagen anterior podemos ver que el comando `Get-LocalUser` devuelve objetos del tipo Microsoft.Powershell.Commands.LocalUser, y, a continuación, se nos muestran los métodos y propiedades de estos objetos. Por ejemplo, el objeto usuario tiene un método denominado Clone() que, como su nombre indica, servirá para clonar el usuario al que corresponde ese objeto; o, una propiedad denominada Description que almacenará una cadena de texto con la descripción introducida cuando se creó el usuario.
 
 
 ## 2.2.- EL PIPELINE
@@ -189,27 +189,66 @@ Count Name                      Group
 
 Este comando realiza cálculos con los valores de las propiedades de un objeto. En el caso de propiedades numéricas puede calcular el mínimo, el máximo, la suma y el promedio. En el caso de propiedades de tipo texto puede contar y calcular el número de líneas, palabras y caracteres.
 
+```powershell
+PS C:\> Get-ChildItem | Measure-Object -Property Length -Minimum -Maximum -Average
 
+Count             : 4
+Average           : 1242
+Sum               :
+Maximum           : 3572
+Minimum           : 58
+StandardDeviation :
+Property          : Length
+```
 
-
-
-Y por último, podemos utilizar el comando Measure-Object para contar los objetos que proporciona el comando del que obtiene la salida. Por ejemplo, con la siguiente orden contaremos el número de procesos que hay en el sistema.
-PS C:\> Get-Process | Measure-Object
+Por ejemplo, el comando anterior muestra el tamaño máximo, mínimo y medio de todos los ficheros que se encuentran en un directorio.
 
 
 # 2.4.- FILTRADO DE OBJETOS
 
-La mayoría de los comandos devuelven un conjunto de objetos que normalmente queremos filtrar. Por ejemplo, el comando Get-Process permite filtrar la salida por nombre indicando el parámetro -Name, de forma que únicamente nos muestre aquellos procesos cuyo nombre se ajuste a nombre que hemos indicado como parámetros.
-Si queremos más opciones de filtrado, tenemos a nuestra disposición el comando Where-Object, el cual recibe un conjunto de objetos (normalmente pasados mediante pipeline) y los filtra mediante algún criterio, de forma que en su salida proporciona únicamente los objetos que cumplan el criterio especificado.
-Para usar este comando, lo primero que tenemos que conocer son los operadores de comparación, que son los siguientes:
-Operador	Significado	Operador	Significado
--eq	Es igual a	-ne	no es igual a
--lt	Es menor que	-gt	Es mayor que
--le	Es menor o igual que	-ge	Es mayor o igual que
--like	Es como	-notlike	No es como
-Este comando tiene dos sintaxis equivalentes, siendo indiferente el uso de una u otra. A continuación, hay dos ejemplos de filtrado que tienen el mismo resultado y que muestran aquellos procesos cuyo nombre sea Calculator.
+Muchos comandos disponen de parámetros para filtrar la salida en función del valor de alguna propiedad. Por ejemplo, se puede utilizar el parámetro `-Name` del comando `Get-Process` para que solo nos devuelva los procesos que tengan un nombre determinado.
+
+```powershell
+PS C:\> Get-Process -Name calculator
+
+ NPM(K)    PM(M)      WS(M)     CPU(s)      Id  SI ProcessName
+ ------    -----      -----     ------      --  -- -----------
+     30    21,46      28,66       0,73   14060   1 Calculator
+```
+
+Pero esta opción solo está disponible en algunos comandos y para propiedades muy determinadas. Cuando se desea un mayor control en el filtrado de los objetos proporcionados por un comando lo ideal es enviar dicha salida por el pipeline al comando `Where-Object`, el cual admite un gran número de criterios para filtrar.
+
+Los operadores de comparación que soporta el comando se muestran en la siguiente tabla.
+
+| Operador        | Significado       | Operador        | Significado       |
+|-----------------|-------------------|-----------------|-------------------|
+| `-eq`           | Es igual a        | `-ne`           | No es igual a     |
+| `-lt`           | Es menor que      | `-gt`           | Es mayor que      |
+| `le`            | Es menor o igual que  | `-ge`       | Es mayor o igual que    |
+| `-like`         | Es como           | `-notlike`      | No es como        |
+
+Se pueden utilizar dos sintaxis diferentes para indicar el filtro en este comando: mediante *scriptblocks* o indicando directamente las comparaciones en los parámetros de `Where-Object`. La primera opción es válida para todas las versiones de Powershell, aunque tiende a hacer menos legible el código, la segunda opción es la recomendada porque aumenta la legibilidad, pero solo está disponible a partir de la versión 3 de Powershell.
+
+Veamos como mostraríamos todos los procesos que corresponden a la calculadora con ***scriptblocks**.
+
+```powershell
+PS C:\> Get-Process | Where-Object -FilterScript { $_.Name -eq “Calculator” }
+```
+
+Lo más destacable de esta sintaxis es:
+
+- Las comparaciones se incluyen entre llaves, en lo que se llama un bloque de script
+- El bloque de script se indica mediante el parámetro `-FilterScript`, sin embargo, esto es opcional y podríamos omitir el nombre del parámetro.
+- La variable `$_` hace referencia a cada uno de los objetos que recibe. Es decir, el comando `Get-Process` devuelve un conjunto de objetos y, para cada uno de esos
+
+
+Este comando tiene dos sintaxis o formas de utilizarlo equivalentes. A continuación, hay dos ejemplos de filtrado que tienen el mismo resultado y que muestran aquellos procesos cuyo nombre sea Calculator.
+
+```powershell
 PS C:\> Get-Process | Where-Object Name -eq “Calculator”
 PS C:\> Get-Process | Where-Object {$_.Name -eq “Calculator”}
+```
+
 Los operadores de comparación (mayor y menor) se utilizan con propiedades numéricas. Por ejemplo, si queremos obtener la lista de objetos cuyo consumo de CPU ha sido superior a los 120 segundos deberíamos introducir la siguiente orden:
 PS C:\> Get-Process | Where-Object CPU -gt 100
 Los operadores -like y -notlike se utilizan para realizar comparaciones de cadenas utilizando comodines. Podemos utilizar dos comodines:
