@@ -13,12 +13,12 @@ Para cerrar la unidad nos centraremos en dos hipervisores, uno de tipo uno (Hype
 
 ### [UT03.- Windows 10. Instalación y primeros pasos](UT03_Win10_Instalación/index_UT03.md)
 
-Introducción a Windows 10 y ya se verá qué más.
+Comenzamos con el primer sistema operativo que veremos este curso, Windows 10, abordando las tareas básicas de administración del sistema como son la gestión de usuarios y grupos, las herramientas de administración del equipo o las opciones disponibles en el panel de control. Todo lo que veremos en esta unidad y en las siguientes no se limitará a aumentar nuestros conocimiento de Windows 10, sino que servirá para establecer una sólida base que nos ayudará a comprender y administrar mejor el sistema operativo Windows Server que veremos en la segunda evaluación.
 
 
 ### [**UT04.- Windows 10. Gestión del almacenamiento**](UT04_Win10_Almacenamiento/index_UT04.md)
 
-Aquí hay que poner una breve introducción a lo que se verá en la unidad.
+Un aspecto muy importante de la administración de cualquier sistema operativo es la gestión del almacenamiento. Por ello, se dedicará esta unidad completa a abordar la administración del almacenamiento en Windows desde diferentes niveles, tratando temas como pueden ser el particionamiento de discos, discos básicos y dinámicos o los permisos NTFS.
 
 
 ### [**UT05.- Windows 10. Administración**](UT05_Win10_Administración/index_UT05.md)

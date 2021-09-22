@@ -1,8 +1,17 @@
 ![Carátula UT02](imgs/caratula_ut02.png)
 
+### Contenidos
+
+1. [Conceptos básicos de virtualización](01_conceptos_básicos.md)
+2. [Tipos de máquinas virtuales](02_tipos_MV.md)
+3. [Tipos de hipervisores](03_tipos_hipervisores.md)
+4. [Oracle VirtualBox](04_virtualbox.md)
+5. [Microsoft Hyper-V](05_hiper-v.md)
+
+
 # 1. CONCEPTOS BÁSICOS DE VIRTUALIZACIÓN
 
-## 1.1.- Definición de máquina virtual
+### 1.1.- Definición de máquina virtual
 
 Una máquina virtual es un software que permite reproducir una máquina con la misma arquitectura que la máquina sobre la que se está ejecutando. Una máquina virtual se apoya en el hardware 
 subyacente para realizar algunas de las operaciones.
@@ -34,12 +43,12 @@ mercado, entre las que destacan:
 • Hyper-V
 
 
-## 1.2.- Nomenclatura
+### 1.2.- Nomenclatura
 
 **¿algo de host, anfitrión y todo eso?¿????????????????????????**
 
 
-## 1.3.- Ventajas e inconvenientes de la virtualización
+### 1.3.- Ventajas e inconvenientes de la virtualización
 
 Ventajas 
 

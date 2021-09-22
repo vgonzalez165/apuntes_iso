@@ -2,10 +2,6 @@
 
 # UT02. VIRTUALIZACIÓN
 
-En esta unidad se va a proporcionar una visión global de la virtualización. Comenzamos con una breve introducción a la virtualización, terminología, ventajas e inconvenientes y evolución. A continuación, hablaremos de tipos de máquinas virtuales y tipos de hipervisores.
-
-Para cerrar la unidad nos centraremos en dos hipervisores, uno de tipo uno (Hyper-V) y otro de tipo dos (VirtualBox). El primero es el que utilizaremos para las unidades relativas a Windows 10 y Server, mientras que el segundo es el que usaremos en el último trimestre con Linux.
-
 ### Contenidos
 
 1. [Conceptos básicos de virtualización](01_conceptos_básicos.md)
