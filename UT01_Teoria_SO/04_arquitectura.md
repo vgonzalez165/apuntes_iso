@@ -1,6 +1,17 @@
 ![Carátula UT01](imgs/caratula_ut01.png)
 
-# 4.- ARQUITECTURA DE LOS SISTEMAS OPERATIVOS
+# UT01. TEORÍA DE SISTEMAS OPERATIVOS
+
+### Contenidos
+
+1. [Introducción a los sistemas operativos](01_introducción.md)
+2. [Historia de los sistemas operativos](02_historia.md)
+3. [Componentes de un sistema operativo](03_componentes.md)
+4. [Arquitectura de los sistemas operativos](04_arquitectura.md)
+5. [Clasificación de los sistemas operativos](05_clasificación.md)
+
+
+## 4.- ARQUITECTURA DE LOS SISTEMAS OPERATIVOS
 
 Según su arquitectura los sistemas operativos pueden ser:
 
