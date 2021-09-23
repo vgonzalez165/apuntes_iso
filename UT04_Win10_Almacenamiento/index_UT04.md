@@ -4,10 +4,10 @@
 
 ### Contenidos
 
-1. Organización del almacenamiento
-2. Configuración de discos en Windows
-3. El sistema de ficheros NTFS
-4. Carpetas compartidas
+1. [Organización del almacenamiento](01_organización.md)
+2. [Configuración de discos en Windows](02_configuración_discos.md)
+3. [El sistema de ficheros NTFS](03_ntfs.md)
+4. [Carpetas compartidas](04_compartidas.md)
 
 
 ### Prácticas
