@@ -1,5 +1,7 @@
 ![Carátula UT02](imgs/caratula_ut02.png)
 
+# UT02. VIRTUALIZACIÓN
+
 ### Contenidos
 
 1. [Conceptos básicos de virtualización](01_conceptos_básicos.md)
@@ -53,6 +55,8 @@ Que un procesador no disponga de estos juegos de instrucciones no quiere decir q
 
 Por norma general estos juegos de instrucciones hay que habilitarlos en la BIOS (se accede a ella pulsando Supr, F2 o alguna similar durante el arranque del sistema)
 
+
+***
 
 [**< Anterior**: 1. Conceptos básicos de virtualización](01_conceptos_básicos.md)
 

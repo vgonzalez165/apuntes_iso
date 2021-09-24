@@ -1,5 +1,7 @@
 ![Carátula UT02](imgs/caratula_ut02.png)
 
+# UT02. VIRTUALIZACIÓN
+
 ### Contenidos
 
 1. [Conceptos básicos de virtualización](01_conceptos_básicos.md)
@@ -89,6 +91,8 @@ Parallels Desktop
 Virtualización en ordenadores Apple con arquitectura Intel
 Hipervisor de tipo 2 que permite usar máquinas Windows y Linux en ordenadores Apple.
 
+
+***
 
 [**< Anterior**: 2. Tipos de máquinas virtuales](02_tipos_MV.md)
 

@@ -1,5 +1,7 @@
 ![Carátula UT02](imgs/caratula_ut02.png)
 
+# UT02. VIRTUALIZACIÓN
+
 ### Contenidos
 
 1. [Conceptos básicos de virtualización](01_conceptos_básicos.md)
@@ -11,6 +13,8 @@
 
 ## 4.- ORACLE VIRTUALBOX
 
+
+***
 
 [**< Anterior**: 3. Tipos de hipervisores](03_tipos_hipervisores.md)
 
