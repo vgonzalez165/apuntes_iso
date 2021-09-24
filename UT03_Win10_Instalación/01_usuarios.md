@@ -4,7 +4,7 @@
 
 ### Contenidos
 
-1. [Gestión de usuarios](01_usuarios.md)
+1. [**Gestión de usuarios**](01_usuarios.md)
 2. [Gestión de grupos](02_grupos.md)
 3. [Herramientas de administración](03_herramientas_administración.md)
 4. [Panel de control. Sistema](04_sistema.md)
@@ -51,16 +51,18 @@ Para administrar los usuarios y grupo de un sistema tenemos dos posibles medios.
 
 #### 1.2.1.- DESDE EL MENÚ DE CONFIGURACIÓN
 
-Desde el diálogo Configuración podemos acceder a la gestión de nuestra propia cuenta. En este punto conviene destacar que en Windows 10 hay dos tipos de cuentas de usuario:
+Desde el diálogo *Configuración* podemos acceder a la gestión de nuestra propia cuenta. En este punto conviene destacar que en Windows 10 hay dos tipos de cuentas de usuario:
 
 - **Cuenta local**: son las cuentas tradicionales de Windows. Creadas y gestionadas en el propio equipo y cuyo alcance no va más allá del mismo.
 - **Cuentas de Microsoft**: en este caso nuestra cuenta está vinculada a una cuenta en la nube de Microsoft, identificada por un correo electrónico. Microsoft poco a poco va forzando a los usuarios hacia la utilización de este tipo de cuentas, por lo que hay algunas funcionalidades que solo están disponibles en ellas, tales como la sincronización.
 
-Cuando vamos al apartado Cuentas de Configuración tenemos las siguientes opciones:
+![Usuarios en Configuración](imgs/usuarios_configuración.png)
 
-- Tu información: aquí tenemos una visión global de la cuenta y podremos cambiar la imagen de esta, así como pasar a una cuenta de Microsoft si estuviéramos trabajando con una cuenta local.
-- Correo electrónico y cuentas: se pueden añadir otras cuentas para utilizarlas con el correo electrónico, el calendario, … Por ejemplo, la cuenta de Office 365 aunque la nuestra sea una cuenta local.
-- Opciones de inicio de sesión: probablemente el apartado más interesante del UAC ya que hay un gran número de opciones para configurar:
+Cuando vamos al apartado Cuentas de *Configuración* tenemos las siguientes opciones:
+
+- **Tu información**: aquí tenemos una visión global de la cuenta y podremos cambiar la imagen de esta, así como pasar a una cuenta de Microsoft si estuviéramos trabajando con una cuenta local.
+- **Correo electrónico y cuentas**: se pueden añadir otras cuentas para utilizarlas con el correo electrónico, el calendario, … Por ejemplo, la cuenta de Office 365 aunque la nuestra sea una cuenta local.
+- **Opciones de inicio de sesión**: probablemente el apartado más interesante del UAC ya que hay un gran número de opciones para configurar:
     - **Inicio de sesión**: en Windows 10 hay múltiples formas de iniciar sesión, y se pueden configurar desde aquí. Estas formas son:
         - **Rostro de Windows Hello**: si tienes una cámara compatible se puede iniciar sesión mediante reconocimiento facial.
         - **Huella digital de Windows Hello**: otro sistema de identificación biométrica, necesitando en este caso un lector de huellas digitales.
@@ -76,7 +78,9 @@ Cuando vamos al apartado Cuentas de Configuración tenemos las siguientes opcion
 
 #### 1.2.2.- USUARIOS Y GRUPOS LOCALES DEL MMC
 
-A este complemente podemos acceder creando una consola MMC personalizada, como ya vimos anteriormente en este tema, o bien utilizando la consola **Administración de equipos**, a la que se accede seleccionando Administrar en el menú contextual (botón derecho del ratón) de MiPC.
+A este complemente podemos acceder creando una consola MMC personalizada, o bien utilizando la consola **Administración de equipos**, a la que se accede seleccionando *Administrar* en el menú contextual (botón derecho del ratón) de *MiPC*.
+
+![Usuarios desde el MMC](imgs/usuarios_mmc.png)
 
 Este es el sitio más adecuado para crear cuentas locales. Al crear un usuario nos pide la siguiente información:
 
@@ -93,7 +97,7 @@ Este es el sitio más adecuado para crear cuentas locales. Al crear un usuario n
 - **La contraseña nunca expira**: con esto nos saltamos las directivas de seguridad que establezcan una fecha de caducidad de las contraseñas.
 - **La cuenta está deshabilitada**: la contraseña no podrá ser utilizada para iniciar sesión con ella. Esta opción puede ser interesante si queremos utilizar la cuenta como plantilla para crear otras cuentas, o bien si un empleado va a estar ausente un tiempo, para evitar un uso indebido de su cuenta.
   
-Cuando creamos un usuario, lo identificamos mediante el nombre de usuario que le hemos asignado durante su creación. Sin embargo, internamente Windows no utiliza este nombre, sino que asigna a cada usuario un identificador, denominado SID (Secure Identifier).
+Cuando creamos un usuario, lo identificamos mediante el nombre de usuario que le hemos asignado durante su creación. Sin embargo, internamente Windows no utiliza este nombre, sino que asigna a cada usuario un identificador, denominado SID (Secure Identifier). Utilizando Powershell podemos ver el identificador que tiene asignado cada usuario.
  
 ```powershell
 PS C:\> Get-LocalUser | Select-Object name, sid
@@ -138,6 +142,8 @@ Básicamente, UAC consiste en que, aunque el usuario tenga privilegios de admini
 
 Las acciones que activarán el UAC son fácilmente identificables porque hay un escudo amarillo y azul en ellas, indicando que son necesarios privilegios elevados para realizarlas.
 
+![User Account Control](imgs/uac.png)
+
 El cuadro de diálogo de advertencia varía en función de si el usuario que las lanza tiene privilegios de administrador o no: 
 
 - Si el usuario tiene privilegios de administrador simplemente le informará de qué programa es el que quiere realizar la acción, siendo necesaria la confirmación por parte del usuario. 
@@ -148,7 +154,7 @@ Por defecto, cuando se muestra este cuadro de diálogo el fondo se atenúa, indi
 
 #### 1.3.2.- NIVELES DEL UAC
 
-Es posible cambiar la configuración del UAC yendo a la aplicación Cambiar la configuración de Control de Cuentas de Usuario, en la que podemos escoger entre cuatro niveles diferentes:
+Es posible cambiar la configuración del UAC yendo a la aplicación Cambiar la configuración de *Control de Cuentas de Usuario*, en la que podemos escoger entre cuatro niveles diferentes:
 
 - **Notificar siempre**: en este caso nos avisará siempre que el usuario o programas intenten realizar cambios en el sistema. Es la más restrictiva de todas las opciones, equivalente a la implementada en Windows Vista, siendo la más molesta para el usuario. También es la opción más segura.
 - **Notificarme solo cuando los programas intenten realizar cambios en mi equipo**: esta es la opción activada por defecto y solo pedirá confirmación cuando algún programa intente realizar cambios que requieran privilegios administrativos. Si es el usuario quien realiza las operaciones manualmente no se le mostrará el cuadro de diálogo. Esta opción tiene algunos potenciales problemas de seguridad, ya que un programa malicioso podría simular pulsaciones de teclas y movimientos del ratón para realizar las operaciones.
@@ -156,11 +162,11 @@ Es posible cambiar la configuración del UAC yendo a la aplicación Cambiar la c
 - **No notificarme nunca**: en este nivel deshabilitamos completamente el UAC, por lo que el usuario no se verá interrumpido por ningún aviso, suponiendo por tanto un importante problema de seguridad.
 
 
-### 1.3.- PERFILES DE USUARIO
+### 1.4.- PERFILES DE USUARIO
+
+#### 1.4.1.- EL DIRECTORIO USUARIOS
 
 En un equipo con Windows, cada usuario tiene su propio entorno, por ejemplo, tiene sus documentos en la carpeta *Mis documentos*, tiene un tema establecido, o cualquier otra personalización que únicamente pueda ver desde su cuenta. 
-
-#### 1.3.1.- EL DIRECTORIO USUARIOS
 
 Toda esta información propia del usuario se almacena en lo que se llama **perfil del usuario**. El perfil de cada usuario se guarda en una carpeta dentro del directorio `C:\usuarios`. En este directorio habrá un subdirectorio por cada usuario del sistema qué tendrá el mismo nombre que dicho usuario y, en su interior, tendremos todos los datos propios de este. Por defecto, cada usuario solamente tiene permiso para ver el contenido de su propio perfil. 
  
@@ -170,22 +176,28 @@ Si accedemos al directorio `C:\Usuarios`, podemos ver que, aparte de los directo
 - **Default**: Cada vez que creamos un usuario en el sistema se le tiene que crear una carpeta con su propio perfil, para ello, necesitaremos un perfil que sirva como plantilla coma y ese es precisamente, el cometido del directorio *Default*. Cuando se crea un perfil de usuario se coge todo el contenido de este directorio y se copia en el directorio del perfil del usuario recién creado. Esto, puede ser útil cuando queremos que todos los usuarios creados el sistema tengan una serie de configuraciones o documentos ya incluidos desde el momento de su creación. 
 - **All Users**: Este perfil incluye configuración común a todos los usuarios. Por norma general, las aplicaciones que instalemos que son utilizables para todos los usuarios, incluirán sus configuraciones en este perfil. Por ejemplo, aquellas que ponen un acceso directo a dicha aplicación en el escritorio. Cualquier elemento que coloquemos en este perfil será accesible en los perfiles de todos los usuarios.
 
+![Carpeta perfiles de usuario](imgs/carpeta_c_usuarios.png)
 
-#### 1.3.2.- EL DIRECTORIO DE PERFIL
+Hay que tener en cuenta que alguna de estas carpetas puede no mostrarse, ya que, por defecto, algunas están ocultas (por lo que habrá que marcar la casilla *Elementos ocultos*) y otras están marcadas como *archivos protegidos del sistema*, siendo necesario ir a *Vista -> Opciones -> Cambiar opciones de carpeta y búsqueda -> Pestaña Ver* y desmarcar la opción *Ocultar archivos protegidos del sistema operativo*.
+
+
+#### 1.4.2.- EL DIRECTORIO DE PERFIL
 
 Dentro del directorio de *Usuarios*, cada usuario tiene un directorio propio con su perfil en el que él es el único que tiene permiso de lectura. Aquí podemos identificar las carpetas que vemos en el Explorador de archivos, tales como *Documentos*, *Imágenes*, … o incluso el *Escritorio*, cuyo contenido está en la carpeta homónima (en función del idioma de instalación es posible que los nombres de estos directorios sean *Images*, *Documents*, *Desktop*, ...)
 
+![Contenido carpeta de perfil](imgs/contenido_perfil.png)
 
-#### 1.3.3.- EL FICHERO NTUSER.DAT
+
+#### 1.4.3.- EL FICHERO NTUSER.DAT
 
 De todos los ficheros que podemos encontrar en la carpeta de perfil de un usuario, probablemente el más importante sea el fichero **NTUSER.DAT**, un fichero oculto que contiene la configuración y preferencias del usuario.
 
-Cada vez que el usuario aplica un cambio de configuración, como modificar el fondo de escritorio o seleccionar una resolución de monitor diferente, debe haber un sitio donde se puedan recordar estos datos para que la próxima vez que inicie sesión se recuerden, y este lugar es el fichero NTUSER.DAT.
+Cada vez que el usuario aplica un cambio de configuración, como modificar el fondo de escritorio o seleccionar una resolución de monitor diferente, debe haber un sitio donde se puedan almacenar estos datos para que la próxima vez que inicie sesión se recuerden, y este lugar es el fichero `NTUSER.DAT`.
 
-En realidad, el fichero NTUSER.DAT guarda la configuración cuando el usuario cierra sesión, pero mientras el usuario está trabajando con el ordenador estos datos se guardan en un sitio más accesible, y este sitio es el registro, así que este es un buen momento para comprender qué es el registro de Windows.
+En realidad, el fichero `NTUSER.DAT` guarda la configuración cuando el usuario cierra sesión, pero mientras el usuario está trabajando con el ordenador estos datos se guardan en un sitio más accesible, y este sitio es el **registro**, así que este es un buen momento para comprender qué es el registro de Windows.
 
 
-#### 1.3.4.- EL REGISTRO DE WINDOWS
+#### 1.4.4.- EL REGISTRO DE WINDOWS
 
 El **registro de Windows** es un gran contenedor de información que tiene una estructura arborescente y donde tanto Windows como las aplicaciones que tengamos guardan información. La definición oficial del registro según el Microsoft Computer Dictionary es la siguiente:
 
@@ -195,6 +207,8 @@ El **registro de Windows** es un gran contenedor de información que tiene una e
 
 Es posible ver el contenido del registro mediante el programa `regedit.exe`.
  
+![Editor del registro](imgs/regedit.png)
+
 Al abrir el registro se pueden apreciar 5 nodos principales que dan paso a las 5 ramas del registro:
 
 - **HKEY_CLASSES_ROOT**: contiene todos los tipos de archivos registrados en el sistema con sus aplicaciones asociadas y los comandos que admiten, así como datos utilizados por Windows para las operaciones OLE (copiar, cortar, pegar, ...).
@@ -211,3 +225,6 @@ Al abrir el registro se pueden apreciar 5 nodos principales que dan paso a las 5
     - **S-1-5-21-XXX**: son las cuentas de usuarios. 
 - **HKEY_CURRENT_CONFIG**: este nodo no almacena información, sino que apunta a un nodo dentro de HKEY_LOCAL_MACHINE que contiene información sobre el perfil hardware utilizado.
 - **HKEY_CURRENT_USER**: contiene la configuración del usuario que ha iniciado sesión. El contenido de este nodo es almacenado en el fichero NTUSER.DAT.
+
+
+***

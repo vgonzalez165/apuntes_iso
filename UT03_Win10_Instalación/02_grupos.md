@@ -5,7 +5,7 @@
 ### Contenidos
 
 1. [Gestión de usuarios](01_usuarios.md)
-2. [Gestión de grupos](02_grupos.md)
+2. [**Gestión de grupos**](02_grupos.md)
 3. [Herramientas de administración](03_herramientas_administración.md)
 4. [Panel de control. Sistema](04_sistema.md)
 5. [Panel de control. Otras opciones](05_otras_opciones.md)
@@ -14,17 +14,18 @@
 
 ## 2.- GESTIÓN DE GRUPOS EN WINDOWS
 
-Los grupos son otro de los denominados principales de seguridad de Windows, y, al igual que sucedía con los usuarios, son una parte fundamental en las tareas de administración del sistema, permitiendo asignar permisos y derechos a conjuntos de usuarios en lugar de hacerlo individualmente.
+Los grupos son otro de los denominados **principales de seguridad** de Windows, y, al igual que sucedía con los usuarios, son una parte fundamental en las tareas de administración del sistema, permitiendo asignar permisos y derechos a conjuntos de usuarios en lugar de hacerlo individualmente.
 
-De forma análoga a los usuarios predefinidos, Windows 10 incluye un gran número de grupos predefinidos, que tienen asignados derechos para realizar determinadas tareas del sistema, como por ejemplo realizar copias de seguridad.
+De forma análoga a los usuarios predefinidos, Windows 10 incluye un gran número de **grupos predefinidos**, que tienen asignados derechos para realizar determinadas tareas del sistema, como por ejemplo realizar copias de seguridad.
 
-Toda la gestión de grupos se realiza desde el complemento Usuarios y grupos del MMC, desde la que se podrá crear grupos, determinar la pertenencia de los usuarios a grupos, renombrarlos y borrarlos.
+Toda la gestión de grupos se realiza desde el complemento *Usuarios y grupos del MMC*, desde la que se podrá crear grupos, determinar la pertenencia de los usuarios a grupos, renombrarlos y borrarlos.
+
+![Administración de grupos desde el MMC](imgs/grupos_mmc.png)
+
 
 ### 2.1.- GRUPOS PREDEFINIDOS
 
-En un equipo con Windows 10 los grupos locales predefinidos ya ha sido creados y asignados con todos los permisos necesarios para realizar sus tareas básicas.
-
-Los grupos predefinidos que podemos encontrar en Windows 10 una vez instalado son los siguientes: 
+En un equipo con Windows 10 los grupos locales predefinidos ya ha sido creados y asignados con todos los permisos necesarios para realizar sus tareas básicas. Los grupos predefinidos que podemos encontrar en Windows 10 una vez instalado son los siguientes: 
 
 - **Administradores**: el grupo de administradores tiene todos los permisos y privilegios. Sus miembros se pueden garantizar a ellos mismos cualquier permiso que no tengan para administrar todos los objetos del ordenador. En un equipo recién instalado, el usuario administrador y el usuario inicial son miembros de este grupo, aunque hay que recordar que el usuario administrador está deshabilitado por defecto. Algunos permisos que tienen los administradores son los siguientes:
     - Instalar el sistema operativo.
@@ -48,7 +49,7 @@ Los grupos predefinidos que podemos encontrar en Windows 10 una vez instalado so
 
 ### 2.2.- GRUPOS ESPECIALES
 
-Otro tipo de grupos disponible en Windows 10 es son los grupos especiales. Estos grupos están creados desde el inicio de sistema, pero no pueden ser administrados a través del complemento Usuarios locales y grupos del MMC, sino que la pertenencia no pertenencia a este a este grupo es automática según determinadas circunstancias.
+Otro tipo de grupos disponible en Windows 10 es son los grupos especiales. Estos grupos están creados desde el inicio de sistema, pero no pueden ser administrados a través del complemento Usuarios locales y grupos del MMC, sino que la _pertenencia no pertenencia a este a este grupo es automática_ según determinadas circunstancias.
 
 Los más destacados de estos grupos son: 
 
@@ -62,26 +63,29 @@ Los más destacados de estos grupos son:
 
 ### 2.3.- ADMINISTRACIÓN DE GRUPOS 
 
-Todo lo relativo a la administración del grupo se realiza a través de la consola Usuarios y grupos del MMC. Desde aquí podemos crear grupos, eliminarlos y también Determinar la pertenencia de usuarios a estos grupos. 
+Todo lo relativo a la administración del grupo se realiza a través de la consola *Usuarios y grupos del MMC*. Desde aquí podemos crear grupos, eliminarlos y también determinar la pertenencia de usuarios a estos grupos. 
+
 
 #### 2.3.1.- CREACIÓN DE GRUPOS 
 
-Para crear un grupo hay que ser miembro del grupo administradores. Al igual que sucedía con los nombres de usuarios, es conveniente tener una nomenclatura clara para nombrar los grupos, en general, se deberían seguir las siguientes normas: 
+Para crear un grupo hay que ser miembro del grupo *Administradores*. Al igual que sucedía con los nombres de usuarios, es conveniente tener una nomenclatura clara para nombrar los grupos, en general, se deberían seguir las siguientes normas: 
 
-- En el grupo debe ser descriptivo 
-- El nombre del grupo debe ser único en el ordenador y diferente al resto de nombre del grupo y nombre de usuario que existen en el ordenador. 
-- Los hombres del grupo pueden tener hasta 256 caracteres. Es recomendable utilizar caracteres alfanuméricos para facilitar la administración. La barra invertida no está permitida. 
+- Debe ser descriptivo 
+- El nombre del grupo debe ser único en el ordenador y diferente al resto de nombre del grupo y nombres de usuario que existen en el ordenador. 
+- Los nombres de grupo pueden tener hasta 256 caracteres. Es recomendable utilizar caracteres alfanuméricos para facilitar la administración. La barra invertida no está permitida. 
   
-El proceso para crear un grupo es muy simple, análogo al proceso para crear usuarios. Simplemente hacemos clic derecho en el panel grupos y seleccionamos Nuevo grupo. Aquí introduciremos el nombre del grupo, una descripción opcional, y también podríamos añadir directamente miembros al grupo. 
+El proceso para crear un grupo es muy simple, análogo al proceso para crear usuarios. Simplemente hacemos clic derecho en el panel *Grupos* y seleccionamos *Nuevo grupo*. Aquí introduciremos el nombre del grupo, una descripción opcional, y también podríamos añadir directamente miembros al grupo. 
 
 
 #### 2.3.2.- AÑADIENDO MIEMBROS AL GRUPO
 
-Los miembros se pueden añadir al grupo durante su creación, pero también se pueden añadir posteriormente. Esto se puede hacer desde dos sitios: desde la pestaña propiedades del propio grupo, o desde la pestaña propiedades del usuario. El primer caso habrá que escoger Añadir, mientras que en el segundo caso iremos a la pestaña Miembro de. 
+Los miembros se pueden añadir al grupo durante su creación, pero también se pueden añadir posteriormente. Esto se puede hacer desde dos sitios: desde la pestaña propiedades del propio grupo, o desde la pestaña propiedades del usuario. El primer caso habrá que escoger *Añadir*, mientras que en el segundo caso iremos a la pestaña *Miembro de*. Es importante tener en cuenta que cada usuario tendrá la suma de todos los permisos y derechos de cada uno de los grupos a los que pertenezca, por lo que hay que ser cuidadoso al agregar usuarios a grupos.
 
 
 #### 2.3.3.- ELIMINAR GRUPOS
 
 También es posible eliminar grupos, que, al no tener asociados datos como como en el caso de los usuarios, no está desaconsejado. Lo único que se perdería serían las asignaciones de permiso especificadas para dicho grupo.
 
-Si eliminamos un grupo y posteriormente creamos otro grupo con el mismo nombre, no habrá ningún problema, ya que, al igual que en el caso de los usuarios, internamente los grupos están identificados mediante su identificador de seguridad (SID). 
+Si eliminamos un grupo y posteriormente creamos otro grupo con el mismo nombre, no habrá ningún problema, ya que, al igual que en el caso de los usuarios, internamente los grupos están identificados mediante su **identificador de seguridad (SID)**. 
+
+***
