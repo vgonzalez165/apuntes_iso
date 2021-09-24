@@ -23,39 +23,39 @@ Un aspecto muy importante de la administración de cualquier sistema operativo e
 
 ### [**UT05.- Windows 10. Administración**](UT05_Win10_Administración/index_UT05.md)
 
-Aquí hay que poner una breve introducción a lo que se verá en la unidad.
+Para finalizar con Windows 10 abordaremos algunas tareas de administración habituales como la gestión de procesos y servicios, seguimiento de qué pasa en el sistema mediante el visor de eventos y el monitor de recursos, o la asignación de derechos a los usuarios mediante las directivas locales.
 
 
 ### [**UT06.- Powershell**](UT06_Powershell/index_UT06.md)
 
-Aquí hay que poner una breve introducción a lo que se verá en la unidad.
+Durante muchos años la interfaz en línea de comandos de Windows estaba basada en el arcaico MS-DOS. Sin embargo, en los últimos años Microsoft ha trabajado en un nuevo intérprete de comandos denominado **Powershell** con el no solamente se puede realizar toda la administración de Windows, sino de todo el ecosistema de Microsoft, permitiendo interactuar otros productos como Azure u Office365.
 
 
 ### [**UT07.- Windows Server. Instalación**](UT07_WServer_Instalación/index_UT07.md)
 
-Aquí hay que poner una breve introducción a lo que se verá en la unidad.
+Mientras que Windows 10 es apto para ordenadores de escritorio, Microsoft dispone de una versión de Windows orientada a servidores denominada **Windows Server**. En esta unidad comenzaremos a familiarizarnos con este sistema operativo, viendo su proceso de instalación y realizando las primeras configuraciones necesarias para poner en marcha el sistema.
 
 
 ### [**UT08.- Windows Server. Gestión del dominio**](UT08_WServer_Dominio/index_UT08.md)
 
-Aquí hay que poner una breve introducción a lo que se verá en la unidad.
+Aunque Windows Server dispone de muchas funcionalidades, una de las más relevantes es la administración centralizada de redes de ordenadores mediante **Active Directory**. En esta unidad comprenderemos el funcionamiento de AD y veremos todas las ventajas que proporciona el tener todos los equipos en un dominio.
 
 
 ### [**UT09.- Gestión de identidades en la nube. Azure Active Directory y Microsoft 365**](UT09_AzureAD/index_UT09.md)
 
-Aquí hay que poner una breve introducción a lo que se verá en la unidad.
+En los últimos años, aprovechando las continuas mejoras en las conexiones de redes, han aparecido un gran número de nuevas tecnologías relaccionadas con la **nube**, siendo comunes conceptos como **IaaS** (Infrastructure as a Service), **PaaS** (Platform as a Service) o **SaaS** (Software as a Service). En esta unidad abordaremos estas tecnologías a través los servicios de Microsoft en la nube, principalmente **Azure Active Directory** como repositorio de identidades en la nube y **Microsoft 365** como SaaS.
 
 
 ### [**UT10.- Linux. Instalación**](UT10_Linux_Instalación/index_UT10.md)
 
-Aquí hay que poner una breve introducción a lo que se verá en la unidad.
+Aunque las soluciones de Microsoft dominan el mercado de ordenadores de sobremesa, la mayor parte de los servidores que hay en Internet ejecutan alguna versión de **Linux**. En esta unidad introductoria a Linux daremos los primeros pasos para conocer el funcionamiento de este sistema operativo.
 
 
 ### [**UT11.- Linux. Administración**](UT11_Linux_Administración/index_UT11.md)
 
-Aquí hay que poner una breve introducción a lo que se verá en la unidad.
+En este unidad de trabajo seguiremos viendo el sistema operativo Linux, centrándonos en esta ocasión en las tareas de administración que más frecuentemente se realizan.
 
 
 ### [**UT12.- Contenedores. Automatización y orquestación**](UT12_Contenedores/index_UT12.md)
 
-Aquí hay que poner una breve introducción a lo que se verá en la unidad.
+La administración de sistemas ha evolucionado enormemente en los últimos años. La llegada del *cloud computing* y la enorme implantación de la virtualización en todos los ámbitos relacionados con los servidores han cambiado la forma en la que los administradores se relacionan con los ordenadores.  En esta unidad abordaremos los **contenedores**, un tipo de virtualización que ha supuesto una revolución en el ámbito de los servidores. 
