@@ -4,20 +4,18 @@
 
 ### Contenidos
 
-1. [Gestión de usuarios](01_usuarios.md)
-2. [Gestión de grupos](02_grupos.md)
-3. [Herramientas de administración](03_herramientas_administración.md)
-4. [**Panel de control. Sistema**](04_sistema.md)
-5. [Panel de control. Otras opciones](05_otras_opciones.md)
-6. [Gestión de usuarios y grupos]
-- Usuarios y grupos en Powershell (**Mover**)
+1. [Herramientas de administración](01_herramientas_administración.md)
+2. [**Panel de control. Sistema**](02_sistema.md)
+3. [Panel de control. Otras opciones](03_otras_opciones.md)
+4. [Gestión de usuarios](04_usuarios.md)
+5. [Gestión de grupos](05_grupos.md)
 
-## 4.- PANEL DE CONTROL. SISTEMA
 
+## 2.- PANEL DE CONTROL. SISTEMA
 
 La primera opción del *Panel de control* es **Sistema y seguridad**, que muestra información general del sistema y además proporciona acceso a otros diálogos de administración. Veamos todo lo que podemos hacer desde aquí.
 
-## 4.1.- Ver información básica acerca del equipo
+## 2.1.- Ver información básica acerca del equipo
 
 ![Sistema](imgs/sistema.png)
 
@@ -29,7 +27,7 @@ Según accedemos a *Sistema* se nos muestra información general sobre el equipo
   - Un sistema operativo de 32 bits se puede instalar tanto en arquitecturas de 32 bits como de 64 bits. Si instaláramos un sistema operativo de 32 bits en un sistema x64 habría algunas limitaciones inherentes al uso de 32 bits, por ejemplo, no podríamos direccionar más de 4 GB de RAM aunque tuviéramos más memoria instalada. 
 - *Configuración de nombre, dominio y grupo de trabajo del equipo*, donde veremos el nombre del equipo y si pertenece a un dominio o a un grupo de trabajo. Si aquí hacemos click en *Cambiar configuración* nos llevará al diálogo **Propiedades del sistema**.
   
-## 4.2.- Nombre del equipo
+## 2.2.- Nombre del equipo
 
 ![Pestaña Nombre de equipo](imgs/nombre_equipo.png)
 
@@ -37,7 +35,7 @@ En esta pestaña del cuadro de diálogo *Propiedades del sistema* podremos asign
 
 Desde aquí también se puede cambiar el nombre del *grupo de trabajo* al que pertenece nuestro ordenador y agregarlo a un dominio, aunque esta opción ya la veremos en futuras unidades.
 
-## 4.3.- Hardware
+## 2.3.- Hardware
 
 ![Pestaña Hardware](imgs/hardware.png)
 
@@ -51,7 +49,7 @@ Los **controladores** son piezas de software que le indican al sistema operativo
 
 Windows 10 tiene una gestión automática bastante buena de drivers, descargándose los específicos automáticamente al detectar un componente hardware nuevo, por lo que normalmente los usuarios no tienen que preocuparse de ello. Únicamente sería necesario acudir a la web del fabricante para el caso de dispositivos que no funcionen correctamente o si queremos disponer de la última versión de los mismos para aprovechar al máximo las funcionalidades del dispositivo.
 
-## 4.4.- Opciones avanzadas
+## 2.4.- Opciones avanzadas
 
 ![Pestaña Opciones Avanzadas](imgs/opciones_avanzadas.png)
 
@@ -94,13 +92,13 @@ COMPUTERNAME                   DESKTOP-483UVTV
 ...
 ```
 
-## 4.5.- Protección del sistema
+## 2.5.- Protección del sistema
 
 ![Pestaña Protección del sistema](imgs/proteccion_sistema.png)
 
 Siguiendo con las pestañas del cuadro de diálogo *Propiedades del sistema* encontramos esta que permite trabajar con los **puntos de restauración**, que veremos en posteriores unidades.
 
-## 4.6.- Acceso remoto
+## 2.6.- Acceso remoto
 
 ![Pestaña Acceso remoto](imgs/acceso_remoto.png)
 
@@ -111,10 +109,6 @@ El otro apartado es el de **Escritorio remoto**, cuyo fin es permitir conexiones
 - Habilitar la casilla *Permitir las conexiones remotas a este equipo* en este cuadro de diálogo
 - Seleccionar qué usuarios se podrán conectar por escritorio remoto
 - Y, en el equipo desde el que nos vayamos a conectar, abrir la aplicación **Conexión a escritorio remoto** e introducir la dirección IP o nombre del equipo al que nos vayamos a conectar.
-
-
-
-
 
 
 
