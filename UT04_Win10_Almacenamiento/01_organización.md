@@ -15,7 +15,7 @@
 
 En esta unidad de trabajo estudiaremos cómo se organizan los sistemas de almacenamiento en un ordenador, es decir, la forma en la que los sistemas operativos operan con los discos duros y los organizan para poder almacenar datos en ellos.
 
-### 1.1.- ESTRUCTURA FÍSICA DE UN DISCO DURO
+### 1.1.- Estructura física de un disco duro
 
 Físicamente, los discos duros magnéticos están compuestos por varios **discos** o **platos** apilados que giran todos simultáneamente. Normalmente estos discos están fabricados en aluminio o cristal y están recubiertos de un material ferromagnético que tiene la capacidad de ser alterado magnéticamente en dos polarizaciones diferentes.
 
@@ -28,7 +28,7 @@ Finalmente, las pistas se encuentran divididas en **sectores**. El sector es la 
 ![Estructura física de un disco](imgs/estructura_fisica.png)
 
 
-### 1.3.- ESTRUCTURA LÓGICA DE UN DISCO DURO
+### 1.2.- Estructura lógica de un disco duro
 
 A nivel físico un disco duro simplemente almacena 0s y 1s, pero de alguna forma es necesario darle forma a esa secuencia de bits para que sean datos comprensibles por el ordenador. Por ejemplo, el ordenador tiene que saber que bits corresponden a una imagen o cuáles corresponden a un fichero de texto. Por lo tanto, es necesario crear una serie de estructuras de datos que permitan al ordenador saber qué bits que hay en el disco duro corresponden a un fichero o a otro. Esta forma de organizar el disco es lo que se llama la **estructura lógica del disco**.
 
@@ -44,7 +44,7 @@ Existen muchos **motivos** por los que podemos querer dividir un disco en varias
 El hecho de que hayamos creado una partición no quiere decir que el sistema operativo pueda acceder a ella ya que también necesita que el sistema de ficheros de dicha partición sea reconocible por el sistema.
 
 
-#### 1.3.1.- PARTICIONAMIENTO
+#### 1.2.1.- PARTICIONAMIENTO
 
 Cuando se realizan particiones en un disco duro es necesario almacenar en algún lugar de dicho disco el tamaño y ubicación de dichas particiones. Este lugar es la tabla de particiones y se encuentra ubicada en los primeros sectores del disco. 
 
@@ -64,12 +64,8 @@ En la siguiente imagen se puede ver un ejemplo de un disco duro físico en el qu
 
 ![Esquema con particiones primarias y lógicas](imgs/particiones_1.png)
  
-El caso más sencillo consiste en un sector de arranque que contenga una tabla de particiones con una sola partición, y que esta partición ocupe la totalidad del espacio restante del disco. En este caso, no existiría espacio sin particionar. 
 
-![Esquema con una única partición](imgs/particiones_2.png)
-
-
-#### 1.3.2.- MASTER BOOT RECORD (MBR)
+#### 1.2.2.- MASTER BOOT RECORD (MBR)
 
 El primer sector de todo el disco (cabeza 0, cilindro 0 y sector 1) es el denominado **sector de arranque**. Al igual que todos los sectores, tiene un tamaño de 512 bytes y es ahí donde se guarda el **Master Boot Record**.
 
@@ -100,7 +96,7 @@ La alternativa a esta limitación de 4 particiones está en la creación de una 
 Las particiones que se pueden crear dentro de la partición extendida son las **particiones lógicas**. Estas particiones no ocupan espacio en la tabla de particiones del primer sector del disco ya que la partición extendida tiene su propia tabla de particiones. Además, esta tabla de particiones no tiene la limitación de tener que caber en un sector por lo que el número de particiones lógicas que podemos crear aumenta hasta 128.
 
 
-#### 1.3.3.- TABLA DE PARTICIONES GUID (GPT)
+#### 1.2.3.- TABLA DE PARTICIONES GUID (GPT)
 
 La tabla de particiones **GUID (GPT)** es parte del estándar **Extensible Firmware Interface (EFI)** cuyo objetivo es reemplazar las antiguas BIOS del PC. El objetivo de GPT es superar las limitaciones del MBR.
 
@@ -110,7 +106,7 @@ La fiabilidad de los discos GPT es mucho mayor que la de MBR ya que GPT crea var
 
 En cuanto a compatibilidad, todas las versiones de Windows de 64 bits pueden arrancar desde discos GPT mientras que las versiones de 32 bits pueden leer y escribir en ellos, pero no arrancar desde estos discos.
 
-### 1.4.- GESTORES DE ARRANQUE
+### 1.3.- Gestores de arranque
 
 Cuando en el sistema tenemos un único sistema operativo instalado, por ejemplo, Windows, el proceso de arranque es totalmente transparente para el usuario. Simplemente vemos una serie de pantallas que se van sucediendo hasta que tenemos delante el escritorio del sistema operativo.
 

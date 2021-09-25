@@ -23,7 +23,7 @@ Un sistema de archivos:
 - En caso de alguna inconsistencia posibilita medios para su restauración.
 
 
-### 2.1.- DIFERENTES SISTEMAS DE FICHEROS
+### 2.1.- Sistemas de archivos
 
 Existen diferentes sistemas de archivos y cada sistema operativo soporta diferentes sistemas de archivos, algunos de ellos son los siguientes:
 
@@ -42,7 +42,7 @@ Existen diferentes sistemas de archivos y cada sistema operativo soporta diferen
 A la acción de crear un sistema de ficheros dentro de una partición se le llama también **formatear** la partición.
 
 
-### 2.2.- FILE ALLOCATION TABLE (FAT)
+### 2.2.- El sistema de archivos FAT (File Allocation Table)
 
 Para comprender mejor cómo funcionan los sistemas de ficheros vamos a ver en detalle el funcionamiento de uno de los más sencillos, el sistema de ficheros FAT.  Este sistema apareció en el año 1980 y aún es utilizado en dispositivos de almacenamiento de pequeño tamaño.
 
@@ -74,9 +74,9 @@ Hay diferentes versiones de FAT:
 - **exFAT**: apareció con Windows Vista y aumenta el tamaño de archivo hasta los 16 exabytes.
 
 
-### 2.3.- EL SISTEMA DE FICHEROS NTFS
+### 2.3.- El sistema de archivos NTFS
 
-#### 2.3.1.- CARACTERÍSTICAS DE NTFS
+#### 2.3.1.- Características de NTFS
 
 NTFS es el sistema de ficheros que fue implantado por primera vez en el sistema Windows NT 3.1 e incluía un gran número de mejores respecto a FAT. Entre estas mejoras destacan:
 
@@ -86,7 +86,7 @@ Además, NTFS utiliza almacenamiento redundante para los datos críticos del sis
 - **Discos y archivos grandes**: NTFS permite archivos y volúmenes más grandes que FAT, permitiendo archivos de hasta 16 TiB y volúmenes de hasta 256 TiB.
 
 
-#### 2.3.2.- VOLÚMENES NTFS Y ESTRUCTURA DE ARCHIVOS
+#### 2.3.2.- Volúmenes NTFS y estructura de archivos
 
 NTFS hace uso de los siguientes conceptos de almacenamiento de disco:
 
@@ -101,7 +101,7 @@ NTFS hace uso de los siguientes conceptos de almacenamiento de disco:
 El clúster es la unidad fundamental de asignación en NTFS, que no trabaja con sectores. El tamaño máximo de clúster es entre 1 y 128 sectores.
 
 
-#### 2.3.3.- ESTRUCTURA DE UN VOLUMEN NTFS
+#### 2.3.3.- Estructura de un volumen NTFS
 
 Cada elemento de un volumen NTFS es un archivo, y cada archivo está formado por una colección de atributos. Incluso el contenido del archivo se trata como un atributo.
 
@@ -110,22 +110,25 @@ La estructura de un volumen NTFS es:
 ![Estructura NTFS](imgs/estructura_ntfs.png)
 
 Los diferentes elementos son:
-•	Sector de arranque de la partición (aunque se llame sector, puede estar formado por un máximo de 16 sectores): contiene información sobre la estructura del volumen, las estructuras del sistema de archivos y la información de arranque de inicio y el código.
-•	Tabla maestra de archivos (Master File Table, MFT): contiene información sobre todos los archivos y carpetas (directorios) del volumen NTFS, y la información sobre el espacio disponible no asignado. En esencia, la MFT es una lista de todos los contenidos de este volumen, organizada como un conjunto de filas en una estructura de base de datos relacional.
-•	Archivos del sistema (suele tener 1MB de longitud): entre los archivos de esta región se encuentran los siguientes:
-o	MFT2: un espejo de las tres primeras filas del MFT, utilizado para garantizar el acceso a la MFT en caso de fallo de un único sector.
-o	Archivo registro: una lista de pasos de transacciones utilizadas para la recuperación en NTFS.
-o	Mapa de bits de los clústeres: una representación del volumen, mostrando que clústeres están ocupados.
-o	Tabla de definición de atributos: define los tipos de atributos soportados en este volumen.
 
-2.3.4.- TABLA MAESTRA DE ARCHIVOS
-El corazón del sistema de archivos NTFS es la MFT. La MFT se organiza como una tabla de registros de longitud variable (entre 1 y 4 KB). Cada registro describe un archivo o una carpeta de un volumen, incluyendo la propia MFT, que se trata como un archivo.
+- **Sector de arranque de la partición** (aunque se llame sector, puede estar formado por un máximo de 16 sectores): contiene información sobre la estructura del volumen, las estructuras del sistema de archivos y la información de arranque de inicio y el código.
+- **Tabla maestra de archivos (Master File Table, MFT)**: contiene información sobre todos los archivos y carpetas (directorios) del volumen NTFS, y la información sobre el espacio disponible no asignado. En esencia, la MFT es una lista de todos los contenidos de este volumen, organizada como un conjunto de filas en una estructura de base de datos relacional.
+- **Archivos del sistema** (suele tener 1MB de longitud): entre los archivos de esta región se encuentran los siguientes:
+    - **MFT2**: un espejo de las tres primeras filas del MFT, utilizado para garantizar el acceso a la MFT en caso de fallo de un único sector.
+    - **Archivo registro**: una lista de pasos de transacciones utilizadas para la recuperación en NTFS.
+    - **Mapa de bits de los clústeres**: una representación del volumen, mostrando que clústeres están ocupados.
+    - **Tabla de definición de atributos**: define los tipos de atributos soportados en este volumen.
+
+#### 2.3.4.- TABLA MAESTRA DE ARCHIVOS
+
+El corazón del sistema de archivos NTFS es la **MFT**. La MFT se organiza como una tabla de registros de longitud variable (entre 1 y 4 KB). Cada registro describe un archivo o una carpeta de un volumen, incluyendo la propia MFT, que se trata como un archivo.
+
 Si un archivo es suficientemente pequeño, se localiza completamente en una fila de la MFT. En otro caso, el registro para dicho archivo contiene información parcial y el resto del archivo se encuentra en otros clústeres del volumen.
  
-Cada registro de la MFT está formado por un conjunto de atributos que sirve para definir las características del archivo y sus contenidos.
-Algunos ejemplos de atributos son:
-•	Información estándar: permisos, fechas de creación y modificación, …
-•	Nombre de archivo o carpeta
-•	Descriptor de seguridad: propietario de archivo y quien puede acceder
-•	Datos: contenido del archivo
+Cada registro de la MFT está formado por un conjunto de atributos que sirve para definir las características del archivo y sus contenidos. Algunos ejemplos de atributos son:
+
+- Información estándar: permisos, fechas de creación y modificación, …
+- Nombre de archivo o carpeta
+- Descriptor de seguridad: propietario de archivo y quien puede acceder
+- Datos: contenido del archivo
 
