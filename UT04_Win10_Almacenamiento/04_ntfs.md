@@ -88,7 +88,7 @@ Cada uno de estos permisos supone un subconjunto de los permisos NTFS especiales
 
 
 | Permisos | Control total | Modificar | Leer y ejecutar | Mostrar contenido de carpeta | Lectura | Escritura |
-|----------|---------------|-----------|-----------------|------------------------------|---------|-----------|
+|---| :-: | :-: | :-: | :-: | :-: | :-: |
 |Recorrer carpeta / Ejecutar archivo | X | X | X | X |   |   |
 |Listar carpeta / Leer datos 		 | X | X | X | X | X |   |
 |Atributos de lectura 				 | X | X | X | X | X |   |

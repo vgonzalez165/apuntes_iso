@@ -11,11 +11,13 @@
 5. [**Carpetas compartidas**](05_compartidas.md)
 
 
-## 4.- CARPETAS COMPARTIDAS
+## 5.- CARPETAS COMPARTIDAS
 
-4.- CARPETAS COMPARTIDAS
-Windows permite compartir carpetas locales a través de la red con otros equipos mediante las carpetas compartidas.
-4.1.- COMPARTIR UNA CARPETA
+Windows permite compartir carpetas locales a través de la red con otros equipos mediante las **carpetas compartidas**.
+
+
+### 5.1.- COMPARTIR UNA CARPETA
+
 Para compartir una carpeta en Windows hemos de acceder a la pestaña Compartir del diálogo Propiedades de dicha carpeta. Hay dos formas de compartir una carpeta, mediante un asistente o bien mediante el Uso compartido avanzado. Por defecto, el asistente está habilitado, pero si no lo estuviera será necesario habilitarlo para utilizarlo. Para ello, en cualquier ventana del explorador de archivos, vamos a Vista -> Opciones -> Ver -> Configuración avanzada y marcamos la casilla Usar asistente para compartir.
 
 4.1.1.- COMPARTIR UTILIZANDO EL ASISTENTE
