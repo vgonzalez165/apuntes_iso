@@ -5,7 +5,7 @@
 El **pipeline**, representado por el símbolo barra vertical (|), es utilizado para combinar diversos cmdlets de forma que la salida de uno es enviada a la entrada del siguiente, de forma muy similar a cómo se hace en Linux. 
  
 
-## 2.1.- OBJETOS EN POWERSHELL
+## 2.1.- Objetos en Powershell
 
 Un aspecto importante al trabajar con el pipeline, sobre todo si has trabajado antes con Linux, es que Powershell es un Shell **orientado a objetos**, y, por tanto, la información que se intercambia entre los comandos son objetos.
 
@@ -39,7 +39,7 @@ En la imagen anterior ejecutamos el comando `Get-LocalUser -Name Victor` que dev
 En la imagen anterior podemos ver que el comando `Get-LocalUser` devuelve objetos del tipo Microsoft.Powershell.Commands.LocalUser, y, a continuación, se nos muestran los métodos y propiedades de estos objetos. Por ejemplo, el objeto usuario tiene un método denominado Clone() que, como su nombre indica, servirá para clonar el usuario al que corresponde ese objeto; o, una propiedad denominada Description que almacenará una cadena de texto con la descripción introducida cuando se creó el usuario.
 
 
-## 2.2.- EL PIPELINE
+## 2.2.- El pipeline
 
 Cuando hablamos del **pipeline** en Powershell nos referimos a la capacidad de enviar la salida de un comando (que recordemos que por norma general es uno o varios objetos) a otro comando para que haga algo con ellos. De esta forma podremos encadenar diversos comandos de forma que cada uno de ellos toma como entrada la salida del comando anterior, lo manipula de alguna manera, y el resultado obtenido lo envía a la entrada del siguiente comando.
 
@@ -49,7 +49,7 @@ Algo importante que hay que tener en cuenta es que el tipo de objeto que genera 
 
 
 
-## 2.1.- REDIRECCIÓN A OTRO COMANDO
+## 2.3.- Redirección a otro comando
 
 Un uso del pipeline es obtener la referencia a algún objeto para utilizar como entrada de otro comando. Por ejemplo, supongamos que queremos terminar el proceso correspondiente a la calculadora, para lo cual necesitamos el comando Stop-Process. 
 Mirando la ayuda de este comando veremos que requiere el identificador del proceso que queremos terminar, por lo que sería necesario conocer antes este número, por ejemplo, mediante el comando anterior.
@@ -59,7 +59,7 @@ Sin embargo, es más sencillo enlazar ambos comandos en una línea de la siguien
 Observa que esto es útil incluso si tenemos varias instancias de un proceso. En el siguiente ejemplo se ve que hay ocho instancias del proceso Teams, las cuales son recogidas todas por el comando Get-Process y enviadas a Stop-Process.
  
 
-## 2.2.- OBTENER PROPIEDADES DEL OBJETO
+## 2.4.- Obtener propiedades del objeto
 
 Como hemos dicho, la salida de los comandos de Powershell son objetos, cada uno de los cuales tiene una serie de propiedades, aunque en la salida por defecto únicamente es muestran las más importantes. Si queremos ver todas las propiedades de un objeto lo podemos hacer con el comando ```Get-Member``` de la siguiente forma:
 
@@ -119,7 +119,7 @@ Name            CPU StartTime
 Calculator 0,734375 14/09/2021 22:45:57
 ```
 
-## 2.3.- ORDENAR, AGRUPAR Y MEDIR LA SALIDA DE UN COMANDO
+## 2.5.- Ordenar, agrupar y medir la salida de un comando
 
 Hay comandos que proporcionan un gran número de elementos al ejecutarse por lo que puede ser conveniente manipular dicha salida para que sea más fácilmente comprensible. Para ello utilizaremos los cmdlets `Sort-Object`, `Group-Object` y `Measure-Object`, que ordenan, agrupan y cuentan respectivamente.
 

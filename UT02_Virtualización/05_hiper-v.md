@@ -13,6 +13,26 @@
 ## 5. MICROSOFT HYPER-V
 
 
+### 5.1.- Habilitar Hyper-V en Windows 10
+
+![Instalación de Hyper-V](imgs/hyperv_install.png)
+
+Habilitar característica
+Requisitos Hyper-V
+
+
+### 5.2.- Configuración de Hyper-V
+
+
+### 5.3.- Creación de una máquina virtual
+
+
+### 5.4.- Cambios en la configuración de una máquina virtual
+
+
+### 5.5.- Gestión de la red en Hyper-V
+
+
 
 ***
 

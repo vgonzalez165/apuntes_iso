@@ -2,7 +2,7 @@
 
 # 1.- INTRODUCCIÓN
 
-## 1.1.- CONCEPTOS IMPORTANTES DE WINDOWS POWERSHELL
+## 1.1.- Conceptos importantes de Windows Powershell
 
 El diseño de Windows PowerShell integra conceptos de muchos entornos distintos. Algunos de estos conceptos son:
 
@@ -12,7 +12,7 @@ El diseño de Windows PowerShell integra conceptos de muchos entornos distintos.
 - PowerShell utiliza sintaxis del lenguaje C#: incluye palabras clave y funciones de sintaxis muy parecidas a las que se usan en el lenguaje C# por lo que su aprendizaje facilitaría el aprendizaje de C#.
 
 
-## 1.2.- POWERSHELL VS POWERSHELL CORE
+## 1.2.- Powershell vs Powershell Core
 
 En el año 2018 Microsoft anunció una nueva edición de Powershell que denominó Powershell Core de forma que en la actualidad coexisten ambas ediciones. La diferencia más reseñable es que, mientras que Powershell es exclusivo de Windows, Powershell Core puede ser instalado en otros sistemas, como Mac OS X o Linux, lo que permite crear scripts compatibles para múltiples plataformas.
 
@@ -25,7 +25,7 @@ En el año 2018 Microsoft anunció una nueva edición de Powershell que denomin�
 | Políticas de actualización    | Solo correcciones de errores críticos | Todas las actualizaciones |
 
 
-## 1.3.- PREPARACIÓN DEL ENTORNO
+## 1.3.- Preparación del entorno
 
 Si vamos a trabajar con Powershell es conveniente preparar el entorno de trabajo. Por defecto, Windows 10 incluye Powershell, pero si queremos utilizar Powershell Core deberemos instalarlo manualmente. La última versión de esta herramienta siempre la podremos encontrar en el repositorio oficial disponible en GitHub, accesible en [web del proyecto de Github](https://github.com/PowerShell/PowerShell).
 
@@ -36,7 +36,7 @@ Si quieres personalizar más Windows Terminal tienes múltiples guías por inter
 Un complemento de Powershell es el editor **Powershell ISE**, un editor que ya viene instalado en Windows 10 y que permite el trabajo con scripts de Powershell. Sin embargo, este editor es bastante limitado y además, solo compatible con Powershell (no con Core). Por ello, en caso de querer realizar scripts de Powershell, lo ideal es utilizar el editor [**Visual Studio Code**](https://code.visualstudio.com/) con el [plugin de Powershell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell). En la [documentación de Microsoft](https://docs.microsoft.com/es-es/powershell/scripting/dev-cross-plat/vscode/using-vscode?view=powershell-7.1) se explican los pasos a realizar para configurar este editor.
 
 
-## 1.3.- EJECUCIÓN DE SCRIPTS
+## 1.4.- Ejecución de scripts
 
 Cuando intentamos ejecutar un script de PowerShell realizado por nosotros la primera vez nos dará un mensaje de error. Esto se debe a la política de ejecución que está definida y que determina cómo se ejecutan los scripts.  Por defecto la política de ejecución está definida como *Restricted* lo que significa que los scripts creados por ti no tienen permisos de ejecución. Se puede comprobar la política que tenemos con la orden `Get-ExecutionPolicy`.
 
@@ -53,7 +53,7 @@ PS C:\>Set-ExecutionPolicy RemoteSigned
 ```
 
 
-## 1.4.-NOMENCLATURA DE CMDLETS
+## 1.5.- Nomenclatura de cmdlets
 
 Los cmdlets utilizan un sistema de nombres con la estructura “verbo-sustantivo”: el nombre de cada cmdlets consta de un verbo estándar y un sustantivo concreto. Los verbos expresan acciones concretas mientras que los sustantivos describen siempre a qué se aplica un comando. La idea detrás de esto es crear un entorno autodescriptivo y uniforme de forma que los comandos sean más fáciles de recordar para los usuarios y que les permita hacerse una idea de su objetivo a partir de su nombre. Por ejemplo, el comando `Sopt-Computer` se puede identificar fácilmente como el comando que sirve para apagar el ordenador.
 
@@ -69,14 +69,14 @@ Respecto a los parámetros que admiten los cmdlets se fomenta que estén normali
 Hay una serie de parámetros que son comunes a todos los comandos. Probablemente el más importante de todos es `-?`, que muestra la ayuda del comando, pero hay otros muchos como: `Whatif`, `Confirm`, `Verbose`, `Debug`, `Warn`, `ErrorAction`, `ErrorVariable`, `OutVariable` y `OutBuffer`.
 
 
-## 1.5.- NOMBRES DE COMANDOS FAMILIARES
+## 1.6.- Nombres de comando familiares
 
 Microsoft ha querido hacer Powershell fácil de aprender para todos los usuarios, especialmente para aquellos que ya saben utilizar otro intérprete de comandos como MS-DOS o Bash. Por ello, permite crear **alias** para los comandos, de forma que se pueda hacer referencia al mismo comando utilizando diferentes nombres. Por ejemplo, hay comando denominado `Clear-Host` que borra el contenido de la ventana que dispone de dos alias: `cls` y `clear`, que son los nombres de los comandos que realizan esa misma función en MS-DOS y en Bash respectivamente. Cualquiera de las tres formas se puede utilizar indistintamente ya que todas hacen referencia al mismo comando y por tanto producen el mismo resultado.
 
 Algunos comandos de MS-DOS y de Bash que se pueden utilizar en Powershell son:
 
 | 	       |            |		     | 	        | 	       | 	      | 	     |          |
-|----------|------------|------------|----------|----------|----------|----------|----------|
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | `cat`	   | `dir`      |	`mount`	 | `rm`	    | `cd`	   | `echo`	  | `move`	 | `rmdir`  |
 | `chdir`  | `erase`	| `popd`	 | `sleep`	| `clear`  | `h`	  | `ps`	 | `sort`   |
 | `cls`	   | `history`  | `pushd`	 | `tee`	| `copy`   | `kill`	  | `pwd`	 | `type`   |
@@ -141,7 +141,7 @@ PS C:\> cd alias:
 PS alias:\> dir
 ```
 
-## 1.6.- OBTENCIÓN DE AYUDA
+## 1.7.- Obtención de ayuda
 
 Powershell tiene cientos de cmdlets, cada uno con un gran número de parámetros. Esto hace que sea imposible conocerlos todos, por lo que tendremos que recurrir frecuentemente a la ayuda.
 
@@ -152,7 +152,7 @@ Si queremos obtener información sobre un determinado comando también hay varia
 Hay tres comandos relativos a la ayuda en Powershell: ```Get-Command```, ```Get-Help``` y ```Get-Member```. El tercero lo vamos a dejar para más adelante, así que veamos como funcionan los dos primeros.
 
 
-### 1.6.1.- GET-HELP
+### 1.7.1.- Get-Help
 
 Es el comando principal para buscar la ayuda de otro comando. Simplemente necesitamos pasarle el nombre del otro comando con el parámetro ```-name``` para que nos proporcione la ayuda completa de dicho comando.
 
@@ -185,7 +185,7 @@ El comando ```Get-Help``` tiene otros muchos parámetros, lo más útiles son:
 - ```-ShowWindow```: muestra la ayuda en una ventana emergente.
 - -```Parameter Nombre```: muestra únicamente del parámetro cuyo nombre se indique
 
-### 1.6.2.- GET-COMMAND
+### 1.7.2.- Get-Command
 
 Este comando nos servirá para encontrar otros comandos. Powershell tiene cientos e incluso miles de cmdlets, por lo que es casi imposible conocer el nombre de todos. El comando ```Get-Command``` nos ayudará a encontrar el comando que estemos buscando.
 
@@ -200,7 +200,7 @@ PS C:\> Get-Command -Noun Process
 Con el comando anterior podemos ver todos los cmdlets que realizan alguna operación con procesos.
 
 
-## 1.7.- AYUDAS AL ESCRIBIR LOS COMANDOS
+## 1.8.- Ayudas al escribir los comandos
 
 La primera herramienta de la consola para buscar comandos es autocompletar, que consiste en rellenar el comando que queremos al pulsar la **tecla tabulador** después de haber tecleado las primeras letras de un comando. Si hay un único comando que comience con esas teclas lo completará, si hubiera más de uno, completará con el primero en orden alfabético y, tras cada nueva pulsación de la tecla tabulador, irá mostrando el resto de los comandos que comiencen por dichas letras.
 
