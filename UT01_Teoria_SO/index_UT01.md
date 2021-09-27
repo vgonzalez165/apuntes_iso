@@ -14,7 +14,7 @@
 
 ### Prácticas
 
-- PR0101: Cronología de los ordenadores
+- PR0101: Desarrollo de un sistema operativo
 - PR0102: Comparativa de sistemas operativos
 
 ***

@@ -57,6 +57,4 @@ Hay varias razones por las que un sistema operativo debe estar en continua evolu
 
 *** 
 
-[**Volver** al menú de la UT01](index_UT01.md)
-
-[**Siguiente>** 2. Historia de los sistemas operativos](02_historia.md)
+[Volver al índice](index_UT01.md)

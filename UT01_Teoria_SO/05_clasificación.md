@@ -49,8 +49,6 @@ Hay diversos métodos de clasificación de sistemas operativos en función del a
 - **Sistemas distribuidos**: conjunto de equipos interconectados que se reparten los diferentes trabajos de forma transparente para el usuario. Ejemplos: Amoeba, Sprite, …
 
 
-***
+*** 
 
-[**< Anterior**: 4. Arquitectura de los sistemas operativos](01_introducción.md)
-
-[**Volver** Menú de la UT01](index_UT01.md)
+[Volver al índice](index_UT01.md)

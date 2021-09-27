@@ -37,10 +37,6 @@ Es el componente que se encuentra al más alto nivel, en contacto directo con el
 
 El intérprete de comandos puede ser textual, en el que el usuario introduce los comandos en modo texto siguiendo una sintaxis determinada, o gráfico, en el que el usuario interacciona a través de una interfaz gráfica mediante un ratón o dispositivo similar.
 
-***
+*** 
 
-[**< Anterior**: 2. Historia de los sistemas operativos](02_historia.md)
-
-[**Volver** Menú de la UT01](index_UT01.md)
-
-[**Siguiente>**: 4. Arquitectura de los sistemas operativos](04_arquitectura.md)
+[Volver al índice](index_UT01.md)

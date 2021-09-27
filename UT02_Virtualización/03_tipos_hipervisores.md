@@ -92,11 +92,7 @@ Virtualización en ordenadores Apple con arquitectura Intel
 Hipervisor de tipo 2 que permite usar máquinas Windows y Linux en ordenadores Apple.
 
 
-***
+*** 
 
-[**< Anterior**: 2. Tipos de máquinas virtuales](02_tipos_MV.md)
-
-[**Volver** Menú de la UT02](index_UT02.md)
-
-[**Siguiente>**: 4. Oracle VirtualBox](04_virtualbox.md)
+[Volver al índice](index_UT02.md)
 

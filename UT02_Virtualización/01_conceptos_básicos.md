@@ -69,8 +69,6 @@ Aunque son muy pocos, las máquinas virtuales también tienen algunos **inconven
 - **Los usuarios pueden instalar programas no permitidos en el anfitrión**.
 
 
-***
+*** 
 
-[**Volver** Menú de la UT01](index_UT02.md)
-
-[**Siguiente>**: 2. Tipos de máquinas virtuales](02_tipos_MV.md)
+[Volver al índice](index_UT02.md)
