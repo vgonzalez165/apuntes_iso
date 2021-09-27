@@ -263,4 +263,5 @@ PS C:\> Import-Clixml -Path ‘C:\history.xml’ | Add-History
 PS C:\> Import-CSV -Path ‘C:\history.csv’ | Add-History
 ```
 
-
+***
+[Volver al índice principal](index_UT06.md)

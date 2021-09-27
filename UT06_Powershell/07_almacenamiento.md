@@ -93,3 +93,6 @@ Mount-VHD -Path $disco -Passthru |
 
 	
  
+
+***
+[Volver al índice principal](index_UT06.md)

@@ -119,3 +119,8 @@ Para ello el gestor de arranque reemplaza el código de arranque que se encuentr
 - GAG (Graphical Boot Manager): este sencillo gestor de arranque nos muestra un menú gráfico para elegir el sistema operativo. Se instala completamente en el MBR al contrario que otros gestores que almacenan parte de su código fuera del MBR.
 - GRUB (GNU Grand Unified Loader): es el gestor de arranque utilizado por la mayoría de los sistemas Linux y funciona perfectamente tanto para sistemas operativos Windows como Linux. Al contrario que GAG parte del código se almacena dentro de la partición `/boot`.
 
+
+
+
+***
+[Volver al índice principal](index_UT04.md)

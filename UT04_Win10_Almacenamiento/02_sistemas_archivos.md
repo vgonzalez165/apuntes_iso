@@ -132,3 +132,7 @@ Cada registro de la MFT está formado por un conjunto de atributos que sirve par
 - Descriptor de seguridad: propietario de archivo y quien puede acceder
 - Datos: contenido del archivo
 
+
+
+***
+[Volver al índice principal](index_UT04.md)

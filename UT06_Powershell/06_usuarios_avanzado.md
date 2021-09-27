@@ -239,3 +239,7 @@ PS C:\> Enter-PSSession -VMId <ID_MV>
 ```
 
 La ejecución remota de un comando o script es equivalente, usando los mismos parámetros para indicar el nombre de la máquina virtual o su identificador.
+
+
+***
+[Volver al índice principal](index_UT06.md)

@@ -154,3 +154,5 @@ Todos los archivos y carpetas tienen un **propietario** que es el usuario que ha
  
 Se puede ver el propietario de un objeto en *Opciones avanzadas*. Desde aquí también puede tomar posesión del objeto cualquier otro usuario que tenga permisos de *Control total* sobre dicho objeto. También puede tomar posesión de un objeto cualquier usuario que pertenezca al grupo *Administradores* aunque no tenga ningún tipo de permiso directamente sobre el objeto.
 
+***
+[Volver al índice principal](index_UT04.md)

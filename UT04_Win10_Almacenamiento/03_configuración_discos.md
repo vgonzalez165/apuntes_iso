@@ -93,3 +93,6 @@ Independientemente de cómo ejecutemos diskpart nos aparecerá un prompt en pant
 
 
 
+
+***
+[Volver al índice principal](index_UT04.md)
