@@ -10,7 +10,6 @@
 
 # 5. MICROSOFT HYPER-V
 
-
 ## 5.1.- Habilitar Hyper-V en Windows 10
 
 Hyper-V es una herramienta que inicialmente estaba orientada a las versiones de servidor de Windows, pero recientemente ha sido incluido como una característica en Windows 10. Los requisitos que debe tener el ordenador son:
@@ -72,11 +71,22 @@ Y con estas opciones ya estaría creada la máquina virtual. Ahora ya se puede a
 
 - **Iniciar**: Esta operación arranca la máquina virtual, pero no muestra una interfaz para interactuar con ella. La máquina se ejecuta haciendo lo que tenga que hacer, pero nosotros no veremos una ventana que nos la muestre.
 - **Conectar**: Cuando hacemos click en *conectar* se abre una ventana que nos muestra la máquina virtual. Esto no implica la ejecución de la máquina, que no se producirá hasta que no pulsemos en *iniciar*.
-- **Desconectar**: Esta acción cierra la ventana de la máquina virtual, pero si esta se encontrara en ejecución no la detendrá, sino que se mantendrá ejecutándose en segundo plano.
-- **Apagar**: Envía una señal de apagado a la máquina virtual.
-- 
+- **Desconectar**: Esta acción apaga la máquina virtual de forma inmediata, es decir, sería el equivalente a desconectar el cable de corriente de un equipo físico. _No es recomendable_ en absoluto, salvo que la máquina se haya colgado y no haya otra posibilidad.
+- **Apagar**: Envía una señal de apagado a la máquina virtual, por lo que esta se apagará de forma ordenada.
+- Si **cerramos la ventana* de la máquina virtual, dejaremos de verla pero la máquina seguirá ejecutándose.
 
-## 5.4.- Cambios en la configuración de una máquina virtual
+
+## 5.3.- Conexión a la máquina virtual
+
+Cuando se realiza una conexión a la máquina virtual se muestra un cuadro de diálogo como el de la imagen inferior. Inpendientemente de que se pulse el botón *Conectar* o se cierre  este diálogo pulsando en la X de la esquina superior derecha la conexión a la máquina virtual se realizará, sin embargo, hay una gran diferencia en función de la acción escogida que se puede ver con más detalle cuando se pulsa en *Mostrar opciones*. Esto hará que aparezca una nueva pestaña denominada *recursos locales* y que refleja los recursos de la máquina física a los que tendrá acceso la máquina virtual como si fueran propios. Estos recursos solo serán accesibles si se accede tras pulsar el botón *Conectar*, mientras que acceder tras cerrar la ventana implica no acceder a ningún recurso físico.
+
+Por defecto, los recursos compartidos son cualquier impresora que haya conectada a la máquina física y el portapapeles, pero también se podría compartir cualquier dispositivo periférico conectado por USB, como por ejemplo una webcam, o incluso las unidades de almacenamiento de la máquina física.
+
+
+![Conexión a la máquina virtual](imgs/hyperv_conexion.png)
+
+
+## 5.3.- Cambios en la configuración de una máquina virtual
 
 Tras crear la máquina virtual se puede afirnar su configuración haciendo click derecho sobre ella y seleccionando *Configuración*. Las opciones más relevantes son:
 
@@ -88,11 +98,41 @@ Tras crear la máquina virtual se puede afirnar su configuración haciendo click
 - **Procesador**: aquí lo más relevante es el número de procesadores virtuales que se pueden asignar a la máquina virtual.
 - **Controladora**: las controladores (IDE o SCSI), son el punto de conexión de los discos duros virtuales, así como de las unidades ópticas. Las controladoras IDE únicamente pueden tener conectados dos dispositivos, mientras que las controladores SCSI permiten hasta 64.
 - **Servicios de integración**: son diversos servicios que permiten de alguna manera la interacción entre el anfitrión y el invitado. Por ejemplo, el *latido* sirve para permitir que el anfitrión sepa si la máquina virtual está funcionando o no. En la web de Microsoft hay información completa sobre todos los [servicios de integración](https://docs.microsoft.com/es-es/virtualization/hyper-v-on-windows/reference/integration-services).
-- **Puntos de control**:
+- **Puntos de control**: los puntos de control de Hyper-V son equivalente a las instantáneas de VirtualBox, aunque en este caso hay dos tipos diferentes:
+  - *Puntos de control de producción*, requieren que el sistema operativo invitado lo permita y su característica es que no incluyen el estado de las aplicaciones que se están ejecutando en el momento de realizarlo.
+  - *Puntos de control estándar*, son el equivalente a las instantáneas de VirtualBox, por lo que reflejan el estado actual de toda la máquina.
+
+![Configuración de la máquina virtual](imgs/hyperv_config.png)
 
 
 ## 5.5.- Gestión de la red en Hyper-V
 
+A diferencia de VirtualBox donde se definía un tipo de adaptador para cada interfaz de red, en Hyper-V hay disponibles diferentes modos de configuración de la red a través de los que denomina **conmutadores virtuales**.
+
+Por defecto, al instalar Hyper-V únicamente hay un conmutador virtual denominado **Default Switch** cuyo funcionamiento es equivalente al adaptador en modo NAT, donde el hipervisor se encarga de otorgar una dirección IP al equipo invitado de forma que tenga acceso a Internet, aunque no podrá ver a ningún otro equipo ni otras máquinas virtuales.
+
+Si se desea algún otro modo de configuración de los adaptadores de red será necesario crear un nuevo *conmutador virtua*, que pueden ser de tres tipos: externo, interno o privado.
+
+- **Conmutador virtual externo**: enlaza una tarjeta de red física del equipo anfitrión con una virtual, por lo que dará acceso a la máquina virtual a la red local. Al crear un conmutador con este modo hay que tener cuidado con la opción *Permitir que el sistema operativo de administración comparta este adaptador de red*, ya que si la desmarcamos el adaptador de red se cederá en exclusiva a la máquina virtual, por lo que el anfitrión no podrá usarla.
+- **Conmutador virtual interno**: se debe utilizar cuando se quiere crear una red virtual independiente que interconecte varias máquinas virtuales entre ellas y también con el hipervisor. También proporcionará salida a Internet mediante NAT.
+- **Conmutador virtual privado**: crea una red virtual donde todas las máquinas conectadas se verán entre ellas, pero no al equipo anfitrión. Esto aislará completamente las máquinas virtuales.
+
+![Configuración de red en Hyper-V](imgs/hyperv_red.png)
+
+
+## 5.6.- Clonación de máquinas virtuales
+
+Hyper-V no tiene una opción de clonar máquinas virtuales tal como tenía VirtualBox, sino que las copias de máquinas virtuales tienen que realizarse mediante la opción de **exportar** e **importar**.
+
+**Exportar** una máquina virtual es muy sencillo, únicamente hay que escoger esta opción en el menú contextual de la máquina virtual que se desea exportar y seleccionar la ubicación de disco donde se quiere guardar la máquina exportada. Ahí creará una carpeta con el nombre de la máquina virtual y en su interior copiará los archivos de la máquina (la propia máquina, discos duros virtuales y los ficheros de los puntos de comprobación).
+
+Para **importar** una máquina hay que seleccionar esta opción en el panel de acciones de la parte derecha del hipervisor, lo que lanzará un asistente. En este asistente se pedirá la ruta donde se encuentra la máquina virtual que se desea importar, tras indicarlo, preguntará por el tipo de importanción, pudiendo escoger entre las siguientes opciones:
+
+- **Registrar la máquina virtual en contexto (usar el identificador único existente)**: esto quiere decir que no se va a realizar una copia de los archivos de la máquina virtual, sino que simplemente se registra en Hyper-V para poder utilizar la máquina, pero los archivos se quedan en la ubicación en que se encuentren.
+- **Restaurar la máquina virtual (esar el identificador único existente)**: con esta opción sí se realiza una copia de los archivos de la máquina virtual en el directorio que se haya indicado para contener las máquinas virtuales y se registra la copia en el hipervisor. El **identificador único** al que hace referencia el texto es un identificador con que se reconocen las máquinas virtuales en el hipervisor; si se mantiene el identificador y ya hay una máquina con el mismo registrada (por ejemplo, si se importa una máquina que se acaba de exportar) dará lugar a un error.. Una vez completada la importación, los archivos exportados permanecen intactos y se pueden quitar o importar de nuevo.
+- **Copiar la máquina virtual (crear un identificador único núevo)**: en este caso copia la máquina y le asigna un nuevo identificador, por lo que podría convivir con la máquina que original.
+
+![Importación de máquinas virtuales en Hyper-V](imgs/hyperv_importar.png)
 
 
 *** 

@@ -18,6 +18,8 @@
 
 PASOS PREVIOS. FICHEROS **************************
 
+
+
 ## 4.2.- Consideraciones previas
 
 ### 4.2.1.- Selección de directorio destino
@@ -80,7 +82,8 @@ Aunque con VirtualBox recién instalado ya se pueden crear máquinas virtuales y
 
 El proceso de instalación es muy sencillo, únicamente hay que ir al apartado de descargas de la web de [VirtualBox](https://www.virtualbox.org/wiki/Downloads), descargar el Extension Pack y seguir las instrucciones.
 
-### 4.3.- Creación de una máquina virtual
+
+## 4.3.- Creación de una máquina virtual
 
 El proceso de creación de una máquina virtual es bastante sencillo ya que únicamente hay que seguir las instrucciones que nos dará el asistente.
 
@@ -144,6 +147,8 @@ Un aspecto importante en la configuración de cualquier máquina virtual es la g
 En VirtualBox se pueden añadir hasta 4 adaptadores de red, que la máquina virtual verá como si fueran tarjetas de red. Se pueden añadir nuevos adaptadores desde el cuadro de diálogo *Configuración* e la máquina virtual siempre y cuando ésta se encuentre apagada.
 
 También hay que tener en cuenta que es posible que los diferentes adaptadores de red tengan diferentes modos, por ejemplo, se podría añadir un adaptador en *modo NAT* que proporcione acceso a Internet a la máquina y otro en modo *red interna* que comunique la máquina virtual con otras máquinas virtuales.
+
+![Adaptadores de red en VirtualBox](imgs/vbox_adaptadores.png)
 
 Los modos de red disponibles son los siguientes:
 
