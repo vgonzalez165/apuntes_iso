@@ -1,8 +1,6 @@
 ![Carátula UT02](imgs/caratula_ut02.png)
 
-# UT02. VIRTUALIZACIÓN
-
-### Contenidos
+## Contenidos
 
 1. [Conceptos básicos de virtualización](01_conceptos_básicos.md)
 2. [Tipos de máquinas virtuales](02_tipos_MV.md)
@@ -11,18 +9,18 @@
 5. [Microsoft Hyper-V](05_hiper-v.md)
 
 
-## 4.- ORACLE VIRTUALBOX
+# 4.- ORACLE VIRTUALBOX
 
 
-### 4.1.- Introducción a VirtualBox
+## 4.1.- Introducción a VirtualBox
 
 **Oracle VM VirtualBox** es un software de virtualización para arquitecturas x86/AMD64 que en la actualidad pertenece a Oracle Corporation. Es un hipervisor de tipo 2, por lo que requiere de un sistema operativo base para ser instalado, teniendo soporte para Windows, GNU/Linux, Mac OS X, OS/2 Warp, Genode y Solaris/Open Solaris.
 
 PASOS PREVIOS. FICHEROS **************************
 
-### 4.2.- Consideraciones previas
+## 4.2.- Consideraciones previas
 
-#### 4.2.1.- Selección de directorio destino
+### 4.2.1.- Selección de directorio destino
 
 Antes de proceder a crear la máquina virtual es conveniente seleccionar la carpeta donde se almacenarán por defecto las máquinas virtuales creadas, ya que por defecto las almacena en `C:` y puede consumir rápidamente todo el espacio disponible en el disco si se crean muchas máquinas virtuales, las cuales pueden llegar a ocupar varias decenas de gigabytes cada una.
 
@@ -64,13 +62,13 @@ Cada máquina virtual está compuesta por varios archivos, que se distinguen por
       <Memory RAMSize="4096"/>
       <HID Pointing="USBTablet"/>
       ...
-```02772124A
+```
 
 - **Copia de seguridad de la MV**. Es un fichero con extensión `vbox-prev` y simplemente es una copia del fichero anterior.
 - **Discos virtuales**. Cada disco duro virtual que tenga la máquina tiene su propio fichero, con extensión `.vdi` (aunque VirtualBox también soporta discos virtuales de otras aplicaciones de virtualización). El que los discos virtuales tengan su propio fichero hace que sea muy sencillo moverlos de una máquina virtual a otra, de forma análoga a como haríamos con un disco físico.
 
 
-#### 4.2.2.- Instalación del Extensión Pack
+### 4.2.2.- Instalación del Extensión Pack
 
 Aunque con VirtualBox recién instalado ya se pueden crear máquinas virtuales y trabajar con ellas, hay un conjunto de herramientas denominado **Extension Pack** que se pueden instalar y aumentan la funcionalidad. Algunas de estas nuevas funciones que habría disponibles de instalarlas son:
 
@@ -102,12 +100,12 @@ Escoger un disco de tamaño reservado dinámicamente tiene la ventaja de que aho
 Y con esto ya estaría creada la máquina virtual, únicamente faltaría agregar un disco a la unidad óptica, que puede ser tanto un disco físico como una imagen ISO.
 
 
-### 4.4.- Configuración de la máquina virtual
+## 4.4.- Configuración de la máquina virtual
 
 Una vez creada una máquina virtual es posible editar su configuración mediante la opción *Preferencias*. Las opciones de configuración son:
 
 
-#### 4.4.1.- General
+### 4.4.1.- General
 
 ![General - Básico](imgs/VirtualBox_general_básico.png)
 
@@ -116,7 +114,7 @@ En la pestaña **Básico** se puede cambiar el nombre que le hemos asignado a la
 
 
 
-#### 4.4.2.- Sistema
+### 4.4.2.- Sistema
 
 Aquí hay varias opciones relativas a las características hardware de la máquina virtual, entre las que destacan:
 
@@ -126,20 +124,20 @@ Aquí hay varias opciones relativas a las características hardware de la máqui
 - **Límite de ejecución**: permite limitar el uso de cada CPU asignada a la máquina virtual.
 
 
-#### 4.4.3.- Pantalla
+### 4.4.3.- Pantalla
 
 
 
-#### 4.4.4.- Almacenamiento
+### 4.4.4.- Almacenamiento
 
 
-#### 4.4.5.- Audio
+### 4.4.5.- Audio
 
 
-#### 4.4.6.- Red
+### 4.4.6.- Red
 
 
-### 4.5.- Adaptadores de red en VirtualBox
+## 4.5.- Adaptadores de red en VirtualBox
 
 Un aspecto importante en la configuración de cualquier máquina virtual es la gestión de los adaptadores de red, ya que la elección de uno y otro tipo de adaptador determinará con qué otras máquinas virtuales e incluso equipos físicos podrá tener conectividad la máquina virtual.
 
@@ -149,20 +147,20 @@ También hay que tener en cuenta que es posible que los diferentes adaptadores d
 
 Los modos de red disponibles son los siguientes:
 
-#### 4.5.1.- Modo NAT
+### 4.5.1.- Modo NAT
 
 Es el modo más básico y su objetivo es proporcionar acceso a Internet a la máquina virtual de forma totalmente transparente para el usuario.
 
 VirtualBox se encargará de otorgar una IP dinámica a la máquina virtual mediante DHCP y de enrutar todos los paquetes hacia Internet. La máquina virtual podrá acceder a cualquier dirección de Internet, pero estará totalmente aislada de cualquier otro equipo o máquina virtual.
 
-#### 4.5.2.- Adaptador puente
+### 4.5.2.- Adaptador puente
 
 En el modo **Adaptador puente** la máquina virtual se comportará con el adaptador de red exactamente igual a como lo haría una máquina física. Es decir, la máquina virtual accederá directamente a la red física, y por tanto es como si estuviera conectado directamente a la red local.
 
 De esta forma, si en la red física hubiera un servidor DHCP la máquina virtual podría obtener su dirección IP de este servidor, pero no si no lo hubiera habría que configurar la IP estática con los parámetros de la red física (máscara, puerta de enlace, ...)
 
 
-#### 4.5.3.- Red interna
+### 4.5.3.- Red interna
 
 Hay ocasiones en que se trabaja con varias máquinas virtuales y se desea que tengan conectividad entre ellas. En ese caso es posible seleccionar el modo **red interna** que crea una red virtual a la que se interconectan las máquinas. Hay que tener varias cosas en cuenta:
 
@@ -171,7 +169,7 @@ Hay ocasiones en que se trabaja con varias máquinas virtuales y se desea que te
 - VirtualBox no asigna IPs dinámicas a los adaptadores en modo *red interna*, por lo que será necesario asignar una IP estática manualmente si se desea que haya interconectividad entre las máquinas.
 
 
-#### 4.5.4.- Adaptador solo-anfitrión
+### 4.5.4.- Adaptador solo-anfitrión
 
 El **adaptador en modo solo-anfitrión** se puede considerar como una *red interna* a la que también se añade la máquina física. Para ello, VirtualBox creará un adaptador virtual en la máquina física que tendrá una IP en el mismo rango que los adaptadores en modo *solo-anfitrión* de las máquinas virtuales.
 
@@ -203,7 +201,7 @@ Es posible tener diferentes redes en modo *solo-anfitrión*, pero es necesario c
 
 ![Creación de redes solo-anfitrión](imgs/virtualbox_solo_anfitrión.png)
 
-#### 4.5.5.- Red NAT
+### 4.5.5.- Red NAT
 
 El modo **red NAT** combina las ventajas de la red interna (que permite la interconexión entre máquinas virtuales) y el modo NAT (que permite interconexión con Internet).
 

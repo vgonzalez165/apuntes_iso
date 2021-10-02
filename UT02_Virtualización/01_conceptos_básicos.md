@@ -1,8 +1,6 @@
 ![Carátula UT02](imgs/caratula_ut02.png)
 
-# UT02. VIRTUALIZACIÓN
-
-### Contenidos
+## Contenidos
 
 1. [**Conceptos básicos de virtualización**](01_conceptos_básicos.md)
 2. [Tipos de máquinas virtuales](02_tipos_MV.md)
@@ -11,9 +9,9 @@
 5. [Microsoft Hyper-V](05_hiper-v.md)
 
 
-## 1. CONCEPTOS BÁSICOS DE VIRTUALIZACIÓN
+# 1. CONCEPTOS BÁSICOS DE VIRTUALIZACIÓN
 
-### 1.1.- Definición de máquina virtual
+## 1.1.- Definición de máquina virtual
 
 Una **máquina virtual** es un software que permite reproducir una máquina con la misma arquitectura que la máquina sobre la que se está ejecutando. Es decir, podemos considerarla como un programa que simula un ordenador completo de forma que podemos hacer sobre esa máquina virtual cualquier tarea que podríamos realizar sobre una máquina física.
 
@@ -45,7 +43,7 @@ Algunas de las aplicaciones de virtualización más conocidas son:
 - Microsoft Hyper-V
 
 
-### 1.2.- Ventajas e inconvenientes de la virtualización
+## 1.2.- Ventajas e inconvenientes de la virtualización
 
 La amplia difusión de las tecnologías de virtualización se deben a las múltiples ventajas que tiene, entre las que destacan:
 

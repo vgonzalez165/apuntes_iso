@@ -1,8 +1,6 @@
 ![Carátula UT02](imgs/caratula_ut02.png)
 
-# UT02. VIRTUALIZACIÓN
-
-### Contenidos
+## Contenidos
 
 1. [Conceptos básicos de virtualización](01_conceptos_básicos.md)
 2. [Tipos de máquinas virtuales](02_tipos_MV.md)
@@ -10,10 +8,10 @@
 4. [Oracle VirtualBox](04_virtualbox.md)
 5. [Microsoft Hyper-V](05_hiper-v.md)
 
-## 5. MICROSOFT HYPER-V
+# 5. MICROSOFT HYPER-V
 
 
-### 5.1.- Habilitar Hyper-V en Windows 10
+## 5.1.- Habilitar Hyper-V en Windows 10
 
 Hyper-V es una herramienta que inicialmente estaba orientada a las versiones de servidor de Windows, pero recientemente ha sido incluido como una característica en Windows 10. Los requisitos que debe tener el ordenador son:
 
@@ -59,7 +57,7 @@ La instalación de estas características requiere del reinicio del sistema ya q
 [Interfaz de Hyper-V](imgs/hyperv_interfaz.png)
 
 
-### 5.2.- Creación de una máquina virtual
+## 5.2.- Creación de una máquina virtual
 
 La creación de una máquina virtual es muy sencilla, únicamente hay que ir a *Nuevo -> Máquina virtual* y seguir los pasos del asistente. Algunos datos que se piden son:
 
@@ -78,7 +76,7 @@ Y con estas opciones ya estaría creada la máquina virtual. Ahora ya se puede a
 - **Apagar**: Envía una señal de apagado a la máquina virtual.
 - 
 
-### 5.4.- Cambios en la configuración de una máquina virtual
+## 5.4.- Cambios en la configuración de una máquina virtual
 
 Tras crear la máquina virtual se puede afirnar su configuración haciendo click derecho sobre ella y seleccionando *Configuración*. Las opciones más relevantes son:
 
@@ -93,7 +91,7 @@ Tras crear la máquina virtual se puede afirnar su configuración haciendo click
 - **Puntos de control**:
 
 
-### 5.5.- Gestión de la red en Hyper-V
+## 5.5.- Gestión de la red en Hyper-V
 
 
 

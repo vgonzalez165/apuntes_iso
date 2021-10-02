@@ -1,8 +1,6 @@
 ![Carátula UT02](imgs/caratula_ut02.png)
 
-# UT02. VIRTUALIZACIÓN
-
-### Contenidos
+## Contenidos
 
 1. [Conceptos básicos de virtualización](01_conceptos_básicos.md)
 2. [**Tipos de máquinas virtuales**](02_tipos_MV.md)
@@ -11,21 +9,21 @@
 5. [Microsoft Hyper-V](05_hiper-v.md)
 
 
-## 2.- TIPOS DE MÁQUINAS VIRTUALES
+# 2.- TIPOS DE MÁQUINAS VIRTUALES
 
 Si nos fijamos en la funcionalidad del software de virtualización, podemos distinguir dos grandes tipos:
 - Máquinas virtuales de proceso
 - Máquinas virtuales de sistema
 
 
-### 2.1.- Máquinas virtuales de proceso
+## 2.1.- Máquinas virtuales de proceso
 
 Este tipo de máquinas virtuales se salen de la idea que tenemos de virtualización donde se simula un ordenador completo. Las máquinas virtuales de proceso tienen como objetivo ejecutar código nativo de los procesos para los que fueron diseñadas. Es decir, su objetivo es únicamente ejecutar código diseñado para una arquitectura específica, no relacionado con ninguna máquina física.
 
 Probablemente la máquina más conocida es la máquina virtual de Java (JVM). Los programas en Java se convierten en un código denominado **bytecodes** que se ejecuta en dicha máquina virtual. Como la máquina virtual de Java se puede instalar en múltiples sistemas operativos (Windows, Linux, Mac OS) conseguimos que el código Java sea multiplataforma.
 
 
-### 2.2.- Máquinas virtuales de sistema
+## 2.2.- Máquinas virtuales de sistema
 
 En este tipo de sistemas, la máquina física se replica en varias máquinas virtuales, cada una con su sistema operativo. Hay múltiples soluciones de virtualización de este tipo, como 
 - VirtualBox
