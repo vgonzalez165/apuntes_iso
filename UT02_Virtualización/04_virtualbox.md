@@ -16,9 +16,6 @@
 
 **Oracle VM VirtualBox** es un software de virtualización para arquitecturas x86/AMD64 que en la actualidad pertenece a Oracle Corporation. Es un hipervisor de tipo 2, por lo que requiere de un sistema operativo base para ser instalado, teniendo soporte para Windows, GNU/Linux, Mac OS X, OS/2 Warp, Genode y Solaris/Open Solaris.
 
-PASOS PREVIOS. FICHEROS **************************
-
-
 
 ## 4.2.- Consideraciones previas
 
@@ -211,6 +208,11 @@ Es posible tener diferentes redes en modo *solo-anfitrión*, pero es necesario c
 El modo **red NAT** combina las ventajas de la red interna (que permite la interconexión entre máquinas virtuales) y el modo NAT (que permite interconexión con Internet).
 
 De forma análoga al modo *solo-anfitrión*, es posible crear diferentes redes en este modo aisladas entre sí. Para crearlas hay que ir al menú *Archivo -> Preferencias -> Red* y hacer click en el icono *Crear*. Hay que indicar la dirección IP y máscara de la red y si habrá un servidor DHCP o hay que configurar la IP de las máquinas virtuales como estática.
+
+
+
+
+![Medios virtuales](imgs/vbox_medios_virtuales.png)
 
 
 *** 

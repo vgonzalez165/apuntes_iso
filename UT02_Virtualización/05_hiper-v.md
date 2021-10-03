@@ -42,7 +42,7 @@ SVM             -       Supports AMD hardware-assisted virtualization
 NP              -       Supports AMD nested page tables (SLAT)
 ```
 
-**HACER CAPTURA CON EL PORTÁTIL, QUE ES INTEL**
+**[TODO] HACER CAPTURA CON EL PORTÁTIL, QUE ES INTEL**
 
 Si se cumplen todas las condiciones será posible habilitar Hyper-V en el ordenador. Hyper-V es una **característica**, programas o utilidades incluidas en el sistema operativo pero que se pueden habilitar o deshabilitar a voluntad. Para ello, hay que ir a *Panel de Control -> Programas -> Activar o desactivar las características de Windows* y marcar la entrada que pone Hyper-V. Opcionalmente, se pueden instalar independientemente los diversos componentes de que dispone:
 
@@ -53,7 +53,7 @@ Si se cumplen todas las condiciones será posible habilitar Hyper-V en el ordena
 
 La instalación de estas características requiere del reinicio del sistema ya que Hyper-V es un **hipervisor de tipo 1**. Esto quiere decir que no se instala sobre un sistema operativo, sino que el hipervisor es el propio sistema operativo. Lo que hace Windows cuando habilitamos Hyper-V es cargar el hipervisor y hacer que el sistema operativo que tenemos en nuestro ordenador pase a ejecutarse sobre una máquina virtual.
 
-[Interfaz de Hyper-V](imgs/hyperv_interfaz.png)
+![Interfaz de Hyper-V](imgs/hyperv_interfaz.png)
 
 
 ## 5.2.- Creación de una máquina virtual
@@ -67,6 +67,8 @@ La creación de una máquina virtual es muy sencilla, únicamente hay que ir a *
 - **Disco duro virtual**: De forma análoga a como se hacía con VirtualBox, se puede crear un disco duro, reutilizar uno existente o no conectar ningún disco. Si vamos a reutilizar un disco existente, el formato nativo de discos virtuales de Hyper-V es `.vhd` y `.vhdx`.
 - **Disco de arranque**: Donde se podrá seleccionar una imagen ISO desde la que instalar el sistema operativo.
 
+![Creación de máquina virtual](imgs/hyperv_creacion_mv.png)
+
 Y con estas opciones ya estaría creada la máquina virtual. Ahora ya se puede arrancar, pero antes hay que diferenciar entre dos términos u operaciones diferentes que se pueden realizar con la máquina:
 
 - **Iniciar**: Esta operación arranca la máquina virtual, pero no muestra una interfaz para interactuar con ella. La máquina se ejecuta haciendo lo que tenga que hacer, pero nosotros no veremos una ventana que nos la muestre.
@@ -75,6 +77,7 @@ Y con estas opciones ya estaría creada la máquina virtual. Ahora ya se puede a
 - **Apagar**: Envía una señal de apagado a la máquina virtual, por lo que esta se apagará de forma ordenada.
 - Si **cerramos la ventana* de la máquina virtual, dejaremos de verla pero la máquina seguirá ejecutándose.
 
+![Botones de opciones de Hyper-V](imgs/hyperv_botones.png)
 
 ## 5.3.- Conexión a la máquina virtual
 
