@@ -102,26 +102,18 @@ Y con esto ya estaría creada la máquina virtual, únicamente faltaría agregar
 
 ## 4.4.- Configuración de la máquina virtual
 
-Una vez creada una máquina virtual es posible editar su configuración mediante la opción *Preferencias*. Las opciones de configuración son:
-
-
-### 4.4.1.- General
+Una vez creada una máquina virtual es posible editar su configuración mediante la opción *Preferencias*. Hay un gran número de opciones de configuración que se encuentran agrupadas en secciones seleccionables en la parte izquierda de la ventana y, para cada una de ellas, en pestañas. Algunas de las más relevantes son:
 
 ![General - Básico](imgs/VirtualBox_general_básico.png)
 
-En la pestaña **Básico** se puede cambiar el nombre que le hemos asignado a la máquina virtual. Asimismo, también se puede modificar el **tipo** y la **versión** del sistema operativo que contendrá la máquina virtual.
+En el apartado **Básico** se puede cambiar el nombre que le hemos asignado a la máquina virtual. Asimismo, también se puede modificar el **tipo** y la **versión** del sistema operativo que contendrá la máquina virtual.
 
+Interesante en el caso de máquinas cuyo contenido queramos proteger especialmente es la posibilidad de **cifrar el disco duro**. Este cifrado protege el disco por completo, independientemente del sistema operativo que tengamos instalado en él y de cualquier herramienta de cifrado que tenga dicho sistema operativo (como BitLocker).
 
+El apartado **Sistema** se centra en las características del hardware virtual de la máquina. Aquí se podrá modificar la memoria RAM asignada y también el número de CPUs virtuales que asignaremos a la máquina virtual, así como el porcentaje de uso máximo que ocupará la máquina de cada núcleo virtual. Al igual que pasa con al memoria RAM, los recursos virtuales se detraen de los recursos físicos del equipo, por lo que hay que tener cuidado con no dejar a la máquina física sin recursos. El número de CPUs virtuales que se pueden asignar es igual al número de núcleos que tenga el procesador, o el doble en caso de que disponga de la tecnología *Hyperthreading*.
 
+En el apartado 
 
-### 4.4.2.- Sistema
-
-Aquí hay varias opciones relativas a las características hardware de la máquina virtual, entre las que destacan:
-
-- **Memoria base**: la cantidad de memoria que se asignará a la máquina virtual. 
-- **Opción de arranque**: de forma análoga a como se hace en una máquina física, aquí se puede indicar el orden en que se seleccionarán los dispositivos para arrancar la máquina virtual.
-- **Procesadores**: aquí se indica el número de CPUs virtuales que se asignarán a la MV. Al igual que pasaba con la memoria RAM, tiene correspondencia con los núcleos que tenga la máquina física (si la máquina física tiene Hyperthreading cada núcleo físico contará por dos), por lo que si asignamos demasiados puede que la máquina física se quede sin recursos.
-- **Límite de ejecución**: permite limitar el uso de cada CPU asignada a la máquina virtual.
 
 
 ### 4.4.3.- Pantalla
@@ -209,6 +201,8 @@ El modo **red NAT** combina las ventajas de la red interna (que permite la inter
 
 De forma análoga al modo *solo-anfitrión*, es posible crear diferentes redes en este modo aisladas entre sí. Para crearlas hay que ir al menú *Archivo -> Preferencias -> Red* y hacer click en el icono *Crear*. Hay que indicar la dirección IP y máscara de la red y si habrá un servidor DHCP o hay que configurar la IP de las máquinas virtuales como estática.
 
+
+## 4.6.- Medios virtuales
 
 
 
