@@ -112,21 +112,22 @@ Interesante en el caso de máquinas cuyo contenido queramos proteger especialmen
 
 El apartado **Sistema** se centra en las características del hardware virtual de la máquina. Aquí se podrá modificar la memoria RAM asignada y también el número de CPUs virtuales que asignaremos a la máquina virtual, así como el porcentaje de uso máximo que ocupará la máquina de cada núcleo virtual. Al igual que pasa con al memoria RAM, los recursos virtuales se detraen de los recursos físicos del equipo, por lo que hay que tener cuidado con no dejar a la máquina física sin recursos. El número de CPUs virtuales que se pueden asignar es igual al número de núcleos que tenga el procesador, o el doble en caso de que disponga de la tecnología *Hyperthreading*.
 
-En el apartado 
+En el apartado **Pantalla** destaca la opción de habilitar la **pantalla remota**, que permite acceder a la máquina virtual desde otro equipo utilizando una conexión de escritorio remoto. Para ello solo hay que indicar el puerto que se quiere utilizar (por defecto el 3389) y si se desea algún tipo de autenticación. También es posible permitir que varios usuarios se conecten simultáneamente a la misma máquina.
+
+Aquí es importante reseñar que, aunque se realiza una conexión de escritorio remoto, el servidor que recibe dicha conexión no es el del sistema operativo que haya instalado en la máquina virtual, sino que es VirtualBox quien recibe esa conexión y se encarga de enviar la pantalla. Es decir, el sistema que tengamos instalado no es consciente de que está sirviendo una conexión de escritorio remoto, sino que la ve como una conexión local.
+
+El apartado de **Almacenamiento** centraliza la gestión de todos los sistemas de almacenamiento de la máquina virtual. Tanto los discos virtuales como los discos ópticos deben de ser conectados a través de una **controladora**, por lo que en este apartado veremos las controladores que hay en el equipo virtual, aunque se pueden añadir las que se deseen.
+
+Las controladoras pueden ser de dos tipos, y la principal diferencia es que las controladoras IDE únicamente permiten la conexión de dos dispositivos de almacenamiento mientras que las controladoras SATA permiten hasta 30 dispositivos conectados.
+
+Recientemente VirtualBox ha añadido el **Administrador de medios virtuales** que facilita llevar un seguimiento centralizado de todo el almacenamiento utilizado por las máquinas virtuales. Cualquier disco duro virtual o imagen de DVD que se vaya a utilizar debe ser agregada primero al *Administrador de medios virtuales*, y ahí se pueden ver todos los discos con opciones como:
+
+- Ver el espacio total y libre de cada disco.
+- Copiarlo o moverlo a otra ubicación.
+- Eliminar la imagen de disco
 
 
-
-### 4.4.3.- Pantalla
-
-
-
-### 4.4.4.- Almacenamiento
-
-
-### 4.4.5.- Audio
-
-
-### 4.4.6.- Red
+![Medios virtuales](imgs/vbox_medios_virtuales.png)
 
 
 ## 4.5.- Adaptadores de red en VirtualBox
@@ -202,11 +203,9 @@ El modo **red NAT** combina las ventajas de la red interna (que permite la inter
 De forma análoga al modo *solo-anfitrión*, es posible crear diferentes redes en este modo aisladas entre sí. Para crearlas hay que ir al menú *Archivo -> Preferencias -> Red* y hacer click en el icono *Crear*. Hay que indicar la dirección IP y máscara de la red y si habrá un servidor DHCP o hay que configurar la IP de las máquinas virtuales como estática.
 
 
-## 4.6.- Medios virtuales
 
 
 
-![Medios virtuales](imgs/vbox_medios_virtuales.png)
 
 
 *** 
