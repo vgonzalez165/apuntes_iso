@@ -7,7 +7,7 @@
 El diseño de Windows PowerShell integra conceptos de muchos entornos distintos. Algunos de estos conceptos son:
 
 - Los comandos no están basados en texto: los cmdlets están diseñados para usar objetos: información estructurada que es más que una simple cadena de caracteres que se muestra en pantalla.
-- El conjunto de comandos es ampliable: las interfaces como cmd.exe no proporcionan al usuario una manera de ampliar directamente el conjunto de comandos integrados. Los comandos nativos de PowerShell, denominados cmdlets, se pueden ampliar con cmdlets que crees o agregues mediante complementos o módulos.
+- El conjunto de comandos es ampliable: las interfaces como `cmd.exe` no proporcionan al usuario una manera de ampliar directamente el conjunto de comandos integrados. Los comandos nativos de PowerShell, denominados **cmdlets**, se pueden ampliar con cmdlets que crees o agregues mediante complementos o módulos.
 - PowerShell controla la entrada y la presentación de la consola: cuando se escribe un comando la información es procesada y aplica un formato a los resultados que se muestren en pantalla. Esto es importante porque el usuario siempre puede hacer las cosas de la misma manera independientemente del cmdlet utilizado.
 - PowerShell utiliza sintaxis del lenguaje C#: incluye palabras clave y funciones de sintaxis muy parecidas a las que se usan en el lenguaje C# por lo que su aprendizaje facilitaría el aprendizaje de C#.
 
@@ -55,7 +55,7 @@ PS C:\>Set-ExecutionPolicy RemoteSigned
 
 ## 1.5.- Nomenclatura de cmdlets
 
-Los cmdlets utilizan un sistema de nombres con la estructura “verbo-sustantivo”: el nombre de cada cmdlets consta de un verbo estándar y un sustantivo concreto. Los verbos expresan acciones concretas mientras que los sustantivos describen siempre a qué se aplica un comando. La idea detrás de esto es crear un entorno autodescriptivo y uniforme de forma que los comandos sean más fáciles de recordar para los usuarios y que les permita hacerse una idea de su objetivo a partir de su nombre. Por ejemplo, el comando `Sopt-Computer` se puede identificar fácilmente como el comando que sirve para apagar el ordenador.
+Los cmdlets utilizan un sistema de nombres con la estructura “verbo-sustantivo”: el nombre de cada cmdlets consta de un verbo estándar y un sustantivo concreto. Los verbos expresan acciones concretas mientras que los sustantivos describen siempre a qué se aplica un comando. La idea detrás de esto es crear un entorno autodescriptivo y uniforme de forma que los comandos sean más fáciles de recordar para los usuarios y que les permita hacerse una idea de su objetivo a partir de su nombre. Por ejemplo, el comando `Stop-Computer` se puede identificar fácilmente como el comando que sirve para apagar el ordenador.
 
 Esta uniformidad en la nomenclatura también es útil para conocer los comandos que afectan a un elemento determinado (nombre) o que realizan una tarea en concreto (verbo). Para ello debemos utilizar el comando `Get-Command` con los parámetros `-Noun` o `–Verb` respectivamente. Tras el parámetro indicamos el nombre o verbo que deseemos y nos mostrará todos los comandos que hay en el sistema que utilizan dicho nombre o verbo.
 
@@ -111,7 +111,7 @@ Un ejemplo sería:
 PS C:\> New-Item alias:cl –value C:\windows\system32\calc.exe –options “AllScope, Constant”
 ```
 
-El nombre de un alias puede ser modificado mediante el cmdlet ```Rename-Item``` simplemente pasándole el parámetro ```–newname``` de la forma: 
+El nombre de un alias puede ser modificado mediante el cmdlet `Rename-Item` simplemente pasándole el parámetro `–NewName` de la forma: 
 
 ```powershell
 PS C:\> Rename-Item alias:np –newname note
@@ -119,15 +119,13 @@ PS C:\> Rename-Item alias:np –newname note
 
 Recuerda que cualquier alias que crees durante una sesión es válido solamente para esa instancia de PowerShell. En el momento en que cierres la ventana esos alias dejarán de existir.
 
-Para eliminar un alias antes de cerrar la sesión se puede hacer con el cmdlet ```Remove-Item``` de la forma: 
+Para eliminar un alias antes de cerrar la sesión se puede hacer con el cmdlet `Remove-Item` de la forma: 
 
 ```powershell
 PS C:\> Remove-Item alias:se
 ```
 
-Todos los alias del sistema están almacenados en el denominado **dispositivo de alias** (alias drive) que es un dispositivo lógico para almacenar alias. Los **dispositivos lógicos** (logical drive) de PowerShell son similares a las unidades de disco que siempre hemos conocido para acceder a discos físicos, lógicos o de red (C:,…) pero que permiten almacenar otra información: una especie de base de datos de PowerShell. 
-
-Como decíamos hay uno en concreto que sirve para almacenar todos los alias denominado alias:. Para acceder a él introducimos la siguiente orden: 
+Todos los alias del sistema están almacenados en el denominado **dispositivo de alias** (alias drive) que es un dispositivo lógico para almacenar alias. Los **dispositivos lógicos** (logical drive) de PowerShell son similares a las unidades de disco que siempre hemos conocido para acceder a discos físicos, lógicos o de red (C:,…) pero que permiten almacenar otra información: una especie de base de datos de PowerShell. Como decíamos hay uno en concreto que sirve para almacenar todos los alias denominado `alias:`. Para acceder a él introducimos la siguiente orden: 
 
 ```powershell
 PS C:\> Set-Location alias:
@@ -149,7 +147,7 @@ El primer sitio para recurrir a la ayuda es en la propia [Web de Microsoft](http
 
 Si queremos obtener información sobre un determinado comando también hay varias opciones para hacerlo desde la línea de comandos.En este caso, lo primero que habría que hacer es actualizar la ayuda para poder tener en nuestro equipo la última versión de la misma. Para ello simplemente debemos ejecutar el comando ```Update-Help``` y esperar unos minutos a que la descargue de Internet y la instale.
 
-Hay tres comandos relativos a la ayuda en Powershell: ```Get-Command```, ```Get-Help``` y ```Get-Member```. El tercero lo vamos a dejar para más adelante, así que veamos como funcionan los dos primeros.
+Hay tres comandos relativos a la ayuda en Powershell: `Get-Command`, `Get-Help` y `Get-Member`. El tercero lo vamos a dejar para más adelante, así que veamos como funcionan los dos primeros.
 
 
 ### 1.7.1.- Get-Help
@@ -169,7 +167,7 @@ La información que nos muestra la ayuda de un comando es la siguiente:
 - Comentarios
 
 Aunque eso puede parecer mucha información, la realidad es que las entradas de la ayuda tienen muchos más apartados que 
-nos pueden ser interesantes, como para qué sirven los parámetros o ejemplos de utilización. Si queremos una salida completa de la ayuda entonces tendremos que utilizar el parámetro ```-full```.
+nos pueden ser interesantes, como para qué sirven los parámetros o ejemplos de utilización. Si queremos una salida completa de la ayuda entonces tendremos que utilizar el parámetro `-full`.
 
 ```powershell
 PS C:\> Get-Help -Name Get-Process -Full
@@ -177,19 +175,19 @@ PS C:\> Get-Help -Name Get-Process -Full
 
 Como se puede apreciar, ahora la ayuda obtenida es bastante más extensa, incluyendo también una explicación detallada de cada parámetro, ejemplos de uso, …
 
-Un comando equivalente pero que muestra la ayuda página a página es ```Help```. El resultado es muy similar con la diferencia de que ahora se muestra página a página por pantalla, requiriendo la pulsación de la barra espaciadora para pasar a la siguiente página y pudiendo navegar utilizando las teclas de cursor.
+Un comando equivalente pero que muestra la ayuda página a página es `Help`. El resultado es muy similar con la diferencia de que ahora se muestra página a página por pantalla, requiriendo la pulsación de la barra espaciadora para pasar a la siguiente página y pudiendo navegar utilizando las teclas de cursor.
 
-El comando ```Get-Help``` tiene otros muchos parámetros, lo más útiles son:
-- ```-Examples```: muestra únicamente ejemplos de uso del comando indicado por name
-- ```-Online```: abre la ayuda en el avegador Web
-- ```-ShowWindow```: muestra la ayuda en una ventana emergente.
-- -```Parameter Nombre```: muestra únicamente del parámetro cuyo nombre se indique
+El comando `Get-Help` tiene otros muchos parámetros, lo más útiles son:
+- `-Examples`: muestra únicamente ejemplos de uso del comando indicado por name
+- `-Online`: abre la ayuda en el avegador Web
+- `-ShowWindow`: muestra la ayuda en una ventana emergente.
+- `Parameter Nombre`: muestra únicamente del parámetro cuyo nombre se indique
 
 ### 1.7.2.- Get-Command
 
-Este comando nos servirá para encontrar otros comandos. Powershell tiene cientos e incluso miles de cmdlets, por lo que es casi imposible conocer el nombre de todos. El comando ```Get-Command``` nos ayudará a encontrar el comando que estemos buscando.
+Este comando nos servirá para encontrar otros comandos. Powershell tiene cientos e incluso miles de cmdlets, por lo que es casi imposible conocer el nombre de todos. El comando `Get-Command` nos ayudará a encontrar el comando que estemos buscando.
 
-Si lo ejecutamos directamente, sin parámetros, mostrará todos los comandos disponibles en nuestro sistema, Pero cuando es realmente útil este comando es al utilizar los parámetros ```-Verb``` y ```-Noun```. Hay que recordar que la nomenclatura de todos los cmdlets es consistente, utilizando todos ellos una combinación de verbo y nombre, es decir, qué hace (verbo) y con qué lo hace (nombre). Por ejemplo, el comando ```Get-Help``` es el comando que obtiene (Get) la ayuda (Help).
+Si lo ejecutamos directamente, sin parámetros, mostrará todos los comandos disponibles en nuestro sistema, Pero cuando es realmente útil este comando es al utilizar los parámetros `-Verb` y `-Noun`. Hay que recordar que la nomenclatura de todos los cmdlets es consistente, utilizando todos ellos una combinación de verbo y nombre, es decir, qué hace (verbo) y con qué lo hace (nombre). Por ejemplo, el comando `Get-Help` es el comando que obtiene (Get) la ayuda (Help).
 
 Por tanto, podemos obtener una lista de todos los comandos que tengan un nombre o verbo determinado utilizando los parámetros anteriores. Por ejemplo:
 
@@ -209,33 +207,33 @@ El uso del tabulador también es útil si no conocemos los parámetros de un com
 Cuando queremos recurrir a algún comando que hayamos introducido recientemente, podemos utilizar las teclas de cursor. Cada vez que tecleemos cursor arriba navegará hacia atrás en el historial mostrando el comando previo al que se ve en pantalla. De forma análoga, el cursor abajo avanzará al siguiente comando.
 Pero, si queremos más opciones para trabajar con el historial, tenemos una serie de comando relacionados con el historial.
 
-El primero de ellos es ```Get-History```, que mostrará numerados todos los comandos que hemos introducido previamente en la sesión actual. Los parámetros más relevantes para este comando son:
+El primero de ellos es `Get-History`, que mostrará numerados todos los comandos que hemos introducido previamente en la sesión actual. Los parámetros más relevantes para este comando son:
 
-- ```-Id```: Si pasamos como identificador un valor numérico correspondiente a una orden del historial nos mostrará únicamente esa orden.
-- ```-Count```: Por defecto se muestran todos los comandos desde que se inició la sesión. Con este parámetro podemos indicar cuántos comandos se mostrarán, bien desde el último introducido o bien desde el comando indicado si se utiliza en combinación con el parámetro ```-Id```.
+- `-Id`: Si pasamos como identificador un valor numérico correspondiente a una orden del historial nos mostrará únicamente esa orden.
+- `-Count`: Por defecto se muestran todos los comandos desde que se inició la sesión. Con este parámetro podemos indicar cuántos comandos se mostrarán, bien desde el último introducido o bien desde el comando indicado si se utiliza en combinación con el parámetro `-Id`.
   
-Si queremos volver a ejecutar un comando que ya está en el historial podemos utilizar el cmdlet ```Invoke-History```. Podemos ejecutarlo sin parámetros, en cuyo caso volverá a ejecutar el último comando del historial, o utilizar el parámetro ```-Id``` para indicar el número de entrada del historial que se ejecutará.
+Si queremos volver a ejecutar un comando que ya está en el historial podemos utilizar el cmdlet `Invoke-History`. Podemos ejecutarlo sin parámetros, en cuyo caso volverá a ejecutar el último comando del historial, o utilizar el parámetro `-Id` para indicar el número de entrada del historial que se ejecutará.
 
-Para agilizar la ejecución de comandos del historial podemos utilizar ```r```, que es el alias de ```Invoke-History```. De igual manera, un alias para ```Get-History``` es ```h```.
+Para agilizar la ejecución de comandos del historial podemos utilizar `r`, que es el alias de `Invoke-History`. De igual manera, un alias para `Get-History` es `h`.
 
-Si queremos buscar dentro del historial de una forma rápida, tenemos las combinaciones de teclas ```Ctrl-R``` y ```Ctrl-S```, la primera para buscar hacia atrás y la segunda para buscar hacia adelante. Cuando pulsamos ```Ctrl-R``` cambiará el prompt y nos pedirá que introduzcamos un texto. Al introducirlo, se mostrará el último comando ejecutado que contenga dicho texto. Con cada nueva pulsación de ```Ctrl-R``` retrocederemos en el historial buscando más comandos que contengan el texto, mientras que si pulsamos las teclas ```Ctrl-S``` avanzaremos en el historial.
+Si queremos buscar dentro del historial de una forma rápida, tenemos las combinaciones de teclas `Ctrl-R` y `Ctrl-S`, la primera para buscar hacia atrás y la segunda para buscar hacia adelante. Cuando pulsamos `Ctrl-R` cambiará el prompt y nos pedirá que introduzcamos un texto. Al introducirlo, se mostrará el último comando ejecutado que contenga dicho texto. Con cada nueva pulsación de `Ctrl-R` retrocederemos en el historial buscando más comandos que contengan el texto, mientras que si pulsamos las teclas `Ctrl-S` avanzaremos en el historial.
 
-Algo que hay que destacar respecto a la búsqueda en el historial es que se obtendrán resultados de la propia sesión o de anteriores, mientras que el comando ```Get-History``` solo muestra las entradas de la sesión actual.
+Algo que hay que destacar respecto a la búsqueda en el historial es que se obtendrán resultados de la propia sesión o de anteriores, mientras que el comando `Get-History` solo muestra las entradas de la sesión actual.
 
-Si queremos borrar el historial de nuestra máquina, solo tenemos que ejecutar el comando ```Clear-History``` que vacía por completo el historial. Sin embargo, podemos ser más precisos utilizando algunos de los parámetros disponibles. Podemos borrar entradas individuales con el parámetro ```-Id```. Por ejemplo, si queremos borrar las entradas con identificador 5 y 9 ejecutaríamos la siguiente orden.
+Si queremos borrar el historial de nuestra máquina, solo tenemos que ejecutar el comando `Clear-History` que vacía por completo el historial. Sin embargo, podemos ser más precisos utilizando algunos de los parámetros disponibles. Podemos borrar entradas individuales con el parámetro `-Id`. Por ejemplo, si queremos borrar las entradas con identificador 5 y 9 ejecutaríamos la siguiente orden.
 
 ```powershell
 PS C:\> Clear-History -Id 5, 9
 ```
 
-También podemos eliminar un número concreto de entradas con el parámetro ```-Count```. En el siguiente ejemplo, se eliminan las 5 entradas anteriores a la que tiene como identificador el número 11, mientras que en el segundo ejemplo se eliminan las últimas 5 entradas al combinarlo con el parámetro ```-Newest```.
+También podemos eliminar un número concreto de entradas con el parámetro `-Count`. En el siguiente ejemplo, se eliminan las 5 entradas anteriores a la que tiene como identificador el número 11, mientras que en el segundo ejemplo se eliminan las últimas 5 entradas al combinarlo con el parámetro `-Newest`.
 
 ```powershell
 PS C:\> Clear-History -Count 5 -Id 11
 PS C:\> Clear-History -Count 5 -Newest
 ```
 
-Por último, se pueden filtrar las entradas eliminadas según contengan una cadena usando el parámetro ```-CommandLine```. En el siguiente ejemplo se eliminan todas las entradas del historial que contienen el texto Help y también las que finalizan con el texto Newest.
+Por último, se pueden filtrar las entradas eliminadas según contengan una cadena usando el parámetro `-CommandLine`. En el siguiente ejemplo se eliminan todas las entradas del historial que contienen el texto Help y también las que finalizan con el texto Newest.
 
 ```powershell
 PS C:\> Clear-History -CommandLine *Help*, *Newest
@@ -250,7 +248,7 @@ PS C:\> Get-History | Export-Clixml -Path ‘C:\history.xml’
 PS C:\> Get-History | Export-CSV -Path ‘C:\history.csv’
 ```
 
-Si tienes curiosidad, puedes ver el contenido del fichero exportado con el comando ```Get-Content```, que muestra el contenido de un archivo de texto.
+Si tienes curiosidad, puedes ver el contenido del fichero exportado con el comando `Get-Content`, que muestra el contenido de un archivo de texto.
 
 ```powershell
 PS C:\> Get-Content ‘C:\history.xml’
