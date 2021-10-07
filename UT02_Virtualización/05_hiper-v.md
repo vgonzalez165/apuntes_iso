@@ -24,25 +24,20 @@ La edición de Windows instalada se puede ver en *Panel de Control -> Sistema*, 
 La que interesa en este caso es [**CoreInfo**](https://docs.microsoft.com/en-us/sysinternals/downloads/coreinfo), que extrae información sobre las características del microprocesador. Esta herramienta debe ser ejecutada en la consola, y si lo hacemos con el parámetro `-v` mostrará únicamente las características del procesador relativas a la virtualización.
 
 ```powershell
-PS C:\Users\Victor\Desktop> .\Coreinfo64.exe -v
+PS C:\> .\Coreinfo64.exe -v
 
 Coreinfo v3.52 - Dump information on system CPU and memory topology
 Copyright (C) 2008-2021 Mark Russinovich
 Sysinternals - www.sysinternals.com
 
-
-Note: Coreinfo must be executed on a system without a hypervisor running for
-accurate results.
-
-AMD Ryzen 5 2600 Six-Core Processor
-AMD64 Family 23 Model 8 Stepping 2, AuthenticAMD
-Microcode signature: 00000000
-HYPERVISOR      *       Hypervisor is present
-SVM             -       Supports AMD hardware-assisted virtualization
-NP              -       Supports AMD nested page tables (SLAT)
+Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz
+Intel64 Family 6 Model 142 Stepping 9, GenuineIntel
+Microcode signature: 000000B4
+HYPERVISOR      -       Hypervisor is present
+VMX             *       Supports Intel hardware-assisted virtualization
+EPT             *       Supports Intel extended page tables (SLAT)
+URG             *       Supports Intel unrestricted guest
 ```
-
-**[TODO] HACER CAPTURA CON EL PORTÁTIL, QUE ES INTEL**
 
 Si se cumplen todas las condiciones será posible habilitar Hyper-V en el ordenador. Hyper-V es una **característica**, programas o utilidades incluidas en el sistema operativo pero que se pueden habilitar o deshabilitar a voluntad. Para ello, hay que ir a *Panel de Control -> Programas -> Activar o desactivar las características de Windows* y marcar la entrada que pone Hyper-V. Opcionalmente, se pueden instalar independientemente los diversos componentes de que dispone:
 
