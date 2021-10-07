@@ -1,7 +1,5 @@
 ![Carátula UT03](imgs/caratula_ut03.png)
 
-# UT03. WINDOWS 10. INSTALACIÓN Y PRIMEROS PASOS
-
 ### Contenidos
 
 1. [Herramientas de administración](01_herramientas_administración.md)
@@ -11,7 +9,7 @@
 5. [Gestión de grupos](05_grupos.md)
 
 
-## 2.- PANEL DE CONTROL. SISTEMA
+# 2.- PANEL DE CONTROL. SISTEMA
 
 La primera opción del *Panel de control* es **Sistema y seguridad**, que muestra información general del sistema y además proporciona acceso a otros diálogos de administración. Veamos todo lo que podemos hacer desde aquí.
 
@@ -115,3 +113,9 @@ El otro apartado es el de **Escritorio remoto**, cuyo fin es permitir conexiones
 
 
 ![Sistema](imgs/sistema.png)
+
+
+
+*** 
+
+[Volver al índice](index_UT03.md)
