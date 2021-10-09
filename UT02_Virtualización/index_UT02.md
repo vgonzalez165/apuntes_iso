@@ -12,9 +12,9 @@
 
 ### Prácticas
 
-- PR0201: Creación de MV con Hyper-V. Almacenamiento y puntos de control
-- PR0202: MV con Hyper-V. Compartición, clonación de discos físicos.
-- PR0203: MV con VirtualBox
+- PR0201: VirtualBox
+- PR0202: Hyper-V (I)
+- PR0203: Hyper-V (II)
 
 ***
 [Volver al índice principal](../index.md)
