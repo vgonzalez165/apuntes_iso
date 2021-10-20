@@ -59,3 +59,7 @@ Desde **Programas** podremos realizar las siguientes operaciones:
 - **Ver actualizaciones instaladas**: Muestra el listado de todas las actualizaciones instaladas y da la posibilidad de desinstalarlas.
 - **Programas predeterminados**: Cuando el usuario hace doble click sobre un archivo para abrirlo, Windows mira la extensión de dicho archivo y selecciona un programa acorde para abrirlo con él. Por ejemplo, si pulsa un fichero con extensión `.html` lo abrirá con un navegador. En *Programas predeterminados* es donde se selecciona exactamente qué aplicación se utilizará para abrir cada archivo en función de la extensión.
 
+
+*** 
+
+[Volver al índice](index_UT03.md)
