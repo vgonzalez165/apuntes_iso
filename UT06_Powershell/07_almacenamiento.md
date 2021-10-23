@@ -1,19 +1,31 @@
 ![Carátula UT06](imgs/caratula_ut06.png)
 
-# 7.- GESTIÓN DE DISCOS CON POWERSHELL
+
+### Contenidos
+
+1. [Introducción a Powershell](01_introducción.md)
+2. [Objetos y el pipeline](02_pipelines.md)
+3. [El sistema de ficheros en Powershell](03_sistema_ficheros.md)
+4. [Gestión de Hyper-V desde Powershell](04_hyperv.md)
+5. [Gestión de usuarios y grupos](05_usuarios.md)
+6. [Gestión avanzada de usuarios y grupos](06_usuarios_avanzado.md)
+7. [**Powershell y el almacenamiento**](07_almacenamiento.md)
+
+
+# 7.- POWERSHELL Y EL ALMACENAMIENTO
 
 Como no puede ser de otra manera, también es posible gestionar los discos del sistema utilizando Powershell. Sin embargo, en este caso hay una serie de limitaciones ya que no está implementada en Powershell la administración de discos básicos y dinámicos, limitándose la funcionalidad disponible a la gestión básica de discos y de particiones.
 
 Por otro lado, hay una posibilidad interesante si tenemos instalado Hyper-V en nuestro equipo y es el hecho de poder tratar discos virtuales como si fueran discos físicos, añadiéndolos a nuestra máquina y utilizándolos como si fuera un disco más.
 
-### 7.1.- MOSTRAR INFORMACIÓN DE LOS DISCOS CONECTADOS
+### 7.1.- Mostrar información de los discos conectados
 
 Para mostrar todos los discos instalados en el sistema utilizaremos el comando `Get-Disk`, que los muestro junto con propiedades como el número de serie, el estado de salud (SMART), el tamaño o el tipo de tabla de particiones. Además, identifica cada disco con un número que nos servirá para hacerle referencia desde otros comandos. También podemos utilizar este número con el parámetro -Number para que nos muestre un único disco.
 
 Si queremos mostrar las particiones de un disco usaremos el comando Get-Partition que nos muestra todas las particiones que hay en todos los discos, o bien las de un único disco si utilizamos el parámetro `-DiskId` indicando el identificador del disco o `-DiskNumber` con el número que le identifica.
 
 
-### 7.2.- CREAR Y MONTAR UN DISCO VIRTUAL
+### 7.2.- Crear y montar un disco virtual
 
 Como mencionamos antes, desde Powershell podemos trabajar con discos virtuales, ya sea para utilizarlos con máquinas virtuales en Hyper-V o para montarlos directamente en el sistema y utilizarlos como un disco normal. Hay diversos comandos para trabajar con discos virtuales, que podemos mostrar con el comando `Get-Command -Noun VHD`.
 
@@ -27,7 +39,7 @@ Una vez creado el disco se puede utilizar en cualquier máquina virtual, pero ta
 
 Si por algún motivo quisiéramos desmontar el disco lo haremos con el comando Dismount-VHD con el parámetro -DiskNumber.
 
-### 7.3.- INICIALIZAR UN DISCO 
+### 7.3.- Inicializar un disco
 
 Cuando añadimos un nuevo disco a nuestro sistema, ya sea físico o virtual, es simplemente un espacio de almacenamiento capaz de contener una gran cantidad de información, pero sin ninguna estructura. El primer paso para darle una estructura lógica es la inicialización del disco, que básicamente consiste en crear la tabla de particiones para que posteriormente pueda contener particiones. 
 
@@ -36,7 +48,7 @@ El comando de Powershell para inicializar un disco es `Initialize-Disk`, al cual
 Si quisiéramos cambiar el estilo de la tabla de particiones de un disco ya inicializado se puede utilizar el comando `Set-Disk` con los mismos parámetros mencionados anteriormente. Este comando también nos es útil si queremos marcar un disco como de solo lectura (parámetro `-IsReadOnly $True`) o si queremos deshabilitarlo (`-IsOffline $True/$False`)
 
 
-### 7.4.- CREAR Y FORMATEAR PARTICIONES
+### 7.4.- Crear y formatear particiones
 
 Una vez inicializado el disco solo queda crear las particiones y aplicarles formato. Recuerda que desde Powershell no podemos trabajar con discos dinámicos, por lo que todas las particiones que creemos serán particiones normales.
 
@@ -58,11 +70,11 @@ Si queremos formatear una partición usaremos el comando Format-Volume, que admi
 Por último, si queremos limpiar un disco y eliminar toda la información, así como el contenido de la tabla de particiones, deberemos usar el comando `Clear-Disk` de la forma `Clear-Disk -Number 1 -RemoveData`.
 
 
-### 7.5.- ADMINISTRACIÓN AUTOMÁTICA DE DISCOS
+### 7.5.- Administración automática de discos
 
 Vamos a ver ahora un ejemplo de un script en el que automatizamos la administración de discos virtuales. En este caso el script pedirá al usuario por teclado el tamaño del disco, tras lo cual creará un disco duro virtual de dicho tamaño, lo montará, los formateará y le asignará una letra.
 
-#### 7.5.1.- EL PARÁMETRO PASSTHRU
+#### 7.5.1.- El parámetro passthru
 
 Antes de ver el script es necesario conocer un parámetro que es utilizado por muchos cmdlets, que es el parámetro `-Passthru`. La razón de ser de este parámetro está en los comandos que realizan una tarea, pero no devuelven ningún objeto, es decir, que no muestran ninguna salida por pantalla o que si están en un pipeline no le pasan nada al siguiente comando.
 
