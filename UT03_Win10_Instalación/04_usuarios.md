@@ -225,4 +225,7 @@ Al abrir el registro se pueden apreciar 5 nodos principales que dan paso a las 5
 - **HKEY_CURRENT_USER**: contiene la configuración del usuario que ha iniciado sesión. El contenido de este nodo es almacenado en el fichero NTUSER.DAT.
 
 
-***
+
+*** 
+
+[Volver al índice](index_UT03.md)

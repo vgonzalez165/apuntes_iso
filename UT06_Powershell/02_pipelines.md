@@ -279,20 +279,20 @@ Powershell tiene cinco cmdlets para el formato de la salida de comandos, de los 
 
 ### 2.5.1.- FORMAT-WIDE
 
-Este comando muestra únicamente una propiedad de cada objeto, mostrando todos estos valores en una tabla. Como alternativa más breve se puede utilizar el alias fw.
+Este comando muestra únicamente una propiedad de cada objeto, mostrando todos estos valores en una tabla. Como alternativa más breve se puede utilizar el alias `fw`.
 Los parámetros más destacables de este comando son:
-•	-Property: para indicar si queremos que se muestre una propiedad diferente a la que muestra por defecto.
-•	-Column: que mediante un valor numérico señalará cuántas columnas tendrá la tabla con los resultados mostrados.
+•	`-Property`: para indicar si queremos que se muestre una propiedad diferente a la que muestra por defecto.
+•	`-Column`: que mediante un valor numérico señalará cuántas columnas tendrá la tabla con los resultados mostrados.
 
 ### 2.5.2.- FORMAT-TABLE
 
-Formatea la salida del comando redireccionado en forma de tabla donde mostrará un objeto en cada fila y las propiedades más relevante en las columnas. El alias para este comando es ft.
-Un parámetro útil con Format-Table es -AutoSize, que adapta el tamaño de la salida para que se ajuste al tamaño disponible en la pantalla y así evitar que se recorte la salida.
+Formatea la salida del comando redireccionado en forma de tabla donde mostrará un objeto en cada fila y las propiedades más relevante en las columnas. El alias para este comando es `ft`.
+Un parámetro útil con `Format-Table` es `-AutoSize`, que adapta el tamaño de la salida para que se ajuste al tamaño disponible en la pantalla y así evitar que se recorte la salida.
 
 
-# 2.5.3.- FORMAT-LIST
+### 2.5.3.- FORMAT-LIST
 
-Por último, Format-List muestra la salida del comando como una lista de propiedades, indicando cada una de estas propiedades en una línea diferente.
+Por último, `Format-List` muestra la salida del comando como una lista de propiedades, indicando cada una de estas propiedades en una línea diferente.
 
 
  
