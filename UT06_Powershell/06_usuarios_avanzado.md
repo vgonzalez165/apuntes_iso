@@ -1,6 +1,18 @@
 ![Carátula UT06](imgs/caratula_ut06.png)
 
-# 4.- FUNCIONES AVANZADAS EN LA GESTIÓN DE USUARIOS
+
+### Contenidos
+
+1. [Introducción a Powershell](01_introducción.md)
+2. [Objetos y el pipeline](02_pipelines.md)
+3. [El sistema de ficheros en Powershell](03_sistema_ficheros.md)
+4. [Gestión de Hyper-V desde Powershell](04_hyperv.md)
+5. [Gestión de usuarios y grupos](05_usuarios.md)
+6. [Gestión avanzada de usuarios y grupos](06_usuarios_avanzado.md)
+7. [Powershell y el almacenamiento](07_almacenamiento.md)
+
+
+# 6.- FUNCIONES AVANZADAS EN LA GESTIÓN DE USUARIOS
 
 Ahora que hemos aprendido a trabajar con usuarios y grupos en Powershell, vamos a utilizarlo como excusa para seguir avanzando en nuestro conocimiento de Powershell. En concreto, vamos a:
 
@@ -8,14 +20,14 @@ Ahora que hemos aprendido a trabajar con usuarios y grupos en Powershell, vamos 
 - Añadir usuarios y grupos a un equipo diferente al nuestro estableciendo una conexión remota con el mismo.
 
 
-## 4.1.- CREACIÓN AUTOMÁTICA DE USUARIOS Y GRUPO
+## 6.1.- Creación automática de usuarios y grupos
 
 Vamos a ver primero como haríamos para automatizar la creación de usuarios en nuestro sistema partiendo de un fichero con los datos de los usuarios que deseamos crear. La idea fundamental es muy sencilla, partimos de un fichero en formato CSV con información de los usuarios, extraemos los datos de cada usuario de dicho fichero y los utilizamos para dar de alta el usuario. Para esto necesitaremos un nuevo comando que nos permita iterar sobre todos los objetos devueltos por un comando, el comando `foreach`, que explicaremos un poco más adelante.
 
 Además, también aprovecharemos para crear un script que 
 
 
-### 4.1.1.- IMPORTACIÓN DEL FICHERO CSV
+### 6.1.1.- Importación del fichero CSV
 
 El primer paso es crear un fichero CSV con la información que queramos añadir a los usuarios que serán creados. El acrónimo CSV viene de *Comma Separated Values*, y es precisamente eso en lo que consiste, en un fichero donde tenemos una serie de filas con valores separados por un carácter especial, habitualmente comas.
 
@@ -62,7 +74,7 @@ nombre_usuario  NoteProperty string nombre_usuario=victor
 Ahora necesitamos **iterar** sobre cada uno de estos objetos para utilizar los datos para crear los usuarios, y esto lo haremos con el comando `foreach`.
 
 
-### 4.1.2.- EL COMANDO FOREACH
+### 6.1.2.- El comando ForEach
 
 El comando `foreach` tiene múltiples usos y varias formas de ser utilizado, pero por ahora únicamente veremos como se puede utilizar dentro del pipeline tomando como entrada la salida de otro comando.
 
@@ -88,7 +100,7 @@ En esta línea hacemos lo siguiente:
 - Como estamos poniendo `$_.name`, solo nos quedamos con una propiedad de cada objeto, la que corresponde al nombre del usuario, que por tanto es la que se mostrará por pantalla.
 
 
-### 4.1.3.- JUNTANDO TODO
+### 6.1.3.- Juntando todo
 
 Ahora que ya tenemos claro cómo funcionan las herramientas que vamos a utilizar ya solo nos queda juntarlo todo. El código sería el siguiente:
 
@@ -101,7 +113,7 @@ PS C:\> Import-Csv ‘C:\users.csv’ | foreach {
 Si lo ejecutas, verás que creará todos los usuarios que tenemos en el fichero CSV, aunque, como no hemos puesto la contraseña nos la pedirá para cada usuario que creemos. Ya te queda para cuando hagamos la práctica correspondiente incluir un campo con la contraseña en el fichero CSV.
 
 
-### 4.1.4.- NUESTRO PRIMER SCRIPT
+### 6.1.4.- Nuestro primer script
 
 El comando anterior funciona, pero si tenemos que ejecutar frecuentemente puede ser bastante tedioso tener que introducirlo por teclado. Sobre todo, teniendo en cuenta que hemos omitido un gran número de parámetros que sí que convendría incluir en caso de querer crear usuarios en un entorno real. 
 
@@ -141,19 +153,19 @@ Password:
 ```
  
 
-## 4.2.- CONEXIÓN REMOTA A UN EQUIPO
+## 6.2.- Conexión remota a un equipo
 
 Lo habitual no es administrar un sistema desde el mismo equipo, sino que el administrador del sistema lo hace mediante conexiones remotas sin moverse de su propio ordenador. Powershell está pensado desde su concepción en facilitar esta tarea, y de hecho, uno de los parámetros generales a todos los comandos es ComputerName, que sirve para hacer referencia al equipo remoto sobre el que se ejecutará el comando.
 
 Dado que la administración remota conlleva una serie de riesgos de seguridad, hay que realizar una serie de pasos previos sobre los equipos para poder administrar de forma remota. 
 
-### 4.2.1.- HABILITAR LA CONEXIÓN REMOTA
+### 6.2.1.- Habilitar la conexión remota
 
 El primer paso es habilitar la conexión remota, esto debemos hacerlo en cada equipo al que nos queremos conectar de forma remota, es decir, el equipo sobre el que se ejecutaron los comandos. Para ello simplemente debemos abrir una consola de Power Shell en modo administrador y ejecutar el comando `Enable-PSRemoting -Force`.
 
 Este comando inicia el servicio WinRM y lo prepara para que se inicie automáticamente con el sistema, además crea una regla en el firewall para permitir las conexiones entrantes. Sí estamos trabajando en un dominio, esta será la única configuración que tenemos que realizar. Sí en cambio tenemos nuestros equipos en un grupo de trabajo debemos realizar algunas configuraciones adicionales. 
 
-### 4.2.2.- CONFIGURACIÓN PARA GRUPOS DE TRABAJO
+### 6.2.2.- Configuración para grupos de trabajo
 
 Lo primero que tenemos que tener en cuenta si nuestros equipos están en grupos de trabajo es que la red tiene que estar definida como privada y no como pública. Cómo te habrás fijado cada vez que nos conectamos a una red nueva se nos pregunta por el tipo de red de que se trata. Sí en ese momento seleccionamos que la red pública cómo podremos cambiarlo ahora yendo a propiedades del adaptador de red y debajo de perfil de red seleccionar *privado*. 
 
@@ -166,7 +178,7 @@ PS C:\> Set-Item wsman:\localhost\client\trustedhosts *
 Con la orden anterior estamos utilizando el asterisco para indicar que nuestro equipo confía en cualquier otro equipo. Pera nuestras prácticas es suficiente, pero hay que tener en cuenta que para un entorno de producción esto sería bastante inseguro. En ese caso lo ideal sería reemplazar el asterisco por las direcciones IP de los equipos en que confiamos separadas por comas. Después de realizar esto debemos reiniciar el servicio WinRM, lo que conseguiremos con la orden `Restart-Service WinRM`.
 
 
-### 4.2.3.- PROBANDO LA CONEXIÓN REMOTA
+### 6.2.3.- Probando la conexión remota
 
 Una vez realizados todos los pasos debemos verificar que el servicio de conexión remota funciona perfectamente, para ello disponemos del comando `Test-WsMan` al cual se le pasa como parámetro el nombre o la dirección IP del equipo cuya canción de queramos verificar. 
 
@@ -177,12 +189,12 @@ Llegados a este punto tenemos 3 opciones para realizar la administración remota
 - Utilizar el comando Invoke-Command para ejecutar cualquier comando o script que tengamos en el otro equipo.
 
 
-### 4.2.4.- INICIAR UNA SESIÓN INTERACTIVA
+### 6.2.4.- Iniciar una sesión interactiva
 
 Los comandos para gestionar sesiones remotas son `Enter-PSSession` y `Exit-PSSession` para iniciar y finalizar respectivamente una sesión en otro equipo. Al primero se le debe pasar como parámetro el nombre o dirección IP del equipo con el que queremos establecer la sesión, así como opcionalmente el parámetro `Credentials` para indicar las credenciales con las que queremos iniciar sesión. El segundo comando no requiere ningún tipo de parámetro. 
 
 
-### 4.2.5.- EJECUTAR UN COMANDO CON EL PARÁMETRO COMPUTERNAME
+### 6.2.5.- Ejecutar un comando con el parámetro ComputerName
 
 Hay una serie de comandos que admiten directamente el parámetro con `-ComputerName` de forma que simplemente incluyendo este parámetro seguido de un nombre de equipo o su dirección IP, se ejecutarán en el equipo remoto. 
 
@@ -202,7 +214,7 @@ Cmdlet          Get-PSSession                                      3.0.0.0    Mi
 ...
 ```
 
-### 4.2.6.- EJECUTAR UN COMANDO REMOTO
+### 6.2.6.- Ejecutar un comando remoto
 
 Si has ejecutado el comando anterior, te habrás fijado los comandos relativos a la gestión de usuarios locales no están incluidos en los conventos devueltos, por lo que no es una opción válida para crear usuarios remotos en otro equipo. Lo mismo nos pasará con otros muchos comandos o con scripts creados por nosotros queremos ejecutar remotamente. En estos casos tenemos que utilizar el comando `Invoke-Command`.
 
@@ -220,7 +232,7 @@ PS C:\> Invoke-Command -ComputerName 192.168.1.1 -FilePath c:\Scripts\DiskCollec
 ```
 
 
-### 4.2.7.- CONEXIONES REMOTAS A UNA MÁQUINA VIRTUAL
+### 6.2.7.- Conexiones remotas a la máquina virtual
 
 Todos los pasos anteriores son válidos para conectarse a un equipo remoto, ya sea un equipo físico o una máquina virtual que se está ejecutando en otro equipo. Pero si queremos conectarnos a una máquina virtual de Hyper-V alojada en el propio equipo hay un mecanismo, denominado Powershell Direct, que permite realizar la conexión independientemente de la configuración de administración remota o la configuración de red. Con Powershell Direct podemos tanto iniciar una sesión interactiva como ejecutar un comando o script mediante el comando Invoke-Command.
 

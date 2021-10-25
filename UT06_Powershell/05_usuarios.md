@@ -1,10 +1,22 @@
 ![Carátula UT06](imgs/caratula_ut06.png)
 
-# 3.- USUARIOS Y GRUPOS DESDE POWERSHELL
+
+### Contenidos
+
+1. [Introducción a Powershell](01_introducción.md)
+2. [Objetos y el pipeline](02_pipelines.md)
+3. [El sistema de ficheros en Powershell](03_sistema_ficheros.md)
+4. [Gestión de Hyper-V desde Powershell](04_hyperv.md)
+5. [Gestión de usuarios y grupos](05_usuarios.md)
+6. [Gestión avanzada de usuarios y grupos](06_usuarios_avanzado.md)
+7. [Powershell y el almacenamiento](07_almacenamiento.md)
+
+
+# 5.- USUARIOS Y GRUPOS DESDE POWERSHELL
 
 Powershell dispone de comandos para automatizar fácilmente la administración de usuarios y grupos en un sistema. Estos comandos se pueden dividir en tres grupos: los relacionados con los usuarios, los relacionados con los grupos, y los relacionados con la pertenencia a grupos, que se identifican respectivamente por los nombres `LocalUser`, `LocalGroup` y `LocalGroupMember`.
 
-## 3.1.- USUARIOS
+## 5.1.- Usuarios
 
 En este caso los comandos disponibles son:
 
@@ -18,7 +30,7 @@ En este caso los comandos disponibles son:
 Todos estos comandos trabajan con objetos de la clase `LocalUser`, cuyas propiedades coinciden con los valores que ya conocemos del diálogo de creación de usuarios del MMC: Name, FullName, SID, …
 
 
-### 3.1.1.- GESTIÓN DE LA CONTRASEÑA CON VARIABLES
+### 5.1.1.- Gestión de la contraseña con variables
 
 Según lo que hemos visto en el apartado anterior, la forma de crear un usuario nuevo sería con la siguiente orden:
 
@@ -75,7 +87,7 @@ MiUsuario True
 Algo que hay que tener en cuenta cuando creamos usuarios en Powershell es que el comando `New-LocalUser` crea el usuario, pero **no lo añade a ningún grupo**, ni tan siquiera al grupo Usuarios, por lo que es una tarea que tendremos que realizar después de crear cada usuario.
 
 
-### 3.1.2.- GESTIÓN DE LA CONTRASEÑA CON PARÉNTESIS
+### 5.1.2.- Gestión de la contraseña con paréntesis
 
 Hay una segunda alternativa que nos permite obtener el mismo resultado sin utilizar variables, y es mediante el uso de los paréntesis. Los **paréntesis** sirven para procesar un comando cuyo resultado se pasará como parámetro a otro comando.
 
@@ -108,13 +120,13 @@ PS C:\> Restart-Computer -ComputerName (Get-Content C:\computers.txt) -Force
 ```
 
 
-## 3.2.- GRUPOS
+## 5.2.- Grupos
 
-### 3.2.1.- GESTIÓN DE GRUPOS
+### 5.2.1.- Gestión de grupos
 
 La gestión de grupos con Powershell es análoga a la gestión de usuarios, con comandos muy similares, pero utilizando el nombre **LocalGroup**. Estos nos permitirán obtener información de los grupos existentes en el sistema (`Get-LocalGroup`), crear un nuevo grupo (`New-LocalGroup`), eliminar un grupo existente (`Remove-LocalGroup`), renombrar un grupo (`Rename-LocalGroup`) y cambiar las propiedades de un grupo (`Set-LocalGroup`).
 
-### 3.2.2.- PERTENENCIA A GRUPOS
+### 5.2.2.- Pertenencia a grupos
 
 Ya solo nos queda un grupo de comandos, y es el que permite relacionar los usuarios con los grupos a los que pertenecen. Todos estos comandos tienen el nombre LocalGroupMember y son los siguientes:
 
