@@ -1,7 +1,5 @@
 ![Carátula UT03](imgs/caratula_ut03.png)
 
-# UT03. WINDOWS 10. INSTALACIÓN Y PRIMEROS PASOS
-
 ### Contenidos
 
 1. [Herramientas de administración](01_herramientas_administración.md)
