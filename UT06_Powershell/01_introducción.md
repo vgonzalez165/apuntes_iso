@@ -17,15 +17,15 @@
 
 El diseño de Windows PowerShell integra conceptos de muchos entornos distintos. Algunos de estos conceptos son:
 
-- Los comandos no están basados en texto: los cmdlets están diseñados para usar objetos: información estructurada que es más que una simple cadena de caracteres que se muestra en pantalla.
-- El conjunto de comandos es ampliable: las interfaces como `cmd.exe` no proporcionan al usuario una manera de ampliar directamente el conjunto de comandos integrados. Los comandos nativos de PowerShell, denominados **cmdlets**, se pueden ampliar con cmdlets que crees o agregues mediante complementos o módulos.
-- PowerShell controla la entrada y la presentación de la consola: cuando se escribe un comando la información es procesada y aplica un formato a los resultados que se muestren en pantalla. Esto es importante porque el usuario siempre puede hacer las cosas de la misma manera independientemente del cmdlet utilizado.
-- PowerShell utiliza sintaxis del lenguaje C#: incluye palabras clave y funciones de sintaxis muy parecidas a las que se usan en el lenguaje C# por lo que su aprendizaje facilitaría el aprendizaje de C#.
+- **Los comandos no están basados en texto**: los cmdlets están diseñados para usar objetos: información estructurada que es más que una simple cadena de caracteres que se muestra en pantalla.
+- **El conjunto de comandos es ampliable**: las interfaces como `cmd.exe` no proporcionan al usuario una manera de ampliar directamente el conjunto de comandos integrados. Los comandos nativos de PowerShell, denominados **cmdlets**, se pueden ampliar con cmdlets que crees o agregues mediante complementos o módulos.
+- **PowerShell controla la entrada y la presentación de la consola**: cuando se escribe un comando la información es procesada y aplica un formato a los resultados que se muestren en pantalla. Esto es importante porque el usuario siempre puede hacer las cosas de la misma manera independientemente del cmdlet utilizado.
+- **PowerShell utiliza sintaxis del lenguaje C#**: incluye palabras clave y funciones de sintaxis muy parecidas a las que se usan en el lenguaje C# por lo que su aprendizaje facilitaría el aprendizaje de C#.
 
 
 ## 1.2.- Powershell vs Powershell Core
 
-En el año 2018 Microsoft anunció una nueva edición de Powershell que denominó Powershell Core de forma que en la actualidad coexisten ambas ediciones. La diferencia más reseñable es que, mientras que Powershell es exclusivo de Windows, Powershell Core puede ser instalado en otros sistemas, como Mac OS X o Linux, lo que permite crear scripts compatibles para múltiples plataformas.
+En el año 2018 Microsoft anunció una nueva edición de Powershell que denominó **Powershell Core** de forma que en la actualidad coexisten ambas ediciones. La diferencia más reseñable es que, mientras que Powershell es exclusivo de Windows, Powershell Core puede ser instalado en otros sistemas, como Mac OS X o Linux, lo que permite crear scripts compatibles para múltiples plataformas.
 
 |               | Powershell        | Powershell Core   |
 |---------------|-------------------|-------------------|
@@ -66,7 +66,7 @@ PS C:\>Set-ExecutionPolicy RemoteSigned
 
 ## 1.5.- Nomenclatura de cmdlets
 
-Los cmdlets utilizan un sistema de nombres con la estructura “verbo-sustantivo”: el nombre de cada cmdlets consta de un verbo estándar y un sustantivo concreto. Los verbos expresan acciones concretas mientras que los sustantivos describen siempre a qué se aplica un comando. La idea detrás de esto es crear un entorno autodescriptivo y uniforme de forma que los comandos sean más fáciles de recordar para los usuarios y que les permita hacerse una idea de su objetivo a partir de su nombre. Por ejemplo, el comando `Stop-Computer` se puede identificar fácilmente como el comando que sirve para apagar el ordenador.
+Los cmdlets utilizan un sistema de nombres con la estructura **“verbo-sustantivo”**: el nombre de cada cmdlets consta de un verbo estándar y un sustantivo concreto. Los verbos expresan acciones concretas mientras que los sustantivos describen siempre a qué se aplica un comando. La idea detrás de esto es crear un entorno autodescriptivo y uniforme de forma que los comandos sean más fáciles de recordar para los usuarios y que les permita hacerse una idea de su objetivo a partir de su nombre. Por ejemplo, el comando `Stop-Computer` se puede identificar fácilmente como el comando que sirve para apagar el ordenador.
 
 Esta uniformidad en la nomenclatura también es útil para conocer los comandos que afectan a un elemento determinado (nombre) o que realizan una tarea en concreto (verbo). Para ello debemos utilizar el comando `Get-Command` con los parámetros `-Noun` o `–Verb` respectivamente. Tras el parámetro indicamos el nombre o verbo que deseemos y nos mostrará todos los comandos que hay en el sistema que utilizan dicho nombre o verbo.
 
@@ -75,7 +75,7 @@ PS C:\>Get-Command –Verb Get
 PS C:\>Get-Command –Noun Service
 ```
 
-Respecto a los parámetros que admiten los cmdlets se fomenta que estén normalizados, es decir, que sean descriptivos y que normalmente un parámetro con resultado similar sea el mismo para diferentes cmdlets. Los nombres de los parámetros se utilizan siempre con un guión (-) como prefijo para que Windows los identifique como tales. Por ejemplo, en `Get-Command –Name Clear-Host` el parámetro es `–Name`.
+Respecto a los parámetros que admiten los cmdlets se fomenta que estén **normalizados**, es decir, que sean descriptivos y que normalmente un parámetro con resultado similar sea el mismo para diferentes cmdlets. Los nombres de los parámetros se utilizan siempre con un guión (-) como prefijo para que Windows los identifique como tales. Por ejemplo, en `Get-Command –Name Clear-Host` el parámetro es `–Name`.
 
 Hay una serie de parámetros que son comunes a todos los comandos. Probablemente el más importante de todos es `-?`, que muestra la ayuda del comando, pero hay otros muchos como: `Whatif`, `Confirm`, `Verbose`, `Debug`, `Warn`, `ErrorAction`, `ErrorVariable`, `OutVariable` y `OutBuffer`.
 

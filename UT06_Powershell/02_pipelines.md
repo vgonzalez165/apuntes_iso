@@ -15,7 +15,7 @@
 
 # 2.- CONTROL DE LA SALIDA CON PIPELINES
 
-El **pipeline**, representado por el símbolo barra vertical (|), es utilizado para combinar diversos cmdlets de forma que la salida de uno es enviada a la entrada del siguiente, de forma muy similar a cómo se hace en Linux. 
+El **pipeline**, representado por el símbolo barra vertical (`|`), es utilizado para combinar diversos cmdlets de forma que la salida de uno es enviada a la entrada del siguiente, de forma muy similar a cómo se hace en Linux. 
  
 
 ## 2.1.- Objetos en Powershell
@@ -44,7 +44,7 @@ Con este enfoque, podemos enviar la salida del comando **xxxxxxxxxxx**
 
 
 
-Podemos saber qué tipo de objetos devuelve un comando de Powershell canalizando la salida al comando Get-Member, que muestra información por pantalla del objeto que se le envía.
+Podemos saber qué tipo de objetos devuelve un comando de Powershell canalizando la salida al comando `Get-Member`, que muestra información por pantalla del objeto que se le envía.
  
 En la imagen anterior ejecutamos el comando `Get-LocalUser -Name Victor` que devuelve un objeto de tipo Microsoft.Powershell.Commands.LocalUser que se corresponde con el usuario cuyo nombre es Victor. Este objeto contiene toda la información sobre dicho usuario, la cual se almacena en las propiedades del mismo. Por ejemplo, la fecha de caducidad de la cuenta del usuario se almacena en la propiedad AccountExpires. 
 
@@ -217,7 +217,7 @@ Property          : Length
 Por ejemplo, el comando anterior muestra el tamaño máximo, mínimo y medio de todos los ficheros que se encuentran en un directorio.
 
 
-# 2.4.- FILTRADO DE OBJETOS
+# 2.4.- Filtrado de objetos
 
 Muchos comandos disponen de parámetros para filtrar la salida en función del valor de alguna propiedad. Por ejemplo, se puede utilizar el parámetro `-Name` del comando `Get-Process` para que solo nos devuelva los procesos que tengan un nombre determinado.
 
