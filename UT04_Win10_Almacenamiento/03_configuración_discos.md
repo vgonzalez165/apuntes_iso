@@ -1,7 +1,5 @@
 ![Carátula UT04](imgs/caratula_ut04.png)
 
-# UT04. WINDOWS 10. GESTIÓN DEL ALMACENAMIENTO
-
 ### Contenidos
 
 1. [Organización del almacenamiento](01_organización.md)
@@ -11,7 +9,7 @@
 5. [Carpetas compartidas](05_compartidas.md)
 
 
-## 3.- CONFIGURACIÓN DE DISCOS EN WINDOWS
+# 3.- CONFIGURACIÓN DE DISCOS EN WINDOWS
 
 Al instalar Windows 10 en un equipo se realizan de forma automática todas las tareas de preparación del disco donde va a instalarse el sistema operativo. Sin embargo, cuando se añaden discos adicionales en el equipo hay una serie de tareas que deberán realizarse manualmente:
 
@@ -21,13 +19,13 @@ Al instalar Windows 10 en un equipo se realizan de forma automática todas las t
 - Formatear las particiones o volúmenes con un sistema de ficheros que puede ser el sistema NTFS o el sistema FAT (con sus variantes FAT16, FAT32 y exFAT).
 
 
-### 3.1.- Selección del estilo de particionamiento
+## 3.1.- Selección del estilo de particionamiento
 
 El término estilo de particionamiento se refiere al método que el sistema operativo usa para organizar las particiones en el disco. Las dos posibilidades que hay están directamente relacionadas con los dos tipos de tablas de particiones que hay: basadas en **MBR** y **GPT**.
 
 Esta es una decisión que hay que tomar al inicializar el disco e influye en el número y tipo de particiones que podemos crear.
 
-### 3.2.- Tipos de discos
+## 3.2.- Tipos de discos
 
 La mayoría de los ordenadores personales utilizan **discos básicos** porque son los más sencillos de gestionar. Un disco básico usando el estilo de particionamiento MBR organiza los datos utilizando particiones primarias, extendidas y lógicas. 
 
@@ -38,7 +36,7 @@ Si en cambio el disco básico tiene particionamiento GPT, se pueden crear hasta 
 La alternativa al uso de discos básicos es convertir el disco en **disco dinámico**. El proceso de convertir un disco básico en dinámico crea una única partición que ocupa todo el disco. Se pueden crear un número ilimitado de volúmenes dentro de la partición que ha creado. Los discos dinámicos soportan diferentes tipos de volúmenes.
 
 
-### 3.3.- Tipos de volúmenes
+## 3.3.- Tipos de volúmenes
 
 Un disco dinámico puede contener un número ilimitado de volúmenes que en cierto modo se puede decir que son equivalentes a las particiones. Al crear un volumen se puede escoger uno de los siguientes tipos:
 
@@ -49,7 +47,7 @@ Un disco dinámico puede contener un número ilimitado de volúmenes que en cier
 - **Volúmenes RAID-5**: consiste en tres o más discos físicos, todos ellos dinámicos. El sistema distribuye datos e información de paridad a lo largo de todos los discos, de forma que, si falla un disco, sus datos pueden ser recreados utilizando la información de paridad en el resto de discos. Los volúmenes RAID5 proporcionan un mejor rendimiento de lectura porque, al estar distribuidos los datos en varios discos, pueden leerse simultáneamente. En cambio, el rendimiento de escritura se ve ligeramente afectado por tener que realizar los cálculos de paridad.
 
 
-### 3.4.- El comando `DISKPART` de Windows
+## 3.4.- El comando `DISKPART` de Windows
 
 Aunque Windows dispone del *Administrador de discos* para poder gestionar todo lo relativo a la manipulación y gestión de discos y particiones, hay ocasiones en que no es posible utilizar esta herramienta, por ejemplo, en el caso de que Windows no pueda arrancar. En estas ocasiones disponemos de la herramienta en línea de comandos `diskpart`. Esta herramienta permite operaciones como obtener información detallada de discos y particiones o crear y eliminar particiones.
 

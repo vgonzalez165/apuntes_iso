@@ -1,8 +1,6 @@
 ![Carátula UT04](imgs/caratula_ut04.png)
 
-# UT04. WINDOWS 10. GESTIÓN DEL ALMACENAMIENTO
-
-### Contenidos
+## Contenidos
 
 1. [Organización del almacenamiento](01_organización.md)
 2. [**Sistemas de archivos**](02_sistemas_archivos.md)
@@ -11,7 +9,7 @@
 5. [Carpetas compartidas](05_compartidas.md)
 
 
-## 2.- SISTEMAS DE ARCHIVOS
+# 2.- SISTEMAS DE ARCHIVOS
 
 
 Cada partición puede contener un sistema de archivos diferente.
@@ -23,7 +21,7 @@ Un sistema de archivos:
 - En caso de alguna inconsistencia posibilita medios para su restauración.
 
 
-### 2.1.- Sistemas de archivos
+## 2.1.- Sistemas de archivos
 
 Existen diferentes sistemas de archivos y cada sistema operativo soporta diferentes sistemas de archivos, algunos de ellos son los siguientes:
 
@@ -42,7 +40,7 @@ Existen diferentes sistemas de archivos y cada sistema operativo soporta diferen
 A la acción de crear un sistema de ficheros dentro de una partición se le llama también **formatear** la partición.
 
 
-### 2.2.- El sistema de archivos FAT (File Allocation Table)
+## 2.2.- El sistema de archivos FAT (File Allocation Table)
 
 Para comprender mejor cómo funcionan los sistemas de ficheros vamos a ver en detalle el funcionamiento de uno de los más sencillos, el sistema de ficheros FAT.  Este sistema apareció en el año 1980 y aún es utilizado en dispositivos de almacenamiento de pequeño tamaño.
 
@@ -74,9 +72,9 @@ Hay diferentes versiones de FAT:
 - **exFAT**: apareció con Windows Vista y aumenta el tamaño de archivo hasta los 16 exabytes.
 
 
-### 2.3.- El sistema de archivos NTFS
+## 2.3.- El sistema de archivos NTFS
 
-#### 2.3.1.- Características de NTFS
+### 2.3.1.- Características de NTFS
 
 NTFS es el sistema de ficheros que fue implantado por primera vez en el sistema Windows NT 3.1 e incluía un gran número de mejores respecto a FAT. Entre estas mejoras destacan:
 
@@ -86,7 +84,7 @@ Además, NTFS utiliza almacenamiento redundante para los datos críticos del sis
 - **Discos y archivos grandes**: NTFS permite archivos y volúmenes más grandes que FAT, permitiendo archivos de hasta 16 TiB y volúmenes de hasta 256 TiB.
 
 
-#### 2.3.2.- Volúmenes NTFS y estructura de archivos
+### 2.3.2.- Volúmenes NTFS y estructura de archivos
 
 NTFS hace uso de los siguientes conceptos de almacenamiento de disco:
 
@@ -101,7 +99,7 @@ NTFS hace uso de los siguientes conceptos de almacenamiento de disco:
 El clúster es la unidad fundamental de asignación en NTFS, que no trabaja con sectores. El tamaño máximo de clúster es entre 1 y 128 sectores.
 
 
-#### 2.3.3.- Estructura de un volumen NTFS
+### 2.3.3.- Estructura de un volumen NTFS
 
 Cada elemento de un volumen NTFS es un archivo, y cada archivo está formado por una colección de atributos. Incluso el contenido del archivo se trata como un atributo.
 
@@ -119,7 +117,7 @@ Los diferentes elementos son:
     - **Mapa de bits de los clústeres**: una representación del volumen, mostrando que clústeres están ocupados.
     - **Tabla de definición de atributos**: define los tipos de atributos soportados en este volumen.
 
-#### 2.3.4.- TABLA MAESTRA DE ARCHIVOS
+### 2.3.4.- TABLA MAESTRA DE ARCHIVOS
 
 El corazón del sistema de archivos NTFS es la **MFT**. La MFT se organiza como una tabla de registros de longitud variable (entre 1 y 4 KB). Cada registro describe un archivo o una carpeta de un volumen, incluyendo la propia MFT, que se trata como un archivo.
 

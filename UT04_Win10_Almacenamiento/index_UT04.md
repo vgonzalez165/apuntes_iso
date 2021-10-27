@@ -1,7 +1,5 @@
 ![Carátula UT04](imgs/caratula_ut04.png)
 
-# UT04. WINDOWS 10. GESTIÓN DEL ALMACENAMIENTO
-
 ### Contenidos
 
 1. [Organización del almacenamiento](01_organización.md)

@@ -1,8 +1,6 @@
 ![Carátula UT04](imgs/caratula_ut04.png)
 
-# UT04. WINDOWS 10. GESTIÓN DEL ALMACENAMIENTO
-
-### Contenidos
+## Contenidos
 
 1. [Organización del almacenamiento](01_organización.md)
 2. [Sistemas de archivos](02_sistemas_archivos.md)
@@ -11,16 +9,16 @@
 5. [**Carpetas compartidas**](05_compartidas.md)
 
 
-## 5.- CARPETAS COMPARTIDAS
+# 5.- CARPETAS COMPARTIDAS
 
 Windows permite compartir carpetas locales a través de la red con otros equipos mediante las **carpetas compartidas**.
 
 
-### 5.1.- Compartir una carpeta
+## 5.1.- Compartir una carpeta
 
 Para compartir una carpeta en Windows hemos de acceder a la pestaña *Compartir* del diálogo *Propiedades* de dicha carpeta. Hay dos formas de compartir una carpeta, mediante un asistente o bien mediante el Uso compartido avanzado. Por defecto, el asistente está habilitado, pero si no lo estuviera será necesario habilitarlo para utilizarlo. Para ello, en cualquier ventana del explorador de archivos, vamos a *Vista -> Opciones -> Ver -> Configuración avanzada* y marcamos la casilla *Usar asistente para compartir*.
 
-#### 5.1.1.- Compartir utilizando el asistente
+### 5.1.1.- Compartir utilizando el asistente
 
 La forma más sencilla es mediante el asistente, pero nos deja pocas opciones a la hora de determinar cómo queremos compartir la carpeta. El asistente se lanza desde la pestaña *Compartir* y ahí únicamente debemos añadir los usuarios que queremos que tengan acceso a la carpeta indicando qué tipo de acceso deben tener: solo lectura o lectura escritura.
 
@@ -41,7 +39,7 @@ En UNC, las rutas de red tienen la forma:
 El nombre del equipo puede ser sustituido por la dirección IP del mismo. Esta dirección se puede introducir en el cuadro de texto *Ejecutar* o bien en cualquier ventana del explorador de Windows.
 
 
-#### 5.1.2.- Uso compartido avanzado
+### 5.1.2.- Uso compartido avanzado
 
 Si optamos por el **Uso compartido avanzado** dispondremos de mayor número de opciones a la hora de compartir la carpeta. Las opciones que hay son:
 
@@ -52,7 +50,7 @@ Si optamos por el **Uso compartido avanzado** dispondremos de mayor número de o
 Hay que tener en cuenta que los permisos compartidos pueden no coincidir con los permisos NTFS.  En esos casos, siempre se aplicarán los permisos **más restrictivos**. Así, si por ejemplo, un usuario tiene permiso compartido de *Control total* pero solo tiene permiso de *Lectura* en NTFS, cuando acceda por la red solo tendrá permiso de lectura.
 
 
-### 5.2.- Asignar unidad de red
+## 5.2.- Asignar unidad de red
 
 Si accedemos frecuentemente a una carpeta compartida desde un equipo hay una opción mucho más cómoda que teclear la dirección UNC cada vez que queramos acceso, y es asignando la carpeta compartida a una **unidad de red**.
 
@@ -67,7 +65,7 @@ Al hacerlo, tendremos la carpeta compartida en *Este Equipo* como si fuera un di
     - Tras aceptar, ya tendremos la unidad de red disponible.
 
 
-### 5.3.- Eliminar las credenciales de red almacenadas en caché
+## 5.3.- Eliminar las credenciales de red almacenadas en caché
 
 Si has practicado con lo visto en los apartados anteriores te habrás dado cuenta de que el sistema recuerda las credenciales con las que te has registrado en una carpeta compartida. El problema radica cuando queremos cambiar el usuario con el que iniciamos sesión en la carpeta. Para solucionar este problema tenemos que recurrir a la línea de comandos y utilizar el comando `net use`.
 
