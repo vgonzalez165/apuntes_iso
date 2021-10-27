@@ -1,7 +1,5 @@
 ![Carátula UT01](imgs/caratula_ut01.png)
 
-# UT01. TEORÍA DE SISTEMAS OPERATIVOS
-
 ### Contenidos
 
 1. [Introducción a los sistemas operativos](01_introducción.md)
@@ -11,7 +9,7 @@
 5. [Clasificación de los sistemas operativos](05_clasificación.md)
 
 
-## 4.- ARQUITECTURA DE LOS SISTEMAS OPERATIVOS
+# 4.- ARQUITECTURA DE LOS SISTEMAS OPERATIVOS
 
 Según su arquitectura los sistemas operativos pueden ser:
 

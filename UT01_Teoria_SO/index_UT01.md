@@ -1,10 +1,6 @@
 ![Carátula UT01](imgs/caratula_ut01.png)
 
-# UT01. TEORÍA DE SISTEMAS OPERATIVOS
-
-
-
-### Contenidos
+## Contenidos
 
 1. [Introducción a los sistemas operativos](01_introducción.md)
 2. [Historia de los sistemas operativos](02_historia.md)
@@ -12,7 +8,7 @@
 4. [Arquitectura de los sistemas operativos](04_arquitectura.md)
 5. [Clasificación de los sistemas operativos](05_clasificación.md)
 
-### Prácticas
+## Prácticas
 
 - PR0101: Desarrollo de un sistema operativo
 - PR0102: Comparativa de sistemas operativos

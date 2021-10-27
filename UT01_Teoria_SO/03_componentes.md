@@ -1,7 +1,5 @@
 ![Carátula UT01](imgs/caratula_ut01.png)
 
-# UT01. TEORÍA DE SISTEMAS OPERATIVOS
-
 ### Contenidos
 
 1. [Introducción a los sistemas operativos](01_introducción.md)
@@ -11,17 +9,17 @@
 5. [Clasificación de los sistemas operativos](05_clasificación.md)
 
 
-## 3.- COMPONENTES DE LOS SISTEMAS OPERATIVOS
+# 3.- COMPONENTES DE LOS SISTEMAS OPERATIVOS
 
 Por norma general, se suele considerar que un sistema operativo está formado por tres capas: el núcleo o kernel, los servicios del sistema operativo y el intérprete de mandatos o Shell.
 
 
-### 3.1.- El núcleo o kernel
+## 3.1.- El núcleo o kernel
 
 En el nivel más bajo se encuentra el **núcleo** o **kernel**, que es la parte del sistema operativo encargada de *interactuar con el hardware*. Por tanto, servirá de intermediario entre el resto de los componentes del sistema operativo y el hardware. Ningún otro componente necesita conocer las particularidades del hardware del ordenador, simplemente le dice al kernel qué es lo que quiere y es el este quien se encargará de comunicarlo al hardware.
 Sus funciones se centran en la gestión de recursos como repartir el procesador entre los procesos, gestionar las interrupciones del sistema o realizar las funciones básicas de manipulación de memoria.
 
-### 3.2.- Los servicios
+## 3.2.- Los servicios
 
 El sistema operativo proporciona al usuario diversos **servicios**. Algunos de los más importantes son:
 
@@ -31,7 +29,7 @@ El sistema operativo proporciona al usuario diversos **servicios**. Algunos de l
 - **Seguridad y protección**: este componente se encarga de garantizar la identidad de los usuarios y de definir lo que pueden hacer cada uno de ellos con los recursos del sistema.
 
 
-### 3.3.- Intérprete de comandos o Shell
+## 3.3.- Intérprete de comandos o Shell
 
 Es el componente que se encuentra al más alto nivel, en contacto directo con el usuario y por tanto, el que será responsable de interpretar las órdenes de este.
 

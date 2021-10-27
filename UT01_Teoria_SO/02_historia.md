@@ -1,8 +1,6 @@
 ![Carátula UT01](imgs/caratula_ut01.png)
 
-# UT01. TEORÍA DE SISTEMAS OPERATIVOS
-
-### Contenidos
+## Contenidos
 
 1. [Introducción a los sistemas operativos](01_introducción.md)
 2. [**Historia de los sistemas operativos**](02_historia.md)
@@ -11,7 +9,7 @@
 5. [Clasificación de los sistemas operativos](05_clasificación.md)
 
 
-## 2.- HISTORIA DE LOS SISTEMAS OPERATIVOS
+# 2.- HISTORIA DE LOS SISTEMAS OPERATIVOS
 
 La historia de los ordenadores se descompone en generaciones, que corresponden con grandes avances tecnológicos que han supuesto un punto de inflexión en su evolución. Estas generaciones han sido:
 
@@ -23,14 +21,14 @@ La historia de los ordenadores se descompone en generaciones, que corresponden c
 De forma paralela a la evolución de los ordenadores así lo han hecho los sistemas operativos que se ejecutan sobre ellos, pudiendo establecer una relación entre las distintas generaciones de ordenadores y los sistemas operativos que han ido surgiendo a lo largo de estos 75 años.
 
 
-### 2.1.- La primera generación (1945-1955): tubos de vacío y tableros
+## 2.1.- La primera generación (1945-1955): tubos de vacío y tableros
 
 A mediados de la década de 1940 *Howard Aiken*, en Harvard; *John von Neumman* en Princeton; *Eckert y Mauchely* en Pensilvania y *Konrad Zuse* en Alemania, entre otros, lograron construir máquinas calculadoras. Las primeras empleaban lentos reveladores mecánicas que rápidamente fueron sustituidos por tubos de vacío, lo que dio lugar a los primeros ordenadores.
 
 En estos primeros tiempos un solo grupo de personas diseñaba, construía, programaba, operaba y mantenía cada máquina. Toda la programación se efectuaba en lenguaje de máquina absoluto, a menudo alambrando tableros de conexiones para controlar las funciones básicas de la máquina. Por lo tanto, **no existían sistemas operativos** y los usuarios debían conocer perfectamente el funcionamiento interno de las máquinas.
 
 
-### 2.2.- La segunda generación (1955-1965): transistores y sistemas por lotes
+## 2.2.- La segunda generación (1955-1965): transistores y sistemas por lotes
 
 Con la introducción del **transistor** las computadoras se volvieron lo bastante fiables como para fabricarse y venderse a clientes comerciales. Por primera vez hubo una distinción clara entre diseñadores, constructores, operadores, programadores y personal de mantenimiento.
 
@@ -41,7 +39,7 @@ Otro sistema operativo de la época fue el **IBSYS** para el IBM 7094. Este sist
 Otro sistema operativo es **FMS (FORTRAN Monitoring System)**, un sistema operativo para el IBM 7090 basado en cinta cuyo propósito era únicamente compilar programas en FORTRAN.
 
 
-### 2.3.- La tercera generación (1965-80): circuitos integrados y multiprogramación
+## 2.3.- La tercera generación (1965-80): circuitos integrados y multiprogramación
 
 A principios de los 60 cada ordenador tenía su propio sistema operativo que únicamente funcionaba en dicho ordenador, lo que hacía incompatibles entre sí todos los sistemas operativos, incluso para ordenadores de un mismo fabricante.
 
@@ -66,11 +64,11 @@ El sistema operativo UNIX tuvo una rápida expansión entre universidades, donde
 El System V ha dado lugar a las versiones comerciales de UNIX de la actualidad, como el IBM AIX, HP-UX o Solaris de Oracle. En cambio, BSD evolución en otro sentido, hacia versiones de software libre, como NetBSD, FreeBSD y OpenBSD; y también en un sistema operativo ampliamente conocido en la actualidad: el Mac OS X de Apple.
 
 
-### 2.4.- La cuarta generación (1980-1995): computadoras personales
+## 2.4.- La cuarta generación (1980-1995): computadoras personales
 
 Esta generación está caracterizada por los ordenadores personales y, con ellos, una gran variedad de sistemas operativos que, en muchos casos, establecieron las bases para los sistemas operativos actuales.
 
-#### 2.4.1.- Primeros sistemas operativos orientados a computadoras personales
+### 2.4.1.- Primeros sistemas operativos orientados a computadoras personales
 
 El primer sistema operativo para microcomputadoras fue **CP/M (Control Program for Microcomputers)**, desarrollado por Gary Kildall para el procesador Intel 8080.  Posteriormente fue reescrito para otros procesadores, como el Zilog Z80 o el Motorola 68000, lo que le permitió dominar el mundo de la microcomputación durante cinco años. Algunos ordenadores que utilizaron este sistema operativo son el ZX Spectrum, Atari ST, MSX o el Apple II.
 
@@ -80,7 +78,7 @@ Hasta este momento, la interfaz de usuario de todos los sistemas operativos cons
 Quien sí lo vio fue Steve Jobs después de una visita a Xerox PARC, lo que llevó a la construcción de Lisa, la primera computadora con GUI, que fracasó por ser demasiado cara. El segundo intento, la **Apple Macintosh**, fue un enorme éxito, no sólo porque era más económica, sino porque era amigable para el usuario, lo cual la hacía apta para usuarios sin conocimientos de informática.
 
 
-#### 2.4.2.- MS-DOS y Windows
+### 2.4.2.- MS-DOS y Windows
 
 Cuando Microsoft buscó un sucesor para MS-DOS en 1985 se basó en el éxito de la Macintosh, por lo que produjo un sistema basado en GUI que llamó **Windows** y que originalmente se ejecutaba encima de MS-DOS, es decir, era un **shell** y no un verdadero sistema operativo. En 1995 Microsoft sacó **Windows 95**, que ya se podía considerar un sistema operativo que integraba Windows y MS-DOS. Este evolucionó con Windows 98 y posteriormente con el malogrado **Windows Me (Millenium Edition)**.
 
@@ -96,7 +94,7 @@ Microsoft rápidamente sacó un nuevo sistema operativo, denominado **Windows 7*
 Paralelamente a todos estos sistemas orientados al mercado doméstico, Microsoft han mantenido una familia de sistemas operativos orientados al mercado de servidores, denominados **Windows Server**.
 
 
-#### 2.4.3.- Linux
+### 2.4.3.- Linux
 
 El desarrollo de **Linux** es, en cierto modo, paralelo al de Windows, y su origen tiene un nombre propio y una fecha: **Richard Stallman**, un programador que, en 1983, ante un entorno tecnológico cada vez más comercializado, añoraba los viejos tiempos en los que el software era creado en universidades y no tenía propietario, los programas se distribuían libremente y cualquiera con conocimientos podía contribuir a su desarrollo. Por ello, en ese año decidió acuñar el concepto de **software libre**, el cual se resume en cuatro libertades esenciales:
 
