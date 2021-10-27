@@ -1,8 +1,6 @@
 ![Carátula UT05](imgs/caratula_ut05.png)
 
-# UT05. WINDOWS 10. ADMINISTRACIÓN
-
-### Contenidos
+## Contenidos
 
 1. Gestión de procesos
 2. El administrador de tareas
@@ -14,7 +12,7 @@
 8. Programador de tareas
 
 
-## 2.- EL ADMINISTRADOR DE TAREAS
+# 2.- EL ADMINISTRADOR DE TAREAS
 
 El **Administrador de tareas** es una herramienta de supervisión que permite controlar la actividad del sistema en tiempo real y visualizar la información del estado del procesador, de la memoria de las aplicaciones y de los procesos.
 
@@ -27,7 +25,7 @@ Hay múltiples forma de llegar al *Administrador de tareas*:
 
 La primera vez que se accede al *Administrador de tareas* se ve una ventana que apenas muestra información, pero si pulsamos en *Más detalles* pasará a otro modo en el que tenemos gran candidad de información repartida en siete pestañas.
 
-### 2.1.- Pestaña Procesos
+## 2.1.- Pestaña Procesos
 
 ![Pestaña Procesos del Administrador de tareas1](imgs/taskmgr_procesos.png)
 
@@ -44,7 +42,7 @@ Los campos más relevantes son:
 Además, en la parte inferior derecha se encuentra el botón **Finalizar tarea**, que envía una señal de apagado al proceso que tengamos seleccionado, interesantes en situaciones en la que no podamos cerrar algún programa, por ejemplo, porque se haya colgado.
 
 
-### 2.2.- Pestaña Rendimiento
+## 2.2.- Pestaña Rendimiento
 
 ![Pestaña Rendimiento del Administrador de tareas](imgs/taskmgr_rendimiento.png)
 

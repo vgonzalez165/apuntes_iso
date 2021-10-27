@@ -1,8 +1,6 @@
 ![Carátula UT05](imgs/caratula_ut05.png)
 
-# UT05. WINDOWS 10. ADMINISTRACIÓN
-
-### Contenidos
+## Contenidos
 
 1. El administrador de tareas]
 2. Gestión de procesos
@@ -14,7 +12,7 @@
 8. Programador de tareas
 
 
-## 1.- GESTIÓN DE PROCESOS
+# 1.- GESTIÓN DE PROCESOS
 
 
 
