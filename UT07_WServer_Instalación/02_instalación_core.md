@@ -1,8 +1,6 @@
 ![Carátula UT07](imgs/caratula_ut07.png)
 
-# UT07. WINDOWS SERVER. INSTALACIÓN Y PRIMEROS PASOS
-
-### Contenidos
+## Contenidos
 
 1. [Instalación de Windows Server](01_instalación.md)
 2. [**Instalación en modo Core**](02_instalación_core.md)
@@ -11,7 +9,7 @@
 5. [Administración de discos en Windows Server. Grupos de almacenamiento](05_admin_discos.md)
 
 
-## 2.- INSTALACIÓN CORE
+# 2.- INSTALACIÓN CORE
 
 Una decisión que hay que tomar en la instalación es si instalar la versión con entorno gráfico o si es suficiente con la versión **Server Core** en línea de comandos. Hay que tener en cuenta que muchos servidores están dedicados a un rol particular y un entorno gráfico únicamente sirve para consumir recursos sin aportar ninguna ventaja.  
 
@@ -35,7 +33,7 @@ Entre las aplicaciones que se instalan se incluyen: la consola de administració
 La forma de alternar entre estas opciones es diferente según el sentido del cambio. De esta forma si nos encontramos en la interfaz gráfica utilizaremos el Administrador de servidor, en cambio, si estamos utilizando Server Core, debemos realizar el cambio mediante PowerShell.
 
 
-### 2.1.- Habilitar Server Core desde el Administrador del servidor
+## 2.1.- Habilitar Server Core desde el Administrador del servidor
 
 Para alternar entre interfaz con GUI, Server Core y Minimal Server Interface lo podemos hacer desde *Administrador de servidor -> Administrar -> Quitar roles y funciones ->Infraestructura e interfaces de usuario*. Ahí tenemos estas opciones:
 
@@ -44,7 +42,7 @@ Para alternar entre interfaz con GUI, Server Core y Minimal Server Interface lo 
 - **Experiencia de escritorio**: incluye características propias de Windows 8 tales como Windows Media o los temas de escritorio.
  
 
-### 2.2.- Habilitar la GUI desde la línea de comandos con Powershell
+## 2.2.- Habilitar la GUI desde la línea de comandos con Powershell
 
 Realizar el proceso contrario es algo más complicado ya que debes tener en cuenta que no tendrás entorno gráfico por lo que deberá realizarse a través de la línea de comandos.  Para ello utilizaremos PowerShell.
 

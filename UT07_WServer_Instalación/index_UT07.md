@@ -1,10 +1,6 @@
 ![Carátula UT07](imgs/caratula_ut07.png)
 
-# UT07. WINDOWS SERVER. INSTALACIÓN Y PRIMEROS PASOS
-
-PONER EL RESUMEN DE LA UNIDAD
-
-### Contenidos
+## Contenidos
 
 1. [Instalación de Windows Server](01_instalación.md)
 2. [Instalación en modo Core](02_instalación_core.md)
@@ -13,7 +9,7 @@ PONER EL RESUMEN DE LA UNIDAD
 5. [Administración de discos en Windows Server. Grupos de almacenamiento](05_admin_discos.md)
 
 
-### Prácticas
+## Prácticas
 
 - PR0701: Preparación del servidor
 - PR0702: Grupos de almacenamiento

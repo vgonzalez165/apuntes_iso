@@ -1,8 +1,6 @@
 ![Carátula UT07](imgs/caratula_ut07.png)
 
-# UT07. WINDOWS SERVER. INSTALACIÓN Y PRIMEROS PASOS
-
-### Contenidos
+## Contenidos
 
 1. [**Instalación de Windows Server**](01_instalación.md)
 2. [Instalación en modo Core](02_instalación_core.md)
@@ -11,9 +9,9 @@
 5. [Administración de discos en Windows Server. Grupos de almacenamiento](05_admin_discos.md)
 
 
-## 1.- INSTALACIÓN DE WINDOWS SERVER
+# 1.- INSTALACIÓN DE WINDOWS SERVER
 
-### 1.1.- Introducción
+## 1.1.- Introducción
 
 Windows Server es la familia de sistemas operativos de servidor de Microsoft y su evolución ha sido más o menos paralela a la de la familia de sistemas operativos de escritorio, compartiendo tanto herramientas como aspectos visuales o modos de trabajo. De esta forma Windows Server 2012R2 comparte muchos aspectos con Windows 8 mientras que Windows Server 2016 y 2019 son muy similares a Windows 10.
 
@@ -36,7 +34,7 @@ Cada nueva versión de Windows Server mantiene los elementos más relevantes de 
     - **Hybrid Cloud y Azure**: en esta versión se profundiza en la integración entre los servidores locales y los servidores en la nube de Azure, integrándolos mediante una conexión VPN.
 
 
-### 1.2.- Tareas previas y posteriores a la instalación
+## 1.2.- Tareas previas y posteriores a la instalación
 
 Antes de instalar un servidor es necesario realizar una serie de tareas previas:
 
@@ -59,7 +57,7 @@ Por otro lado, una vez instalado el sistema hay que realizar una serie de compro
 - **Copia de seguridad**: al terminar la instalación es conveniente realizar una copia de seguridad y programar una copia de seguridad periódica.
 
 
-### 1.3.- Instalación de Windows Server
+## 1.3.- Instalación de Windows Server
 
 Durante el proceso de instalación de Windows Server 2012 debemos seguir los siguientes pasos:
 
@@ -83,14 +81,14 @@ Durante el proceso de instalación de Windows Server 2012 debemos seguir los sig
 - Tras elegir la opción deseada podemos ir a Buscar actualizaciones para forzar la búsqueda de las actualizaciones disponibles.
 
 
-### 1.4.- Instalación de aplicaciones 
+## 1.4.- Instalación de aplicaciones 
 
 La forma de instalar y gestionar aplicaciones en Windows Server difiere bastante de la forma de hacerlo en las versiones de escritorio. Mientras que en las versiones de escritorio es habitual obtener el instalador de las aplicaciones en CD o descargándolo para instalarlas, en entornos de servidor es una tarea desaconsejada ya que son entornos más controlados y la instalación de aplicaciones externas puede traer problemas de estabilidad y de seguridad.
 
 Por ello Windows Server ya incluye las aplicaciones que se pueden necesitar en un servidor por medio de los **roles** y **características**.
 
 
-#### 1.4.1.- Roles
+### 1.4.1.- Roles
 
 Los **roles** se utilizan para organizar la funcionalidad del sistema operativo. Designan las funciones principales del servidor. Con cada rol pueden ser necesarios servicios específicos denominados **servicios de rol**.
 
@@ -106,7 +104,7 @@ Algunos ejemplos de roles son:
 - Windows Server Update Services
 
 
-#### 1.4.2.- Características
+### 1.4.2.- Características
 
 Además de los roles y servicios de roles, están las características. Se trata de componentes independientes de las funciones del servidor pero que pueden ser necesarios para dar apoyo a los roles. 
 
@@ -119,7 +117,7 @@ Por ejemplo, el Directorio Activo es un rol, pero para determinadas instalacione
 - Copia de seguridad de Windows Server
 
 
-#### 1.4.3.- Instalación de roles y características
+### 1.4.3.- Instalación de roles y características
 
 La instalación de roles y características se puede realizar desde el Administrador del servidor, en la opción *Administrar -> Agregar roles y características*.
  

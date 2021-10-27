@@ -1,8 +1,6 @@
 ![Carátula UT07](imgs/caratula_ut07.png)
 
-# UT07. WINDOWS SERVER. INSTALACIÓN Y PRIMEROS PASOS
-
-### Contenidos
+## Contenidos
 
 1. [Instalación de Windows Server](01_instalación.md)
 2. [Instalación en modo Core](02_instalación_core.md)
@@ -11,7 +9,7 @@
 5. [Administración de discos en Windows Server. Grupos de almacenamiento](05_admin_discos.md)
 
 
-## 3.- TAREAS DE POST-INSTALACIÓN
+# 3.- TAREAS DE POST-INSTALACIÓN
 
 Una vez instalado el sistema hay una serie de tareas que debemos abordar. Entre estas tareas se encuentran:
 
@@ -22,17 +20,17 @@ Una vez instalado el sistema hay una serie de tareas que debemos abordar. Entre 
 - Unir el servidor a un dominio si hubiera uno.
 
 
-### 3.1.- Tareas post-instalación en entorno gráfico
+## 3.1.- Tareas post-instalación en entorno gráfico
 
 Estas tareas iniciales se pueden realizar desde *Administrador de servidor -> Servidor local*.  Aquí podemos cambiar el nombre del servidor (Nombre de equipo), cambiar la configuración de red (Ethernet), configurar la política de actualizaciones del servidor (Windows Update) y establecer la hora del servidor (Zona horaria). Ten en cuenta que este último punto es especialmente importante en el caso de que queramos instalar Active Directory ya que es **requisito imprescindible** la correcta sincronización de los relojes de todos los equipos del dominio.
  
 
-### 3.2.- Tareas post-instalación en Server Core
+## 3.2.- Tareas post-instalación en Server Core
 
 Cuando estamos trabajando en Server Core estas tareas son algo más complicadas ya que debemos realizarlas utilizando la línea de comandos.
 
 
-#### 3.2.1.- Cambio del nombre del equipo
+### 3.2.1.- Cambio del nombre del equipo
 
 Si queremos saber el nombre que tiene actualmente el servidor podemos utilizar el comando `hostname` o `ipconfig`.
 
@@ -55,7 +53,7 @@ PS C:\>Rename-Computer –NewName <NewComputerName> -Restart
 ```
 
 
-#### 3.2.2.-Establecer una dirección IP estática
+### 3.2.2.-Establecer una dirección IP estática
 
 El siguiente paso para realizar es cambiar la IP dinámica que tiene el sistema instalado por defecto por una IP estática. Si realizamos esta tarea desde la línea de comandos debemos recurrir a PowerShell.
 
@@ -81,7 +79,7 @@ PS C:\>Set-DNSClientServerAddress –InterfaceIndex 12 –ServerAddresses 8.8.8.
 ```
 
 
-### 3.3.- Configuración de NIC Teaming
+## 3.3.- Configuración de NIC Teaming
 
 **NIC teaming** es una nueva característica disponible en Windows Server 2012R2 que permite a los administradores combinar el ancho de banda de múltiples adaptadores de red, incrementando de esta manera el rendimiento y la tolerancia a fallos.
 

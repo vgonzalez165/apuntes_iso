@@ -1,8 +1,6 @@
 ![Carátula UT07](imgs/caratula_ut07.png)
 
-# UT07. WINDOWS SERVER. INSTALACIÓN Y PRIMEROS PASOS
-
-### Contenidos
+## Contenidos
 
 1. [Instalación de Windows Server](01_instalación.md)
 2. [Instalación en modo Core](02_instalación_core.md)
@@ -11,7 +9,7 @@
 5. [**Administración de discos en Windows Server. Grupos de almacenamiento**](05_admin_discos.md)
 
 
-## 5.- ADMINISTRACIÓN DE DISCOS EN WINDOWS SERVER 2012
+# 5.- ADMINISTRACIÓN DE DISCOS EN WINDOWS SERVER 2012
 
 Windows Server 2012R2 incluye una serie de herramientas que permiten administrar los discos tanto en un entorno gráfico como desde la línea de comandos. Todas las instalaciones incluyen por defecto el rol Servicios de archivos y de almacenamiento, que permite trabajar con volúmenes, discos, grupos de almacenamiento, carpetas compartidas y dispositivos iSCSI.
 
@@ -20,18 +18,18 @@ El Administrador del servidor es la única herramienta gráfica que permite trab
 Para la realización de las operaciones habituales sobre los discos físicos se puede utilizar el complemento del MMC (Microsoft Management Console) Administración de discos. Para acceder a esta herramienta debemos ir a *Administrador del servidor -> Servidor local -> Herramientas -> Administración de equipos -> Administración de discos*.
 
 
-### 5.1.- Añadir un nuevo disco físico
+## 5.1.- Añadir un nuevo disco físico
 
 Cuando añadimos un nuevo disco a Windows Server, es necesario inicializarlo antes de poder utilizarlo. Los discos físicos los podemos ver en *Administrador del servidor -> Servicios de archivos y de almacenamiento -> Discos* donde se puede ver que los discos no inicializados tienen marcada como partición Desconocido.
  
 Para inicializar el disco únicamente debemos hacer click derecho sobre él y escoger la opción Inicializar. Con esta acción creamos la tabla de particiones permitiendo así ya utilizar el disco. Hay que destacar que, aunque Windows Server 2012 puede trabajar con tablas de particiones MBR y GPT, únicamente puede inicializar discos con la tabla de particiones GPT. Sin embargo, aún es posible convertir el disco a MBR utilizando el complemento Administrador de discos del MMC haciendo click derecho sobre el disco y seleccionando Convertir en disco MBR.
 
 
-### 5.2.- Grupos de almacenamiento
+## 5.2.- Grupos de almacenamiento
 
 Una vez que se han añadido varios discos físicos al sistema, es posible concatenarlos en los denominados grupos de almacenamiento. Un grupo de almacenamiento simplemente es la unión de varios discos físicos en una especie de abstracción del almacenamiento de la cual se pueden extraer discos virtuales de cualquier tamaño.
 
-#### 5.2.1.- Creación de grupos de almacenamiento
+### 5.2.1.- Creación de grupos de almacenamiento
 
 Para crear un grupo de almacenamiento hay que seguir los siguientes pasos:
 - Ir a Administrador del servidor -> Servicios de archivos y de almacenamiento -> Grupos de almacenamiento.
@@ -46,7 +44,7 @@ Para crear un grupo de almacenamiento hay que seguir los siguientes pasos:
 Una vez creado el grupo de almacenamiento se pueden añadir o eliminar discos físicos para modificar su tamaño.
 
 
-#### 5.2.2.- Creando discos virtuales
+### 5.2.2.- Creando discos virtuales
 
 Una vez creado el grupo de almacenamiento es el momento de crear discos virtuales. Estos discos son extraídos del grupo de almacenamiento y pueden ser utilizados tanto por las máquinas virtuales con Hyper-V como desde el propio sistema operativo como si fuera un disco duro normal.
 
@@ -64,7 +62,7 @@ Los pasos para crear un disco virtual son:
     - Tras confirmar los datos ya tendremos creado el disco virtual. A todos los efectos este disco se comportará igual que los discos físicos.
 
 
-#### 5.2.2.- Creación de un volumen
+### 5.2.2.- Creación de un volumen
 
 En Windows Server 2012 hay dos herramientas diferentes que nos permiten crear volúmenes. La primera se encuentra en *Administrador del servidor -> Herramientas -> Administración de equipos -> Administración de discos*. Esta es la misma herramienta que encontramos en otras versiones de Windows incluso de escritorio.
  
@@ -85,7 +83,7 @@ Las opciones más relevantes de este asistente son:
     - Etiqueta de volumen: si queremos asignarle un nombre al volumen.
 
 
-### 5.3.- Administración de grupos de almacenamiento desde Powershell
+## 5.3.- Administración de grupos de almacenamiento desde Powershell
 
 Al igual que otras tareas administrativas de Windows, también es posible trabajar con los grupos de almacenamiento desde PowerShell, realizando las mismas tareas que hemos hecho desde el entorno gráfico.
 
