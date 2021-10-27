@@ -1,8 +1,8 @@
 ![Carátula UT06](imgs/caratula_ut06.png)
 
-### Contenidos
+## Contenidos
 
-1. [Introducción a Powershell](01_introducción.md)
+1. [**Introducción a Powershell**](01_introducción.md)
 2. [Objetos y el pipeline](02_pipelines.md)
 3. [El sistema de ficheros en Powershell](03_sistema_ficheros.md)
 4. [Gestión de Hyper-V desde Powershell](04_hyperv.md)

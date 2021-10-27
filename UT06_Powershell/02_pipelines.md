@@ -1,10 +1,9 @@
 ![Carátula UT06](imgs/caratula_ut06.png)
 
-
 ### Contenidos
 
 1. [Introducción a Powershell](01_introducción.md)
-2. [Objetos y el pipeline](02_pipelines.md)
+2. [**Objetos y el pipeline**](02_pipelines.md)
 3. [El sistema de ficheros en Powershell](03_sistema_ficheros.md)
 4. [Gestión de Hyper-V desde Powershell](04_hyperv.md)
 5. [Gestión de usuarios y grupos](05_usuarios.md)
@@ -12,25 +11,43 @@
 7. [Powershell y el almacenamiento](07_almacenamiento.md)
 
 
-
 # 2.- CONTROL DE LA SALIDA CON PIPELINES
 
-El **pipeline**, representado por el símbolo barra vertical (`|`), es utilizado para combinar diversos cmdlets de forma que la salida de uno es enviada a la entrada del siguiente, de forma muy similar a cómo se hace en Linux. 
- 
+## 2.1.- La canalización o pipeline
 
-## 2.1.- Objetos en Powershell
+El **pipeline** o la **canalización**, representado por el símbolo barra vertical (`|`), es utilizado para combinar diversos cmdlets de forma que la salida de uno es enviada a la entrada del siguiente, de forma muy similar a cómo se hace en Linux. Esto permite enlazar varios comandos en una especie de flujo de datos en el que cada uno de los comandos realiza algún tipo de operación sobre los datos generados por el comando anterior. 
 
-Un aspecto importante al trabajar con el pipeline, sobre todo si has trabajado antes con Linux, es que Powershell es un Shell **orientado a objetos**, y, por tanto, la información que se intercambia entre los comandos son objetos.
+La sintaxis es de la forma:
+
+```powershell
+Comando1 | Comando2 | Comando3
+```
+
+En este ejemplo, la salida de `Comando1`es enviada a `Comando2`, que realizará algún tipo de operación con esos datos y enviará la salida generada a `Comando3`. Como este ya es el último comando, su salida será enviada a la consola para ser mostrada al usuario.
+
+Veamos un ejemplo sencillo de utilización de la canalización.
+
+```powershell
+C:\> Get-Process notepad | Stop-Process
+```
+
+Aquí, el primer comando de la canalización buscará todos los procesos que hay en el sistema que se llamen `notepad`, es decir, todas las instancias del bloc de notas que tengamos abiertas. Este listado de procesos lo enviará al siguiente comando de la canalización, `Stop-Process`, cuyo cometido es finalizar un proceso. Por tanto, tomará cada proceso del listado que recibe y lo cerrará.
+
+
+
+## 2.2.- Objetos en Powershell
+
+Un aspecto importante al trabajar con la canalización, sobre todo si has trabajado antes con Linux, es que Powershell es un Shell **orientado a objetos**, y, por tanto, la información que se intercambia entre los comandos no son meras cadenas de caracteres, sino que son objetos.
 
 Un **objeto** se puede entender como una abstracción de un elemento, por ejemplo, un usuario, un proceso o un fichero. Cada objeto tiene una serie de **propiedades**, que son las características intrínsecas de dicho objeto, y una serie de **métodos**, que son las acciones que se pueden realizar sobre dicho objeto.
 
-Por ejemplo, cuando en MS-DOS ejecutamos la orden:
+Por ejemplo,supongamos que MS-DOS ejecutamos la orden:
 
 ```powershell
 C:\> dir c:\datos\*.txt
 ```
 
-Cuando ejecutamos esa orden el sistema mira el contenido del directorio ```C:\datos``` buscando los ficheros que tengan extensión txt y, a partir del mismo, genera una salida por pantalla, es decir, una secuencia de caracteres, que muestran el contenido de dicho directorio. Si quisiéramos realizar algún tipo de operación automatizada con la salida de este comando, tendremos que trabajar con esa secuencia de caracteres que ha generado. Por ejemplo, podríamos guardar todos esos caracteres en un fichero, o filtrarlos para que muestre todas las líneas que contengan una determinada cadena, pero solo operaciones que trabajen con esa cadena de texto.
+Cuando ejecutamos esa orden el sistema mira el contenido del directorio ```C:\datos``` buscando los ficheros que tengan extensión `txt` y, a partir del mismo, genera una salida por pantalla, es decir, una secuencia de caracteres, que muestran el contenido de dicho directorio. Si quisiéramos realizar algún tipo de operación automatizada con la salida de este comando, tendremos que trabajar con esa secuencia de caracteres que ha generado. Por ejemplo, podríamos guardar todos esos caracteres en un fichero, o filtrarlos para que muestre todas las líneas que contengan una determinada cadena, pero solo operaciones que trabajen con esa cadena de texto.
 
 Veamos ahora la orden equivalente en Powershell, que será:
 
@@ -38,103 +55,120 @@ Veamos ahora la orden equivalente en Powershell, que será:
 C:\> Get-Item C:\datos\*.txt
 ```
 
-Si la ejecutamos veremos que la salida es muy similar a la del comando anterior, pero sin embargo lo que hace es muy diferente. El comando obtiene el listado de ficheros del disco, pero lo hace como una **lista de objetos**, cada uno de los cuales representando cada fichero. Una vez que tiene esta lista de objeto mira a ver que hay que hacer con ellos: si tiene que enviárselos a otro comando mediante el pipeline (como veremos un poco más adelante) le enviará la lista de objetos; en cambio, si tiene que mostrar la salida por pantalla tomará esos objetos y verá cuál es la representación más adecuada para mostrársela al usuario, momento en el que dejarán de ser un conjunto de objetos para ser una secuencia de caracteres.
+Si la ejecutamos veremos que la salida es muy similar a la del comando anterior, pero, sin embargo, lo que hace es muy diferente. El comando obtiene el listado de ficheros del disco, pero lo hace como una **lista de objetos**, cada uno de los cuales representa un fichero. Una vez que tiene esta lista de objeto mira a ver que hay que hacer con ellos: si tiene que enviárselos a otro comando mediante el pipeline (como veremos un poco más adelante) le enviará la lista de objetos; en cambio, si tiene que mostrar la salida por pantalla tomará esos objetos y elegirá la representación más adecuada para mostrársela al usuario, momento en el que dejarán de ser un conjunto de objetos para ser una secuencia de caracteres.
 
-Con este enfoque, podemos enviar la salida del comando **xxxxxxxxxxx**
-
-
-
-Podemos saber qué tipo de objetos devuelve un comando de Powershell canalizando la salida al comando `Get-Member`, que muestra información por pantalla del objeto que se le envía.
- 
-En la imagen anterior ejecutamos el comando `Get-LocalUser -Name Victor` que devuelve un objeto de tipo Microsoft.Powershell.Commands.LocalUser que se corresponde con el usuario cuyo nombre es Victor. Este objeto contiene toda la información sobre dicho usuario, la cual se almacena en las propiedades del mismo. Por ejemplo, la fecha de caducidad de la cuenta del usuario se almacena en la propiedad AccountExpires. 
-
-
-En la imagen anterior podemos ver que el comando `Get-LocalUser` devuelve objetos del tipo Microsoft.Powershell.Commands.LocalUser, y, a continuación, se nos muestran los métodos y propiedades de estos objetos. Por ejemplo, el objeto usuario tiene un método denominado Clone() que, como su nombre indica, servirá para clonar el usuario al que corresponde ese objeto; o, una propiedad denominada Description que almacenará una cadena de texto con la descripción introducida cuando se creó el usuario.
-
-
-## 2.2.- El pipeline
-
-Cuando hablamos del **pipeline** en Powershell nos referimos a la capacidad de enviar la salida de un comando (que recordemos que por norma general es uno o varios objetos) a otro comando para que haga algo con ellos. De esta forma podremos encadenar diversos comandos de forma que cada uno de ellos toma como entrada la salida del comando anterior, lo manipula de alguna manera, y el resultado obtenido lo envía a la entrada del siguiente comando.
-
-La sintaxis para indicar esta operación es mediante el carácter barra vertical (|), que ha de situarse entre un comando y el siguiente.
-
-Algo importante que hay que tener en cuenta es que el tipo de objeto que genera el primer comando como salida tiene que coincidir con el tipo de objeto que admite el segundo comando como entrada. Por ejemplo, no tendría sentido enviar la salida del comando ```Get-LocalUser```, que devuelve una lista de objetos que representan usuarios, al comando ```Kill-Process```, que requiere como entrada objetos que representan procesos para eliminarlos.
-
-
-
-## 2.3.- Redirección a otro comando
-
-Un uso del pipeline es obtener la referencia a algún objeto para utilizar como entrada de otro comando. Por ejemplo, supongamos que queremos terminar el proceso correspondiente a la calculadora, para lo cual necesitamos el comando Stop-Process. 
-Mirando la ayuda de este comando veremos que requiere el identificador del proceso que queremos terminar, por lo que sería necesario conocer antes este número, por ejemplo, mediante el comando anterior.
- 
-Sin embargo, es más sencillo enlazar ambos comandos en una línea de la siguiente forma:
- 
-Observa que esto es útil incluso si tenemos varias instancias de un proceso. En el siguiente ejemplo se ve que hay ocho instancias del proceso Teams, las cuales son recogidas todas por el comando Get-Process y enviadas a Stop-Process.
- 
-
-## 2.4.- Obtener propiedades del objeto
-
-Como hemos dicho, la salida de los comandos de Powershell son objetos, cada uno de los cuales tiene una serie de propiedades, aunque en la salida por defecto únicamente es muestran las más importantes. Si queremos ver todas las propiedades de un objeto lo podemos hacer con el comando ```Get-Member``` de la siguiente forma:
+Podemos saber qué tipo de objetos devuelve un comando de Powershell, así como el listado completo de propiedades y métodos del mismo,  canalizando la salida al comando `Get-Member`.
 
 ```powershell
-PS C:\> Get-Process -Name Calculator | Get-Member
+PS C:\> Get-LocalUser -Name Victor| Get-Member
 
-   TypeName: System.Diagnostics.Process
+   TypeName: Microsoft.PowerShell.Commands.LocalUser
 
-Name                       MemberType     Definition
-----                       ----------     ----------
-Handles                    AliasProperty  Handles = Handlecount
-Name                       AliasProperty  Name = ProcessName
-NPM                        AliasProperty  NPM = NonpagedSystemMemorySize64
-PM                         AliasProperty  PM = PagedMemorySize64
-SI                         AliasProperty  SI = SessionId
+Name                   MemberType Definition
+----                   ---------- ----------
+Clone                  Method     Microsoft.PowerShell.Commands.LocalUser Clone()
+Equals                 Method     bool Equals(System.Object obj)
+GetHashCode            Method     int GetHashCode()
+GetType                Method     type GetType()
+ToString               Method     string ToString()
+AccountExpires         Property   System.Nullable[datetime] AccountExpires {get;set;}
+Description            Property   string Description {get;set;}
+Enabled                Property   bool Enabled {get;set;}
+FullName               Property   string FullName {get;set;}
+LastLogon              Property   System.Nullable[datetime] LastLogon {get;set;}
 ...
+
 ```
 
-Lo primero que podemos ver es que el comando ```Get-Process``` devuelve objetos del tipo **System.Diagnostics.Process**. Podemos saber qué comandos admiten ese objeto como entrada utilizando el comando ```Get-Command```.
+En el ejemplo anterior se puede ver que el comando `Get-LocalUser` devuelve objetos de tipo `Microsoft.Powershell.Commands.LocalUser`. Estos objetos representan cada uno de los usuarios del sistema, y por tanto, cada objeto tendrá una serie de propiedades que definen al usuario y también de métodos que permiten realizar operaciones sobre dicho usuario. 
+
+Por ejemplo, la propiedad `Enabled` almacenará un valor booleano (que puede ser verdadero o falso) que indicará si la cuenta está habilitada o no. Hay muchas formas de ver el valor de la propiedad de un objeto, una de ellas es rodeando el comando que genera el objeto entre paréntesis y poniendo a continuación el nombre de la propiedad que queremos obtener separándola del comando con el carácter punto (`.`).
+
 
 ```powershell
-PS C:\> get-command -ParameterType Process
-
-CommandType     Name                                               Version    Source
------------     ----                                               -------    ------
-Cmdlet          Debug-Process                                      7.0.0.0    Microsoft.PowerShell.Management
-Cmdlet          Enter-PSHostProcess                                7.1.4.0    Microsoft.PowerShell.Core
-Cmdlet          Get-Process                                        7.0.0.0    Microsoft.PowerShell.Management
-Cmdlet          Get-PSHostProcessInfo                              7.1.4.0    Microsoft.PowerShell.Core
-Cmdlet          Stop-Process                                       7.0.0.0    Microsoft.PowerShell.Management
-Cmdlet          Wait-Process                                       7.0.0.0    Microsoft.PowerShell.Management
+PS C:\> (Get-LocalUser -Name Victor).Enabled
+True
 ```
-
-Volviendo al comando ```Get-Member```, tras el tipo de objeto devuelto nos mostrará un listado de todas las propiedades y métodos de dicho objeto. En la segunda columna se indica el tipo de miembro, los más relevantes son:
+ 
+Aparte de las propiedades, los objetos en Powershell pueden tener otros tipos de elementos. El tipo de cada elemento se puede ver en la columna `MemberType`, siendo los más relevantes:
 
 - **Property**: son las propiedades del objeto, por ejemplo, el nombre del proceso o su identificador.
 - **Method**: los métodos permiten realizar algún tipo de operación con el objeto, por ejemplo, el método ```kill()``` mataría el objeto. 
 - **AliasProperty**: un nombre alternativo para una propiedad, normalmente más conciso, por ejemplo, **Name** contiene el mismo valor que la propiedad **ProcessName**.
 
-Si nos fijamos vemos que los objetos devueltos por el comando ```Get-Process``` tienen varias decenas de propiedades. Sin embargo, cuando lo ejecutamos únicamente podemos ver por pantalla unas pocas.
+Es posible mostrar únicamente los elementos de un determinado tipo con el parámetro `-MemberType` del comando `Get-Member`.
 
 ```powershell
-PS C:\> Get-Process -name calculator
+PS C:\> Get-LocalUser -Name Victor | Get-Member -MemberType Properties
 
- NPM(K)    PM(M)      WS(M)     CPU(s)      Id  SI ProcessName
- ------    -----      -----     ------      --  -- -----------
-     30    23,82      69,59       0,69   17396   1 Calculator
+   TypeName: Microsoft.PowerShell.Commands.LocalUser
+
+Name                   MemberType Definition
+----                   ---------- ----------
+AccountExpires         Property   System.Nullable[datetime] AccountExpires {get;set;}
+Description            Property   string Description {get;set;}
+Enabled                Property   bool Enabled {get;set;}
+FullName               Property   string FullName {get;set;}
+LastLogon              Property   System.Nullable[datetime] LastLogon {get;set;}
+...
+```
+
+
+Si nos fijamos vemos que los objetos devueltos por el comando ```Get-LocalUser``` tienen varias decenas de propiedades. Sin embargo, cuando lo ejecutamos únicamente podemos ver por pantalla unas pocas: el nombre, si está habilitado el usuario y la descripción.
+
+```powershell
+PS C:\Users\victor> Get-LocalUser
+
+Name               Enabled Description
+----               ------- -----------
+Administrador      False   Cuenta integrada para la administración del equipo o dominio
+DefaultAccount     False   Cuenta de usuario administrada por el sistema.
+Invitado           False   Cuenta integrada para el acceso como invitado al equipo o dominio
+victor             True
+WDAGUtilityAccount False   Una cuenta de usuario que el sistema administra y usa para escenarios de Protección de apli…
+
 ```
 
 Esto se debe a que Powershell solo nos muestra por pantalla las propiedades que considera más relevantes para aumentar la legibilidad. Si queremos decidir qué propiedades queremos, debemos hacer uso del comando ```Select-Object``` que permite filtrar un objeto seleccionando únicamente un subconjunto de las propiedades.
 
 ```powershell
-PS C:\> Get-Process -name calculator | Select-Object name, cpu, StartTime
+PS C:\> Get-LocalUser | Select-Object Name, SID
 
-Name            CPU StartTime
-----            --- ---------
-Calculator 0,734375 14/09/2021 22:45:57
+Name               SID
+----               ---
+Administrador      S-1-5-21-236780772-618523378-4141520374-500
+DefaultAccount     S-1-5-21-236780772-618523378-4141520374-503
+Invitado           S-1-5-21-236780772-618523378-4141520374-501
+victor             S-1-5-21-236780772-618523378-4141520374-1001
+WDAGUtilityAccount S-1-5-21-236780772-618523378-4141520374-504
 ```
 
-## 2.5.- Ordenar, agrupar y medir la salida de un comando
+Si lo que se desea es ver todas las propiedades de los objetos se puede utilizar el carácter comodín (`*`), que fuerza a que se muestren todas las propiedades.
+
+```powershell
+PS C:\> Get-LocalUser -Name Victor | Select-Object *
+
+AccountExpires         :
+Description            :
+Enabled                : True
+FullName               :
+PasswordChangeableDate : 29/09/2021 16:26:41
+PasswordExpires        :
+UserMayChangePassword  : True
+PasswordRequired       : False
+PasswordLastSet        : 29/09/2021 16:26:41
+LastLogon              : 27/10/2021 10:30:53
+Name                   : victor
+SID                    : S-1-5-21-236780772-618523378-4141520374-1001
+PrincipalSource        : Local
+ObjectClass            : User
+```
+
+
+## 2.3.- Ordenar, agrupar y medir la salida de un comando
 
 Hay comandos que proporcionan un gran número de elementos al ejecutarse por lo que puede ser conveniente manipular dicha salida para que sea más fácilmente comprensible. Para ello utilizaremos los cmdlets `Sort-Object`, `Group-Object` y `Measure-Object`, que ordenan, agrupan y cuentan respectivamente.
+
 
 ### 2.3.1.- Ordenando con el comando `Sort-Object`
 
@@ -155,6 +189,7 @@ PS C:\> get-process | Sort-Object cpu
 ```
 
 El parámetro más relevante de este comando es `-Descending`, que ordena la salida de mayor a menor.
+
 
 ### 2.3.2.- Agrupando con `Group-Object`
 
@@ -217,7 +252,7 @@ Property          : Length
 Por ejemplo, el comando anterior muestra el tamaño máximo, mínimo y medio de todos los ficheros que se encuentran en un directorio.
 
 
-# 2.4.- Filtrado de objetos
+## 2.4.- Filtrado de objetos
 
 Muchos comandos disponen de parámetros para filtrar la salida en función del valor de alguna propiedad. Por ejemplo, se puede utilizar el parámetro `-Name` del comando `Get-Process` para que solo nos devuelva los procesos que tengan un nombre determinado.
 
@@ -271,26 +306,26 @@ Por ejemplo, si queremos localizar el proceso correspondiente al programa Word y
 PS C:\> Get-Process | Where-Object Name -like *word*
 
 
-# 2.5.- FORMATEANDO DE LA SALIDA
+## 2.5.- Formateando la salida
 
 Cuando ejecutamos un comando en Powershell vemos un texto con la salida del comando, pero en realidad cualquier comando devuelve uno o varios objetos y lo que se nos muestra por pantalla son las propiedades más relevantes de dichos objetos en un formato predeterminado. Sin embargo, es posible modificar tanto las propiedades que se nos muestran de cada objeto, como el formato en que se hace.
 Powershell tiene cinco cmdlets para el formato de la salida de comandos, de los que nosotros veremos Format-List, Format-Table y Format-Wide.
 
 
-### 2.5.1.- FORMAT-WIDE
+### 2.5.1.- Format-Wide
 
 Este comando muestra únicamente una propiedad de cada objeto, mostrando todos estos valores en una tabla. Como alternativa más breve se puede utilizar el alias `fw`.
 Los parámetros más destacables de este comando son:
 •	`-Property`: para indicar si queremos que se muestre una propiedad diferente a la que muestra por defecto.
 •	`-Column`: que mediante un valor numérico señalará cuántas columnas tendrá la tabla con los resultados mostrados.
 
-### 2.5.2.- FORMAT-TABLE
+### 2.5.2.- Format-Table
 
 Formatea la salida del comando redireccionado en forma de tabla donde mostrará un objeto en cada fila y las propiedades más relevante en las columnas. El alias para este comando es `ft`.
 Un parámetro útil con `Format-Table` es `-AutoSize`, que adapta el tamaño de la salida para que se ajuste al tamaño disponible en la pantalla y así evitar que se recorte la salida.
 
 
-### 2.5.3.- FORMAT-LIST
+### 2.5.3.- Format-List
 
 Por último, `Format-List` muestra la salida del comando como una lista de propiedades, indicando cada una de estas propiedades en una línea diferente.
 
