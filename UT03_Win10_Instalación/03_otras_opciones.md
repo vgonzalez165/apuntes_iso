@@ -1,6 +1,6 @@
 ![Carátula UT03](imgs/caratula_ut03.png)
 
-### Contenidos
+## Contenidos
 
 1. [Herramientas de administración](01_herramientas_administración.md)
 2. [Panel de control. Sistema](02_sistema.md)
@@ -9,9 +9,9 @@
 5. [Gestión de grupos](05_grupos.md)
 
 
-## 3.- PANEL DE CONTROL. OTRAS OPCIONES
+# 3.- PANEL DE CONTROL. OTRAS OPCIONES
 
-### 3.1.- Opciones de energía
+## 3.1.- Opciones de energía
 
 ![Opciones de energía](imgs/energía.png)
 
@@ -46,7 +46,7 @@ Para obtener información más detallada del control en energía en el equipo y 
 - `powercfg /batteryreport`: genera un informe sobre el estado de la batería de un portátil
 
 
-### 3.2.- Programas
+## 3.2.- Programas
 
 ![Programas](imgs/programas.png)
 

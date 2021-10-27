@@ -1,8 +1,6 @@
 ![Carátula UT03](imgs/caratula_ut03.png)
 
-# UT03. WINDOWS 10. INSTALACIÓN Y PRIMEROS PASOS
-
-### Contenidos
+## Contenidos
 
 1. [Herramientas de administración](01_herramientas_administración.md)
 2. [Panel de control. Sistema](02_sistema.md)
@@ -11,7 +9,7 @@
 5. [Gestión de grupos](05_grupos.md)
 
 
-### Prácticas
+## Prácticas
 
 - PR0301: Comandos básicos de Powershell
 - PR0302: Configuración básica de Windows (I). MMC, Hostname y administrador de dispositivos.

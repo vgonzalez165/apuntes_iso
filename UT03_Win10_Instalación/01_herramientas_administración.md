@@ -1,6 +1,6 @@
 ![Carátula UT03](imgs/caratula_ut03.png)
 
-### Contenidos
+## Contenidos
 
 1. [**Herramientas de administración**](01_herramientas_administración.md)
 2. [Panel de control. Sistema](02_sistema.md)

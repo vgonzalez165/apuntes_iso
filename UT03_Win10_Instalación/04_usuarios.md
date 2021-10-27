@@ -1,6 +1,6 @@
 ![Carátula UT03](imgs/caratula_ut03.png)
 
-### Contenidos
+## Contenidos
 
 1. [Herramientas de administración](01_herramientas_administración.md)
 2. [Panel de control. Sistema](02_sistema.md)
@@ -9,19 +9,19 @@
 5. [Gestión de grupos](05_grupos.md)
 
 
-## 4.- GESTIÓN DE USUARIOS EN WINDOWS
+# 4.- GESTIÓN DE USUARIOS EN WINDOWS
 
 Las cuentas de usuario y los grupos son un elemento muy importante en la administración de un sistema operativo, ya que a través de ellos se gestiona toda la seguridad del sistema mediante los permisos sobre el sistema de ficheros y a través de los derechos de usuario. Todo lo que un usuario puede hacer en el sistema está validado a través de sus credenciales.
 
 
-### 4.1.- CONCEPTOS BÁSICOS SOBRE USUARIOS
+## 4.1.- Conceptos básicos sobre usuarios
 
 A grandes rasgos, en Windows 10 se distinguen dos tipos de cuentas: 
 - **Cuentas de administrador**: permiten acceso sin límites para todo tipo de tareas administrativas, tales como instalar software, modificar el registro o crear nuevos usuarios.
 - **Cuentas de usuario**: son las cuentas utilizadas por los usuarios para el trabajo diario, tal como aplicaciones ofimáticas, navegación por Internet, … Trabajar como usuario normal incrementa la seguridad ya que limita el alcance que puedan tener posibles virus o código malicioso que pueda infectar el ordenador. Esto se debe a que los programas tienen tantos privilegios como el usuario que los ejecuta
 
 
-#### 4.1.1.- CUENTAS PREDEFINIDAS
+### 4.1.1.- Cuentas predefinidas
 
 Cuando instalamos Windows 10 hay un número de usuarios que son creados automáticamente, por lo que son comunes a todos los sistemas. Estas cuentas son:
 
@@ -32,7 +32,7 @@ Cuando instalamos Windows 10 hay un número de usuarios que son creados automát
 - **Usuario inicial**: Esta cuenta es la que se crea para el usuario de Windows durante la instalación, con el nombre que escoja el usuario. Hay que tener en cuenta que tiene privilegios de administrador.
 
 
-#### 4.1.2.- CUENTAS LOCALES Y CUENTAS DE DOMINIO
+### 4.1.2.- Cuentas locales y cuentas de dominio
 
 Windows 10 soporta dos tipos de cuentas: **cuentas locales** y **cuentas de dominio**. Este tipo de cuentas depende del entorno de red en el que trabaje el equipo, bien sea un grupo de trabajo o un dominio.
 
@@ -40,12 +40,12 @@ Windows 10 soporta dos tipos de cuentas: **cuentas locales** y **cuentas de domi
 - **Grupo de trabajo**: la alternativa a la gestión centralizada de la red son los grupos de trabajo. En este caso tenemos una red descentralizada donde los usuarios no pertenecen a toda la red, sino que pertenecen a cada equipo de esta. Cuando iniciamos sesión en un equipo, las credenciales se verifican en el propio equipo, y, por tanto, son propias del mismo, no valdrían para otro equipo. Incluso si tuviéramos en dos equipos diferentes dos usuarios con el mismo nombre y contraseña, seguirían siendo usuarios diferentes, ya que cada uno pertenece a un equipo diferente.
 
 
-### 4.2.- TRABAJANDO CON CUENTAS DE USUARIO
+## 4.2.- Trabajando con cuentas de usuario
 
 Para administrar los usuarios y grupo de un sistema tenemos dos posibles medios. Por un lado, hay un complemento de la consola de administración de Microsoft denominada **Usuarios y grupos locales**, y por otro, la herramienta **Cuentas** que podemos encontrar dentro de **Configuración**.
 
 
-#### 4.2.1.- DESDE EL MENÚ DE CONFIGURACIÓN
+### 4.2.1.- Desde el menú de configuración
 
 Desde el diálogo *Configuración* podemos acceder a la gestión de nuestra propia cuenta. En este punto conviene destacar que en Windows 10 hay dos tipos de cuentas de usuario:
 
@@ -72,7 +72,7 @@ Cuando vamos al apartado Cuentas de *Configuración* tenemos las siguientes opci
 - **Sincronizar la configuración**: para esto necesitamos una cuenta de Microsoft que utilicemos en varios ordenadores y permite compartir automáticamente información entre ellos.
 
 
-#### 4.2.2.- USUARIOS Y GRUPOS LOCALES DEL MMC
+### 4.2.2.- Usuarios y grupos locales del MMC
 
 A este complemente podemos acceder creando una consola MMC personalizada, o bien utilizando la consola **Administración de equipos**, a la que se accede seleccionando *Administrar* en el menú contextual (botón derecho del ratón) de *MiPC*.
 
@@ -112,14 +112,14 @@ Todas las restricciones de seguridad asociadas al usuario hacen referencia a est
 - Evita los problemas que podríamos tener si eliminamos un usuario y creamos posteriormente otro con el mismo nombre de usuario, ya que tendrá diferente SID.
 
 
-#### 4.2.3.- DESHABILITANDO CUENTAS DE USUARIO
+### 4.2.3.- Deshabilitando cuentas de usuario
 
 Aunque las cuentas de usuario se pueden eliminar, realmente no es una buena política, siendo aconsejable **deshabilitarlas**, de forma que la cuenta sigue existiendo, pero no será posible iniciar sesión con ella.
 
 Hay que tener en cuenta que, si borramos una cuenta de usuario, todos los datos de este se perderán, no siendo posible recuperarlos. Además, en aquellos ficheros sobre los que hubiera tenido permiso el usuario seguirán tendiendo el SID de este en su ACL, aunque ya no corresponda a ningún usuario.
 
 
-#### 4.2.4.- ELIMINANDO Y RENOMBRANDO CUENTAS DE USUARIO
+### 4.2.4.- Eliminando y renombrando cuentas de usuario
 
 Estas dos funciones también se podrán realizar mediante la consola del MMC, en el complemento **Usuarios y grupos locales**.
 
@@ -128,9 +128,9 @@ Renombrar las cuentas de usuario es un proceso muy sencillo y sin ningún efecto
 Por ejemplo, esta puede ser una buena práctica en el caso de antiguos empleados, cuya cuenta haya sido deshabilitada, para reflejar esa condición en el nombre de este.
 
 
-### 4.3.- CONTROL DE CUENTAS DE USUARIOS (UAC)
+## 4.3.- Control de Cuentas del Usuario (UAC)
 
-#### 4.3.1.- ¿QUÉ ES EL UAC?
+### 4.3.1.- ¿Qué es el UAC?
 
 El **Control de Cuentas de Usuarios (UAC)** es una tecnología e infraestructura de seguridad, introducida en Windows Vista, que pretende marcar una distinción clara para el usuario entre operaciones diarias de trabajo en el sistema y operaciones que requieren privilegios especiales y que, por tanto, son susceptibles de ser utilizadas por software malicioso para realizar cambios no autorizados en el sistema.
 
@@ -148,7 +148,7 @@ El cuadro de diálogo de advertencia varía en función de si el usuario que las
 Por defecto, cuando se muestra este cuadro de diálogo el fondo se atenúa, indicando que el sistema entra en un estado especial en el que bloquean todos los programas hasta que se cierre este diálogo. Esto sirve para impedir que otro programa interfiera con este cuadro de diálogo, por ejemplo, simulando la pulsación del botón **Sí** haciéndose pasar por el usuario.
 
 
-#### 4.3.2.- NIVELES DEL UAC
+### 4.3.2.- Niveles del UAC
 
 Es posible cambiar la configuración del UAC yendo a la aplicación Cambiar la configuración de *Control de Cuentas de Usuario*, en la que podemos escoger entre cuatro niveles diferentes:
 
@@ -158,9 +158,9 @@ Es posible cambiar la configuración del UAC yendo a la aplicación Cambiar la c
 - **No notificarme nunca**: en este nivel deshabilitamos completamente el UAC, por lo que el usuario no se verá interrumpido por ningún aviso, suponiendo por tanto un importante problema de seguridad.
 
 
-### 4.4.- PERFILES DE USUARIO
+## 4.4.- Perfiles de usuario
 
-#### 4.4.1.- EL DIRECTORIO USUARIOS
+### 4.4.1.- El directorio C:/Usuarios
 
 En un equipo con Windows, cada usuario tiene su propio entorno, por ejemplo, tiene sus documentos en la carpeta *Mis documentos*, tiene un tema establecido, o cualquier otra personalización que únicamente pueda ver desde su cuenta. 
 
@@ -177,14 +177,14 @@ Si accedemos al directorio `C:\Usuarios`, podemos ver que, aparte de los directo
 Hay que tener en cuenta que alguna de estas carpetas puede no mostrarse, ya que, por defecto, algunas están ocultas (por lo que habrá que marcar la casilla *Elementos ocultos*) y otras están marcadas como *archivos protegidos del sistema*, siendo necesario ir a *Vista -> Opciones -> Cambiar opciones de carpeta y búsqueda -> Pestaña Ver* y desmarcar la opción *Ocultar archivos protegidos del sistema operativo*.
 
 
-#### 4.4.2.- EL DIRECTORIO DE PERFIL
+### 4.4.2.- El directorio de perfil
 
 Dentro del directorio de *Usuarios*, cada usuario tiene un directorio propio con su perfil en el que él es el único que tiene permiso de lectura. Aquí podemos identificar las carpetas que vemos en el Explorador de archivos, tales como *Documentos*, *Imágenes*, … o incluso el *Escritorio*, cuyo contenido está en la carpeta homónima (en función del idioma de instalación es posible que los nombres de estos directorios sean *Images*, *Documents*, *Desktop*, ...)
 
 ![Contenido carpeta de perfil](imgs/contenido_perfil.png)
 
 
-#### 4.4.3.- EL FICHERO NTUSER.DAT
+### 4.4.3.- El fichero NTUSER.DAT
 
 De todos los ficheros que podemos encontrar en la carpeta de perfil de un usuario, probablemente el más importante sea el fichero **NTUSER.DAT**, un fichero oculto que contiene la configuración y preferencias del usuario.
 
@@ -193,7 +193,7 @@ Cada vez que el usuario aplica un cambio de configuración, como modificar el fo
 En realidad, el fichero `NTUSER.DAT` guarda la configuración cuando el usuario cierra sesión, pero mientras el usuario está trabajando con el ordenador estos datos se guardan en un sitio más accesible, y este sitio es el **registro**, así que este es un buen momento para comprender qué es el registro de Windows.
 
 
-#### 4.4.4.- EL REGISTRO DE WINDOWS
+### 4.4.4.- El registro de Windows
 
 El **registro de Windows** es un gran contenedor de información que tiene una estructura arborescente y donde tanto Windows como las aplicaciones que tengamos guardan información. La definición oficial del registro según el Microsoft Computer Dictionary es la siguiente:
 

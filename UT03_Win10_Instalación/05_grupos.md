@@ -1,6 +1,6 @@
 ![Carátula UT03](imgs/caratula_ut03.png)
 
-### Contenidos
+## Contenidos
 
 1. [Herramientas de administración](01_herramientas_administración.md)
 2. [Panel de control. Sistema](02_sistema.md)
@@ -9,7 +9,7 @@
 5. [**Gestión de grupos**](05_grupos.md)
 
 
-## 5.- GESTIÓN DE GRUPOS EN WINDOWS
+# 5.- GESTIÓN DE GRUPOS EN WINDOWS
 
 Los grupos son otro de los denominados **principales de seguridad** de Windows, y, al igual que sucedía con los usuarios, son una parte fundamental en las tareas de administración del sistema, permitiendo asignar permisos y derechos a conjuntos de usuarios en lugar de hacerlo individualmente.
 
@@ -20,7 +20,7 @@ Toda la gestión de grupos se realiza desde el complemento *Usuarios y grupos de
 ![Administración de grupos desde el MMC](imgs/grupos_mmc.png)
 
 
-### 5.1.- GRUPOS PREDEFINIDOS
+## 5.1.- Grupos predefinidos
 
 En un equipo con Windows 10 los grupos locales predefinidos ya ha sido creados y asignados con todos los permisos necesarios para realizar sus tareas básicas. Los grupos predefinidos que podemos encontrar en Windows 10 una vez instalado son los siguientes: 
 
@@ -44,7 +44,7 @@ En un equipo con Windows 10 los grupos locales predefinidos ya ha sido creados y
 - **Usuarios**: el grupo Usuarios es al que pertenecen todos los usuarios que utilizan el sistema de forma limitada. Por defecto, todos los usuarios creados en el ordenador, salvo el usuario inicial y el Invitado, son miembros del grupo de usuarios.
 
 
-### 5.2.- GRUPOS ESPECIALES
+## 5.2.- Grupos especiales
 
 Otro tipo de grupos disponible en Windows 10 es son los grupos especiales. Estos grupos están creados desde el inicio de sistema, pero no pueden ser administrados a través del complemento Usuarios locales y grupos del MMC, sino que la _pertenencia no pertenencia a este a este grupo es automática_ según determinadas circunstancias.
 
@@ -58,12 +58,12 @@ Los más destacados de estos grupos son:
 - **System**:  hay ocasiones en las que Windows 10 necesitará acceder a funciones dentro del sistema. Cuando el sistema operativo accede a estas funciones, lo hace como un usuario del sistema, el cual pertenece al grupo System.
 
 
-### 5.3.- ADMINISTRACIÓN DE GRUPOS 
+## 5.3.- Administración de grupos 
 
 Todo lo relativo a la administración del grupo se realiza a través de la consola *Usuarios y grupos del MMC*. Desde aquí podemos crear grupos, eliminarlos y también determinar la pertenencia de usuarios a estos grupos. 
 
 
-#### 5.3.1.- CREACIÓN DE GRUPOS 
+### 5.3.1.- Creación de grupos
 
 Para crear un grupo hay que ser miembro del grupo *Administradores*. Al igual que sucedía con los nombres de usuarios, es conveniente tener una nomenclatura clara para nombrar los grupos, en general, se deberían seguir las siguientes normas: 
 
@@ -74,12 +74,12 @@ Para crear un grupo hay que ser miembro del grupo *Administradores*. Al igual qu
 El proceso para crear un grupo es muy simple, análogo al proceso para crear usuarios. Simplemente hacemos clic derecho en el panel *Grupos* y seleccionamos *Nuevo grupo*. Aquí introduciremos el nombre del grupo, una descripción opcional, y también podríamos añadir directamente miembros al grupo. 
 
 
-#### 5.3.2.- AÑADIENDO MIEMBROS AL GRUPO
+### 5.3.2.- Añadiendo miembros al grupo
 
 Los miembros se pueden añadir al grupo durante su creación, pero también se pueden añadir posteriormente. Esto se puede hacer desde dos sitios: desde la pestaña propiedades del propio grupo, o desde la pestaña propiedades del usuario. El primer caso habrá que escoger *Añadir*, mientras que en el segundo caso iremos a la pestaña *Miembro de*. Es importante tener en cuenta que cada usuario tendrá la suma de todos los permisos y derechos de cada uno de los grupos a los que pertenezca, por lo que hay que ser cuidadoso al agregar usuarios a grupos.
 
 
-#### 5.3.3.- ELIMINAR GRUPOS
+### 5.3.3.- Eliminar grupos
 
 También es posible eliminar grupos, que, al no tener asociados datos como como en el caso de los usuarios, no está desaconsejado. Lo único que se perdería serían las asignaciones de permiso especificadas para dicho grupo.
 
