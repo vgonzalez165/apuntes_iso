@@ -290,26 +290,49 @@ Lo más destacable de esta sintaxis es:
 - La variable `$_` hace referencia a cada uno de los objetos que recibe. Es decir, el comando `Get-Process` devuelve un conjunto de objetos y, para cada uno de esos
 
 
-Este comando tiene dos sintaxis o formas de utilizarlo equivalentes. A continuación, hay dos ejemplos de filtrado que tienen el mismo resultado y que muestran aquellos procesos cuyo nombre sea Calculator.
+La otra forma de hacerlo se muestra en el siguiente código, donde se puede ver que no es necesario incluir llaves ni ningún parámetro:
 
 ```powershell
 PS C:\> Get-Process | Where-Object Name -eq “Calculator”
-PS C:\> Get-Process | Where-Object {$_.Name -eq “Calculator”}
+
+ NPM(K)    PM(M)      WS(M)     CPU(s)      Id  SI ProcessName
+ ------    -----      -----     ------      --  -- -----------
+     31    24,09      42,77       0,78   20804   1 Calculator
 ```
 
-Los operadores de comparación (mayor y menor) se utilizan con propiedades numéricas. Por ejemplo, si queremos obtener la lista de objetos cuyo consumo de CPU ha sido superior a los 120 segundos deberíamos introducir la siguiente orden:
+Respecto a qué operadores usar en cada situacion, los operadores de comparación (mayor y menor) se utilizan con **propiedades numéricas**. Por ejemplo, si queremos obtener la lista de objetos cuyo consumo de CPU ha sido superior a los 120 segundos deberíamos introducir la siguiente orden:
+
+```powershell
 PS C:\> Get-Process | Where-Object CPU -gt 100
-Los operadores -like y -notlike se utilizan para realizar comparaciones de cadenas utilizando comodines. Podemos utilizar dos comodines:
-•	Asterisco: representa una cadena de cualquier longitud que también puede ser la cadena vacía.
-•	Interrogación: representa un único carácter.
-Por ejemplo, si queremos localizar el proceso correspondiente al programa Word y no sabemos exactamente como se llama podemos hacer una búsqueda de la siguiente forma, representando cadenas que contengan la cadena word en su interior y que pueden tener cualquier cadena tanto antes como después.
+
+ NPM(K)    PM(M)      WS(M)     CPU(s)      Id  SI ProcessName
+ ------    -----      -----     ------      --  -- -----------
+     23     7,12       8,47     137,81    2120   1 AdobeCollabSync
+     19     7,87      13,88     167,69    7528   1 ctfmon
+    126   189,64     143,66   1.053,48    7828   1 explorer
+     62   188,28     128,72     101,16    3732   1 firefox
+```
+
+Los operadores `-like` y `-notlike` se utilizan para realizar comparaciones de cadenas utilizando comodines. Podemos utilizar dos comodines:
+
+- **Asterisco**: representa una cadena de cualquier longitud que también puede ser la cadena vacía.
+- **Interrogación**: representa un único carácter.
+- 
+Por ejemplo, si queremos localizar el proceso correspondiente al programa *Word* y no sabemos exactamente como se llama podemos hacer una búsqueda de la siguiente forma, representando cadenas que contengan la cadena *word* en su interior y que pueden tener cualquier cadena tanto antes como después.
+
+```powershell
 PS C:\> Get-Process | Where-Object Name -like *word*
+
+ NPM(K)    PM(M)      WS(M)     CPU(s)      Id  SI ProcessName
+ ------    -----      -----     ------      --  -- -----------
+     67   112,89     154,90      86,31   16732   1 WINWORD
+```
 
 
 ## 2.5.- Formateando la salida
 
 Cuando ejecutamos un comando en Powershell vemos un texto con la salida del comando, pero en realidad cualquier comando devuelve uno o varios objetos y lo que se nos muestra por pantalla son las propiedades más relevantes de dichos objetos en un formato predeterminado. Sin embargo, es posible modificar tanto las propiedades que se nos muestran de cada objeto, como el formato en que se hace.
-Powershell tiene cinco cmdlets para el formato de la salida de comandos, de los que nosotros veremos Format-List, Format-Table y Format-Wide.
+Powershell tiene cinco cmdlets para el **formato de la salida** de comandos, de los que nosotros veremos `Format-List`, `Format-Table` y `Format-Wide`.
 
 
 ### 2.5.1.- Format-Wide
