@@ -52,8 +52,55 @@ La información que podemos encontrar en cada apartado es:
 
 - **CPU**: en la gráfica vemos el porcentaje de uso de la CPU. Además, se muestra la siguiente información:
   - Modelo de procesador y frecuencia del mismo
-  - Uso y Velocidad: el porcentaje en forma numérica del uso del procesador por parte de los procesos y la frecuencia
+  - Uso y Velocidad: el porcentaje en forma numérica del uso del procesador por parte de los procesos y la frecuencia.
+  - Procesos, subprocesos e identificadores.
+  - Características físicas, como número de *cores* físicos y lógicos, si está habilitada la virtualización y el tamaño de cada una de las cachés.
+- **Memoria**: en esta gráfica se mostrará la evolución del uso de la memoria RAM en el tiempo. También se pueden ver algunos valores de uso de RAM, así como las características físicas de la misma: número de slots, frecuencia y factor de forma.
+- **Discos**: hay una pestaña para cada unidad de almacenamiento del sistema, con gráficas del tiempo de actividad y de velocidad de transferencia.
+- **WiFi**: los adaptadores de red también disponen de su gráfica indicando la velocidad de transferencia en cada momento.
 
+
+## 2.3.- Pestaña Historial de aplicaciones
+
+![Pestaña Historial de aplicaciones](imgs/taskmgr_historial.png)
+
+En esta pestaña se agrupan los procesos en aplicaciones, mostrando el uso de recursos de cada una de ellas.
+
+## 2.4.- Pestaña Inicio
+
+![Pestaña Inicio](imgs/taskmgr_inicio.png)
+
+Durante el arranque del sistema se cargan múltiples procesos del sistema operativo, pero también hay ocasiones en que es necesario cargar procesos del usuario. Por ejemplo, si usamos Dropbox es necesario que dicho programa esté siempre en ejecución para poder sincronizar los datos con la nube. 
+
+En la pestaña *Inicio* es donde se pueden ver todos los programas del usuario que se cargar durante el proceso de arranque y es importante porque algunos pueden tener un impacto muy negativo en el tiempo de arranque, siendo tarea del administrador determinar cuáles deben ejecutarse y cuáles no en función de su impacto y de la necesidad de los mismos.
+
+Para tomar esta decisión hay una serie de columnas con información sobre los programas (se puede escoger que información mostrar haciendo click derecho en el encabezado de cualquier columna), siendo las más relevantes:
+
+- **Estado**: si dicha aplicación está habilitada (y por tanto se carga durante el equipo) o deshabilitada. Se puede cambiar el estado de una aplicación en el menú contextual de la misma.
+- **Impacto de inicio**: da una medida (alto, medio o bajo) de la sobrecarga que le supone al sistema lanzar esa aplicación.
+- **CPU al inicio** y **E/S de disco**: le da un valor numérico como tiempo de CPU y transferencia de disco al impacto.
+- **Línea de comandos**: muestra la ubicación del programa que corresponde a cada entrada. Es útil para saber exactamente a qué aplicación corresponde cada entrada, sobre todo en aquellas en las que el nombre es poco descriptivo. También puede ser interesante ver este valor en caso de entradas sospechosas ya que hay código malicioso que se puede incluir en esta lista para estar siempre en ejecución.
+
+Además de la información relativa a los procesos que se lanzan durante el arranque del sistema operativo también se puede ver en la parte superior derecha el valor **Última hora de BIOS**, que muestra el tiempo que tardó la BIOS en ejecutar el POST durante el último arranque del sistema. Un tiempo muy alto podría significar un problema de mala configuración de la BIOS o ser indicativo de un posible problema de hardware.
+
+
+## 2.5.- Pestaña Detalles
+
+![Pestaña Detalles](imgs/taskmgr_detalles.png)
+
+Muestra información de todos los procesos que están en ejecución en el sistema en el momento. Los valores más interesantes son:
+
+- **PID**: cada proceso en Windows tiene un valor única asignado denominado **Identificador de proceso** y que podemos ver en esta columna.
+- **Estado**: indica el estado de su ciclo de vida en que se encuentra el proceso.
+- **Nombre de usuario**: el usuario que ha lanzado el procesos, lo que implica los permisos que tendrá el proceso ya que cada proceso tendrá tantos privilegios como el usuario que lo ha ejecutado.
+- **CPU y consumo de memoria**: el porcentaje de CPU y la cantidad de memoria RAM utilizados por el proceso.
+
+
+## 2.6.- Pestaña Servicios
+
+![Pestaña Servicios](imgs/taskmgr_servicios.png)
+
+Esta pestaña muestra información sobre los servicios que hay en el sistema, de los que se hablará más adelante.
 
 ***
 [Volver al índice principal](index_UT05.md)
