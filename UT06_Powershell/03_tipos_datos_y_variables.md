@@ -1,0 +1,145 @@
+![Carátula UT06](imgs/caratula_ut06.png)
+
+
+### Contenidos
+
+1. [Introducción a Powershell](01_introducción.md)
+2. [Objetos y el pipeline](02_pipelines.md)
+3. [**Tipos de datos y variables**](03_tipos_datos_y_variables.md)
+4. [El sistema de ficheros en Powershell](04_sistema_ficheros.md)
+5. [Gestión de Hyper-V desde Powershell](05_hyperv.md)
+6. [Gestión de usuarios y grupos](06_usuarios.md)
+7. [Gestión avanzada de usuarios y grupos](07_usuarios_avanzado.md)
+8. [Powershell y el almacenamiento](08_almacenamiento.md)
+
+
+# 3.- TIPOS DE DATOS Y VARIABLES
+
+Por lo que hemos visto hasta ahora, la estructura de los comandos de Powershell es la siguiente:
+
+```powershell
+     comando -parametro [valor_parametro] -parametro [valor_parametro] ....
+```
+
+Es decir, los comandos admiten una serie de parámetros que opcionalmente pueden tener un valor. Este valor puede ser de diversos tipos, según el parámetro de que se trate, por ejemplo un número o una cadena de texto. A los diversos tipos a los que puede pertenecer un valor se les denomina **tipos de datos** y los tipos de datos con los que puede trabajar son una característica muy importante de cualquier lenguaje de programación.
+
+
+## 3.1.- Variables en Powershell
+
+Una **variable** es un **espacio en memoria en el que se puede guardar información**, normalmente para hacer referencia a dicha información posteriormente. Las variables se identifican por un nombre cuyo primer carácter es el símbolo dólar (`$`). Algunas características de los nombres de las variables son:
+
+- No se distinguen mayúsculas de minúsculas
+- El nombre de la variable puede contener letras, números y algunos caracteres especiales, sin embargo, lo más aconsejable es utilizar únicamente letras, dígitos y el carácter subrayado (`_`).
+- Conviene que los nombres de las variables sea representativos del valor que van a contener.
+- Con objeto de evitar caracteres no estándar como vocales con tilde, eñes o similares, no es mal hábito poner el nombre de las variables en inglés.
+- Es aconsejable utilizar una nomenclatura consistente en el uso de mayúsculas y minúsculas. Dos opciones habituales son:
+  - CamelCase: en el caso de nombres de variables con varias palabras, se escriben todas las letras en minúsculas salvo la primera letra de la segunda palabra y sucesivas. Por ejemplo, `$userProcesses`.
+  - Snake_case: en este caso se utiliza el guión bajo como separador de palabras y todas las letras en minúsculas. Por ejmplo, `$user_processes`.
+
+
+### 3.2.- Definición y uso de variables
+
+Para definir una variable se utiliza el símbolo igual (`=`) seguido del valor que se desee que almacene. El valor puede ser de diferentes tipos:
+
+```powershell
+PS C:\>$numberOfItems = 125
+PS C:\>$myName = "victor"
+PS C:\>$calc = Get-Process -Name Calculator
+PS C:\>$anArray = 1, 2, 3
+```
+
+Para usar una variable simplemente hay que poner el nombre de la misma y será reemplazado por el valor que le fue asignado. Por ejemplo:
+
+```powershell
+PS C:\> Get-LocalUser -Name $myName 
+```
+
+A una variable se le puede asignar un valor diferente en cualquier momento, incluso de un tipo de datos diferente al que se le asignó inicialmente.
+
+```powershell
+PS C:\> $a = 125
+PS C:\> $a
+125
+PS C:\> $a = "Hola"
+PS C:\> $a
+Hola
+```
+
+Es posible forzar a que una variable únicamente pueda contener datos de un determinado tipo precediendo el nombre de la variable con el nombre del tipo de datos rodeado de corchetes durante la asignación de la variable.
+
+```powershell
+PS C:\>  [int]$a=125
+PS C:\> $a
+125
+PS C:\> $a="hola"
+MetadataError: Cannot convert value "hola" to type "System.Int32". Error: "Input string was not in a correct format."
+```
+
+## 3.3.- Tipos de datos
+
+Powershell dispone de gran cantidad de tipos de datos, aunque el conocimiento de la mayoría de ellos está más allá de los objetivos del presente curso por lo que únicamente veremos lo más reseñables. 
+
+### 3.3.1.- Tipos de datos numéricos
+
+Hay cinco tipos de datos numéricos en Powershell:
+
+- `int`: representa un número entero que se almacena en 32 bits, lo que implica que su valor puede estar entre -2147483648 y +2147483647.
+- `long`: también para números enteros, pero en este caso se le dedican 64 bits para almacenarlo. Esto hace que sus valores puedan estar entre -9223372036854775808 y +9223372036854775807.
+- `float`: para números con valores decimales con una precisión de 32 bits.
+- `double`: números con valores decimales con 64 bits de precisión.
+- `decimal`: en este caso duplica la precisión hasta 128 bits.
+
+
+### 3.3.2.- Booleanos
+
+Otro tipo de datos son los **booleanos**, valores que únicamente pueden ser verdadero (True) o falso (False). Estos dos valores están representados por dos variables especiales del sistema denominadas `$True` y `$False`.
+
+Igualmente, cuando queremos pasar a un comando un valor de parámetro de tipo booleano, debemos usar estas variables.
+
+```powershell
+PS C:\> Get-LocalUser | Where-Object Enabled -eq $True
+```
+
+### 3.3.3.- Cadenas 
+
+Una **cadena** o **string** es una secuencia de cero o más caracteres. Cuando se indica una cadena en el valor de un parámetro no es necesario rodearla de comillas, pero en el caso de asignarla a una variable si será necesario, por lo que no es mal hábito acostumbrarse a rodear las cadenas de comillas.
+
+Las comillas pueden ser simples o dobles, y, aunque por norma general no hay diferencia entre unas y otras, hay una situación en la que sí se diferencian en su comportamiento, y es cuando hay una variable dentro de la cadena.
+
+- Si se utilizan **comillas dobles** y hay una variable dentro de la cadena se reemplazará dicha variable por su valor.
+- Si se utilizan **comillas simples** y hay una variable en la cadena, no habrá ningún tipo de reemplazo y se mantendrá el nombre de la variable.
+
+```powershell
+PS C:\> $a = "Victor"
+PS C:\> "Hola, me llamo $a"
+Hola, me llamo Victor
+PS C:\> 'Hola, me llamo $a'
+Hola, me llamo $a
+```
+
+Como todo en Powershell, las cadenas también son objetos, y como tales también tienen propiedades y métodos. Estos son:
+- `length`: esta propiedad almacena la longitud de la cadena.
+- `ToLower`: método que devuelve la cadena con todas las letras en minúsculas.
+- `ToUper`: método que devuelve la cadena con todas las letras en mayúsculas.
+
+```powershell
+PS C:\> $a = "Hola, Mundo!!"
+PS C:\> $a.Length
+13
+PS C:\> $a.ToLower()
+hola, mundo!!
+PS C:\> $a.ToUpper()
+HOLA, MUNDO!!
+```
+
+Observa que cuando se hace referencia a una **propiedad** en Powershell se pone la misma detrás del nombre de la variable separándola con el carácter punto y, en el caso de hacer referencia a un **método** hay que poner los paréntesis después del nombre del método.
+
+
+### 3.3.4.- Arrays
+
+Un **array** no almacena un único valor, sino que almacena un conjunto de valores que pueden ser del mismo tipo de datos o de diferentes. Para crear un array se indican todos los valores que va a contener separados mediante comas en la definición.
+
+Para leer un elemento de un array hay que indicar la posición de dicho elemento rodeada de corchetes después del nombre de la variable, teniendo en cuenta que el **primer elemento del array está en la posición 0**
+
+```powershell
+PS C:\> $a = 1, 2, 3, 4
