@@ -23,6 +23,10 @@ Por lo que hemos visto hasta ahora, la estructura de los comandos de Powershell 
 
 Es decir, los comandos admiten una serie de parámetros que opcionalmente pueden tener un valor. Este valor puede ser de diversos tipos, según el parámetro de que se trate, por ejemplo un número o una cadena de texto. A los diversos tipos a los que puede pertenecer un valor se les denomina **tipos de datos** y los tipos de datos con los que puede trabajar son una característica muy importante de cualquier lenguaje de programación.
 
+Por otro lado, aunque el valor del parámetro podemos indicarlo directamente, como hemos hecho hasta ahora, también podemos recuperar un valor que hayamos guardado previamente en una **variable**, que sirven precisamente para almacenar información que posteriormente podrá ser recuperada.
+
+En este apartado veremos con más detalle qué son las variables y algunos de los tipos de datos más comunes.
+
 
 ## 3.1.- Variables en Powershell
 
@@ -75,11 +79,47 @@ PS C:\> $a="hola"
 MetadataError: Cannot convert value "hola" to type "System.Int32". Error: "Input string was not in a correct format."
 ```
 
-## 3.3.- Tipos de datos
+
+
+## 3.3.- Comandos relacionados con variables
+
+Como no podía ser de otra forma, en Powershell también hay una serie de comandos para trabajar con variables. Estos son:
+
+- `Get-Variable`: muestra por pantalla todas las variables que hay definidas junto con su valor.
+- `New-Variable`: permite crear una variable nueva de la forma `New-Variable -Name a -Value 120`. Es importante destacar aquí que el nombre de la variable se indica sin el símbolo `$`.
+- `Set-Variable`: mientras que el comando anterior crea una variable nueva, este comando simplemente asigna un valor a una variable existente.
+- `Clear-Variable`: borra el valor de la variable, dejándola igual a `$null`.
+- `Remove-Variable`: elimina la variable.
+
+
+## 3.4.- Variables automáticas
+
+Si ejecutas el comando `Get-Variable` podrás ver que hay una gran cantidad de variables que no has creado, sino que son creadas automáticamente por el sistema con información sobre el mismo. En la [documentación de Powershell](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables?view=powershell-7.1) se encuentra una descripción detallada de todas ellas. A modo de resumen, algunas de las más destacables son:
+
+- `$True` y `$False`: representan los valores booleanos verdadero y falso que veremos más adelante.
+- `$pwd`: contiene el directorio de trabajo actual.
+- `$home`: el directorio personal del usuario
+- `$IsLinux`, `$IsWindows` y `$IsMacOS`: continen verdadero o falso en función del sistema en que se consulten.
+- `$null`: es una variable especial que representa un valor vacío o nulo, es decir, indica la ausencia de valor.
+- `$PSVersionTable`: información sobre la versión de Powershell que se está ejecutando.
+
+
+## 3.4.- Tipos de datos
 
 Powershell dispone de gran cantidad de tipos de datos, aunque el conocimiento de la mayoría de ellos está más allá de los objetivos del presente curso por lo que únicamente veremos lo más reseñables. 
 
-### 3.3.1.- Tipos de datos numéricos
+Es posible saber el tipo de dato que almacena cualquier variable con el método GetType().
+
+```powershell
+PS C:\> $a = "Powershell"
+PS C:\> $a.GetType()
+
+IsPublic IsSerial Name                                     BaseType
+-------- -------- ----                                     --------
+True     True     String                                   System.Object
+```
+
+### 3.4.1.- Tipos de datos numéricos
 
 Hay cinco tipos de datos numéricos en Powershell:
 
@@ -90,7 +130,7 @@ Hay cinco tipos de datos numéricos en Powershell:
 - `decimal`: en este caso duplica la precisión hasta 128 bits.
 
 
-### 3.3.2.- Booleanos
+### 3.4.2.- Booleanos
 
 Otro tipo de datos son los **booleanos**, valores que únicamente pueden ser verdadero (True) o falso (False). Estos dos valores están representados por dos variables especiales del sistema denominadas `$True` y `$False`.
 
@@ -100,7 +140,7 @@ Igualmente, cuando queremos pasar a un comando un valor de parámetro de tipo bo
 PS C:\> Get-LocalUser | Where-Object Enabled -eq $True
 ```
 
-### 3.3.3.- Cadenas 
+### 3.4.3.- Cadenas 
 
 Una **cadena** o **string** es una secuencia de cero o más caracteres. Cuando se indica una cadena en el valor de un parámetro no es necesario rodearla de comillas, pero en el caso de asignarla a una variable si será necesario, por lo que no es mal hábito acostumbrarse a rodear las cadenas de comillas.
 
@@ -135,11 +175,18 @@ HOLA, MUNDO!!
 Observa que cuando se hace referencia a una **propiedad** en Powershell se pone la misma detrás del nombre de la variable separándola con el carácter punto y, en el caso de hacer referencia a un **método** hay que poner los paréntesis después del nombre del método.
 
 
-### 3.3.4.- Arrays
+### 3.4.4.- Arrays
 
 Un **array** no almacena un único valor, sino que almacena un conjunto de valores que pueden ser del mismo tipo de datos o de diferentes. Para crear un array se indican todos los valores que va a contener separados mediante comas en la definición.
 
 Para leer un elemento de un array hay que indicar la posición de dicho elemento rodeada de corchetes después del nombre de la variable, teniendo en cuenta que el **primer elemento del array está en la posición 0**
 
 ```powershell
-PS C:\> $a = 1, 2, 3, 4
+PS C:\proyectos\apuntes\apuntes_iso> $a = "a", "b", "c"
+PS C:\proyectos\apuntes\apuntes_iso> $a
+a
+b
+c
+PS C:\proyectos\apuntes\apuntes_iso> $a[1]
+b
+```
