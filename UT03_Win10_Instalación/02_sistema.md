@@ -46,6 +46,8 @@ Desde aquí también se puede cambiar el nombre del *grupo de trabajo* al que pe
 
 ![Pestaña Hardware](imgs/hardware.png)
 
+![Administrador de dispositivos](imgs/administrador_dispositivos.png)
+
 Esta pestaña nos permite acceder al **Administrador de dispositivos**, que es la herramienta que nos mostrará la lista de todos los componentes hardware conectados al sistema.
 Aquí podremos ver si un componente hardware es detectado por el sistema y si funciona correctamente. En caso de que un elemento hardware no funcione correctamente se mostrará mediante un símbolo de advertencia. Además, podremos instalar los **controladores** o **drivers** de los componentes hardware.
 
@@ -55,6 +57,19 @@ Los **controladores** son piezas de software que le indican al sistema operativo
 - **Drivers específicos**: son los desarrollados por el fabricante para ese componente hardware en concreto y aprovechan al máximo sus capacidades. 
 
 Windows 10 tiene una gestión automática bastante buena de drivers, descargándose los específicos automáticamente al detectar un componente hardware nuevo, por lo que normalmente los usuarios no tienen que preocuparse de ello. Únicamente sería necesario acudir a la web del fabricante para el caso de dispositivos que no funcionen correctamente o si queremos disponer de la última versión de los mismos para aprovechar al máximo las funcionalidades del dispositivo.
+
+Para saber la versión que tenemos instalada de los drivers de un dispositivo hay que buscar dicho dispositivo en el *Administrador de dispositivos* y seleccionar *Propiedades* en su menú contextual.
+
+![Propiedades del dispositivo](imgs/propiedades_dispositivo.png)
+
+Esto mostrará un cuadro de diálogo con información sobre el dispositivo, siendo la más relevante la que se encuentra en la pestaña *Controlador*, que tiene las siguientes opciones:
+
+- **Datos del controlador**: estos incluyen el fabricante del *driver*, la fecha del mismo y su versión, valor útil para saber si tenemos la última versión instalada o no comparándola con la versión disponible en la web del fabricante.
+- **Detalles del controlador**: muestra la ubicación en el disco duro y el nombre de todos los archivos que incluye el controlador.
+- **Actualizar controlador**: comprobará automáticamente si hay un controlador más reciente en los repositorios de Microsoft y lo descargar y actualizará automáticamente en caso de haberlo.
+- **Revertir el controlador anterior**: hay ocasiones en que al actualizar el controlador se producen inestabilidades en el sistema, ya sea por errores en el mismo o por incompatibilidades con algún software que tengamos instalado. En esos caso lo recomendable es volver a la versión previa del controlador que había instalada.
+- **Deshabilitar el dispositivo**: como su nombre indica, con esta opción se deshabilita el dispositivo, por lo que dejará de estar utilizable.
+- **Desinstalar el dispositivo**: desinstalará completamente los controladores que haya instalados para este dispositivo.
 
 ## 2.4.- Opciones avanzadas
 

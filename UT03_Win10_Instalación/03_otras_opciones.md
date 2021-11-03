@@ -52,7 +52,7 @@ Para obtener información más detallada del control en energía en el equipo y 
 
 Desde **Programas** podremos realizar las siguientes operaciones:
 
-- **Desinstalar o cambiar un programa*: Ver el listado de todas las aplicaciones instaladas en el sistema con información sobre las mismas (editor, fecha de instalación, tamaño, ...) y desinstalarlas.
+- **Desinstalar o cambiar un programa**: Ver el listado de todas las aplicaciones instaladas en el sistema con información sobre las mismas (editor, fecha de instalación, tamaño, ...) y desinstalarlas.
 - **Características de Windows**: Las características son funcionalidades o programas incluidos en el sistema operativo, aunque no tienen por qué estar necesariamente activados por defecto. Desde aquí podremos activarlas o desactivarlas.
 - **Ver actualizaciones instaladas**: Muestra el listado de todas las actualizaciones instaladas y da la posibilidad de desinstalarlas.
 - **Programas predeterminados**: Cuando el usuario hace doble click sobre un archivo para abrirlo, Windows mira la extensión de dicho archivo y selecciona un programa acorde para abrirlo con él. Por ejemplo, si pulsa un fichero con extensión `.html` lo abrirá con un navegador. En *Programas predeterminados* es donde se selecciona exactamente qué aplicación se utilizará para abrir cada archivo en función de la extensión.
