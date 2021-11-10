@@ -111,6 +111,13 @@ Todas las restricciones de seguridad asociadas al usuario hacen referencia a est
 - Permite cambiar el nombre del usuario sin afectar nada, ya que la configuración de seguridad está asociada al SID y no al nombre del usuario.
 - Evita los problemas que podríamos tener si eliminamos un usuario y creamos posteriormente otro con el mismo nombre de usuario, ya que tendrá diferente SID.
 
+Como curiosidad, el significado de cada una de las partes del SID es:
+
+- Los tres primeros caracteres indican que es un SID (`S`), el nivel de revisión (`1`) y el valor de entidad de identificación (`5, nt authority`)
+- A continuación va el identificador de dominio (los siguientes tres bloques de dígitos), único para cada dominio, de forma que se garantiza que no habrá dos SID iguales en diferentes dominios de la misma empresa. En el caso de las cuentas y grupos integrados, este valor siempre es 32 (Builtin). Por ejemplo, el grupo integrado **Administradores** tiene siempre el SID `S-1-5-32-544`.
+- Finalmente, el último número es el identificador de la cuenta dentro del dominio.
+
+Si quieres saber más sobre los SID o simplemente consultar los SID universales conocidos que son los mismos en todos los equipos puedes consultarlo en la [web de Microsoft](https://docs.microsoft.com/es-es/windows/security/identity-protection/access-control/security-identifiers).
 
 ### 4.2.3.- Deshabilitando cuentas de usuario
 
