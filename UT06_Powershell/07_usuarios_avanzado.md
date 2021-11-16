@@ -81,7 +81,7 @@ El comando `foreach` tiene múltiples usos y varias formas de ser utilizado, per
 
 La sintaxis en este caso es de la siguiente manera:
 
-```
+```powershell
 comando | foreach { otro_comando }
 ```
 
@@ -156,7 +156,7 @@ Password:
 
 ## 6.2.- Conexión remota a un equipo
 
-Lo habitual no es administrar un sistema desde el mismo equipo, sino que el administrador del sistema lo hace mediante conexiones remotas sin moverse de su propio ordenador. Powershell está pensado desde su concepción en facilitar esta tarea, y de hecho, uno de los parámetros generales a todos los comandos es ComputerName, que sirve para hacer referencia al equipo remoto sobre el que se ejecutará el comando.
+Lo habitual no es administrar un sistema desde el mismo equipo, sino que el administrador del sistema lo hace mediante conexiones remotas sin moverse de su propio ordenador. Powershell está pensado desde su concepción en facilitar esta tarea, y de hecho, uno de los parámetros generales a todos los comandos es `-ComputerName`, que sirve para hacer referencia al equipo remoto sobre el que se ejecutará el comando.
 
 Dado que la administración remota conlleva una serie de riesgos de seguridad, hay que realizar una serie de pasos previos sobre los equipos para poder administrar de forma remota. 
 
