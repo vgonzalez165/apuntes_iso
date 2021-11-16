@@ -36,7 +36,7 @@ Todos estos comandos trabajan con objetos de la clase `LocalUser`, cuyas propied
 Según lo que hemos visto en el apartado anterior, la forma de crear un usuario nuevo sería con la siguiente orden:
 
 ```powershell
-PS C:\> New-LocalUser “Nombre” -Password “123456” -Fullname “Nombre complete” -Description “Descripción”
+PS C:\> New-LocalUser 'Nombre' -Password '123456' -Fullname 'Nombre completo' -Description 'Descripción'
 ```
 
 Aunque esta orden es sintácticamente válida, nos mostrará un mensaje de error, a la vez que salta a la vista que supone un importante problema de seguridad, ya que estamos escribiendo la contraseña del usuario de una forma bastante visible, y que, además, quedaría almacenada en el historial.
