@@ -44,7 +44,7 @@ Aunque esta orden es sintácticamente válida, nos mostrará un mensaje de error
 Para que no nos de errores sintácticos tenemos que introducirla de la siguiente forma, aunque seguimos teniendo problemas de seguridad.
 
 ```powershell
-PS C:\> New-LocalUser “Nombre” -Password (ConvertTo-SecureString -AsPlainText -String “paso” -force) -Fullname “Nombre complete” -Description “Descripción”
+PS C:\> New-LocalUser 'Nombre' -Password (ConvertTo-SecureString -AsPlainText -String 'paso' -force) -Fullname 'Nombre completo' -Description 'Descripción'
 ```
 
 Para ser más cuidadosos y evitar estos problemas podemos hacer uso del comando `Read-Host`. Este comando es muy sencillo, ya que su cometido es pedir al usuario que introduzca un valor mediante el teclado. Además, si acudimos a su ayuda veremos que únicamente tiene dos parámetros:
@@ -59,7 +59,7 @@ Las variables en Powershell se identifican por un nombre que siempre debe comenz
 Para almacenar un valor en una variable debemos utilizar el operador igual (=), indicando después de este el valor que queremos que contenga la variable, ya sea indicando directamente el valor o con un comando que lo devolverá. 
 
 ```powershell
-PS C:\> $mes="octubre"
+PS C:\> $mes='octubre'
 PS C:\> $mes
 octubre
 ```
