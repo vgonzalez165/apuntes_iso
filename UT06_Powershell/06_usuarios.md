@@ -27,7 +27,7 @@ En este caso los comandos disponibles son:
 - `Get-LocalUser`: recoge información de los usuarios locales.
 - `Rename-LocalUser`: cambia el nombre de un usuario.
 - `Enable-LocalUser` y Disable-LocalUser: habilita o deshabilita una cuenta de usuario.
-- 
+
 Todos estos comandos trabajan con objetos de la clase `LocalUser`, cuyas propiedades coinciden con los valores que ya conocemos del diálogo de creación de usuarios del MMC: Name, FullName, SID, …
 
 
