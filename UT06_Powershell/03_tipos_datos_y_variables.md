@@ -177,16 +177,122 @@ Observa que cuando se hace referencia a una **propiedad** en Powershell se pone 
 
 ### 3.4.4.- Arrays
 
-Un **array** no almacena un único valor, sino que almacena un conjunto de valores que pueden ser del mismo tipo de datos o de diferentes. Para crear un array se indican todos los valores que va a contener separados mediante comas en la definición.
+Un **array** o **matriz** no almacena un único valor, sino que almacena un conjunto de valores que pueden ser del mismo tipo de datos o de diferentes. Los arrays son un elemento muy útil en cualquier lenguaje de programación y por tanto también en Powershell. Aquí únicamente veremos muy por encima los arrays, pero si tienes interés en profundizar en el tema la [ayuda en línea de Powershell](https://docs.microsoft.com/es-es/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7.2) es el sitio ideal para ello.
 
-Para leer un elemento de un array hay que indicar la posición de dicho elemento rodeada de corchetes después del nombre de la variable, teniendo en cuenta que el **primer elemento del array está en la posición 0**
+En clase ya hemos trabajado muchas veces con arrays sin darnos cuenta, porque todos los comandos que devuelven un conjunto de objetos (por ejemplo, `Get-Process`) en realidad lo que están devolviendo es un array de objetos.
+
+Si lo que queremos es definir nosotros un array, la sintaxis correcta es utilizando el símbolo arroba (`@`) seguido del listado de elementos del array separados por comas y rodeados por paréntesis.
 
 ```powershell
-PS C:\proyectos\apuntes\apuntes_iso> $a = "a", "b", "c"
-PS C:\proyectos\apuntes\apuntes_iso> $a
+PS C:\> $mi_array = @( 'a', 'b', 'c' )
+PS C:\> $mi_array
 a
 b
 c
-PS C:\proyectos\apuntes\apuntes_iso> $a[1]
-b
 ```
+
+También se pueden omitir las comas si indicamos los elementos del array en diferentes líneas. Este método es preferible principalmente por legibilidad, ya que es más fácil ver de un vistazo qué elementos tiene el array.
+
+```powershell
+PS C:\> $otro_array = @(
+>> 'a'
+>> 'b'
+>> 'c'
+>> )
+PS C:\> $otro_array
+a
+b
+c
+```
+
+Aunque utilizar los símbolos `@( )` es lo correcto y funciona siempre, en la mayoría de las ocasiones también es posible declarar los arrays omitiendo estos símbolos y simplemente enumerando todos los elementos del mismo separados por comas.
+
+```powershell
+PS C:\> $mi_array = 'a', 'b', 'c'
+PS C:\> $mi_array
+a
+b
+c
+```
+
+Una vez declarado un array, es posible hacer referencia a uno de sus elementos utilizando los corchetes tras el nombre del array e indicando entre ellos el índice del elemento que queremos extraer, teniendo en cuenta que **el primer elemento del array tiene el índice 0**.
+
+```powershell
+PS C:\> $mi_array[0]
+a
+PS C:\> $mi_array[2]
+c
+```
+
+Pero cuando realmente son útiles los arrays es cuando queremos iterar sobre todos los elementos del array y utilizar cada uno de estos elementos para algo. Esto se puede ver mejor con un caso práctico.
+
+Por ejemplo, supongamos que queremos crear una serie de usuarios en una máquina llamados `alumno01`, `alumno02`, ... `alumno04`.  Para realizar esta operación necesitaríamos ejecutar 4 comandos, cada uno de ellos para crear cada uno de los usuarios. En cambio, si utilizamos arrays, podemos hacerlo de la siguiente forma:
+
+```powershell
+PS C:\> $users = @(
+>> 'alumno01'
+>> 'alumno02'
+>> 'alumno03'
+>> 'alumno04'
+>> )
+PS C:\> $users | New-LocalUser -NoPassword
+
+Name     Enabled Description
+----     ------- -----------
+alumno01 True
+alumno02 True
+alumno03 True
+alumno04 True
+```
+
+Lo que estamos haciendo con el código anterior al enviar el array por la canalización es simplemente ejecutar el comando `New-LocalUser` cuatro veces y en cada una de ellas recibiendo por el pipeline cada uno de los elementos del array. Como este comando admite por el pipeline el nombre del usuario a crear, creará los cuatro usuarios.
+
+![Ayuda de New-LocalUser](imgs/localuser_pipeline.png)
+
+Otra posibilidad de uso de los arrays es en combinación con el comando `ForEach-Object`. Este comando recibe por el pipeline un array de objetos, y ejecute el bloque de script (recuerda que esto son una serie de comandos rodeados por llaves) que se le pasa como parámetro una vez para cada uno de los elementos del array. Dentro del bloque de script se puede hacer referencia al elemento correspondiente del array con la variable especial `$_` o `$PSItem`.
+
+De esta forma, el ejemplo anterior de creación de usuarios lo podemos hacer de la siguiente forma:
+
+```powershell
+PS C:\> $users | ForEach-Object {
+>> New-LocalUser $_ -NoPassword
+>> }
+
+Name     Enabled Description
+----     ------- -----------
+alumno01 True
+alumno02 True
+alumno03 True
+alumno04 True
+```
+
+Extendiendo este ejemplo, podemos crear un **array bidimensional** donde cada elemento de un array es a su vez otro array y de esta forma almacenar varios valores para cada usuario.
+
+```powershell
+PS C:\> $users = @(
+>> @('alumno01', 'Primer alumno de ISO'),
+>> @('alumno02', 'Segundo alumno de ISO'),
+>> @('alumno03', 'Tercer alumno de ISO')
+>> )
+```
+
+Es importante tener en cuenta que en el caso de declarar arrays bidimensionales **es obligatorio separar los elementos por comas**, al contrario que cuando creábamos un array normal.
+
+Con esta modificación, la variable `$_` será un array que contiene dos elementos (el nombre y la descripción), por lo que dentro del bloque de script habrá que referenciar estos elementos mediante su índice.
+
+```powershell
+PS C:\> $users | ForEach-Object {
+>> New-LocalUser $_[0] -Description $_[1] -NoPassword
+>> }
+
+Name     Enabled Description
+----     ------- -----------
+alumno01 True    Primer alumno de ISO
+alumno02 True    Segundo alumno de ISO
+alumno03 True    Tercer alumno de ISO
+```
+
+
+ 
+***
+[Volver al índice principal](index_UT06.md)
