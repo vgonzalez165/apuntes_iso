@@ -10,8 +10,8 @@
 5. [Gestión de Hyper-V desde Powershell](05_hyperv.md)
 6. [Gestión de usuarios y grupos](06_usuarios.md)
 7. [Gestión avanzada de usuarios y grupos](07_usuarios_avanzado.md)
-8. [**Powershell y el almacenamiento**](08_almacenamiento.md)
-
+8. [Conexión remota](08_conexion_remota.md)
+9. [Powershell y el almacenamiento](08_almacenamiento.md)
 
 # 9.- POWERSHELL Y EL ALMACENAMIENTO
 
