@@ -51,7 +51,7 @@ Por lo tanto, en un disco duro se puede distinguir entre los siguientes elemento
 - La tabla de particiones
 - Espacio particionado
 - Espacio sin particionar.
-- 
+
 La **tabla de particiones** contiene información sobre las particiones que hay en el disco duro, más el código de arranque del sistema. Podemos encontrar dos tipos de tablas de particiones en los ordenadores actualmente:
 
 - Master Boot Record (MBR)
@@ -110,12 +110,12 @@ Cuando en el sistema tenemos un único sistema operativo instalado, por ejemplo,
 
 Sin embargo, cuando tenemos más de un sistema operativo instalado en nuestro ordenador el proceso cambia ya que solo podemos tener una partición marcada como activa y por tanto únicamente podríamos arrancar un sistema operativo.
 
-Para solucionar este problema necesitamos un programa especial denominado gestor de arranque que nos permitirá elegir cuál de los sistemas operativos que tenemos instalados queremos ejecutar.
+Para solucionar este problema necesitamos un programa especial denominado **gestor de arranque** que nos permitirá elegir cuál de los sistemas operativos que tenemos instalados queremos ejecutar.
 Para ello el gestor de arranque reemplaza el código de arranque que se encuentra en el MBR por un programa que nos mostrará un menú donde seleccionaremos el sistema operativo deseado.  Hay muchos gestores de arranque disponibles, algunos de los más comunes son:
 
-- Windows Boot Manager (BOOTMGR): es el gestor de arranque de Windows y únicamente permite elegir entre diferentes sistemas Windows.
-- GAG (Graphical Boot Manager): este sencillo gestor de arranque nos muestra un menú gráfico para elegir el sistema operativo. Se instala completamente en el MBR al contrario que otros gestores que almacenan parte de su código fuera del MBR.
-- GRUB (GNU Grand Unified Loader): es el gestor de arranque utilizado por la mayoría de los sistemas Linux y funciona perfectamente tanto para sistemas operativos Windows como Linux. Al contrario que GAG parte del código se almacena dentro de la partición `/boot`.
+- **Windows Boot Manager (BOOTMGR)**: es el gestor de arranque de Windows y únicamente permite elegir entre diferentes sistemas Windows.
+- **GAG (Graphical Boot Manager)**: este sencillo gestor de arranque nos muestra un menú gráfico para elegir el sistema operativo. Se instala completamente en el MBR al contrario que otros gestores que almacenan parte de su código fuera del MBR.
+- **GRUB (GNU Grand Unified Loader)**: es el gestor de arranque utilizado por la mayoría de los sistemas Linux y funciona perfectamente tanto para sistemas operativos Windows como Linux. Al contrario que GAG parte del código se almacena dentro de la partición `/boot`.
 
 
 
