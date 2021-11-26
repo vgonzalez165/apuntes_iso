@@ -3,8 +3,8 @@
 ### Contenidos
 
 1. [Organización del almacenamiento](01_organización.md)
-2. [Sistemas de archivos](02_sistemas_archivos.md)
-3. [**Configuración de discos en Windows**](03_configuración_discos.md)
+2. [**Configuración de discos en Windows**](02_configuración_discos.md)
+3. [Sistemas de archivos](03_sistemas_archivos.md)
 4. [El sistema de ficheros NTFS](04_ntfs.md)
 5. [Carpetas compartidas](05_compartidas.md)
 

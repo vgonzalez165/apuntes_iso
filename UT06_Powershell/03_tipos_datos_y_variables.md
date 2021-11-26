@@ -294,6 +294,6 @@ alumno03 True    Tercer alumno de ISO
 ```
 
 
- 
 ***
+
 [Volver al índice principal](index_UT06.md)

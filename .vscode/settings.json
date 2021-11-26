@@ -1,0 +1,10 @@
+{
+    "diffEditor.wordWrap": "on",
+    "editor.wordWrap": "on",
+    "[markdown]": {
+        
+        "editor.wrappingStrategy": "advanced",
+        "editor.wordWrap": "bounded"
+    }
+    
+}
