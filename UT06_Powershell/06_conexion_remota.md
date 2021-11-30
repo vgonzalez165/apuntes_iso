@@ -6,22 +6,22 @@
 1. [Introducción a Powershell](01_introducción.md)
 2. [Objetos y el pipeline](02_pipelines.md)
 3. [Tipos de datos y variables](03_tipos_datos_y_variables.md)
-4. [El sistema de ficheros en Powershell](04_sistema_ficheros.md)
-5. [Gestión de Hyper-V desde Powershell](05_hyperv.md)
-6. [Gestión de usuarios y grupos](06_usuarios.md)
-7. [Gestión avanzada de usuarios y grupos](07_usuarios_avanzado.md)
-8. [**Conexión remota**](08_conexion_remota.md)
-9. [Powershell y el almacenamiento](08_almacenamiento.md)
+4. [Gestión de usuarios y grupos](06_usuarios.md)
+5. [Gestión avanzada de usuarios y grupos](07_usuarios_avanzado.md)
+6. [**Conexión remota**](08_conexion_remota.md)
+7. [Gestión de Hyper-V desde Powershell](05_hyperv.md)
+8. [Powershell y el almacenamiento](08_almacenamiento.md)
+9. [El sistema de ficheros en Powershell](04_sistema_ficheros.md)
 
 
-# 8.- CONEXIONES REMOTAS
+# 6.- CONEXIONES REMOTAS
 
 Una parte muy importante de Powershell es la posibilidad de ejecutar comandos o scripts de forma remota en otra máquina de la red o en una máquina virtual de Hyper-V sin necesidad de acceder directamente a ella.
 
 En este apartado veremos ambas posibilidades, abordando en primer lugar la ejecución de comandos y scripts en una máquina virtual desde el equipo anfitrión y a continuación los pasos a realizar para establecer una relación de confianza entre dos equipos físicos.
 
 
-## 8.1.- Conexiones remotas a una máquina virtual
+## 6.1.- Conexiones remotas a una máquina virtual
 
 La realización de conexiones remotas de Powershell desde el equipo anfitrión a una de las máquinas virtuales de Hyper-V que se están ejecutando en dicho equipo es muy sencilla gracias a un mecanismo denominado **Powershell Direct**.
 
@@ -38,7 +38,7 @@ Hay una serie de requisitos que se deben cumplir para usar Powershell Direct:
 - Tanto el sistema operativo anfitrión como el de la máquina virtual deben ser por lo menos Windows 10 o Windows Server 2016
 
 
-### 8.1.1.- Sesiones con Powershell Direct
+### 6.1.1.- Sesiones con Powershell Direct
 
 Abrir una sesión con Powershell Direct significa que todos los comandos que introduzcamos en la consola se ejecutarán como si estuviéramos en la máquina virtual.
 
@@ -63,7 +63,7 @@ Para finalizar la sesión hay que utilizar el comando `Exit-PSSession`.
 PS C:\>
 ```
 
-### 8.1.2.- Ejecución de script remoto con Powershell Direct
+### 6.1.2.- Ejecución de script remoto con Powershell Direct
 
 La otra posibilidad que brinda Powershell Direct es ejecutar scripts o comandos sueltos desde el equipo anfitrión utilizando el comando `Invoke-Command`. Los parámetros que incluye este comando para conectarnos a una máquina virtual de Hyper-V son los mismos que en el comando anterior: `-VMId` si queremos realizar la conexión a una máquina virtual utilizando su identificador y `-VMName` si queremos hacerlo utilizando el nombre de la máquina virtual. 
 
@@ -92,21 +92,21 @@ PS C:\> Invoke-Command -VMId "da6167a6-f1e6-41bc-8747-fba1fc8813df" -Credential 
 
 
 
-## 8.2.- Conexión remota a un equipo 
+## 6.2.- Conexión remota a un equipo 
 
 Lo habitual no es administrar un sistema desde el mismo equipo, sino que el administrador del sistema lo hace mediante conexiones remotas sin moverse de su propio ordenador. Powershell está pensado desde su concepción en facilitar esta tarea, y de hecho, uno de los parámetros generales a todos los comandos es `-ComputerName`, que sirve para hacer referencia al equipo remoto sobre el que se ejecutará el comando.
 
 Dado que la administración remota conlleva una serie de **riesgos de seguridad**, hay que realizar una serie de pasos previos sobre los equipos para poder administrar de forma remota. 
 
 
-### 8.2.1.- Habilitar la conexión remota
+### 6.2.1.- Habilitar la conexión remota
 
 El primer paso es **habilitar la conexión remota**, esto debemos hacerlo en cada equipo al que nos queremos conectar de forma remota, es decir, el equipo sobre el que se ejecutaron los comandos. Para ello simplemente debemos abrir una consola de Power Shell en modo administrador y ejecutar el comando `Enable-PSRemoting -Force`.
 
 Este comando inicia el servicio WinRM y lo prepara para que se inicie automáticamente con el sistema, además crea una regla en el firewall para permitir las conexiones entrantes. Sí estamos trabajando en un dominio, esta será la única configuración que tenemos que realizar. Sí en cambio tenemos nuestros equipos en un grupo de trabajo debemos realizar algunas configuraciones adicionales. 
 
 
-### 8.2.2.- Configuración para grupos de trabajo
+### 6.2.2.- Configuración para grupos de trabajo
 
 Lo primero que tenemos que tener en cuenta si nuestros equipos están en grupos de trabajo es que la red tiene que estar definida como privada y no como pública. Cómo te habrás fijado cada vez que nos conectamos a una red nueva se nos pregunta por el tipo de red de que se trata. Sí en ese momento seleccionamos que la red pública cómo podremos cambiarlo ahora yendo a propiedades del adaptador de red y debajo de perfil de red seleccionar *privado*. 
 
@@ -119,7 +119,7 @@ PS C:\> Set-Item wsman:\localhost\client\trustedhosts *
 Con la orden anterior estamos utilizando el asterisco para indicar que nuestro equipo confía en cualquier otro equipo. Pera nuestras prácticas es suficiente, pero hay que tener en cuenta que para un entorno de producción esto sería bastante inseguro. En ese caso lo ideal sería reemplazar el asterisco por las direcciones IP de los equipos en que confiamos separadas por comas. Después de realizar esto debemos reiniciar el servicio WinRM, lo que conseguiremos con la orden `Restart-Service WinRM`.
 
 
-### 8.2.3.- Probando la conexión remota
+### 6.2.3.- Probando la conexión remota
 
 Una vez realizados todos los pasos debemos verificar que el servicio de conexión remota funciona perfectamente, para ello disponemos del comando `Test-WsMan` al cual se le pasa como parámetro el nombre o la dirección IP del equipo cuya canción de queramos verificar. 
 
@@ -130,12 +130,12 @@ Llegados a este punto tenemos 3 opciones para realizar la administración remota
 - Utilizar el comando Invoke-Command para ejecutar cualquier comando o script que tengamos en el otro equipo.
 
 
-### 8.2.4.- Iniciar una sesión interactiva
+### 6.2.4.- Iniciar una sesión interactiva
 
 Al igual que con las máquinas virtuales, los comandos para gestionar sesiones remotas son `Enter-PSSession` y `Exit-PSSession` para iniciar y finalizar respectivamente una sesión en otro equipo. Al primero se le debe pasar como parámetro el nombre o dirección IP del equipo con el que queremos establecer la sesión, así como opcionalmente el parámetro `Credentials` para indicar las credenciales con las que queremos iniciar sesión. El segundo comando no requiere ningún tipo de parámetro. 
 
 
-### 8.2.5.- Ejecutar un comando con el parámetro ComputerName
+### 6.2.5.- Ejecutar un comando con el parámetro ComputerName
 
 Hay una serie de comandos que admiten directamente el parámetro con `-ComputerName` de forma que simplemente incluyendo este parámetro seguido de un nombre de equipo o su dirección IP, se ejecutarán en el equipo remoto. 
 
@@ -155,7 +155,7 @@ Cmdlet          Get-PSSession                                      3.0.0.0    Mi
 ...
 ```
 
-### 8.2.6.- Ejecutar un comando remoto
+### 6.2.6.- Ejecutar un comando remoto
 
 Si has ejecutado el comando anterior, te habrás fijado los comandos relativos a la gestión de usuarios locales no están incluidos en los conventos devueltos, por lo que no es una opción válida para crear usuarios remotos en otro equipo. Lo mismo nos pasará con otros muchos comandos o con scripts creados por nosotros queremos ejecutar remotamente. En estos casos tenemos que utilizar el comando `Invoke-Command`.
 
