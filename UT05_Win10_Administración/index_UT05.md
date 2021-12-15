@@ -1,9 +1,5 @@
 ![Carátula UT05](imgs/caratula_ut05.png)
 
-# UT05. WINDOWS 10. ADMINISTRACIÓN
-
-ESTO TAL VEZ SE DEBERÍA INTEGRAR EN LA UNIDAD 3, O DIVIDIRLO EN **ADMINISTRACIÓN BÁSICA Y AVANZADA**
-
 ### Contenidos
 
 1. Gestión de procesos

@@ -6,15 +6,15 @@
 1. [Introducción a Powershell](01_introducción.md)
 2. [Objetos y el pipeline](02_pipelines.md)
 3. [Tipos de datos y variables](03_tipos_datos_y_variables.md)
-4. [El sistema de ficheros en Powershell](04_sistema_ficheros.md)
-5. [**Gestión de Hyper-V desde Powershell**](05_hyperv.md)
-6. [Gestión de usuarios y grupos](06_usuarios.md)
-7. [Gestión avanzada de usuarios y grupos](07_usuarios_avanzado.md)
-8. [Conexión remota](08_conexion_remota.md)
-9. [Powershell y el almacenamiento](08_almacenamiento.md)
+4. [Gestión de usuarios y grupos](04_usuarios.md)
+5. [Gestión avanzada de usuarios y grupos](05_usuarios_avanzado.md)
+6. [Conexión remota](06_conexion_remota.md)
+7. [**Gestión de Hyper-V desde Powershell**](07_hyperv.md)
+8. [Powershell y el almacenamiento](08_almacenamiento.md)
+9. [El sistema de ficheros en Powershell](09_sistema_ficheros.md)
 
 
-# 4.- CONTROLANDO HYPER-V CON POWERSHELL
+# 7.- CONTROLANDO HYPER-V CON POWERSHELL
 
 Powershell dispone de un módulo específico para trabajar con máquinas virtuales de Hyper-V el cual se puede instalar cuando habilitamos la característica de Administración de Hyper-V.
 
@@ -27,7 +27,7 @@ PS C:\> Get-Command -Module hyper-v
 Veamos los comandos que más útiles nos pueden ser:
 
 
-## 4.1.- Listado de máquinas virtuales
+## 7.1.- Listado de máquinas virtuales
 
 Con el comando `Get-VM` obtendremos un listado de las máquinas virtuales actualmente administradas en nuestro equipo.
 
@@ -43,7 +43,7 @@ PS C:\> Get-VM | Where-Object State -eq ‘Running’
 ```
 
 
-## 4.2.- Iniciar y apagar máquinas virtuales
+## 7.2.- Iniciar y apagar máquinas virtuales
 
 Como seguro que ya te imaginas, los comandos para iniciar y apagar máquinas virtuales son `Start-VM` y `Stop-VM`. Ambas utilizan el parámetro `-Name` para hacer referencia a la máquina que se va a iniciar o apagar. 
 
@@ -60,7 +60,7 @@ PS C:\> Get-VM | Where-Object State -eq ‘Running’ | Stop-VM
 Si por algún motivo la máquina virtual se hubiera colgado y no respondiera a la orden de parada se podría utilizar el parámetro -Force para forzar el apagado. Ten en cuenta que esto es equivalente a apagar una máquina física tirando del cable de corriente, por lo que puede haber pérdida de datos o tener alguna inconsistencia en el sistema de ficheros.
 
 
-# 4.3.- Suspender e hibernar máquinas virtuales
+# 7.3.- Suspender e hibernar máquinas virtuales
 
 De forma análoga a como podemos hacer con una máquina física, es posible suspender e hibernar las máquinas virtuales.
 Suspender una máquina virtual supone congelar su ejecución en el momento actual y quedará en este estado hasta que la volvamos a iniciar con el comando `Resume-VM`.
@@ -78,7 +78,7 @@ PS C:\> Start-VM -Name ‘Win10’
 ```
 
 
-## 4.4. Medir el consumo de recursos de la máquina virtual
+## 7.4. Medir el consumo de recursos de la máquina virtual
 
 En entornos con múltiples máquinas virtuales puede ser útil hacer un seguimiento de los recursos consumidos por cada una de las máquinas. Para hacer esto primero hay que habilitar la medición de recursos en las máquinas virtuales con la siguiente orden:
 
@@ -93,7 +93,7 @@ PS C:\> Measure-VM -Name ‘Win10’
 ```
 
 
-## 4.5.- Obtener los recursos de anfitrión
+## 7.5.- Obtener los recursos de anfitrión
 
 En ocasiones nos puede interesar conocer los recursos disponibles en el equipo que está ejecutando Hyper-V, por ejemplo, para saber cuanta memoria RAM tiene o el número de núcleos del procesador. Esto lo podemos conseguir con el comando Get-VMHost. 
 
@@ -108,7 +108,7 @@ PS C:\> Get-VMHost | Select-Object *
 ```
 
 
-## 4.6.- Otros comandos para trabajar con Hyper-V
+## 7.6.- Otros comandos para trabajar con Hyper-V
 
 Hay otros muchos comandos que nos permiten realizar cualquier función que nos imaginemos sobre las máquinas virtuales. En especial, hay una serie de comandos que nos permitirán crear tanto discos como máquinas virtuales directamente desde la línea de comandos, pero que se salen del ámbito de estudio de este curso.
 

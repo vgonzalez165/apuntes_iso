@@ -6,15 +6,15 @@
 1. [Introducción a Powershell](01_introducción.md)
 2. [Objetos y el pipeline](02_pipelines.md)
 3. [Tipos de datos y variables](03_tipos_datos_y_variables.md)
-4. [El sistema de ficheros en Powershell](04_sistema_ficheros.md)
-5. [Gestión de Hyper-V desde Powershell](05_hyperv.md)
-6. [Gestión de usuarios y grupos](06_usuarios.md)
-7. [**Gestión avanzada de usuarios y grupos**](07_usuarios_avanzado.md)
-8. [Conexión remota](08_conexion_remota.md)
-9. [Powershell y el almacenamiento](08_almacenamiento.md)
+4. [Gestión de usuarios y grupos](04_usuarios.md)
+5. [**Gestión avanzada de usuarios y grupos**](05_usuarios_avanzado.md)
+6. [Conexión remota](06_conexion_remota.md)
+7. [Gestión de Hyper-V desde Powershell](07_hyperv.md)
+8. [Powershell y el almacenamiento](08_almacenamiento.md)
+9. [El sistema de ficheros en Powershell](09_sistema_ficheros.md)
 
 
-# 7.- FUNCIONES AVANZADAS EN LA GESTIÓN DE USUARIOS
+# 5.- FUNCIONES AVANZADAS EN LA GESTIÓN DE USUARIOS
 
 Ahora que hemos aprendido a trabajar con usuarios y grupos en Powershell, vamos a utilizarlo como excusa para seguir avanzando en nuestro conocimiento de Powershell. En concreto, vamos a:
 
@@ -22,14 +22,14 @@ Ahora que hemos aprendido a trabajar con usuarios y grupos en Powershell, vamos 
 - Añadir usuarios y grupos a un equipo diferente al nuestro estableciendo una conexión remota con el mismo.
 
 
-## 7.1.- Creación automática de usuarios y grupos
+## 5.1.- Creación automática de usuarios y grupos
 
 Vamos a ver primero como haríamos para automatizar la creación de usuarios en nuestro sistema partiendo de un fichero con los datos de los usuarios que deseamos crear. La idea fundamental es muy sencilla, partimos de un fichero en formato CSV con información de los usuarios, extraemos los datos de cada usuario de dicho fichero y los utilizamos para dar de alta el usuario. Para esto necesitaremos un nuevo comando que nos permita iterar sobre todos los objetos devueltos por un comando, el comando `foreach`, que explicaremos un poco más adelante.
 
 Además, también aprovecharemos para crear un script que 
 
 
-### 7.1.1.- Importación del fichero CSV
+### 5.1.1.- Importación del fichero CSV
 
 El primer paso es crear un fichero CSV con la información que queramos añadir a los usuarios que serán creados. El acrónimo CSV viene de *Comma Separated Values*, y es precisamente eso en lo que consiste, en un fichero donde tenemos una serie de filas con valores separados por un carácter especial, habitualmente comas.
 
@@ -76,7 +76,7 @@ nombre_usuario  NoteProperty string nombre_usuario=victor
 Ahora necesitamos **iterar** sobre cada uno de estos objetos para utilizar los datos para crear los usuarios, y esto lo haremos con el comando `foreach`.
 
 
-### 7.1.2.- El comando ForEach
+### 5.1.2.- El comando ForEach
 
 El comando `foreach` tiene múltiples usos y varias formas de ser utilizado, pero por ahora únicamente veremos como se puede utilizar dentro del pipeline tomando como entrada la salida de otro comando.
 
@@ -102,7 +102,7 @@ En esta línea hacemos lo siguiente:
 - Como estamos poniendo `$_.name`, solo nos quedamos con una propiedad de cada objeto, la que corresponde al nombre del usuario, que por tanto es la que se mostrará por pantalla.
 
 
-### 7.1.3.- Juntando todo
+### 5.1.3.- Juntando todo
 
 Ahora que ya tenemos claro cómo funcionan las herramientas que vamos a utilizar ya solo nos queda juntarlo todo. El código sería el siguiente:
 
@@ -115,7 +115,7 @@ PS C:\> Import-Csv ‘C:\users.csv’ | foreach {
 Si lo ejecutas, verás que creará todos los usuarios que tenemos en el fichero CSV, aunque, como no hemos puesto la contraseña nos la pedirá para cada usuario que creemos. Ya te queda para cuando hagamos la práctica correspondiente incluir un campo con la contraseña en el fichero CSV.
 
 
-### 7.1.4.- Nuestro primer script
+### 5.1.4.- Nuestro primer script
 
 El comando anterior funciona, pero si tenemos que ejecutar frecuentemente puede ser bastante tedioso tener que introducirlo por teclado. Sobre todo, teniendo en cuenta que hemos omitido un gran número de parámetros que sí que convendría incluir en caso de querer crear usuarios en un entorno real. 
 

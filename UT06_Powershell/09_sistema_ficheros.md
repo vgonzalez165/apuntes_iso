@@ -6,15 +6,15 @@
 1. [Introducción a Powershell](01_introducción.md)
 2. [Objetos y el pipeline](02_pipelines.md)
 3. [Tipos de datos y variables](03_tipos_datos_y_variables.md)
-4. [**El sistema de ficheros en Powershell**](04_sistema_ficheros.md)
-5. [Gestión de Hyper-V desde Powershell](05_hyperv.md)
-6. [Gestión de usuarios y grupos](06_usuarios.md)
-7. [Gestión avanzada de usuarios y grupos](07_usuarios_avanzado.md)
-8. [Conexión remota](08_conexion_remota.md)
-9. [Powershell y el almacenamiento](08_almacenamiento.md)
+4. [Gestión de usuarios y grupos](04_usuarios.md)
+5. [Gestión avanzada de usuarios y grupos](05_usuarios_avanzado.md)
+6. [Conexión remota](06_conexion_remota.md)
+7. [Gestión de Hyper-V desde Powershell](07_hyperv.md)
+8. [Powershell y el almacenamiento](08_almacenamiento.md)
+9. [**El sistema de ficheros en Powershell**](09_sistema_ficheros.md)
 
 
-# 4.- EL SISTEMA DE FICHEROS
+# 9.- EL SISTEMA DE FICHEROS
 
 Tabla resumen de comandos
 
@@ -37,9 +37,9 @@ Tabla resumen de comandos
 | `Test-Path`       | -             | Devuelve True si la ruta indicada existe      |
 
 
-## 4.1.- Navegación por el sistema de ficheros
+## 9.1.- Navegación por el sistema de ficheros
 
-### 4.1.1.- Directorio de trabajo
+### 9.1.1.- Directorio de trabajo
 
 El sistema de ficheros en Windows es una estructura arborescente o jerárquica donde la raíz de dicho árbol es cada una de las unidades de almacenamiento que tengamos en el sistema, y cada nodo será, o bien un **fichero** o bien una **carpeta**. Los ficheros contienen datos, mientras que las carpetas o directorios son meros contenedores que sirven para almacenar en su interior tanto directorios como otras carpetas. 
 
@@ -67,7 +67,7 @@ Así, si por ejemplo estamos en el directorio `D:\apuntes\ISO\UT01` y queremos h
 Por norma general es equivalente el uso de rutas absolutas o relativas, por lo que siempre haremos uso de aquellas que nos resulten más cortas o con las que nos encontremos más cómodos. Hay una excepción a esta norma, y es cuando utilicemos rutas dentro de ficheros, por ejemplo, scripts o ficheros de configuración. En esos casos **siempre debemos utilizar rutas absolutas**, ya que no podemos garantizar que en el momento en que se vaya a ejecutar el script o leer el fichero de configuración el directorio de trabajo sea el que esperamos.
 
 
-### 4.1.2.- Navegación por el sistema de ficheros
+### 9.1.2.- Navegación por el sistema de ficheros
 
 Para movernos por el árbol de directorios debemos utilizar el comando `Set-Location`, o su alias `cd`. Como parámetro hay que indicarle la ruta del directorio al que nos queremos mover, el cual pasará a ser el directorio de trabajo.
 
