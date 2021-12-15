@@ -1,6 +1,6 @@
 ![Carátula UT01](imgs/caratula_ut01.png)
 
-### Contenidos
+## Contenidos
 
 1. [Introducción a los sistemas operativos](01_introducción.md)
 2. [Historia de los sistemas operativos](02_historia.md)
