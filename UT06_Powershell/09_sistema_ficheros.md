@@ -152,5 +152,18 @@ Algunos de sus parámetros son:
 - `-Force`: este parámetro debe indicarse si se quieren borrar elementos que estén marcados como ocultos o de solo lectura.
 
 
+### 9.1.8.- Copiar y mover archivos
+
+Los comandos `Copy-Item` (`cpi` `cp` `copy`) y `Move-Item` (`mi` `mv` `move`) copian o mueven un elemento de una localización del sistema de ficheros a otra respectivamente. Estos comandos serían los equivalentes a copiar y pegar o cortar y pegar del entorno gráfico. La diferencia entre ambos es que el primero mantiene el elemento original mientras que el otro lo elimina.
+
+Algunos parámetros son:
+
+- `-Path <String>`: indica la ruta de origen del elemento.
+- `-Destination <String>`: indica el directorio de destino. Al igual que el parámetro `-Path`, es opcional poner el nombre del parámetro, de forma que el comando entiende que el primer elemento pasado es el origen y el segundo el destino.
+- `-Recurse`: copia también los subdirectorios que se encuentren en el directorio origen, así como su contenido.
+
+
+### 9.1.9.- Mostrar el contenido de un archivo
+
 ***
 [Volver al índice principal](index_UT06.md)
