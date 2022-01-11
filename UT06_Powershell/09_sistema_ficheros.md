@@ -47,8 +47,11 @@ Cuando abrimos una terminal de Powershell, siempre nos encontraremos en algún p
 
 Hay dos formas de saber cuál es el directorio de trabajo:
 
-- Cuando estamos en la línea de comandos del Powershell siempre se muestra el directorio de trabajo actual en el **promp**, el texto que aparece antes del cursor que espera que introduzcamos un comando.
+- Cuando estamos en la línea de comandos del Powershell siempre se muestra el directorio de trabajo actual en el **prompt**, el texto que aparece antes del cursor que espera que introduzcamos un comando.
 - Con el comando `Get-Location` o su alias `pwd`.
+
+
+### 9.1.2.- Rutas absolutas y relativas
 
 La forma de representar los directorios es mediante la enumeración de todos los directorios que hay que atravesar desde el directorio raíz hasta el directorio indicado partiendo siempre desde la letra de la unidad en que se encuentra y separando los directorios con el símbolo barra invertida (`\`) o bien el símbolo barra (`/`). Windows no distingue entre mayúsculas y minúsculas, por lo que es indiferente utilizar unas u otras en las rutas.
 
@@ -67,11 +70,29 @@ Así, si por ejemplo estamos en el directorio `D:\apuntes\ISO\UT01` y queremos h
 Por norma general es equivalente el uso de rutas absolutas o relativas, por lo que siempre haremos uso de aquellas que nos resulten más cortas o con las que nos encontremos más cómodos. Hay una excepción a esta norma, y es cuando utilicemos rutas dentro de ficheros, por ejemplo, scripts o ficheros de configuración. En esos casos **siempre debemos utilizar rutas absolutas**, ya que no podemos garantizar que en el momento en que se vaya a ejecutar el script o leer el fichero de configuración el directorio de trabajo sea el que esperamos.
 
 
-### 9.1.2.- Navegación por el sistema de ficheros
+### 9.1.3.- Cambiar el directorio de trabajo
 
 Para movernos por el árbol de directorios debemos utilizar el comando `Set-Location`, o su alias `cd`. Como parámetro hay que indicarle la ruta del directorio al que nos queremos mover, el cual pasará a ser el directorio de trabajo.
 
+
+### 9.1.4.- Pila del historial de navegación
+
+Cuando cambiamos de directorio puede ser útil llevar un registro de las localizaciones que hemos recorrido para volver a ellas. El comando `Push-Location` crea un **historial de rutas de directorio** por las que hemos pasado, pudiendo volver a ellas con el comando complementario `Pop-Location`.
+
+Se puede ver como una **pila**, cada vez que ejecutamos `Push-Location` se guarda en la parte superior de la pila el directorio que abandonamos. Cada vez que ejecutamos `Pop-Location` volvemos al directorio que se encuentra en la parte superior de la pila, eliminándolo de la misma.
+
+
+### 9.1.5.- Obtener el contenido de un directorio
+
 Para ver el contenido de un directorio utilizaremos el comando `Get-ChildItem` (o sus alias `dir` o `ls`), que mostrará todos los ficheros y directorios que se encuentran dentro del directorio de trabajo actual si no hemos indicado ningún directorio como parámetros, o del directorio que hayamos pasado como parámetro.
+
+Por defecto, muestra los atributos del archivo, la fecha de la última modificación, el tamaño y el nombre del fichero. Los atributos pueden ser:
+
+- Directorio (`d`)
+- Archivo (`a`)
+- Solo lectura (`r`)
+- Oculto (`h`)
+- Sistema (`s`)
 
 ```powershell
 PS C:\apuntes_iso> Get-ChildItem
@@ -85,6 +106,50 @@ d----          12/09/2021     9:48                iso
 
 ```
 
+Se le puede pasar como **parámetro** el nombre de un directorio o de un fichero, mostrando de esta forma o el contenido del directorio o la información del fichero indicado.
+
+Otra posibilidad es la utilización de los **caracteres comodín** que permiten hacer referencia a grupos de ficheros con una parte común en el nombre. Los caracteres comodín pueden ser:
+
+- **Asterisco**: representa 0 o más caracteres. Por ejemplo, el comando `Get-ChildItem A*` muestra todos los ficheros del directorio actual cuya primera letra sea una `A`, y a continuación una cadena que puede ser incluso la cadena vacía.
+- **Interrogación**: representa un único carácter. Por ejemplo, el comando `Get-ChildItem A?` muestra todos los ficheros que comiencen por la letra `A`, y a continuación tengan un único carácter.
+- **Corchetes**: dentro de los corchetes deben ir dos o más caracteres y representa un único carácter que debe ser uno de los incluidos dentro de los corchetes. Por ejemplo, el comando `Get-ChildItem [abc]*` muestra todos los ficheros cuya primera letra sea `A`, `B` o `C` y a continuación tenga una cadena de caracteres de cualquier longitud.
+- **Rangos**: en los corchetes también se pueden incluir los denominados rangos, indicados por dos letras separadas por el carácter guión (`-`) que representan todos los caracteres que se encuentran alfabéticamente entre los dos caracteres indicados. Por ejemplo, el comando `Get-ChildItem [a-g]*` muestra todos los ficheros que comiencen por una letra comprendida entre la `a` y la `g`. También es posible combinar rangos y caracteres sueltos concatenándolos dentro de los corchetes, de la forma `[a-gxyz]`.
+
+Los **parámetros** que se pueden pasar al comando `Get-ChildItem` son:
+
+- `-Path <String>`: tras este parámetro se indica la ruta de la que se debe mostrar el contenido. Es opcional, pudiendo poner directamente la ruta.
+- `-Recurse`: muestra el contenido del directorio de forma recursiva, de forma que se vea el contenido del directorio indicado y el de todos sus directorios descendientes.
+- `-Depth <UInt32>`: si queremos limitar la profundidad de la búsqueda recursiva hemos de utilizar este parámetro al que se le pasa un número entero.
+- `-Include <String>`: se indica una cadena que servirá de filtro para señalar que ficheros se quieren mostrar.
+- `-Exclude <String>`: de forma análoga al anterior, se indican los ficheros que no se mostrarán.
+- `-Hidden`: muestra únicamente los ficheros ocultos
+- `-ReadOnly`: muestra únicamente los ficheros de solo lectura.
+- `-System`: muestra únicamente los ficheros con el atributo de sistema. Ten en cuenta que estos ficheros habitualmente están también ocultos, por lo que solo se muestran si también se indica el parámetro `-Hidden`.
+
+
+### 9.1.6.- Creación de un nuevo elemento (archivo o directorio)
+
+El comando `New-Item` (alias `ni') crea un nuevo elemento que puede ser un archivo o una carpeta. Este comando también puede establecer el valor de los elementos que crea, por ejemplo, se puede crear un fichero e indicar el contenido de este.
+
+Algunos parámetros que admite son:
+
+- `-Path <String>`: ruta del directorio donde creará el elemento.
+- `-Name <String>`: nombre del elemento creado.
+- `-ItemType <String>`: tipo de elemento que se va a crear. Los valores pueden ser `File` o `Directory`, aunque también admite otros valores que no veremos, como los enlaces.
+- `-Value <Object>`: Indica el valor que tendrá el elemento creado. En el caso de ficheros será el contenido del mismo.
+
+
+### 9.1.7.- Eliminación de archivos y directorios
+
+El comando `Remove-Item`, que tiene múltiples alias (`ri`, `rm`, `rmdir`, `del`, `erase`, `rd`) permite **borrar** uno o más elementos. Aquí veremos su uso en el sistema de ficheros para borrar archivos y carpetas, pero permite borrar otros elementos como claves del registro, variables, alias o funciones.
+
+En su uso básico se le pasa la ruta de un fichero, pudiendo contener comodines para afectar a varios ficheros.
+
+Algunos de sus parámetros son:
+
+- `-Include <String>`: indica los elementos que se borrarán.
+- `-Exclude <String>`: indica los elementos que no se borrarán.
+- `-Force`: este parámetro debe indicarse si se quieren borrar elementos que estén marcados como ocultos o de solo lectura.
 
 
 ***
