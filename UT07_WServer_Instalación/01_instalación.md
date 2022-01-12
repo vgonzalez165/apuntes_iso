@@ -106,7 +106,7 @@ Algunos ejemplos de roles son:
 
 ### 1.4.2.- Características
 
-Además de los roles y servicios de roles, están las características. Se trata de componentes independientes de las funciones del servidor pero que pueden ser necesarios para dar apoyo a los roles. 
+Además de los roles y servicios de roles, están las **características**. Se trata de componentes independientes de las funciones del servidor pero que pueden ser necesarios para dar apoyo a los roles. 
 
 Por ejemplo, el Directorio Activo es un rol, pero para determinadas instalaciones puede ser necesaria la instalación de un componente independiente llamado WINS, que es una característica. Algunos ejemplos de características son:
 - Microsoft .NET Framework
@@ -120,7 +120,8 @@ Por ejemplo, el Directorio Activo es un rol, pero para determinadas instalacione
 ### 1.4.3.- Instalación de roles y características
 
 La instalación de roles y características se puede realizar desde el Administrador del servidor, en la opción *Administrar -> Agregar roles y características*.
- 
+
+![Agregar roles y características](imgs/01_01_agregar_roles.png)
 
 
 ***

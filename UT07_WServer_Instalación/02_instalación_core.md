@@ -22,15 +22,13 @@ Esta carencia de elementos gráficos nos puede proporcionar numerosas ventajas:
 - **Reducción de la frecuencia de instalación de actualizaciones**. Los elementos gráficos de Windows son los que más frecuentemente requieren actualizaciones por lo que su eliminación implicará una menor frecuencia de instalación de actualizaciones. Menos actualizaciones conllevan menos reinicios del servidor y por tanto menos tiempo sin servicio (alta disponibilidad).
 - **Reducción de la superficie de ataque**. Cuantas menos aplicaciones se estén ejecutando en el sistema menos puntos de entrada habrá para un potencial atacante. 
 
-Una característica a partir de Windows Server 2012R2 es que la decisión de utilizar Server Core no es irrevocable como era en versiones anteriores. Ahora la GUI está disponible como una **característica** de forma que es posible alternar entre versión con interfaz y sin ella sin necesidad de volver a instalar todo el sistema.
+En Windows Server 2012R2 y 2016, es posible alternar cambiar entre el modo core y el modo con GUI después de haber instalado el sistema operativo. Además, permite un tercer modo denominado **Minimal Server Interface**, que mantiene únicamente algunos elementos de la interfaz gráfica, eliminando aquellos que más recursos consumen.
 
-En Windows Server 2012R2 hay una nueva posibilidad no disponible en versiones anteriores que representa un compromiso o punto medio entre la versión con GUI y la versión Server Core. Se denomina **Minimal Server Interface** y elimina únicamente algunos elementos de la interfaz gráfica, en general los que más recursos consumen. 
+Entre los elementos eliminados se incluyen Internet Explorer, el escritorio, el explorador de ficheros y algunos elementos del Panel de Control como *Programas y Características*, *Dispositivos e impresoras*, *Windows Update* o *Fuentes*. Algunas de las aplicaciones que se mantienen son la consola de administración MMC (Microsoft Management Console), el Administrador de Dispositivos y toda la interfaz de Windows PowerShell.
 
-Entre los elementos eliminados se incluyen Internet Explorer, el escritorio, el explorador de ficheros y algunos elementos del Panel de Control como *Programas y Características*, *Dispositivos e impresoras*, *Windows Update* o *Fuentes*.
+Algo importante es que **en Windows Server 2019 se eliminó la opción de alternar entre los modos en un sistema operativo ya instalado**, por lo que es una decisión irrevocable que hay que tomar durante la instalación del sistema.
 
-Entre las aplicaciones que se instalan se incluyen: la consola de administración MMC (Microsoft Management Console), el Administrador de Dispositivos y toda la interfaz de Windows PowerShell.
-
-La forma de alternar entre estas opciones es diferente según el sentido del cambio. De esta forma si nos encontramos en la interfaz gráfica utilizaremos el Administrador de servidor, en cambio, si estamos utilizando Server Core, debemos realizar el cambio mediante PowerShell.
+Hay dos formas de alternar estos dos modos (sólo válido para Windows Server 2012R2 y 2016): desde el Administrador del Servidor o mediante Powershell.
 
 
 ## 2.1.- Habilitar Server Core desde el Administrador del servidor
