@@ -187,9 +187,15 @@ Desde Powershell no se pueden crear volúmenes a partir de un disco virtual, sin
 - `-FileSystem`: el sistema de ficheros con que se formateará. Su valor puede ser `NTFS` o `ReFS`
 - `-ProvisioningType`: tipo de aprovisionamiento que tendrá el disco virtual que va a contener el volumen. Sus valores pueden ser `Fixed` o `Thin`.
  
- 
+
 ```powershell
-PS C:\> New-Volume -StoragePoolFriendlyName "Datos" -FriendlyName "Documentos" -DriveLetter "X" -ResiliencySettingName "Simple" -Size 40GB -FileSystem "NTFS" -ProvisioningType "Thin"
+PS C:\> New-Volume  -StoragePoolFriendlyName "Datos" `
+                    -FriendlyName "Documentos" `
+                    -DriveLetter "X" `
+                    -ResiliencySettingName "Simple" `
+                    -Size 40GB `
+                    -FileSystem "NTFS" `
+                    -ProvisioningType "Thin"
 
 DriveLetter FriendlyName FileSystemType DriveType HealthStatus OperationalStatus SizeRemaining     Size
 ----------- ------------ -------------- --------- ------------ ----------------- -------------     ----
