@@ -138,7 +138,9 @@ AquÃ­ el problema es que no es suficiente con indicar el nombre del disco en el 
 El modo de usarlo se puede ver en el siguiente ejemplo.
 
 ```powershell
-PS C:\> New-StoragePool -FriendlyName "Datos" -StorageSubSystemFriendlyName "Windows Storage on SERVER2019" -PhysicalDisks (Get-PhysicalDisk -UniqueId 600224804C5487D1A329AD1D5AD9A81F)
+PS C:\> New-StoragePool -FriendlyName "Datos" `
+                        -StorageSubSystemFriendlyName "Windows Storage on SERVER2019" `
+                        -PhysicalDisks ( Get-PhysicalDisk -UniqueId 600224804C5487D1A329AD1D5AD9A81F )
 
 FriendlyName OperationalStatus HealthStatus IsPrimordial IsReadOnly      Size AllocatedSize
 ------------ ----------------- ------------ ------------ ----------      ---- -------------
@@ -167,7 +169,11 @@ El comando para crear discos virtuales es `New-VirtualDisk`. Algunos de sus parÃ
 - `-ProvisioningType`: tipo de aprovisionamiento. Los valores posibles son: `thin` o `fixed`.
  
 ```powershell
-PS C:\> New-VirtualDisk -StoragePoolFriendlyName "Datos" -FriendlyName "VS_02" -Size 30GB -ResiliencySettingName "simple" -ProvisioningType "thin"
+PS C:\> New-VirtualDisk -StoragePoolFriendlyName "Datos" `
+                        -FriendlyName "VS_02" `
+                        -Size 30GB `
+                        -ResiliencySettingName "simple" `
+                        -ProvisioningType "thin"
 
 FriendlyName ResiliencySettingName FaultDomainRedundancy OperationalStatus HealthStatus  Size FootprintOnPool StorageEf
                                                                                                                ficiency
