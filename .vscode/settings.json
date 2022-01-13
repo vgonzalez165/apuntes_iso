@@ -5,6 +5,7 @@
         
         "editor.wrappingStrategy": "advanced",
         "editor.wordWrap": "bounded"
-    }
+    },
+    "editor.wordWrapColumn": 150
     
 }

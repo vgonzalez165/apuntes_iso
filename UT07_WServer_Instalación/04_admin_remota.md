@@ -13,7 +13,7 @@
 
 ## 4.1.- Administración remota desde RSAT
 
-Uno de los aspectos a los que Microsoft le ha dado gran importancia en Windows Server 2012 es la administración de múltiples servidores de forma remota. Para conseguir este objetivo, el Administrador del servidor dispone de la posibilidad de añadir servidores para ser administrados de forma remota.
+Uno de los aspectos a los que Microsoft le ha dado gran importancia en Windows Server 2012 es la administración de múltiples servidores de forma remota. Para conseguir este objetivo, el **Administrador del servidor** dispone de la posibilidad de añadir servidores para ser administrados de forma remota.
 
 Aunque en las primeras versiones esta herramienta era exclusiva de Windows Server, actualmente también está disponible en Windows 10, de forma que se puede administrar cualquier servidor desde un equipo de escritorio.
 
