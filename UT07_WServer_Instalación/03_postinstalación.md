@@ -24,6 +24,7 @@ Una vez instalado el sistema hay una serie de tareas que debemos abordar. Entre 
 
 Estas tareas iniciales se pueden realizar desde *Administrador de servidor -> Servidor local*.  Aquí podemos cambiar el nombre del servidor (Nombre de equipo), cambiar la configuración de red (Ethernet), configurar la política de actualizaciones del servidor (Windows Update) y establecer la hora del servidor (Zona horaria). Ten en cuenta que este último punto es especialmente importante en el caso de que queramos instalar Active Directory ya que es **requisito imprescindible** la correcta sincronización de los relojes de todos los equipos del dominio.
  
+![Configuración inicial](imgs/03_01_configuracion_inicial.png)
 
 ## 3.2.- Tareas post-instalación en Server Core
 
@@ -34,7 +35,7 @@ Cuando estamos trabajando en Server Core estas tareas son algo más complicadas 
 
 Si queremos saber el nombre que tiene actualmente el servidor podemos utilizar el comando `hostname` o `ipconfig`.
 
-Para cambiar el nombre del equipo desde la línea de comandos debes utilizar el comando netdom de la siguiente manera:
+Para cambiar el nombre del equipo desde la línea de comandos debes utilizar el comando `netdom` de la siguiente manera:
 
 ```powershell
 C:\>netdom renamecomputer %ComputerName% /NewName: <NewComputerName>
