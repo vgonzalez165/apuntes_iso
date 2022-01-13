@@ -79,16 +79,21 @@ PS C:\>New-NetIPAddress –InterfaceIndex 12 –IPAddress 192.168.10.20 –Prefi
 PS C:\>Set-DNSClientServerAddress –InterfaceIndex 12 –ServerAddresses 8.8.8.8,8.8.4.4
 ```
 
+Hay que tener en cuenta que el comando `New-NetIPAddress` crea una nueva IP y la añade a un adaptador, por lo que si este adaptador de red ya tiene una dirección IP no la sustituirá, sino que pasará a tener ambas direcciones IP.
+
+Si lo que queremos es cambiar la dirección IP asignada al adaptador será necesario eliminar primero la anterior con el comando `Remove-NetIpAddress`.
 
 ## 3.3.- Configuración de NIC Teaming
 
-**NIC teaming** es una nueva característica disponible en Windows Server 2012R2 que permite a los administradores combinar el ancho de banda de múltiples adaptadores de red, incrementando de esta manera el rendimiento y la tolerancia a fallos.
+**NIC teaming** es una nueva característica disponible a partir Windows Server 2012R2 que permite a los administradores combinar el ancho de banda de múltiples adaptadores de red, incrementando de esta manera el rendimiento y la tolerancia a fallos.
 
-Como sabes uno de los puntos fuertes de Windows 2012R2 es la virtualización, que entre otras cosas permite separar las funciones de red en diferentes sistemas sin necesidad de comprar una tarjeta de red para cada uno de ellos. Sin embargo, el punto negativo de esta característica es que podemos tener varios servidores virtualizados que dependen de una única tarjeta de red por lo que un fallo en ésta supondrá la caída de todos los servidores.
+Como sabes uno de los puntos fuertes de Windows 2012R2 es la virtualización, que entre otras cosas permite separar las funciones de red en diferentes sistemas sin necesidad de comprar una tarjeta de red para cada uno de ellos. Sin embargo, el punto negativo de esta característica es que podemos tener varios servidores virtualizados que dependen de una única tarjeta de red por lo que **un fallo en ésta supondrá la caída de todos los servidores**.
 
-Para solucionar este problema 2012R2 incluye permite realizar NIC teaming. Esto consiste en combinar varias tarjetas de red en una única interfaz balanceando la carga entre ellas y proporcionando tolerancia a fallos en el servicio ya que si una tarjeta falla el resto continuarían con su función. La novedad en 2012R2 es que no es necesario hardware específico, como en anteriores implementaciones, sino que es independiente del hardware. 
+Para solucionar este problema 2012R2 incluye permite realizar NIC teaming. Esto consiste en combinar varias tarjetas de red en una única interfaz balanceando la carga entre ellas y proporcionando tolerancia a fallos en el servicio ya que si una tarjeta falla el resto continuarían con su función. La novedad a partir de 2012R2 es que no es necesario hardware específico, como en anteriores implementaciones, sino que es independiente del hardware. 
 
-Windows Server 2012R2 dispone de los siguientes modos de NIC teaming:
+![NIC Teaming](imgs/03_01_nic_team.png)
+
+Windows Server dispone de los siguientes modos de NIC teaming:
 
 - **Formación de equipos estática (Static Teaming)**: este modo es dependiente de switch, usa el protocolo IEEE 802.3ad (draft), el cual solo agrupa los adaptadores de red. Este modo nos obliga a configurar los switches y el host para identificar los vínculos que forman el equipo. Este modo no ayuda al switch ni al host a identificar cables desconectados ni otro tipo de errores.
 - **Independiente del conmutador (Switch Independient)**: este modo es totalmente independiente al switch, y este no sabe en ningún momento que las tarjetas de red forman un grupo. Este modo nos permite conectar las diferentes tarjetas de red a distintos switches, lo cual no significa que sea obligatorio, pero si muy recomendable. Este modo también nos permite poder poner un adaptador de red en modo espera por si alguno fallase.
