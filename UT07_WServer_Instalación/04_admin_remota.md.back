@@ -13,11 +13,15 @@
 
 ## 4.1.- Administración remota desde RSAT
 
-Uno de los aspectos a los que Microsoft le ha dado gran importancia en Windows Server 2012 es la administración de múltiples servidores de forma remota. Para conseguir este objetivo, el **Administrador del servidor** dispone de la posibilidad de añadir servidores para ser administrados de forma remota.
+Uno de los aspectos a los que Microsoft le ha dado gran importancia en Windows Server 2012 es la administración de múltiples servidores de forma remota. Para conseguir este objetivo, el Administrador del servidor dispone de la posibilidad de añadir servidores para ser administrados de forma remota.
 
 Aunque en las primeras versiones esta herramienta era exclusiva de Windows Server, actualmente también está disponible en Windows 10, de forma que se puede administrar cualquier servidor desde un equipo de escritorio.
 
-Para tener disponible el Administrador del servidor en Windows 10, será necesario agregarlo, ya que está disponible como una característica. Para ello hemos de ir a *Inicio -> Configuración -> Aplicaciones -> Características opcionales -> Agregar una característica.* Una vez ahí, bajo el epígrafe de RSAT (Remote Server Administration Tool), tendremos todas las herramientas necesarias para administrar de forma remota el servidor, siendo la que nos interesa ahora la denominada *RSAT: Administrador del Servidor*.
+Para descargar la herramienta RSAT para Windows 10 hay que acudir al [centro de descarga de Microsoft](https://www.microsoft.com/es-es/download/details.aspx?id=45520), aunque a partir de la actualización de octubre de 2018 está incluido como una característica.
+
+En caso de querer instalarlo como características hay que ir a *Inicio -> Configuración -> Aplicaciones -> Características opcionales -> Agregar una característica.* Una vez ahí, bajo el epígrafe de **RSAT (Remote Server Administration Tool)**, tendremos todas las herramientas necesarias para administrar de forma remota el servidor, siendo la que nos interesa ahora la denominada *RSAT: Administrador del Servidor*.
+
+![Instalación de RSAT](imgs/04_01_rsat.png)
 
 Una vez que tenemos la herramienta, ya sea en Windows Server o en Windows 10 hay que realizar una serie de pasos previos para poder añadir servidores a la misma. Hay que tener en cuenta que estos pasos únicamente son necesarios únicamente si no tenemos un dominio de Active Directory
 
@@ -36,7 +40,7 @@ En el campo Status debería indicar que se está ejecutando. Si no fuera así de
 PS C:\>Enable-PSRemoting
 ```
 
-Alternativamente se puede utilizar el comando WinRM quickconfig, que realiza las mismas funciones. Estas funciones son:
+Alternativamente se puede utilizar el comando `WinRM quickconfig`, que realiza las mismas funciones. Estas funciones son:
 
 -   Iniciar el servicio WinRM y configurar su modo de inicio en automático.
 -   Configurar un listener para los puertos de administración remota
@@ -64,7 +68,7 @@ PS C:\>Set-NetConnectionProfile –InterfaceIndex 11 -NetworkCategory Private
 
 ### 4.1.3.- Relaciones de confianza
 
-Tanto el servidor como el equipo desde el que vamos a administrarlo deben tener una relación de confianza mutua. Esta relación es automática en el caso de tener un dominio de Active Directory, pero debemos indicársela manualmente si nuestros equipos están en un grupo de trabajo. La forma de hacer es simplemente añadiendo el nombre del equipo en el que confiamos en el fichero TrustedHosts mediante la siguiente orden:
+Tanto el servidor como el equipo desde el que vamos a administrarlo deben tener una **relación de confianza mutua**. Esta relación es automática en el caso de tener un dominio de Active Directory, pero debemos indicársela manualmente si nuestros equipos están en un grupo de trabajo. La forma de hacer es simplemente añadiendo el nombre del equipo en el que confiamos en el fichero TrustedHosts mediante la siguiente orden:
 
 ```powershell
 PS C:\>Set-Item wsman:\localhost\client\TrustedHosts {nombre_servidor} –Concatenate -Force
@@ -105,7 +109,7 @@ C:\> cmdkey /add:SERVER-2012R2 /user:Administrador /pass:P@ssw0rd
 
 En Windows Server 2019 Microsoft introdujo una nueva herramienta denominada **Centro de Administración del Servidor** (Windows Admin Center), que pretende simplificar la administración remota de servidores.
 
-![Centro de Administración de Windows](imgs/04_02_admin_center.png)
+
  
 
 
