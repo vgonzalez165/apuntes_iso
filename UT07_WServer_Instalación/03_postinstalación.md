@@ -83,6 +83,12 @@ Hay que tener en cuenta que el comando `New-NetIPAddress` crea una nueva IP y la
 
 Si lo que queremos es cambiar la dirección IP asignada al adaptador será necesario eliminar primero la anterior con el comando `Remove-NetIpAddress`.
 
+Para realizar pruebas de conectividad puede ser necesario deshabilitar el firewall de Windows para que no bloquee los mensajes ping entrantes. Esta tarea se puede realizar mediante el comando `Set-NetFirewallProfile` de la siguiente forma:
+
+```powershell
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+```
+
 ## 3.3.- Configuración de NIC Teaming
 
 **NIC teaming** es una nueva característica disponible a partir Windows Server 2012R2 que permite a los administradores combinar el ancho de banda de múltiples adaptadores de red, incrementando de esta manera el rendimiento y la tolerancia a fallos.
