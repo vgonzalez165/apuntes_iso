@@ -1,8 +1,5 @@
 ![Carátula UT08](imgs/caratula_ut08.png)
 
-# UT08. WINDOWS SERVER. ADMINISTRACIÓN DEL DOMINIO
-
-PONER EL RESUMEN DE LA UNIDAD
 
 ### Contenidos
 

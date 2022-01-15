@@ -166,3 +166,33 @@ Esta contraseña se requerirá si es necesario restaurar los servicios de direct
 ## 2.3.- Opciones adicionales
 
 Aquí únicamente hay que verificar que el nombre NetBIOS sugerido es correcto.
+
+![Opciones adicionales](imgs/01_08_instalación_AD_06.png)
+
+## 2.4.- Rutas de acceso
+
+Toda la información de Active Directory se almacena en una serie de archivos que contienen la base de datos de AD, los archivos de registro y SYSVOL. Por defecto, estos archivos se almacenan en el directorio `C:\Windows`, pero se podría escoger otra ruta.
+
+![Rutas de acceso](imgs/01_09_instalación_AD_07.png)
+
+
+## 2.5.- Instalación
+
+Finalmente se mostrará un resumen con las opciones escogidas y se realizará una comprobación para verificar que está todo correcto para promover el equipo a controlador de dominio.
+
+Tras aceptar se procederá a la promoción del equipo y tras reiniciar ya será controlador de dominio.
+
+![Inicio sesión controlador de dominio](imgs/01_10_instalación_AD_08.png)
+
+Tras iniciar sesión se puede apreciar que hay tres nuevas herramientas en el menú *Herramientas* del *Administrador del servidor*:
+
+- Centro de administración de Active Directory
+- Sitios y servicios de Active Directory
+- Usuarios y equipos de Active Directory
+
+La herramienta *Sitios y servicios de Active Directory* no se verá en el presente curso
+
+
+# 3.- Agregar equipos al dominio
+
+En este punto hay un dominio de Active Directory que únicamente tiene un controlador de dominio y un usuario
