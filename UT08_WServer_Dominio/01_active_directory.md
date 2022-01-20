@@ -1,14 +1,4 @@
----
-title: "Title"
-author: "Author"
-date: "DATE"
-output: 
-  html_document:
-     css: pruebas.css
-     self_contained: no
-
----
-
+<link rel="stylesheet" href="styles.css">
 
 ![Carátula UT08](imgs/caratula_ut08.png)
 
