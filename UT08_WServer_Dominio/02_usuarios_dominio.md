@@ -18,3 +18,11 @@ PONER EL RESUMEN DE LA UNIDAD
 8. [Despliegue remoto de aplicaciones](08_despliegue_aplicaciones.md)
 9. [Segundo controlador de dominio](09_segundo_dc.md)
 10. [DFS](10_dfs.md)
+
+# 2.- USUARIOS Y GRUPOS DEL DOMINIO
+
+
+
+
+
+

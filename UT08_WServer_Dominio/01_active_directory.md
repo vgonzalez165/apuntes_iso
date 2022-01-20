@@ -89,7 +89,7 @@ Todos los árboles de un bosque de dominios comparten una serie de atributos, qu
 Dentro de un dominio hay un gran número de objetos, como usuarios, equipos, ... que puede ser de cientos o miles. Para organizar todos estos objetos Active Directory proporciona un objeto de contenedor que se denomina **Unidad Organizativa**, y que permite crear una estructura jerárquica en la que las unidades organizativas pueden contener todo tipo de objetos, así como otras unidades organizativas.
 
 
-# 2.- Instalación de Active Directory
+## 1.2.- Instalación de Active Directory
 
 Para disponer de Active Directory en una red, es necesario tener un equipo (o más) que centralice la gestión de todos los recursos del dominio. Este equipo se denomina **controlador de dominio** y requiere tener instalado el rol **Servicios de Dominio de Active Directory**.
 
@@ -107,19 +107,19 @@ Sin embargo, instalar el rol no implica que el equipo ya sea controlador de domi
 En este aviso ya indica un enlace que pone *Promover este servidor a controlador de dominio*, cuya pulsación lanzará el asistente para la configuración de servicios de dominio de Active Directory.
 
 
-## 2.1.- Configuración de implementación
+### 1.2.1.- Configuración de implementación
 
 
 Aquí hay tres opciones para escoger.
 
-### Agregar un controlador de dominio a un dominio existente
+#### Agregar un controlador de dominio a un dominio existente
 
 Esto implica que ya hay un dominio creado, con su controlador de dominio, y que queremos agregar un segundo controlador de dominio con objeto de conseguir alta disponibilidad o simplemente un reparto de la carga de trabajo. Aquí es necesario indicar el nombre del dominio al que se quiere agregar el controlador y también las credenciales de un usuario con privilegios de administración en el dominio
 
 ![Agregar otro controlador de dominio](imgs/01_04_instalación_AD_02.png)
 
 
-### Agregar un nuevo dominio a un bosque existente
+#### Agregar un nuevo dominio a un bosque existente
 
 Este sería el caso en el que ya se tiene un bosque, teniendo en cuenta que se considera un bosque tanto al formado por múltiples dominio y/árboles como el que está formado por un único dominio.
 
@@ -131,14 +131,14 @@ Aquí se puede escoger:
 ![Agregar dominio a un bosque](imgs/01_05_instalación_AD_03.png)
 
 
-### Crear un nuevo bosque
+#### Crear un nuevo bosque
 
 Cuando el dominio no se va a integrar en ningún bosque existente, y por tanto será el primer dominio del bosque, será necesario escoger esta opción
 
 ![Crear un nuevo bosque](imgs/01_06_instalación_AD_04.png)
 
 
-## 2.2.- Opciones del controlador de dominio
+### 1.2.2.- Opciones del controlador de dominio
 
 Las opciones que hay que escoger en este paso son:
 
@@ -165,20 +165,20 @@ Esta contraseña se requerirá si es necesario restaurar los servicios de direct
 ![Opciones del controlador del dominio](imgs/01_07_instalación_AD_05.png)
 
 
-## 2.3.- Opciones adicionales
+### 1.2.3.- Opciones adicionales
 
 Aquí únicamente hay que verificar que el nombre NetBIOS sugerido es correcto.
 
 ![Opciones adicionales](imgs/01_08_instalación_AD_06.png)
 
-## 2.4.- Rutas de acceso
+### 1.2.4.- Rutas de acceso
 
 Toda la información de Active Directory se almacena en una serie de archivos que contienen la base de datos de AD, los archivos de registro y SYSVOL. Por defecto, estos archivos se almacenan en el directorio `C:\Windows`, pero se podría escoger otra ruta.
 
 ![Rutas de acceso](imgs/01_09_instalación_AD_07.png)
 
 
-## 2.5.- Instalación
+### 1.2.5.- Instalación
 
 Finalmente se mostrará un resumen con las opciones escogidas y se realizará una comprobación para verificar que está todo correcto para promover el equipo a controlador de dominio.
 
@@ -195,6 +195,6 @@ Tras iniciar sesión se puede apreciar que hay tres nuevas herramientas en el me
 La herramienta *Sitios y servicios de Active Directory* no se verá en el presente curso
 
 
-# 3.- Agregar equipos al dominio
+## 1.3.- Agregar equipos al dominio
 
 En este punto hay un dominio de Active Directory que únicamente tiene un controlador de dominio y un usuario
