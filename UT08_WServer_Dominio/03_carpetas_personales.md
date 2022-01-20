@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../styles.css">
+
 ![Carátula UT08](imgs/caratula_ut08.png)
 
 # UT08. WINDOWS SERVER. ADMINISTRACIÓN DEL DOMINIO

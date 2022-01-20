@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../styles.css">
+
 ![Carátula UT05](imgs/caratula_ut05.png)
 
 ## Contenidos
