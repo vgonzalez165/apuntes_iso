@@ -1,27 +1,16 @@
+<link rel="stylesheet" href="../styles.css">
+
 ![Carátula UT10](imgs/caratula_ut10.png)
 
-# UT10. LINUX. INSTALACIÓN Y CONFIGURACIÓN INICIAL
+## Contenidos
 
-PONER EL RESUMEN DE LA UNIDAD
-
-### Contenidos
-
-1. Introducción a Linux
-2. Instalación de Ubuntu Server
-3. Bonding de adaptadores de red (**????**)
-4. El sistema de ficheros en Linux
-  - Navegación por el sistema de ficheros
-  - Creación de particiones
-  - Configuración de discos RAID
-  - Configuración de discos LVM
-5. Navegación por el sistema de ficheros (**¿aquí o atrás**)
-6. Comandos para el sistema de ficheros
-7. Comandos avanzados del shell Bash
-  - Monitorización del espacio en disco
-  - Trabajando con ficheros de datos
-  - Redireccionamiento
-8. El editor `sed` y expresiones regulares
-
+1. [**Introducción a Linux**](01_introducción_linux.md)
+2. [Instalación de Ubuntu](02_instalación_ubuntu.md)
+3. [Bonding de red](03_bonding_red.md)
+4. [El sistema de ficheros en Linux](04_sistema_ficheros_linux.md)
+5. [Comandos para el sistema de ficheros](05_comandos_sistema_ficheros.md)
+6. [Comandos avanzados del shell Bash](07_comandos_avanzados_bash.md)
+7. [Expresiones regulares](08_expresiones_regulares.md)
 
 ### Prácticas
 
