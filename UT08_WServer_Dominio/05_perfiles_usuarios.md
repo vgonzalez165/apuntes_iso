@@ -24,12 +24,15 @@ PONER EL RESUMEN DE LA UNIDAD
 
 ## 5.1.- Perfiles de usuario
 
-Los perfiles de usuario contienen la configuración del entorno de trabajo de cada usuario del equipo local.
-Entre otros, contiene aspectos como:
-Preferencias de configuración de pantalla
-Escritorio
-Conexiones de red
-Configuración de impresoras
+Un **perfil de usuario** en Windows es el conjunto de archivos y directorios que contienen la configuración del entorno de trabajo del usuario, así como todos los archivos y documentos que pertenecen al mismo.
+
+Ejemplos de información contenida en el perfil del usuario con:
+
+- Preferencias de configuración de pantalla
+- Escritorio
+- Conexiones de red
+- Configuración de impresoras
+- Todo lo que hay en *Mis documentos*, *Mis imágenes*, ...
 
 Esta información se organiza en archivos que se crean en el momento es que el usuario inicia sesión por primera vez.
 
