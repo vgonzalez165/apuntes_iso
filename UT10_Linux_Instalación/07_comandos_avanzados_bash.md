@@ -1,25 +1,68 @@
-5.- COMANDOS AVANZADOS DEL SHELL BASH
-5.1.- MONITORIZANDO EL ESPACIO EN DISCO
+<link rel="stylesheet" href="../styles.css">
+
+![Carátula UT07](imgs/caratula_ut10.png)
+
+## Contenidos
+
+1. [**Introducción a Linux**](01_introducción_linux.md)
+2. [Instalación de Ubuntu](02_instalación_ubuntu.md)
+3. [Bonding de red](03_bonding_red.md)
+4. [El sistema de ficheros en Linux](04_sistema_ficheros_linux.md)
+5. [Comandos para el sistema de ficheros](05_comandos_sistema_ficheros.md)
+6. [Comandos avanzados del shell Bash](07_comandos_avanzados_bash.md)
+7. [Expresiones regulares](08_expresiones_regulares.md)
+
+
+# 6.- COMANDOS AVANZADOS DE BASH
+
+## 6.1.- Monitorizando el espacio en disco
+
 Una parte muy importante de la administración de un sistema Linux es llevar el control de la ocupación del sistema de ficheros.
-5.1.1.- MONTAJE DE DISPOSITIVOS
-Como se vio anteriormente Linux combina todos los dispositivos de almacenamiento en un único directorio virtual. Antes de utilizar un nuevo disco en el sistema necesitas localizarlo en el directorio virtual. Esta tarea se denomina montaje.
-La mayoría de las actuales distribuciones Linux montan automáticamente algunas unidades como las unidades de CD o memorias USB.
-El comando utilizado para montar dispositivos es el comando mount. Por defecto mount muestra una lista de los dispositivos actualmente montados en el sistema.
+
+
+### 6.1.1.- Montaje de dispositivos
+
+Como se vio anteriormente Linux combina todos los dispositivos de almacenamiento en un único directorio virtual. Antes de utilizar un nuevo disco en el sistema necesitas localizarlo en el directorio virtual. Esta tarea se denomina **montaje**. La mayoría de las actuales distribuciones Linux montan automáticamente algunas unidades como las unidades de CD o memorias USB, aunque puede haber situaciones en las que sea necesario montar manualmente algún dispositivo de almacenamiento.
+
+El comando utilizado para montar dispositivos es el comando `mount`. Por defecto, `mount` muestra una lista de los dispositivos actualmente montados en el sistema.
+
+```bash
+┌─[qn4p@parrot]─[~]
+└──╼ $mount
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+udev on /dev type devtmpfs (rw,nosuid,relatime,size=1962088k,nr_inodes=490522,mode=755,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,noexec,relatime,size=402304k,mode=755,inode64)
+/dev/sda2 on / type btrfs (rw,noatime,nodiratime,nodatasum,nodatacow,space_cache,autodefrag,subvolid=257,subvol=/@)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+```
  
-La información que proporciona el comando mount es:
-•	La localización del dispositivo
-•	El punto de montaje en el directorio virtual 
-•	El tipo de sistema de ficheros
-•	El estado de acceso del dispositivo montado
-Por ejemplo, la sexta entrada hace referencia a una partición del disco duro (sda1). El fichero que representa al dispositivo es /dev/sda1 y está montado en el directorio raíz (/). El tipo del sistema de ficheros es ext4. Al final de la línea se muestra otra información del dispositivo como por ejemplo que es de lectura y escritura (rw, read and write).
+La información que proporciona el comando `mount` es:
+
+- La localización del dispositivo
+- El punto de montaje en el directorio virtual 
+- El tipo de sistema de ficheros
+- El estado de acceso del dispositivo montado
+
+Por ejemplo, la sexta entrada hace referencia a una partición del disco duro (`sda2`). El fichero que representa al dispositivo es `/dev/sda2` y está montado en el directorio raíz (`/`). El tipo del sistema de ficheros es **btrfs**. Al final de la línea se muestra otra información del dispositivo como por ejemplo que es de lectura y escritura (rw).
  
-Para montar un dispositivo manualmente primero debes tener privilegios de administrador. La sintaxis del comando mount es:
+Para montar un dispositivo manualmente primero es necesario tener privilegios de administrador. La sintaxis del comando `mount` es:
+
+```bash
 mount –t tipo dispositivo directorio
+```
+
 Los parámetros son:
-•	El parámetro tipo indica el sistema de ficheros con el que está formateado el dispositivo. Linux reconoce un gran número de sistemas de ficheros, algunos ejemplos son ext3 o ext4 nativos de Linux, vfat que es el sistema utilizado por Windows en versiones antiguas o en memorias USB, ntfs, el sistema de ficheros de Windows 2000 y posteriores o iso9660, utilizado en los CDs.
-•	Los siguientes dos parámetros definen la localización del dispositivo (los dispositivos en Linux se asocian con un archivo en el directorio /dev) y el directorio donde queremos montarlo. El usuario root debe tener acceso a este directorio, pero se puede limitar el acceso a otros usuarios mediante permisos.
+
+- El parámetro **tipo** indica el sistema de ficheros con el que está formateado el dispositivo. Linux reconoce un gran número de sistemas de ficheros, algunos ejemplos son `ext3`, `ext4` o `btrfs` nativos de Linux, `vfat` que es el sistema utilizado por Windows en versiones antiguas o en memorias USB, `ntfs`, el sistema de ficheros de Windows 2000 y posteriores o `iso9660`, utilizado en los CDs.
+- El parámetro **dispositivo** hace referencia al fichero virtual que identifica al dispositivo, el cual siempre se ubica en el directorio `/dev`, por ejemplo, `/dev/sda`.
+- El último parámetro, **directorio**, indica el directorio en el que se montará el dispositivo, y por tanto, desde el que se accederá al mismo una vez montado.
+
 Los modificadores del comando mount son las siguientes:
  
+TODO: Mirar apuntes
+
  La última opción (-o) permite indicar una serie de opciones adicionales separadas por comas, estas pueden ser:
 •	ro: montar como dispositivo de solo lectura
 •	rw: montar como dispositivo de lectura-escritura
