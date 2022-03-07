@@ -1,32 +1,127 @@
-6.- EL EDITOR SED Y EXPRESIONES REGULARES
-6.1.- EL EDITOR SED
-6.1.1.- INTRODUCCIÓN
-El editor sed es lo que se conoce como un editor en stream (flujo), en contraposición a un editor normal interactivo. En un editor interactivo el usuario introduce de forma interactiva por el teclado las operaciones que quiere realizar con el texto. Por el contrario, un editor en stream procesa un flujo de datos en base a un conjunto de reglas establecidas de antemano, antes de que el editor comience a procesarlos.
-El editor sed puede manipular datos en un flujo de datos introducido por el teclado o bien de un fichero de texto. Lee una línea de datos en cada momento de la entrada, encaja los datos con los comandos proporcionados al editor, cambia los datos en el flujo tal como se ha especificado y finalmente envía los datos procesados a la salida estándar. A continuación, pasa a procesar la siguiente línea de datos.
-El formato para utilizar el comando sed es:
-sed opciones script fichero
-El parámetro opciones permite personalizar el comportamiento del comando sed e incluye las opciones mostradas en la siguiente tabla:
-Opción	Descripción
--e script	Permite ejecutar más de un comando de sed
--f file	Añade los comandos especificados en file mientras se procesa la entrada
--n	No produce salida para cada comando, sino que espera al comando print
-El parámetro script especifica un único comando para aplicar a la cadena de datos. Si es necesario más de un comando hay que utilizar la opción –e para indicarlo en el propio comando o la opción –f para indicarlo en un fichero aparte.
+<link rel="stylesheet" href="../styles.css">
 
-6.1.2.- UTILIZANDO EL EDITOR EN LA LÍNEA DE COMANDOS
-Por defecto, el editor sed aplica los comandos especificados al flujo de entrada en stdin. Por ejemplo:
+![Carátula UT10](imgs/caratula_ut10.png)
+
+## Contenidos
+
+1. [Introducción a Linux](01_introducción_linux.md)
+2. [Instalación de Linux](02_instalación_linux.md)
+3. [Opciones avanzadas de la instalación](03_opciones_avanzadas.md)
+4. [El sistema de ficheros en Linux](04_sistema_ficheros_linux.md)
+5. [Comandos para el sistema de ficheros](05_comandos_sistema_ficheros.md)
+6. [Comandos avanzados del shell Bash](06_avanzados_bash.md)
+7. [Expresiones regulares](07_expresiones_regulares.md)
+
+
+# 6.- EL EDITOR SED Y EXPRESIONES REGULARES
+
+## 6.1.- El editor `sed`
+
+### 6.1.1.- Introducción
+
+El editor `sed` es lo que se conoce como un **editor en stream** (flujo), en contraposición a un editor normal interactivo. En un editor interactivo el usuario introduce de forma interactiva por el teclado las operaciones que quiere realizar con el texto. Por el contrario, un editor en stream procesa un flujo de datos en base a un conjunto de reglas establecidas de antemano, antes de que el editor comience a procesarlos.
+
+El editor `sed` puede manipular datos en un flujo de datos introducido por el teclado o bien de un fichero de texto. Lee una línea de datos en cada momento de la entrada, encaja los datos con los comandos proporcionados al editor, cambia los datos en el flujo tal como se ha especificado y finalmente envía los datos procesados a la salida estándar. A continuación, pasa a procesar la siguiente línea de datos.
+
+El formato para utilizar el comando `sed` es:
+
+```
+	sed opciones script fichero
+```
+
+El parámetro *opciones* permite personalizar el comportamiento del comando `sed` e incluye las opciones mostradas en la siguiente tabla:
+
+| Opción      | Descripción |
+| ----------- | ----------- |
+| `-e` | Permite ejecutar más de un comando de `sed` |
+| `-f file`   | Añade los comandos especificados en `file` mientras se procesa la entrada |
+| `-n`		  | No produce salida para cada comando |
+
+
+El parámetro `script` especifica un único comando para aplicar a la cadena de datos. Los comandos de `sed` están identificados por un único carácter más una serie de apartados separados por el carácter `/`. Ya veremos cuál es la estructura completa de un comando, pero un ejemplo puede ser `'s/1/uno'` que indica que hay que reemplazar todas las ocurrencias del carácter `1` por la cadena `uno`.
+
+Si es necesario más de un comando hay que utilizar la opción `–e` para indicarlo en el propio comando o la opción `–f` para indicarlo en un fichero aparte.
+
+
+### 6.1.2.- Utilizando el editor en la línea de comandos
+
+Por defecto, el editor `sed` aplica los comandos especificados al flujo de entrada en `stdin`. Por ejemplo:
  
- En este ejemplo hemos utilizado el comando s del editor sed. El comando s sustituye la cadena indicada entre las dos primeras barras por la cadena indicada entre las dos siguientes.
- También se puede indicar como entrada un fichero y procesará todas las líneas del fichero.
+```bash
+	┌──(vgonzalez165㉿PORTATIL)-[~]
+	└─$ echo "Esto es una prueba" | sed 's/una prueba/un ejemplo/'
+	Esto es un ejemplo
+```
+
+En este ejemplo hemos utilizado el comando `s` del editor `sed`. El comando `s` sustituye la cadena indicada entre las dos primeras barras por la cadena indicada entre las dos siguientes.
+
+También se puede indicar como entrada un fichero y procesará todas las líneas del fichero.
+
+```bash
+┌──(vgonzalez165㉿PORTATIL)-[~]
+└─$ cat datos
+Esto es una prueba de Linux
+Comandos básicos de Linux
+Introducción a Linux
+
+┌──(vgonzalez165㉿PORTATIL)-[~]
+└─$ sed 's/Linux/GNU Linux/' datos
+Esto es una prueba de GNU Linux
+Comandos básicos de GNU Linux
+Introducción a GNU Linux
+```
  
-6.1.3.- MÚLTIPLES COMANDOS EN LA MISMA LÍNEA
-Para utilizar varios comandos hay que utilizar la opción –e.
-  
-También es posible separar varios comandos utilizando el carácter punto y coma como separador.
+### 6.1.3.- Múltiples comandos en la misma línea
+
+Para utilizar varios comandos hay que utilizar la opción `–e`.
+
+```bash
+	┌──(vgonzalez165㉿PORTATIL)-[~]
+	└─$ cat datos
+	uno
+	dos
+	tres
+	cuatro
+	cinco
+	┌──(vgonzalez165㉿PORTATIL)-[~]
+	└─$ sed -e ' s/uno/1/' -e 's/dos/2/' datos
+	1
+	2
+	tres
+	cuatro
+	cinco
+```
+
+También es posible separar varios comandos utilizando el carácter punto y coma (`;`) como separador.
  
+```bash
+	┌──(vgonzalez165㉿PORTATIL)-[~]
+	└─$ sed -e ' s/uno/1/;s/dos/2/' datos
+	1
+	2
+	tres
+	cuatro
+	cinco
+```
+
 Otra alternativa que puede dar más claridad a la hora de mostrar la expresión es utilizar el prompt secundario del Shell insertando un salto de línea dentro de las comillas:
+
 Ambos comandos se aplican a cada línea y tienen que ir separados por un punto y coma. Otra opción alternativa al uso del punto y coma es utilizar el prompt secundario en el shell. 
   
-6.1.4.- OBTENCIÓN DE LOS COMANDOS DE UN FICHERO
+```bash
+	┌──(vgonzalez165㉿PORTATIL)-[~]
+	└─$ sed '
+	s/uno/1/
+	s/dos/2/
+	' datos
+	1
+	2
+	tres
+	cuatro
+	cinco
+```
+
+### 6.1.4.- OBTENCIÓN DE LOS COMANDOS DE UN FICHERO
 Si tienes muchos comandos de sed es más sencillo almacenarlos todos en un fichero y utilizar la opción –f para referenciarlos.
   
 6.1.5.- MÁS OPCIONES DE SUSTITUCIÓN

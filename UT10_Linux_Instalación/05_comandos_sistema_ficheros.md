@@ -1,16 +1,16 @@
 <link rel="stylesheet" href="../styles.css">
 
-![Carátula UT07](imgs/caratula_ut10.png)
+![Carátula UT10](imgs/caratula_ut10.png)
 
 ## Contenidos
 
-1. [**Introducción a Linux**](01_introducción_linux.md)
-2. [Instalación de Ubuntu](02_instalación_ubuntu.md)
-3. [Bonding de red](03_bonding_red.md)
+1. [Introducción a Linux](01_introducción_linux.md)
+2. [Instalación de Linux](02_instalación_linux.md)
+3. [Opciones avanzadas de la instalación](03_opciones_avanzadas.md)
 4. [El sistema de ficheros en Linux](04_sistema_ficheros_linux.md)
 5. [Comandos para el sistema de ficheros](05_comandos_sistema_ficheros.md)
-6. [Comandos avanzados del shell Bash](07_comandos_avanzados_bash.md)
-7. [Expresiones regulares](08_expresiones_regulares.md)
+6. [Comandos avanzados del shell Bash](06_avanzados_bash.md)
+7. [Expresiones regulares](07_expresiones_regulares.md)
 
 
 # 5.- COMANDOS RELATIVOS AL SISTEMA DE FICHEROS
@@ -71,7 +71,7 @@ Al igual que todos los comandos, el comando `cp` dispone de una serie de modific
 Como siempre podemos ver un listado completo de los parámetros de `cp` en su página del manual.
 
 
-### 5.1.2- Renombrando ficheros. Comando `mv`
+### 5.1.3- Renombrando ficheros. Comando `mv`
 
 En Linux, renombrar un fichero es lo mismo que moverlo. El comando `mv` es el que utilizaremos para mover tanto ficheros como directorios.
 
@@ -90,7 +90,7 @@ En Linux, renombrar un fichero es lo mismo que moverlo. El comando `mv` es el qu
 Observa que al mover un fichero cambiamos su nombre, pero mantenemos el mismo número de inodo y fecha y hora de modificación.
 
 
-### 5.1.3.- Borrado de ficheros. Comando `rm`
+### 5.1.4.- Borrado de ficheros. Comando `rm`
 
 El comando que nos permitirá borrar ficheros es `rm`. En su forma más sencilla solo requerirá el nombre del fichero a eliminar. Ten en cuenta que en el shell Bash no hay papelera, por lo que **el borrado de ficheros es irreversible**. Una buena práctica es acostumbrarse a utilizar el parámetro `–i`, sobre todo cuando utilizamos comodines, que nos preguntará antes de borrar cada fichero.
 
@@ -103,6 +103,16 @@ El comando que nos permitirá borrar ficheros es `rm`. En su forma más sencilla
     vgonzalez@PORTATIL:~$ ls
     pruebas
 ```
+
+### 5.1.5.- Edición de ficheros. 
+
+Hay multitud de programas en Linux para editar ficheros de texto, tanto en entorno gráfico como en la terminal. 
+
+Los más conocidos para editar textos desde una terminal son:
+
+- `vim`: un editor de textos con multitud de opciones pero con una curva de aprendizaje muy pronunciada que hace que sea poco recomendable para principiantes.
+- `GNU Emacs`: creado por Richard Stallman es un editor con infinitas opciones y funciones, llegando a disponer de una calculadora, un administrador de archivos o incluso un tetris.
+- `nano`: un editor muy sencillo pero que cumple sobradamente con su función para la mayoría de las ocasiones
 
 
 ## 5.2.- Comandos para la manipulación de directorios
@@ -121,7 +131,7 @@ El comando que nos permitirá crear directorios en Linux es `mkdir`.
     pruebas  pruebas2
 ```
   
-### 5.1.2.- Eliminación de directorios. Comando `rmdir`
+### 5.2.2.- Eliminación de directorios. Comando `rmdir`
 
 El comando básico para eliminar directorios en Linux es `rmdir`. Algo importante es que este comando solo funcionará con directorios vacíos, mostrándonos un mensaje de error en caso de que el directorio no esté vacío.
 
@@ -146,6 +156,7 @@ Para borrar directorios que no estén vacíos es preferible utilizar el comando 
     vgonzalez@PORTATIL:~$ ls
     pruebas2
 ```
+
 
 ## 5.3.- Extracción de información de ficheros
 
@@ -228,7 +239,6 @@ El comando `more` visualizará una página y esperará antes de seguir mostránd
 | /exp   | Busca el texto inicado en el fichero |
 | n      | Busca la siguiente ocurrencia del texto buscado |
 | =      | Muestra el número de la línea actual
-
 
 
 ## 5.2.- Enlaces
