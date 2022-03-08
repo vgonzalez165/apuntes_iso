@@ -130,12 +130,21 @@ Ahora toca configurar la red. En este caso concreto mi máquina virtual tiene un
 
 En este caso el adaptador virtual de mi máquina física tiene la dirección IP 10.0.0.1/8, por lo que asignaré a la máquina virtual la IP 10.0.0.201/8.
 
-En la pantalla en la que nos encontramos se muestran todos los adaptadores de red del equipo (en este caso máquina virtual). En este punto es importante entender la nomenclatura que sigue Linux para identificar los adaptadores de red, que es la siguiente:
+En la pantalla en la que nos encontramos se muestran todos los adaptadores de red del equipo (en este caso máquina virtual). En este punto es importante entender la nomenclatura que sigue Linux para identificar los adaptadores de red. Tradicionalmente se utilizaba una nomenclatura basada en el tipo de adaptador (ethX para interfaces cableadas y wlanX para interfaces inalámbricas), pero eso traía consigo algunos problemas, por ejemplo, que no estaba garantizado que un adaptador tuviera siempre el mismo nombre.
 
-- **Adaptadores cableados**: todos los adaptadores Ethernet se identifican mediante `eth` más un número. Así, el primer adaptador será `eth0`, el segundo `eth1`, y así sucesivamente.
-- **Adaptadores inalámbricos**: en caso de que el equipo tenga algún adaptador WiFi los etiquetará como `wlan`, siendo por tanto `wlan0`, `wlan1`, ...
+Por ello, en las últimas versiones se utiliza una nomenclatura basada en la **ubicación física del adaptador (biosdevname)**. Esta nomenclatura utiliza varios esquemas:
 
-En la siguiente imagen se ve que hay un único adaptador cableado identificado como `eth0`, por lo que cambiamos de **DHCPv4** a **manual** e indicamos los parámetros de configuración de red.
+- **Esquema 1**: se utiliza cuando la BIOS o el firmware del equipo proporciona un número de índice, siendo el nombre del adaptador de la forma `eno1`.
+- **Esquema 2**: si el firmware o BIOS proporciona el número de la ranura PCI Express en que está conectada la tarjeta NIC. En este caso el nombre es de la forma `ens1`.
+- **Esquema 3**: si no hay ningún número proporcionado por la BIOS se usa una nomenclatura basada en el lugar físico del conector de harware, de la forma `enp0s3`.
+- **Esquema 4**: en este caso se utiliza la dirección MAC del adaptador de red, por ejemplo, `enx78e7d1ea46da`.
+- **Esquema 5**: en última opción se utilizaría la nomenclatura tradicional:
+  - **Adaptadores cableados**: todos los adaptadores Ethernet se identifican mediante `eth` más un número. Así, el primer adaptador será `eth0`, el segundo `eth1`, y así sucesivamente.
+  - **Adaptadores inalámbricos**: en caso de que el equipo tenga algún adaptador WiFi los etiquetará como `wlan`, siendo por tanto `wlan0`, `wlan1`, ...
+
+En el caso de máquinas virtuales la nomenclatura varía en cada hipervisor según como simule el hardware. Por ejemplo, en Hyper-V los adaptadores siguen la nomenclatura `ethX` mientras que en VirtualBox utiliza nombres de la forma `enp0s3`, `enp0s8`, ...
+
+Como las imágenes corresponden a una máquina virtual de Hyper-V, el adaptador de red se ve identificado como `eth0`, por lo que cambiamos de **DHCPv4** a **manual** e indicamos los parámetros de configuración de red.
 
 ![Configuración de red](imgs/05_install.png)
 
@@ -161,22 +170,6 @@ Ahora nos pregunta si queremos instalar un servidor SSH, que es lo más habitual
 ![Instalación SSH](imgs/09_install.png)
 
 Y con esto ya estará instalado el sistema.
-
-
-## 2.3.- Conexión mediante SSH
-
-Lo habitual cuando se trabaja con servidores es que estos se encuentren ubicados en otro lugar, la mayoría de las veces en forma de **VPS (Virtual Private Server)**. La relevancia de este hecho es que el administrador raramente accede físicamente a un servidor, sino que por norma general lo hará mediante conexiones remotas mediante **SSH (Secure Shell)**.
-
-Incluso en el caso de ejecutar el servidor en una máquina virtual será más cómodo acceder a él mediante una terminal SSH que abriendo la ventana de interacción con la máquina virtual que nos proporcione el servidor. 
-
-Vamos a ver como serían los pasos para conectarnos a una máquina virtual de Hyper-V (aunque se puede extrapolar a cualquier otro hipervisor) que contiene el Ubuntu Server que instalamos en el punto anterior. 
-
-
-
-
-
-
-
 
 ***
 [Volver al índice principal](index_UT10.md)

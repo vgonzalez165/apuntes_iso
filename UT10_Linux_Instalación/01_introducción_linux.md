@@ -17,13 +17,13 @@
 
 ## 1.1.- Historia de Linux
 
-Para analizar cómo se ha llegado a las versiones actuales de Linux debemos remontarnos al año **1964**, donde los Laboratorios Bell (AT&T), General Electric y otras compañías estaban trabajando para desarrollar un sistema operativo muy complejo denominado **MULTICS**. La idea detrás de este sistema operativo era crear un sistema que diera servicio simultáneamente a múltiples usuarios. Aunque el proyecto fue finalmente abandonado por su bajo rendimiento, algunas de las ideas que implantó han servido de base a todos los sistemas operativos posteriores.
+Para analizar cómo se ha llegado a las versiones actuales de Linux debemos remontarnos al **año 1964**, donde los Laboratorios Bell (AT&T), General Electric y otras compañías estaban trabajando para desarrollar un sistema operativo muy complejo denominado **MULTICS**. La idea detrás de este sistema operativo era crear un sistema que diera servicio simultáneamente a múltiples usuarios. Aunque el proyecto fue finalmente abandonado por su bajo rendimiento, algunas de las ideas que implantó han servido de base a todos los sistemas operativos posteriores.
 
-Tras dejar el proyecto, dos de los desarrolladores de este: Ken Thompson y Dennis Ritchie, decidieron aprovechar el trabajo que habían realizado con MULTICS para crear un nuevo sistema operativo más sencillo utilizando una vieja máquina DEC PDP-11, a este sistema operativo lo denominaron UNICS. La primera versión de este sistema operativo fue publicada en el año 1969 rebautizada como **UNIX**.
+Tras dejar el proyecto, dos de los desarrolladores de este: **Ken Thompson** y **Dennis Ritchie**, decidieron aprovechar el trabajo que habían realizado con MULTICS para crear un nuevo sistema operativo más sencillo utilizando una vieja máquina DEC PDP-11, a este sistema operativo lo denominaron UNICS. La primera versión de este sistema operativo fue publicada en el año 1969 rebautizada como **UNIX**.
 
 ![Thompson y Ritchie](imgs/01_thompson_ritchie.jpg)
 
-En el año 1972 publicaron una segunda versión de UNIX desarrollada con un nuevo lenguaje de programación que habían creado los mismos Thompson y Ritchie denominado lenguaje C. Al igual que UNIX ha tenido un gran impacto en todos los sistemas operativos posteriores, la gran mayoría de los lenguajes de programación actuales han evolucionado desde el lenguaje C. 
+En el año 1972 publicaron una segunda versión de UNIX desarrollada con un nuevo lenguaje de programación que habían creado los mismos Thompson y Ritchie denominado **lenguaje C**. Al igual que UNIX ha tenido un gran impacto en todos los sistemas operativos posteriores, la gran mayoría de los lenguajes de programación actuales han evolucionado desde el lenguaje C. 
 
 Rápidamente, Unix adquirió una gran popularidad, siendo portado a múltiples plataformas. La primera versión comercial de UNIX apareció en el año 1978 de la mano de Santa Cruz Operation (SCO), siendo rápidamente seguido por versiones de otras empresas: HP-UX, AIX de IBM, Microsoft Xenix, …
 
@@ -31,7 +31,9 @@ En los años 80 AT&T se percató del potencial comercial de UNIX, lo que le llev
 
 De esta versión de Berkeley derivan una familia de Unix libres denominados **FreeBSD** y también sistemas operativos comerciales, entre los que destacan **SunOS**, utilizados en plataformas Solaris, y los populares **Mac OS X**.
 
-Paralelamente a lo anterior, en el año 1983 Richard Stallman acuñó el concepto de software e inició el proyecto GNU, cuyo objetivo era construir un sistema operativo totalmente libre. Para ayudar en esta tarea fundó un par de años más tarde la **Free Software Foundation**. Para 1990 el proyecto GNU ya estaba bastante desarrollado y disponía de muchos de los programas necesarios para un sistema operativo: un compilador de C (gcc), librerías, un editor de textos (Emacs), un intérprete de comandos (Bash), … pero se habían quedado atascados en lo más importante: el núcleo. Había desarrollado un kernel, denominado **Hurd**, pero daba múltiples problemas.
+Paralelamente a lo anterior, en el año 1983 **Richard Stallman** acuñó el concepto de software e inició el proyecto GNU, cuyo objetivo era construir un sistema operativo totalmente libre. Para ayudar en esta tarea fundó un par de años más tarde la **Free Software Foundation**. Para 1990 el proyecto GNU ya estaba bastante desarrollado y disponía de muchos de los programas necesarios para un sistema operativo: un compilador de C (gcc), librerías, un editor de textos (Emacs), un intérprete de comandos (Bash), … pero se habían quedado atascados en lo más importante: el núcleo. Había desarrollado un kernel, denominado **Hurd**, pero daba múltiples problemas.
+
+![Richard Stallman](imgs/02_stallman.jpg)
 
 Un par de años antes, en 1991, un estudiante de la Universidad de Helsinki, llamado **Linus Torvalds**, comenzó a usar en su PC un pequeño Unix gratuito, llamado **Minix**, que había sido programado por el profesor **Andrew Tannenbaum** desde cero con propósitos educativos y publicado su código en el libro *Operating Systemas. Designa and implementation*.  Como Minix era muy limitado, Linus decidió reescribir algunas de sus partes para hacerlo más funcional.
 
