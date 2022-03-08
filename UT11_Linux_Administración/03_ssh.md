@@ -1,15 +1,47 @@
+<link rel="stylesheet" href="../styles.css">
+
+![Carátula UT11](imgs/caratula_ut11.png)
+
+### Contenidos
+
+1. Gestión del software en Linux
+2. Configuración de red en Ubuntu Server 
+3. Conexión remota al servidor mediante SSH
+4. Administración del almacenamiento
+5. Gestión de usuarios en Linux
+6. Gestión de procesos
+7. Arranque del sistema con `systemd`
+8. El directorio `/proc`
 
 
-3.- CONEXIÓN REMOTA AL SERVIDOR MEDIANTE SSH
-3.1.- SECURE SHELL (SSH)
-SSH (Secure Shell) es un protocolo que facilita las comunicaciones seguras entre dos sistemas utilizando una arquitectura cliente/servidor y que permite a los usuarios conectarse a un host remotamente. Su diferencia con respecto a otros protocolos, como Telnet o FTP, es que encripta la sesión de conexión, haciendo imposible que alguien pueda obtener contraseñas. Por defecto utiliza el puerto 22.
-3.1.1.- CONEXIÓN MEDIANTE SSH
-SSH es un protocolo cuya función principal es el acceso remoto a un servidor por medio de un canal seguro en el que toda la información está encriptada. Además de la conexión a otros dispositivos, SSH permite copiar datos de forma segura (tanto archivos sueltos como simular sesiones FTP cifradas, gestionar claves RSA para no tener que escribir contraseñas al conectar a los dispositivos y pasar los datos de cualquier otra aplicación por un canal seguro tunelizado mediante SSH y también puede redirigir el tráfico del sistema X Window para poder ejecutar programas gráficos remotamente.
-El puerto TCP asignado al protocolo SSH es el 22.
-3.1.2.- PREPARACIÓN DEL SERVIDOR SSH
-Para que un equipo acepte conexiones SSH debe tener instalado el servicio, por lo que el primer paso será instalar el paquete openssh-server. 
-Los ficheros de configuración SSH se encuentran todos en el directorio /etc/ssh.
+# 3.- CONEXIÓN REMOTA AL SERVIDOR MEDIANTE SSH
+
+## 3.1.- Secure Shell (SSH)
+
+**SSH (Secure Shell)** es un protocolo que facilita las comunicaciones seguras entre dos sistemas utilizando una arquitectura cliente/servidor y que permite a los usuarios conectarse a un host remotamente. Su diferencia con respecto a otros protocolos, como Telnet o FTP, es que encripta la sesión de conexión, haciendo imposible que alguien pueda obtener contraseñas. Por defecto utiliza el **puerto 22**.
+
+### 3.1.1.- Conexión mediante SSH
+
+SSH es un protocolo cuya función principal es el acceso remoto a un servidor por medio de un canal seguro en el que toda la información está encriptada. Algunas de las posibilidades de SSH son:
+
+- Acceso a una terminal cifrada en otros equipos.
+- Copiar datos de forma segura (tanto archivos sueltos como simular sesiones FTP cifradas)
+- Gestionar claves RSA para no tener que escribir contraseñas al conectar a los dispositivos
+- Pasar los datos de cualquier otra aplicación por un canal seguro tunelizado mediante SSH
+- Redirigir el tráfico del sistema X Window para poder ejecutar programas gráficos remotamente.
+
+
+### 3.1.2.- Preparación del servidor SSH
+
+Para que un equipo acepte conexiones SSH debe tener instalado el servicio, por lo que el primer paso será instalar el paquete `openssh-server`. 
+
+Los ficheros de configuración SSH se encuentran todos en el directorio `/etc/ssh`.
  
+```bash
+    victor@DESKTOP-483UVTV:~$ ls /etc/ssh
+    moduli  ssh_config  ssh_config.d  ssh_import_id  sshd_config  sshd_config.d
+```
+
 El fichero que necesitamos para configurar el servidor es sshd_config. Ten cuidado no lo confundas con el fichero ssh_config, de nombre muy similar pero que sirve para configurar el cliente.
 Por seguridad, es buena idea crear una copia del fichero de configuración antes de modificarlo para poder revertir los cambios en caso de realizar una configuración incorrecta.
 Como tantos otros ficheros de configuración en Linux, dispone de un gran número de opciones la mayoría de las cuales están por defecto comentadas para que no se apliquen. Algunas de estas opciones que nos pueden interesar son:
