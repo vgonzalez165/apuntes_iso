@@ -33,7 +33,7 @@ El parámetro *opciones* permite personalizar el comportamiento del comando `sed
 
 | Opción      | Descripción |
 | ----------- | ----------- |
-| `-e` | Permite ejecutar más de un comando de `sed` |
+| `-e` 		  | Permite ejecutar más de un comando de `sed` |
 | `-f file`   | Añade los comandos especificados en `file` mientras se procesa la entrada |
 | `-n`		  | No produce salida para cada comando |
 
@@ -48,8 +48,7 @@ Si es necesario más de un comando hay que utilizar la opción `–e` para indic
 Por defecto, el editor `sed` aplica los comandos especificados al flujo de entrada en `stdin`. Por ejemplo:
  
 ```bash
-	┌──(vgonzalez165㉿PORTATIL)-[~]
-	└─$ echo "Esto es una prueba" | sed 's/una prueba/un ejemplo/'
+	vgonzalez@ubuntu:~$ echo "Esto es una prueba" | sed 's/una prueba/un ejemplo/'
 	Esto es un ejemplo
 ```
 
@@ -58,33 +57,29 @@ En este ejemplo hemos utilizado el comando `s` del editor `sed`. El comando `s` 
 También se puede indicar como entrada un fichero y procesará todas las líneas del fichero.
 
 ```bash
-┌──(vgonzalez165㉿PORTATIL)-[~]
-└─$ cat datos
-Esto es una prueba de Linux
-Comandos básicos de Linux
-Introducción a Linux
-
-┌──(vgonzalez165㉿PORTATIL)-[~]
-└─$ sed 's/Linux/GNU Linux/' datos
-Esto es una prueba de GNU Linux
-Comandos básicos de GNU Linux
-Introducción a GNU Linux
+	vgonzalez@ubuntu:~$ echo datos
+	datos
+	vgonzalez@ubuntu:~$ sed 's/Linux/GNU\/Linux/' datos
+	Esto es una prueba de GNU/Linux
+	Comandos básicos de GNU/Linux
+	Introducción a GNU/Linux
 ```
+
+Aprovechando el ejemplo anterior, observa como es necesario **escapar** el carácter barra (`/`) en la cadena de reemplazo anteponiéndole el símbolo barra invertida (`\`) ya que, en caso contrario, se interpretaría que ha finalizado la cadena de reemplazo.
+
  
 ### 6.1.3.- Múltiples comandos en la misma línea
 
 Para utilizar varios comandos hay que utilizar la opción `–e`.
 
 ```bash
-	┌──(vgonzalez165㉿PORTATIL)-[~]
-	└─$ cat datos
+	vgonzalez@ubuntu:~$ cat datos
 	uno
 	dos
 	tres
 	cuatro
 	cinco
-	┌──(vgonzalez165㉿PORTATIL)-[~]
-	└─$ sed -e ' s/uno/1/' -e 's/dos/2/' datos
+	vgonzalez@ubuntu:~$ sed -e 's/uno/1/' -e 's/dos/2/' datos
 	1
 	2
 	tres
@@ -92,11 +87,10 @@ Para utilizar varios comandos hay que utilizar la opción `–e`.
 	cinco
 ```
 
-También es posible separar varios comandos utilizando el carácter punto y coma (`;`) como separador.
+También es posible, y más cómodo, separar varios comandos utilizando el carácter punto y coma (`;`) como separador.
  
 ```bash
-	┌──(vgonzalez165㉿PORTATIL)-[~]
-	└─$ sed -e ' s/uno/1/;s/dos/2/' datos
+	vgonzalez@ubuntu:~$ sed -e 's/uno/1/;s/dos/2/' datos
 	1
 	2
 	tres
@@ -104,16 +98,13 @@ También es posible separar varios comandos utilizando el carácter punto y coma
 	cinco
 ```
 
-Otra alternativa que puede dar más claridad a la hora de mostrar la expresión es utilizar el prompt secundario del Shell insertando un salto de línea dentro de las comillas:
-
-Ambos comandos se aplican a cada línea y tienen que ir separados por un punto y coma. Otra opción alternativa al uso del punto y coma es utilizar el prompt secundario en el shell. 
+Otra alternativa que puede dar más claridad a la hora de mostrar la expresión es utilizar el **prompt secundario** del Shell insertando un salto de línea dentro de las comillas tal como se ve en el siguiente código.
   
 ```bash
-	┌──(vgonzalez165㉿PORTATIL)-[~]
-	└─$ sed '
-	s/uno/1/
-	s/dos/2/
-	' datos
+	vgonzalez@ubuntu:~$ sed '
+	> s/uno/1/
+	> s/dos/2/
+	> ' datos
 	1
 	2
 	tres
@@ -121,7 +112,9 @@ Ambos comandos se aplican a cada línea y tienen que ir separados por un punto y
 	cinco
 ```
 
+
 ### 6.1.4.- OBTENCIÓN DE LOS COMANDOS DE UN FICHERO
+
 Si tienes muchos comandos de sed es más sencillo almacenarlos todos en un fichero y utilizar la opción –f para referenciarlos.
   
 6.1.5.- MÁS OPCIONES DE SUSTITUCIÓN
