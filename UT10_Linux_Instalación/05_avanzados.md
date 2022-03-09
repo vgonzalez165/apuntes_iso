@@ -6,22 +6,19 @@
 
 1. [Introducción a Linux](01_introducción_linux.md)
 2. [Instalación de Linux](02_instalación_linux.md)
-3. [Opciones avanzadas de la instalación](03_opciones_avanzadas.md)
-4. [El sistema de ficheros en Linux](04_sistema_ficheros_linux.md)
-5. [Comandos para el sistema de ficheros](05_comandos_sistema_ficheros.md)
-6. [Comandos avanzados del shell Bash](06_avanzados_bash.md)
-7. [Expresiones regulares](07_expresiones_regulares.md)
+3. [El sistema de ficheros en Linux](03_sistema_ficheros_linux.md)
+4. [Comandos para el sistema de ficheros](04_comandos_sistema_ficheros.md)
+5. [**Comandos avanzados del shell Bash**](05_avanzados_bash.md)
+6. [Expresiones regulares](06_expresiones_regulares.md)
 
 
+# 5.- COMANDOS AVANZADOS DE BASH
 
-
-# 7.- COMANDOS AVANZADOS DE BASH
-
-## 7.1.- Gestión de las unidades de almancenamiento
+## 5.1.- Gestión de las unidades de almancenamiento
 
 Una parte muy importante de la administración de un sistema Linux es llevar el control de las diferentes unidades de almacenamiento así como de los sistemas de ficheros. Para ello dispone de un gran número de comandos que nos permitirán operar con estas unidades, así como extraer información relativa a ellas.
 
-### 7.1.1.- Montaje de dispositivos. Comandos `mount` y `umount`
+### 5.1.1.- Montaje de dispositivos. Comandos `mount` y `umount`
 
 Como se vio anteriormente, Linux combina todos los dispositivos de almacenamiento en un único directorio virtual. Antes de utilizar un nuevo disco en el sistema necesitas localizarlo en el directorio virtual. Esta tarea se denomina **montaje**.
 
@@ -37,7 +34,7 @@ La información que proporciona el comando `mount` es:
 - El **estado de acceso** del dispositivo montado, es decir, bajo qué condiciones se montó, por ejemplo, si es de lectura y escritura o solo lectura.
 
 ```shell
-    vgonzalez@PORTATIL:~$ mount
+    vgonzalez@ubuntu:~$ mount
     /dev/sdc on / type ext4 (rw,relatime,discard,errors=remount-ro,data=ordered)
     tmpfs on /mnt/wsl type tmpfs (rw,relatime)
 ```
@@ -83,16 +80,16 @@ La última opción (`-o`) permite indicar una serie de opciones adicionales sepa
 La última opción (`-loop`) nos permite montar un fichero que sea una **imagen de un dispositivo**, por ejemplo, un fichero ISO (extensión `.iso`), tal y como se puede ver a continuación.
 
 ```shell
-    vgonzalez@PORTATIL:~$ sudo mount -t iso9660 -o loop slacko-6.3.0.iso /mnt
+    vgonzalez@ubuntu:~$ sudo mount -t iso9660 -o loop slacko-6.3.0.iso /mnt
     mount: /mnt /home/vgonzalez/Descargas/slack0-6.3.0.iso ya está montado. 
 ``` 
 
-### 7.1.2.- Espacio libre en disco. Comando `df`
+### 5.1.2.- Espacio libre en disco. Comando `df`
 
 Para conocer el espacio disponible en un dispositivo se puede utilizar el comando `df`. Si se indica sin ningún parámetro mostrará información general sobre todos los dispositivos montados en el sistema.
 
 ```shell
-    vgonzalez@PORTATIL:~$ df
+    vgonzalez@ubuntu:~$ df
     S. ficheros     bloques de 1K   Usados  Disponibles Uso%    Montado en
     udev                  2042636        0      2041636   0%    /dev
     tmpfs                  413720     1048       412672   1%    /run
@@ -116,12 +113,12 @@ La información que nos muestra este comando es:
 Un parámetro de este comando es `–h` que nos muestra el espacio en disco de una forma más legible mostrándolo en gigabytes o megabytes.
 
 
-### 7.1.3.- Ocupación de espacio de un directorio. Comando `du`
+### 5.1.3.- Ocupación de espacio de un directorio. Comando `du`
 
 El comando `du` muestra la utilización del disco de un directorio específico (por defecto el directorio de trabajo actual) desglosando lo que ocupa cada uno de sus ficheros y subdirectorios.
 
 ```shell
-    vgonzalez@PORTATIL:~$ du
+    vgonzalez@ubuntu:~$ du
     4       ./Vídeos
     8       ./Música/apt/apt.conf.d
     12      ./Música/apt
@@ -139,20 +136,20 @@ Algunos parámetros de este comando que pueden hacer su salida más legible son:
 
 
 
-## 7.2.- Trabajando con ficheros de datos
+## 5.2.- Trabajando con ficheros de datos
 
-### 7.2.1.- Ordenando datos. Comando `sort`
+### 5.2.1.- Ordenando datos. Comando `sort`
 
 El comando `sort` ordena las líneas de un fichero de texto utilizando las reglas de ordenación según el lenguaje del sistema.
 
 ```shell
-    vgonzalez@PORTATIL:~$ cat fichero
+    vgonzalez@ubuntu:~$ cat fichero
     uno
     dos
     tres
     cuatro
     cinco
-    vgonzalez@PORTATIL:~$ sort fichero
+    vgonzalez@ubuntu:~$ sort fichero
     cinco
     cuatro
     dos
@@ -163,14 +160,14 @@ El comando `sort` ordena las líneas de un fichero de texto utilizando las regla
 Sin embargo, si los valores que contiene el fichero son numéricos el resultado puede no ser el esperado:
 
 ```shell
-    vgonzalez@PORTATIL:~$ cat fichero2
+    vgonzalez@ubuntu:~$ cat fichero2
     47
     2
     29
     12
     109
     1
-    vgonzalez@PORTATIL:~$ sort fichero2
+    vgonzalez@ubuntu:~$ sort fichero2
     1
     109
     12
@@ -182,7 +179,7 @@ Sin embargo, si los valores que contiene el fichero son numéricos el resultado 
 Si sabemos que el primer valor de cada fila es un número y queremos que lo trate como un número al ordenarlo en lugar de como un carácter debemos utilizar el parámetro `–n`.
 
 ```shell
-    vgonzalez@PORTATIL:~$ sort fichero2 -n
+    vgonzalez@ubuntu:~$ sort fichero2 -n
     1
     2
     12
@@ -198,7 +195,7 @@ Los parámetros `–k` y `–t` son muy útiles para ordenar ficheros de datos q
 Por ejemplo, el siguiente comando ordenará el fichero `/etc/passwd` según el identificador del usuario, que por cierto es un valor numérico.
 
 ```shell
-    vgonzalez@PORTATIL:~$ sort -t ':' -k 3 -n /etc/passwd
+    vgonzalez@ubuntu:~$ sort -t ':' -k 3 -n /etc/passwd
     root:x:0:0:root:/root:/bin/bash
     daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
     bin:x:2:2:bin:/bin:/usr/sbin/nologin
@@ -209,7 +206,7 @@ Por ejemplo, el siguiente comando ordenará el fichero `/etc/passwd` según el i
     lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
 ```
   
-### 7.2.2.- Búsqueda de datos. Comando `grep`
+### 5.2.2.- Búsqueda de datos. Comando `grep`
 
 Si queremos buscar una línea que contenga un determinado valor en un fichero deberemos utilizar la orden `grep`. El formato para el comando `grep` es el siguiente:
 
@@ -219,15 +216,15 @@ Si queremos buscar una línea que contenga un determinado valor en un fichero de
 El comando `grep` busca en el fichero indicado como entrada aquellas líneas que contengan los caracteres que coincidan con el patrón indicado.
   
 ```shell
-    vgonzalez@PORTATIL:~$ cat fichero
+    vgonzalez@ubuntu:~$ cat fichero
     uno
     dos
     tres
     cuatro
     cinco
-    vgonzalez@PORTATIL:~$ grep cuatro fichero
+    vgonzalez@ubuntu:~$ grep cuatro fichero
     cuatro
-    vgonzalez@PORTATIL:~$ grep c fichero
+    vgonzalez@ubuntu:~$ grep c fichero
     cuatro
     cinco
 ```
@@ -242,13 +239,13 @@ Este comando admite multitud de parámetros:
 También admite **expresiones regulares** al indicar el patrón a buscar. Las expresiones regulares ya se verán más adelante, pero a modo de avance un ejemplo puede ser el siguiente, en el que se muestran todas las líneas del fichero cuyo primer carácter sea `c` o `u`.
 
 ```shell
-    vgonzalez@PORTATIL:~$ grep ^[cu] fichero
+    vgonzalez@ubuntu:~$ grep ^[cu] fichero
     uno
     cuatro
     cinco
 ```
  
-### 7.2.3.- Compresión de datos. Comandos `bzip2`, `gzip` y `zip`
+### 5.2.3.- Compresión de datos. Comandos `bzip2`, `gzip` y `zip`
 
 De forma análoga a WinZip en Windows, Linux dispone de un gran número de herramientas de **compresión de datos**. Algunas de las más utilizadas son las siguientes:
 
@@ -269,7 +266,7 @@ De forma análoga a WinZip en Windows, Linux dispone de un gran número de herra
     - `unzip` extrae los ficheros y directorios de un fichero comprimido.
 
 
-### 7.2.4.- Archivado de datos. Comando `tar`
+### 5.2.4.- Archivado de datos. Comando `tar`
 
 Aunque el comando `zip` sirve para comprimir varios ficheros y directorios en un solo fichero, es más común utilizar el comando `tar` para archivar varios ficheros en uno solo.
 
@@ -312,7 +309,7 @@ tar –xvf test.tar
 Extrae el contenido del fichero `test.tar`.
  
 
- ## 7.3.- Redireccionamiento
+ ## 5.3.- Redireccionamiento
 
 En UNIX, y por tanto en Linux, todo es un **flujo** (stream) de bytes. Estos flujos están normalmente representados como ficheros, pero hay tres flujos especiales que raramente son accedidos a través de un nombre de fichero. Estos son los flujos de entrada y salida asociados a cada comando: **la entrada estándar, la salida estándar y la salida de error**. Por defecto, estos flujos o streams están conectados a la terminal.
 
@@ -321,7 +318,7 @@ Cuando un comando lee un carácter o una línea, lo hace desde la entrada están
 Estos flujos son referenciados mediante números, llamados descriptores de fichero (FD), y son `0`, `1` y `2` respectivamente. También se conocen como `stdin`, `stdout` y `stderr`.
 
 
-### 7.3.1.- Redirección >, >>,  < Y <<
+### 5.3.1.- Redirección >, >>,  < Y <<
 
 El carácter `>` sirve para redireccionar la salida estándar a un fichero siguiendo la siguiente sintaxis:
 
@@ -358,12 +355,15 @@ comando << etiqueta
 Lo que hace es tomar la entrada para el comando de las siguientes líneas que se escriban hasta llegar a una línea que solo contenga la etiqueta.
  
 
-### 7.3.2.- TUBERÍAS
+### 5.3.2.- TUBERÍAS
 
 Las **tuberías** o **pipelines** conectan la salida estándar de un comando con la entrada estándar de otro. El símbolo barra (`|`) debe ser utilizado entre los dos comandos.
  
 
 
+
+***
+[Volver al índice principal](index_UT10.md)
 
 
  

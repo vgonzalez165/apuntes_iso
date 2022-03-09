@@ -6,16 +6,15 @@
 
 1. [Introducción a Linux](01_introducción_linux.md)
 2. [Instalación de Linux](02_instalación_linux.md)
-3. [Opciones avanzadas de la instalación](03_opciones_avanzadas.md)
-4. [El sistema de ficheros en Linux](04_sistema_ficheros_linux.md)
-5. [Comandos para el sistema de ficheros](05_comandos_sistema_ficheros.md)
-6. [Comandos avanzados del shell Bash](06_avanzados_bash.md)
-7. [Expresiones regulares](07_expresiones_regulares.md)
+3. [**El sistema de ficheros en Linux**](03_sistema_ficheros_linux.md)
+4. [Comandos para el sistema de ficheros](04_comandos_sistema_ficheros.md)
+5. [Comandos avanzados del shell Bash](05_avanzados_bash.md)
+6. [Expresiones regulares](06_expresiones_regulares.md)
 
 
-# 4.- EL SISTEMA DE FICHEROS EN LINUX
+# 3.- EL SISTEMA DE FICHEROS EN LINUX
 
-## 4.1.- Introducción al sistema de ficheros
+## 3.1.- Introducción al sistema de ficheros
 
 La gestión del sistema de fichero en Linux difiere en algunos puntos a como lo hace Windows. La primera diferencia es que Linux no utiliza letras de unidades (por ejemplo, `C:`) en las rutas, sino que Linux almacena los ficheros en **una única estructura de directorios**, llamado **directorio virtual**. El directorio virtual contiene todos los ficheros de todas las unidades de almacenamiento instaladas en el PC unidos en una única estructura de directorios.
 
@@ -27,28 +26,28 @@ Para incorporar otras unidades Linux crea directorios especiales denominados **p
 
  Aunque puede variar según la distribución en la siguiente tabla se pueden ver los principales directorios de Linux y que se almacena en ellos.
 
- | Directorio | Uso |
- | ---------- | --- |
- | `/`        | El directorio raíz. No suele contener ficheros |
- | `/bin`     | Contiene ejecutables o binarios, normalmente utilidades de usuario |
- | `/boot`    | Contiene los ficheros de arranque del sistema |
- | `/dev`     | Almacena ficheros especiales que representan los dispositivos del sistema |
- | `/etc`     | Ficheros de configuración del sistema |
- | `/home`    | Aquí se almacenan las carpetas personales de los usuarios |
- | `/lib`     | Contiene las librerías del sistema y de las apliaciones |
- | `/media`   | Habitualmente utilizado como punto de montaje para los dispositivos extraíbles |
- | `/mnt`     | Otro directorio también utilizado en ocasiones para el montaje de dispositivos |
- | `/opt`     | Se suele utilizar para almacenar paquetes de software opcionales |
- | `/root`    | Directorio personal del administrador o *root* |
- | `/sbin`    | Binarios del sistema, normalmente utilidades a nivel de administrador |
- | `/tmp`     | Directorio para almacenar ficheros temporales |
- | `/usr`     | Contiene software instalado por el usuario |
+ | Directorio | Uso                                                                                 |
+ | ---------- | ----------------------------------------------------------------------------------- |
+ | `/`        | El directorio raíz. No suele contener ficheros                                      |
+ | `/bin`     | Contiene ejecutables o binarios, normalmente utilidades de usuario                  |
+ | `/boot`    | Contiene los ficheros de arranque del sistema                                       |
+ | `/dev`     | Almacena ficheros especiales que representan los dispositivos del sistema           |
+ | `/etc`     | Ficheros de configuración del sistema                                               |
+ | `/home`    | Aquí se almacenan las carpetas personales de los usuarios                           |
+ | `/lib`     | Contiene las librerías del sistema y de las apliaciones                             |
+ | `/media`   | Habitualmente utilizado como punto de montaje para los dispositivos extraíbles      |
+ | `/mnt`     | Otro directorio también utilizado en ocasiones para el montaje de dispositivos      |
+ | `/opt`     | Se suele utilizar para almacenar paquetes de software opcionales                    |
+ | `/root`    | Directorio personal del administrador o *root*                                      |
+ | `/sbin`    | Binarios del sistema, normalmente utilidades a nivel de administrador               |
+ | `/tmp`     | Directorio para almacenar ficheros temporales                                       |
+ | `/usr`     | Contiene software instalado por el usuario                                          |
  | `/var`     | Almacena ficheros que cambian frecuentemente, tales como ficheros de registro o log |
 
 
-## 4.2.- Navegación por el sistema de ficheros
+## 3.2.- Navegación por el sistema de ficheros
 
-### 4.2.1.- Cambiando de directorio
+### 3.2.1.- Cambiando de directorio
 
 El comando `cd` nos sirve para desplazarnos por los diferentes directorios del sistema de ficheros.
 
@@ -64,22 +63,39 @@ El directorio de destino se puede especificar de dos maneras diferentes:
 Si queremos saber cuál es el directorio de trabajo actual el comando a utilizar es el `pwd`.
 
 ```bash
-┌──(victor)-[/mnt/c/Users/victor]
-└─$ pwd
-/mnt/c/Users/victor
+  vgonzalez@ubuntu:~$ pwd
+  /home/vgonzalez
 ```
 
-### 4.2.2.- Mostrando el contenido de los directorios
+Cada usuario en Linux tiene un directorio llamado **directorio personal** que es en el que tiene permisos de lectura y escritura sin necesidad de ser `root` y por tanto donde están todos sus archivos personales. Este directorio se encuentra dentro del directorio `/home` y se llama igual que el usuario.
+
+Dada la importancia de este directorio, se puede hacer referencia a él mediante el carácter **virgulilla** (`~`) (combinación de teclas `AltGr + 4`), de forma que poner este carácter es equivalente a poner la ruta del directorio personal del usuario.
+
+```bash
+  vgonzalez@ubuntu:/etc$ cd ~
+  vgonzalez@ubuntu:~$ pwd
+  /home/vgonzalez
+```
+
+También se puede incluir este carácter dentro de una ruta.
+
+```bash
+  vgonzalez@ubuntu:/etc$ cat ~/documentos/datos
+  hola mundo
+```
+
+
+
+### 3.2.2.- Mostrando el contenido de los directorios
 
 El comando `ls` es la herramienta que nos ayudará a ver qué ficheros y directorios tenemos en nuestro sistema de archivos.
 
 En su forma más básica nos mostrará los ficheros y directorios situados en el directorio actual.
 
 ```bash
-┌──(victor㉿PORTATIL)-[/]
-└─$ ls
-bin   dev  home  lib    lib64   lost+found  mnt  proc  run   srv  tmp  var
-boot  etc  init  lib32  libx32  media       opt  root  sbin  sys  usr
+  vgonzalez@ubuntu:/$ ls
+  bin   dev  home  lib    lib64   lost+found  mnt  proc  run   srv  tmp  var
+  boot  etc  init  lib32  libx32  media       opt  root  sbin  sys  usr
 ```
  
 Si utilizamos un terminal en color se nos mostrará diferentes colores según sean el tipo de objetos de que se trate(directorios, ficheros de datos, ejecutables, …)
@@ -87,10 +103,9 @@ Si utilizamos un terminal en color se nos mostrará diferentes colores según se
 Si no tenemos un terminal en color podemos utilizar el parámetro `–F` para que nos muestre información textual del tipo de ficheros de que se trata.
 
 ```bash
-┌──(qn4p㉿PORTATIL)-[/]
-└─$ ls -F
-bin@   dev/  home/  lib@    lib64@   lost+found/  mnt/  proc/  run/   srv/  tmp/  var/
-boot/  etc/  init*  lib32@  libx32@  media/       opt/  root/  sbin@  sys/  usr/
+  vgonzalez@ubuntu:/$ ls -F
+  bin@   dev/  home/  lib@    lib64@   lost+found/  mnt/  proc/  run/   srv/  tmp/  var/
+  boot/  etc/  init*  lib32@  libx32@  media/       opt/  root/  sbin@  sys/  usr/
 ```
  
  Pero `ls` no muestra necesariamente todos los ficheros. Linux a menudo utiliza ficheros ocultos para almacenar información de configuración. Linux no identifica los ficheros ocultos con un atributo tal como hace Windows, sino que lo hace **anteponiendo un punto al nombre del fichero**.
@@ -98,38 +113,35 @@ boot/  etc/  init*  lib32@  libx32@  media/       opt/  root/  sbin@  sys/  usr/
 Para mostrar también los ficheros ocultos deberemos utilizar el parámetro `–a`.
  
 ```bash
-┌──(victor)-[~]
-└─$ ls -a
-.  ..  .bash_history  .bash_logout  .bashrc  .bashrc.original  .cache  .config  .dbus  .java  .profile  .zshrc
+  vgonzalez@ubuntu:~$ ls -a
+  .  ..  .bash_history  .bash_logout  .bashrc  .bashrc.original  .cache  .config  .dbus  .java  .profile  .zshrc
 ```
 
  Otro parámetro interesante de `ls` es el parámetro `–R`, que nos muestra los ficheros del directorio actual y de todos sus subdirectorios.
  
 ```bash
-┌──(victor)-[/]
-└─$ ls -R
-.:
-bin   dev  home  lib    lib64   lost+found  mnt  proc  run   srv  tmp  var
-boot  etc  init  lib32  libx32  media       opt  root  sbin  sys  usr
+  vgonzalez@ubuntu:/$ ls -R
+  .:
+  bin   dev  home  lib    lib64   lost+found  mnt  proc  run   srv  tmp  var
+  boot  etc  init  lib32  libx32  media       opt  root  sbin  sys  usr
 
-./boot:
-grub
+  ./boot:
+  grub
 
-./boot/grub:
-themes
+  ./boot/grub:
+  themes
 ```
 
 Si queremos ver información más completa acerca de cada fichero el parámetro a utilizar será `–l`
  
 ```bash
-┌──(victor㉿PORTATIL)-[/etc]
-└─$ ls -l
-total 1356
--rw-r--r--  1 root     root      2981 Dec  8 23:29 adduser.conf
-drwxr-xr-x  3 root     root      4096 Jan 26 19:21 alsa
-drwxr-xr-x  2 root     root     20480 Jan 26 20:00 alternatives
-drwxr-xr-x  8 root     root      4096 Jan 26 19:59 apache2
-drwxr-xr-x  3 root     root      4096 Jan 26 19:54 apparmor
+  vgonzalez@ubuntu:/etc$ ls -l
+  total 1356
+  -rw-r--r--  1 root     root      2981 Dec  8 23:29 adduser.conf
+  drwxr-xr-x  3 root     root      4096 Jan 26 19:21 alsa
+  drwxr-xr-x  2 root     root     20480 Jan 26 20:00 alternatives
+  drwxr-xr-x  8 root     root      4096 Jan 26 19:59 apache2
+  drwxr-xr-x  3 root     root      4096 Jan 26 19:54 apparmor
 ```
 
 La información que nos muestra este parámetro es la siguiente:

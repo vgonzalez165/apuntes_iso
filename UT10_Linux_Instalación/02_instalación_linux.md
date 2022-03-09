@@ -5,12 +5,11 @@
 ## Contenidos
 
 1. [Introducción a Linux](01_introducción_linux.md)
-2. [Instalación de Linux](02_instalación_linux.md)
-3. [Opciones avanzadas de la instalación](03_opciones_avanzadas.md)
-4. [El sistema de ficheros en Linux](04_sistema_ficheros_linux.md)
-5. [Comandos para el sistema de ficheros](05_comandos_sistema_ficheros.md)
-6. [Comandos avanzados del shell Bash](06_avanzados_bash.md)
-7. [Expresiones regulares](07_expresiones_regulares.md)
+2. [**Instalación de Linux**](02_instalación_linux.md)
+3. [El sistema de ficheros en Linux](03_sistema_ficheros_linux.md)
+4. [Comandos para el sistema de ficheros](04_comandos_sistema_ficheros.md)
+5. [Comandos avanzados del shell Bash](05_avanzados_bash.md)
+6. [Expresiones regulares](06_expresiones_regulares.md)
 
 
 # 2.- INSTALACIÓN DE LINUX
@@ -37,9 +36,9 @@ Estas pueden ser activadas mediante la herramienta *Activar o desactivar las her
 También es posible activarlas desde Powershell, para ello se ejecutan las siguientes órdenes y a continuación se reinicia el sistema.
 
 ```powershell
-PS C:\>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+  PS C:\>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 
-PS C:\>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+  PS C:\>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
 
 ### 2.1.2.- Instalación de WSL 2
@@ -58,39 +57,39 @@ Una vez que ya tenemos WSL 2 instalado en nuestro sistema podemos ejecutar los s
 #### Mostrar todas las distribuciones que se pueden instalar
 
 ```powershell
-PS C:\> wsl --list --online
-A continuación, se muestra una lista de las distribuciones válidas que se pueden instalar.
-Instalar con 'wsl --install -d <Distribución>'.
+  PS C:\> wsl --list --online
+  A continuación, se muestra una lista de las distribuciones válidas que se pueden instalar.
+  Instalar con 'wsl --install -d <Distribución>'.
 
-NAME            FRIENDLY NAME
-Ubuntu          Ubuntu
-Debian          Debian GNU/Linux
-kali-linux      Kali Linux Rolling
-openSUSE-42     openSUSE Leap 42
-SLES-12         SUSE Linux Enterprise Server v12
-Ubuntu-16.04    Ubuntu 16.04 LTS
-Ubuntu-18.04    Ubuntu 18.04 LTS
-Ubuntu-20.04    Ubuntu 20.04 LTS
+  NAME            FRIENDLY NAME
+  Ubuntu          Ubuntu
+  Debian          Debian GNU/Linux
+  kali-linux      Kali Linux Rolling
+  openSUSE-42     openSUSE Leap 42
+  SLES-12         SUSE Linux Enterprise Server v12
+  Ubuntu-16.04    Ubuntu 16.04 LTS
+  Ubuntu-18.04    Ubuntu 18.04 LTS
+  Ubuntu-20.04    Ubuntu 20.04 LTS
 ```
 
 
 #### Ver las distribuciones que tenemos instaladas en el sistema
 
 ```powershell
-PS C:\> wsl --list --verbose
-  NAME          STATE           VERSION
-* kali-linux    Running         2
-  Debian        Stopped         2
+  PS C:\> wsl --list --verbose
+    NAME          STATE           VERSION
+  * kali-linux    Running         2
+    Debian        Stopped         2
 ```
 
 #### Instalar una distribución
 
 ```powershell
-PS C:\> wsl --install --distribution Ubuntu
-Descargando: Ubuntu
-Instalando: Ubuntu
-Se ha instalado Ubuntu.
-Iniciando Ubuntu...
+  PS C:\> wsl --install --distribution Ubuntu
+  Descargando: Ubuntu
+  Instalando: Ubuntu
+  Se ha instalado Ubuntu.
+  Iniciando Ubuntu...
 ```
 
 Cuando se ejecuta esta orden se descargará la distribución y solicitará introducir un nombre de usuario y contraseña. Este usuario es independiente del usuario de Windows y se utilizará solamente dentro de la distribución instalada. 
@@ -99,13 +98,13 @@ Cuando se ejecuta esta orden se descargará la distribución y solicitará intro
 #### Lanzar una distribución
 
 ```powershell
-PS C:\> wsl -d ubuntu
-To run a command as administrator (user "root"), use "sudo <command>".
-See "man sudo_root" for details.
+  PS C:\> wsl -d ubuntu
+  To run a command as administrator (user "root"), use "sudo <command>".
+  See "man sudo_root" for details.
 
-victor@DESKTOP-483UVTV:/mnt/c/$ exit
-logout
-PS C:\>
+  victor@DESKTOP-483UVTV:/mnt/c/$ exit
+  logout
+  PS C:\>
 ```
 
 Si tenemos instalado Windows Terminal será posible abrir diferentes distribuciones en diferentes pestañas. Simplemente hay que elegir la distribución deseada en el menú desplegable que hay a la derecha de las pestañas.
