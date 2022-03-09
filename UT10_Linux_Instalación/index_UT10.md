@@ -8,7 +8,7 @@
 2. [Instalación de Linux](02_instalación_linux.md)
 3. [El sistema de ficheros en Linux](03_sistema_ficheros_linux.md)
 4. [Comandos para el sistema de ficheros](04_comandos_sistema_ficheros.md)
-5. [Comandos avanzados del shell Bash](05_avanzados_bash.md)
+5. [Comandos avanzados del shell Bash](05_avanzados.md)
 6. [Expresiones regulares](06_expresiones_regulares.md)
 
 ### Prácticas
