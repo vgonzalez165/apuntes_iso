@@ -45,13 +45,11 @@ Para incorporar otras unidades Linux crea directorios especiales denominados **p
  | `/var`     | Almacena ficheros que cambian frecuentemente, tales como ficheros de registro o log |
 
 
-## 3.2.- Navegación por el sistema de ficheros
+## 3.2.- Comandos básicos para la navegación por el sistema de ficheros
 
-### 3.2.1.- Cambiando de directorio
+### 3.2.1.- Cambiando de directorio. Comando `cd`
 
-El comando `cd` nos sirve para desplazarnos por los diferentes directorios del sistema de ficheros.
-
-El comando `cd` toma un único parámetro que será el directorio destino al que nos queramos mover. Si no se indica ningún parámetro nos _llevará al directorio home del usuario_.
+El comando `cd` nos sirve para desplazarnos por los diferentes directorios del sistema de ficheros. Este comando toma un único parámetro que será el directorio destino al que nos queramos mover. Si no se indica ningún parámetro nos llevará al directorio home del usuario.
 
 El directorio de destino se puede especificar de dos maneras diferentes:
 
@@ -60,6 +58,24 @@ El directorio de destino se puede especificar de dos maneras diferentes:
     - El punto (`.`) que representa el directorio actual
     - El doble punto (`..`) que representa el directorio padre del actual.
 
+Cada usuario en Linux tiene un directorio llamado **directorio personal** que es en el que tiene permisos de lectura y escritura sin necesidad de ser `root` y por tanto donde están todos sus archivos personales. Este directorio se encuentra dentro del directorio `/home` y se llama igual que el usuario.
+
+Dada la importancia de este directorio, se puede hacer referencia a él mediante el carácter **virgulilla** (`~`) (combinación de teclas `AltGr + 4`), de forma que poner este carácter es equivalente a poner la ruta del directorio personal del usuario.
+
+```bash
+  vgonzalez@ubuntu:/etc$ cd ~
+  vgonzalez@ubuntu:~$ 
+```
+
+También se puede incluir este carácter dentro de una ruta.
+
+```bash
+  vgonzalez@ubuntu:/etc$ cat ~/documentos/datos   # Equivale a /home/vgonzalez/documentos/datos
+  hola mundo
+```
+
+### 3.2.2.- Conociendo el directorio de trabajo. Comando `pwd`
+
 Si queremos saber cuál es el directorio de trabajo actual el comando a utilizar es el `pwd`.
 
 ```bash
@@ -67,26 +83,8 @@ Si queremos saber cuál es el directorio de trabajo actual el comando a utilizar
   /home/vgonzalez
 ```
 
-Cada usuario en Linux tiene un directorio llamado **directorio personal** que es en el que tiene permisos de lectura y escritura sin necesidad de ser `root` y por tanto donde están todos sus archivos personales. Este directorio se encuentra dentro del directorio `/home` y se llama igual que el usuario.
 
-Dada la importancia de este directorio, se puede hacer referencia a él mediante el carácter **virgulilla** (`~`) (combinación de teclas `AltGr + 4`), de forma que poner este carácter es equivalente a poner la ruta del directorio personal del usuario.
-
-```bash
-  vgonzalez@ubuntu:/etc$ cd ~
-  vgonzalez@ubuntu:~$ pwd
-  /home/vgonzalez
-```
-
-También se puede incluir este carácter dentro de una ruta.
-
-```bash
-  vgonzalez@ubuntu:/etc$ cat ~/documentos/datos
-  hola mundo
-```
-
-
-
-### 3.2.2.- Mostrando el contenido de los directorios
+### 3.2.2.- Mostrando el contenido de los directorios. Comando `ls`
 
 El comando `ls` es la herramienta que nos ayudará a ver qué ficheros y directorios tenemos en nuestro sistema de archivos.
 
@@ -98,9 +96,16 @@ En su forma más básica nos mostrará los ficheros y directorios situados en el
   boot  etc  init  lib32  libx32  media       opt  root  sbin  sys  usr
 ```
  
-Si utilizamos un terminal en color se nos mostrará diferentes colores según sean el tipo de objetos de que se trate(directorios, ficheros de datos, ejecutables, …)
+ En la siguiente tabla se muestran los parámetros más comunes del comando `ls`.
 
-Si no tenemos un terminal en color podemos utilizar el parámetro `–F` para que nos muestre información textual del tipo de ficheros de que se trata.
+ | Parámetro        | Descripción                                                             |
+ | ---------------- | ----------------------------------------------------------------------- |
+ | `-F`             | Muestra información textual sobre el tipo de ficheros de que se trata   |
+ | `-a`, `--all`    | Muestra ficheros ocultos                                                |
+ | `-R`             | Muestra recursivamente el contenido del directorio y sus subdirectorios |
+ | `-l`             | Muestra los ficheros en formato largo                                   |
+
+Cuando utilizamos un terminal en color se identifican los diferentes tipos de ficheros con un código de colores, por ejemplo, los ejecutables se muestran de color verde o los directorios de color azul. Cuando se utiliza un terminal sin colores la forma de saber de qué tipo de elementos se trata es con el **parámetro `-F`** que muestra información textual sobre cada tipo de archivo.
 
 ```bash
   vgonzalez@ubuntu:/$ ls -F
@@ -108,16 +113,14 @@ Si no tenemos un terminal en color podemos utilizar el parámetro `–F` para qu
   boot/  etc/  init*  lib32@  libx32@  media/       opt/  root/  sbin@  sys/  usr/
 ```
  
- Pero `ls` no muestra necesariamente todos los ficheros. Linux a menudo utiliza ficheros ocultos para almacenar información de configuración. Linux no identifica los ficheros ocultos con un atributo tal como hace Windows, sino que lo hace **anteponiendo un punto al nombre del fichero**.
-
-Para mostrar también los ficheros ocultos deberemos utilizar el parámetro `–a`.
+ Al contrario que en Windows, en Linux no hay un atributo de los ficheros que indique que están ocultos. Si se quiere ocultar un fichero o directorio simplemente hay que anteponer un punto (`.`) al nombre del fichero y eso hará que no se muestre con el comando `ls`. Para que este comando muestre todos los ficheros, incluidos los ocultos, hay que utilizar el **parámetro `-a`**
  
 ```bash
   vgonzalez@ubuntu:~$ ls -a
   .  ..  .bash_history  .bash_logout  .bashrc  .bashrc.original  .cache  .config  .dbus  .java  .profile  .zshrc
 ```
 
- Otro parámetro interesante de `ls` es el parámetro `–R`, que nos muestra los ficheros del directorio actual y de todos sus subdirectorios.
+Otra opción interesante es el **parámetro `-R`**, que muestra el contenido del directorio actual y también el de todos sus subdirectorios de forma recursiva.
  
 ```bash
   vgonzalez@ubuntu:/$ ls -R
@@ -132,7 +135,7 @@ Para mostrar también los ficheros ocultos deberemos utilizar el parámetro `–
   themes
 ```
 
-Si queremos ver información más completa acerca de cada fichero el parámetro a utilizar será `–l`
+Por último, el **parámetro `-l`** muestra información extendida sobre los elementos que se encuentran en el directorio.
  
 ```bash
   vgonzalez@ubuntu:/etc$ ls -l
@@ -151,7 +154,7 @@ La información que nos muestra este parámetro es la siguiente:
   - `-`: fichero
   - `c`: dispositivo de caracteres
   - `b`: dispositivo de bloques
-- Los **permisos** del fichero, que se representan mediante tres tripletas de caracteres.
+- Los **permisos** del fichero, que se representan mediante tres tripletas de caracteres, y que veremos en la próxima unidad.
 - El **número de enlaces** duros al fichero, los enlaces en linux son algo parecido a los accesos directos de Windows.
 - El **nombre del usuario** propietario del fichero
 - El **nombre del grupo** propietario del fichero
@@ -160,13 +163,14 @@ La información que nos muestra este parámetro es la siguiente:
 - El **nombre** del fichero o directorio
 
 
-Otra utilidad del comando `ls` es la posibilidad de usar **caracteres comodín** para mostrar los ficheros que se adapten al **patrón** indicado.
+Otra utilidad del comando `ls`, al margen de los parámetros que admita, es la posibilidad de usar **caracteres comodín** para mostrar los ficheros que se adapten al **patrón** indicado.
 
 Los caracteres comodín son:
+
 - Un símbolo de **interrogación** (`?`) representa un carácter.
 - Un símbolo de **asterisco** (`*`) representa cero o más caracteres.
 - Los **corchetes** (`[]`) nos sirven para representar un conjunto de caracteres, por ejemplo, `ls [a-c]*` representa todos los ficheros que comiencen por a, b ó c
-•- El símbolo **exclamación** (`!`) se usa junto con los corchetes para indicar que el conjunto se excluye, por ejemplo `ls [!a-c]*` indica todos los ficheros que no comiencen por a, b ó c.
+- El símbolo **exclamación** (`!`) se usa junto con los corchetes para indicar que el conjunto se excluye, por ejemplo `ls [!a-c]*` indica todos los ficheros que no comiencen por a, b ó c.
 
 
 ***

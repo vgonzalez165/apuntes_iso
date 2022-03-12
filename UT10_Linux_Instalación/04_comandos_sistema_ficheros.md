@@ -27,6 +27,15 @@ Bash proporciona un montón de comandos para manipular fichero en el sistema de 
     -rw-r--r-- 1 vgonzalez vgonzalez 0 Feb 10 12:35 test
 ```
   
+  Los parámetros más relevantes para este comando son:
+
+
+ | Parámetro        | Descripción                                                                           |
+ | ---------------- | ------------------------------------------------------------------------------------- |
+ | `-t <stamp>`     | Usa la fecha indicada en lugar de la habitual. El formato es `[[CC]YY]MMDDhhmm[.ss]`  |
+ | `-c`             | Si el fichero no existe no lo crea                                                    |
+
+
 Si el fichero ya existe el comando `touch` simplemente cambia la hora de modificación del fichero indicado, sin alterar para nada su contenido. Si queremos que no ponga la fecha actual sino otra hora y fecha diferentes lo podemos hacer con el parámetro `–t`.
   
 ```shell
@@ -34,13 +43,6 @@ Si el fichero ya existe el comando `touch` simplemente cambia la hora de modific
     vgonzalez@ubuntu:~$ ls -l
     total 0
     -rw-r--r-- 1 vgonzalez vgonzalez 0 Jan  1 12:00 test
-```
-
-Observa la sintaxis para indicar la nueva hora. Si tienes dudas sobre como interpretarla puedes recurrir al manual de ayuda.
-
-```shell
-    -t STAMP
-        use [[CC]YY]MMDDhhmm[.ss] instead of current time
 ```
 
 
@@ -62,13 +64,15 @@ Si tanto el origen como el destino son ficheros, el comando `cp` copiará el fic
     pruebas  test  test2
 ```
 
-Al igual que todos los comandos, el comando `cp` dispone de una serie de modificadores para alterar su comportamiento.
+Al igual que todos los comandos, el comando `cp` dispone de una serie de modificadores para alterar su comportamiento, siendo los siguientes los más importantes.
 
-- El parámetro `–p` copia el fichero, pero mantiene la fecha de acceso y modificación del fichero original en el fichero copiado.
-- El parámetro `–R` permite copiar recursivamente los contenidos de un directorio completo.
-- Por defecto, si el fichero destino existe, nos preguntará si queremos sobrescribirlo antes de realizar la operación. Con el parámetro `–f` indicaremos que no nos pregunte, sobrescribiéndolo sin más.
-
-Como siempre podemos ver un listado completo de los parámetros de `cp` en su página del manual.
+| Parámetro         | Descripción                                                                                   |
+| ----------------- | --------------------------------------------------------------------------------------------- |
+| `-p`, `--preserve`| Copia el fichero, pero mantiene la fecha de acceso y modificación del fichero original        |
+| `-R`, `-r`        | Copia directorios recursivamente                                                              |
+| `-f`, `--force`   | Por defecto, si el directorio de destino no puede ser abierto, lo elimina e intenta copiarlo  |
+| `-s`              | Crea un enlace simbólico, se verá más adelante                                                |
+| `i`               | Si el fichero destino existe, pregunta antes de sobreescribirlo                               |
 
 
 ### 4.1.3- Renombrando ficheros. Comando `mv`
@@ -104,6 +108,15 @@ El comando que nos permitirá borrar ficheros es `rm`. En su forma más sencilla
     pruebas
 ```
 
+| Parámetro         | Descripción                                                                                   |
+| ----------------- | --------------------------------------------------------------------------------------------- |
+| `-i`              | Si el fichero de destino existe pregunta antes de eliminarlo                                  |
+| `-r`, `-R`        | Elimina los ficheros recursivamente. Este parámetro hay que utilizarlo con precaución         |
+| `-d`, `--dir`     | Elimina directorios vacíos                                                                    |
+| `-v`, `--verbose` | Modo *verboso*, muestra más información por pantalla                                          |q
+
+
+
 ### 4.1.5.- Edición de ficheros. 
 
 Hay multitud de programas en Linux para editar ficheros de texto, tanto en entorno gráfico como en la terminal. 
@@ -130,10 +143,16 @@ El comando que nos permitirá crear directorios en Linux es `mkdir`.
     vgonzalez@ubuntu:~$ ls
     pruebas  pruebas2
 ```
+
+| Parámetro         | Descripción                                                                                   |
+| ----------------- | --------------------------------------------------------------------------------------------- |
+| `-p`, `--parents` | Si el directorio padre del que se quiere crear no existe, también lo creao                    |
+| `-v`, `--verbose` | Muestra un mensaje por cada directorio que crea                                               |
+
   
 ### 4.2.2.- Eliminación de directorios. Comando `rmdir`
 
-El comando básico para eliminar directorios en Linux es `rmdir`. Algo importante es que este comando solo funcionará con directorios vacíos, mostrándonos un mensaje de error en caso de que el directorio no esté vacío.
+El comando básico para eliminar directorios en Linux es `rmdir`. Algo importante es que este comando **solo funcionará con directorios vacíos**, mostrándonos un mensaje de error en caso de que el directorio no esté vacío.
 
 ```shell
     vgonzalez@ubuntu:~$ ls
@@ -144,6 +163,10 @@ El comando básico para eliminar directorios en Linux es `rmdir`. Algo important
     vgonzalez@ubuntu:~$ rmdir pruebas
     rmdir: failed to remove 'pruebas': Directory not empty
 ```
+
+| Parámetro         | Descripción                                                                                   |
+| ----------------- | --------------------------------------------------------------------------------------------- |
+| `-p`, `--parents` | Elimina el directorio y los ancestros que se indiquen. El comando `rmdir -p a/b/c` equivale a `rm a/b/c a/b a` |
 
 Para borrar directorios que no estén vacíos es preferible utilizar el comando `rm` utilizando el modificador `-r` que realizará un **borrado recursivo** del directorio y de todo su contenido.
 
@@ -178,6 +201,7 @@ El comando proporcionado por Bash para acceder a toda esta información es el co
      Birth: -
 ```
 
+
 ### 4.3.2.- Ver el tipo de un fichero. Comando `file`
 
 Una característica de Linux es que no utiliza la extensión de los ficheros para determinar el tipo de fichero de que se trata. 
@@ -196,6 +220,7 @@ El comando `file` clasifica los ficheros en tres categorías:
     energy-report.html: HTML document, UTF-8 Unicode (with BOM) text, with very long lines, with CRLF, CR line terminators
 ```
 
+
 ### 4.3.3.- Ver el contenido de un fichero. Comandos `cat`, `more`y `less`
 
 Para ver el contenido de un fichero Linux dispone de tres comandos: `cat`, `more` y `less`.
@@ -208,23 +233,17 @@ El comando `cat` muestra todos los datos dentro de un fichero de texto.
 
 Sin ningún modificador es un comando muy sencillo. Sin embargo, nuevamente nos encontramos con un gran número de modificadores para alterar su comportamiento.
 
-- El modificador `–n` muestra el número de cada línea, útil por ejemplo para ver ficheros de código fuente.
-- Si solo queremos que nos numere las líneas que tengan texto entonces deberemos utilizar el parámetro `–b`.
-- Si el fichero tuviera muchas líneas en blanco y queremos que nos las comprima en una sola entonces el parámetro será `–s`.
-- Si queremos que no se muestren los caracteres de tabulación el parámetro será `–T`. Fíjate que cada carácter de tabulación que encuentre lo reemplazará por la combinación de caracteres `^I`.
- 
-```shell
-    vgonzalez@ubuntu:~$ cat -b test
-        1  hola mundo!!!
-        2  ASIR
-        3                  IES San Andrés
-    vgonzalez@ubuntu:~$ cat -T test
-    hola mundo!!!
-    ASIR
-    ^I^IIES San Andrés
-```
+| Parámetro         | Descripción                                                                                   |
+| ----------------- | --------------------------------------------------------------------------------------------- |
+| `n`               | Numera las líneas mostradas                                                                   |
+| `-b`              | Solo numera las líneas que tienen texto, ignorando las líneas en blanco                       |
+| `-s`              | Si el fichero tiene grupos de varias líneas en blanco consecutivas las comprime en una sola   |
+| `-T`              | Muestra visualmente los caracteres de tabulación, reemplazándolos por la combinación de caracteres `^I` |
 
-El comando `cat` tiene un problema cuando queremos visualizar ficheros con un gran número de líneas de texto ya que los mostrará sin realizar ninguna pausa. Si queremos que el contenido se nos muestre página a página el comando que utilizaremos será `more`.
+
+### 4.3.4.- Otros comandos para ver el contenido de un fichero: `more` y `less`
+
+El comando `cat` es muy útil cuando queremos obtener el contenido de un fichero para procesarlo de alguna manera redireccionándolo a otro comando, pero, pero si lo que se quiere es visualizar el fichero y este excede del tamaño de la pantalla los mostrará todo sin realizar ninguna pausa, por lo que únicamente se podrán ver las últimas líneas. Para ver el contenido se nos muestre página a página el comando que utilizaremos será `more`.
 
 El comando `more` visualizará una página y esperará antes de seguir mostrándonos un *prompt*. El prompt de `more` admite una serie de órdenes que se muestran en la siguiente tabla.
  
@@ -239,6 +258,8 @@ El comando `more` visualizará una página y esperará antes de seguir mostránd
 | /exp   | Busca el texto inicado en el fichero             |
 | n      | Busca la siguiente ocurrencia del texto buscado  |
 | =      | Muestra el número de la línea actual             |
+
+El comando `less` es una evolución de `more` que, además de las opciones disponibles en `more` permite al usuario moverse libremente por el fichero utilizando las teclas de cursor.
 
 
 ## 4.4.- Enlaces
