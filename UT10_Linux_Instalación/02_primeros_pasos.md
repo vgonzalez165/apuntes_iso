@@ -57,7 +57,7 @@ Cada vez que el usuario inicia sesión en el ordenador y se le presenta el *prom
 
 El comando para cerrar la sesión en ambos casos es `exit`, que no tienen ningún parámetro, y que cerrará la sesión que tengamos abierta en ese momento.
 
-### 2.2.3.- Cerrando el sistema. Comando shutdown.
+### 2.2.3.- Cerrando el sistema. Comando `shutdown`.
 
 El comando `shutdown` sirve para planificar el apagado de la máquina, que puede ser de tres tipos:
 
@@ -99,7 +99,7 @@ Cuando se quiere detener el sistema inmediatamente sin necesidad de programar el
 Como curiosidad, estos comandos son intercambiables mediante modificadores, pudiendo, por ejemplo, realizar un apagado total del sistema con la orden `halt -p` o un reinicio con `halt --reboot`, al igual que se puede realizar una parada con `reboot --halt`.
 
 
-### 2.2.5.- ¿Quén soy? Comando whoami
+### 2.2.5.- ¿Quén soy? Comando `whoami`
 
 Siempre que estamos interactuando en Linux a través de una terminal lo hacemos a través de una credenciales definidas por nuestro nombre de usuario y su contraseña, de forma que los límites de seguridad que se nos impondrán serán los de nuestro usuario. Por norma general, el nombre de nuestro usuario se muestra en el **prompt**, pero habrá ocasiones en que no sea así por lo que puede que en algún momento dudemos de cuál es el usuario con el que estamos trabajando, sobre todo si estamos trabajando con diversas sesiones en remoto.
 
