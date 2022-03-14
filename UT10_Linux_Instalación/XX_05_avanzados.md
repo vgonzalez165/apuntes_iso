@@ -327,7 +327,7 @@ tar –xvf test.tar
 Extrae el contenido del fichero `test.tar`.
  
 
- ## 5.3.- Redireccionamiento
+## 5.3.- Redireccionamiento
 
 En UNIX, y por tanto en Linux, todo es un **flujo** (stream) de bytes. Estos flujos están normalmente representados como ficheros, pero hay tres flujos especiales que raramente son accedidos a través de un nombre de fichero. Estos son los flujos de entrada y salida asociados a cada comando: **la entrada estándar, la salida estándar y la salida de error**. Por defecto, estos flujos o streams están conectados a la terminal.
 
