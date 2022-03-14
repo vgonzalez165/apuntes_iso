@@ -218,19 +218,30 @@ victor@ubuntu:~$ ls -l /usr/bin/bash
 
 En el punto anterior hemos visto que cada comando de Linux se corresponde con un fichero que se encuentra almacenado en algún lugar del disco duro, por ejemplo, el programa correspondiente a `bash` se encuentra en `/usr/bin`.
 
+TODO: Acabar esto
+
 ### 2.3.3.- Variables de entorno
 
+TODO: Pequeña introducción a las variables de entorno
 
 ### 2.3.4.- Quiero ser root. Comando `sudo`
 
+TODO: Qué implica ser sudo
 
 ### 2.3.5.- Renombrando los comandos. Comandos `alias` y `unalias`
 
+TODO: Tal vez es mejor quitar esto por poco relevante.
 
 ### 2.3.6.- Navegando por el historial. Comando `history`
 
+TODO: Hablar del historial
 
 ### 2.3.7.- Comando `wget`
 
+TODO: Con un par de líneas es suficiente
 
 ### 2.3.8.- Comando `echo`
+
+
+***
+[Volver al índice principal](index_UT10.md)
