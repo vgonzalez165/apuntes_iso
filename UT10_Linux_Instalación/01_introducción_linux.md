@@ -67,6 +67,7 @@ La primera palabra debe ser el comando a ejecutar, tras el que se indican los ar
 - Con los cursores arriba y abajo se puede navegar entre los comandos que hemos introducido previamente.
 - Asimismo, se puede ver el listado de estos comandos con el comando `history`.
 - También se puede buscar en el historial con la combinación de teclas  `Ctrl+R`.
+- Por defecto, cualquier orden introducida se ejecuta sin privilegios de administrador. Para ejecutar una orden con privilegios de administrador hay que ejecutarla anteponiéndole el comando `sudo`. Algo importante a tener encuenta es que, en este caso, el usuario que ejecutará la orden no será el nuestro, sino que será el usuario `root`, con todas las consecuencias que ello tiene (por ejemplo, `root` será el propietario de los ficheros que se creen).
 
 
 ## 1.3.- Ayuda en Linux
