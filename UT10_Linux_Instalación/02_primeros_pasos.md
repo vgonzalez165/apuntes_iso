@@ -151,7 +151,7 @@ Linux ubuntu 5.10.60.1-microsoft-standard-WSL2 #1 SMP Wed Aug 25 23:20:18 UTC 20
 ```
 
 
-### 2.2.9.- La ayuda en Linux. Comando man y whatis
+### 2.2.9.- La ayuda en Linux. Comando `man` y `whatis`
 
 Linux dispone de un gran número de comandos y muchos con una sintaxis bastante compleja y con muchas opciones, por lo que habitualmente será necesario acceder a la ayuda. Afortunadamente, la ayuda en Linux es muy extensa y accesible.
 
@@ -214,7 +214,7 @@ victor@ubuntu:~$ ls -l /usr/bin/bash
 -rwxr-xr-x 1 root root 1183448 Feb 25  2020 /usr/bin/bash
 ```
 
-### 2.3.2.- Variable $PATH y ./
+### 2.3.2.- Variable `$PATH` y `./`
 
 En el punto anterior hemos visto que cada comando de Linux se corresponde con un fichero que se encuentra almacenado en algún lugar del disco duro, por ejemplo, el programa correspondiente a `bash` se encuentra en `/usr/bin`.
 
