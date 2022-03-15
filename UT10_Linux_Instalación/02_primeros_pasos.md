@@ -126,7 +126,20 @@ ubuntu
 
 ### 2.2.7.- ¿Quiénes están? Comando `who`
 
-Linux es un **sistema multiusuario** 
+Linux es un **sistema multiusuario** lo que implica que puede haber múltiples usuarios conectados simultáneamente. Un ejemplo es cuando varios usuarios se conectan mediante `ssh` a la misma máquina desde diferentes ubicaciones.
+
+Otra posibilidad es tener abiertas varias sesiones en local es a través de las sesiones de TTY. Para alternar entre ellas simplemente hay que utilizar la combinación de teclas `Ctrl+Alt+Fn`, siendo `Fn` una de las teclas de función.
+
+Independientemente de la forma en que se conecten, es posible saber qué usuarios están conectados en un momento determinado en el sistema utilizando el comando `who`.
+
+```bash
+       vgonzalez@ubuntu:~$ who
+       paco     tty1         2022-03-15 08:57
+       vgonzalez pts/0        2022-03-15 08:50 (10.0.0.101)
+       pepe     pts/1        2022-03-15 08:51 (10.0.0.101)
+```
+
+Por ejemplo, en el código anterior el usuario `paco` ha iniciado sesión desde la primera terminal (`tty1`), mientras que los usuarios `vgonzalez` y `pepe` lo están haciendo mediante una conexión remota desde el equipo con IP `10.0.0.101`.
 
 
 ### 2.2.8.- ¿Qué kernel tengo? Comando `uname`
@@ -214,33 +227,90 @@ victor@ubuntu:~$ ls -l /usr/bin/bash
 -rwxr-xr-x 1 root root 1183448 Feb 25  2020 /usr/bin/bash
 ```
 
-### 2.3.2.- Variable `$PATH` y `./`
+### 2.3.2.- Comando `echo`
 
+El comando `echo` es un comando muy sencillo pero que es sorpredentemente útil en muchas situaciones. Lo único que hace en mostrar por pantalla el texto que se le pase como parámetro.
+
+```bash
+       vgonzalez@ubuntu:~$ echo "hola mundo"
+       hola mundo
+```
+
+#### Modificadores del comando `echo`
+
+| Modificador       | Descripción                                                             |
+| ----------------- | ----------------------------------------------------------------------- |
+| `-n`              | No imprime el salto de línea del final   |
+| `-e`              | Habilita la interpretación de los caracteres de escape (`\`) |
+
+
+#### Ejemplos de uso
+
+Por defecto, `echo` finalizará todas las salidas con un salto de línea. Para evitar este comportamiento simplemente hay que utilizar el modificador `-n`.
+
+```bash
+       vgonzalez@ubuntu:~$ echo -n "hola mundo"
+       hola mundovgonzalez@ubuntu:~$
+```
+
+En algunas ocasiones, querremos mostrar o enviar a la salida de `echo` caracerteres no imprimibles como pueden ser saltos de línea o tabulados. Todos estos caracteres se representan con el carácter de escape, que es la barra invertida ( `\`) seguido de otro carácter, por ejemplo, `\n` para representar un salto de línea.
+
+Si queremos utilizar caracteres escapados con el comando `echo` hay que indicarlo con el modificador `-e`.
+
+```bash
+       vgonzalez@ubuntu:~$ echo -e "hola \n mundo"
+       hola
+       mundo
+       vgonzalez@ubuntu:~$ echo "hola \n mundo"
+       hola \n mundo
+```
+
+Algunos de los caracteres escapados más comunes se muestran en la siguiente tabla.
+
+| Carácter    | Valor                     |
+| ----------- | ------------------------- |
+| `\\`        | Barra invertida           |
+| `\n`        | Salto de línea            |
+| `\t`        | Tabulado                  |
+| `\a`        | Alerta (emite un sonido)  |
+
+
+### 2.3.3.- Variable `$PATH` y `./`
+
+Cuando hablamos del comando `which`  vimos que cada comando de Linux se corresponde con un programa que se encuentra alojado en algún directorio de nuestro disco duro, por ejemplo, `bash` se encuentra en `/usr/bin`
 En el punto anterior hemos visto que cada comando de Linux se corresponde con un fichero que se encuentra almacenado en algún lugar del disco duro, por ejemplo, el programa correspondiente a `bash` se encuentra en `/usr/bin`.
 
-TODO: Acabar esto
+De este hecho surge una pregunta, ¿cómo sabe el sistema en qué directorio se encuentra cada programa? La respuesta es sencilla, no lo sabe. Cada vez que invocamos un comando busca en una serie de directorios donde se espera que estén los ejecutables hasta que encuentra un programa cuyo nombre coincide con el comando que hemos introducido.
 
-### 2.3.3.- Variables de entorno
+Este listado de directorios no está prefijado, sino que hay una variable de entorno, llamada `$PATH` que contiene el listado de directorios en los que tiene que buscar un ejecutable.
+
+```bash
+       vgonzalez@ubuntu:/opt$ echo $PATH
+       /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+```
+
+Observa en la salida que se indican varios directorios separados por el carácter dos puntos (`:`), de forma que irá buscando consecutivamente en cada uno de ellos hasta que encuentre el comando buscado.
+
+### 2.3.4.- Variables de entorno
 
 TODO: Pequeña introducción a las variables de entorno
 
-### 2.3.4.- Quiero ser root. Comando `sudo`
+### 2.3.5.- Quiero ser root. Comando `sudo`
 
 TODO: Qué implica ser sudo
 
-### 2.3.5.- Renombrando los comandos. Comandos `alias` y `unalias`
+### 2.3.6.- Renombrando los comandos. Comandos `alias` y `unalias`
 
 TODO: Tal vez es mejor quitar esto por poco relevante.
 
-### 2.3.6.- Navegando por el historial. Comando `history`
+### 2.3.7.- Navegando por el historial. Comando `history`
 
 TODO: Hablar del historial
 
-### 2.3.7.- Comando `wget`
+### 2.3.8.- Comando `wget`
 
 TODO: Con un par de líneas es suficiente
 
-### 2.3.8.- Comando `echo`
 
 
 ***
