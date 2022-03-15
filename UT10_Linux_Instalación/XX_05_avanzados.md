@@ -20,9 +20,7 @@ Una parte muy importante de la administración de un sistema Linux es llevar el 
 
 ### 5.1.1.- Montaje de dispositivos. Comandos `mount` y `umount`
 
-Como se vio anteriormente, Linux combina todos los dispositivos de almacenamiento en un único directorio virtual. Antes de utilizar un nuevo disco en el sistema necesitas localizarlo en el directorio virtual. Esta tarea se denomina **montaje**.
-
-La mayoría de las actuales distribuciones Linux montan automáticamente algunas unidades como las unidades de CD o memorias USB, aunque habrá ocasiones en que sea necesario realizar esta operación manualmente.
+Como se vio anteriormente, Linux combina todos los dispositivos de almacenamiento en un único directorio virtual. Antes de utilizar un nuevo disco en el sistema necesitas localizarlo en el directorio virtual. Esta tarea se denomina **montaje**. La mayoría de las actuales distribuciones Linux montan automáticamente algunas unidades como las unidades de CD o memorias USB, aunque habrá ocasiones en que sea necesario realizar esta operación manualmente.
 
 El comando utilizado para montar dispositivos es el comando `mount`. Por defecto, si ejecutamos `mount` sin parámetros mostrará una lista de los dispositivos actualmente montados en el sistema.
  
@@ -33,40 +31,40 @@ La información que proporciona el comando `mount` es:
 - El tipo de **sistema de ficheros**, por ejemplo, ext3, ext4, ....
 - El **estado de acceso** del dispositivo montado, es decir, bajo qué condiciones se montó, por ejemplo, si es de lectura y escritura o solo lectura.
 
-```shell
+```bash
     vgonzalez@ubuntu:~$ mount
     /dev/sdc on / type ext4 (rw,relatime,discard,errors=remount-ro,data=ordered)
     tmpfs on /mnt/wsl type tmpfs (rw,relatime)
 ```
 
-Por ejemplo, en la salida anterior la primera entrada hace referencia a un disco duro (`sdc`). El fichero que representa al dispositivo es **/dev/sdc** y está montado en el directorio raíz (`/`). El tipo del sistema de ficheros es ext4. Al final de la línea se muestra otra información del dispositivo como por ejemplo que es de lectura y escritura (rw, read and write).
+Por ejemplo, en la salida anterior la primera entrada hace referencia a un disco duro (`sdc`). El fichero que representa al dispositivo es **/dev/sdc** y está montado en el directorio raíz (`/`). El tipo del sistema de ficheros es `ext4`. Al final de la línea se muestra otra información del dispositivo como por ejemplo que es de lectura y escritura (rw, read and write).
  
 Para montar un dispositivo manualmente primero es necesario tener privilegios de administrador. La sintaxis del comando `mount` es:
 
-```shell
+```bash
     $ mount –t tipo dispositivo directorio
 ```
-Los parámetros son:
+Los parámetros que hay que pasarle al comando son:
 
 - El parámetro **tipo** indica el sistema de ficheros con el que está formateado el dispositivo. Linux reconoce un gran número de sistemas de ficheros, algunos ejemplos son:
-  - *ext3* o *ext4,* nativos de Linux
-  - *vfat*, que es el sistema utilizado por Windows en versiones antiguas o en memorias USB
-  - *ntfs*, el sistema de ficheros de Windows 2000 y posteriores
+  - **ext3** o **ext4**, nativos de Linux
+  - **vfat**, que es el sistema utilizado por Windows en versiones antiguas o en memorias USB
+  - **ntfs**, el sistema de ficheros de Windows 2000 y posteriores
   - **iso9660**, utilizado en los CDs y DVDs.
 - Los siguientes dos parámetros definen la **localización** del dispositivo (los dispositivos en Linux se asocian con un archivo en el directorio /dev) y el **directorio donde queremos montarlo**. El usuario root debe tener acceso a este directorio, pero se puede limitar el acceso a otros usuarios mediante permisos.
 
 Los modificadores del comando `mount` son las siguientes:
  
-| Parámetro | Descripción |
-| --------- | ----------- |
-| `-a`      | Monta todos los sistemas de ficheros indicados en el fichero `/etc/fstab` |
-| `-f`      | Simula el montaje pero sin montar realmente el dispositivo |
-| `-F`      | Junto con el modificador `-a`, monta todos los dispositivos simultáneamente |
-| `v`       | Modo *verboso*, mostrando más información al usuario |
-| `-s`      | Ignorar opciones de montaje no soportadas por el sistema de ficheros | 
-| `-r`      | Monta el dispositivo en modo solo lectura |
-| `-w`      | Monta el dispositivo en modo lectura/escritura (opción por defecto) |
-| `-o`      | Para indicar opciones específicas al sistema de ficheros |
+| Modificador   | Descripción                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------- |
+| `-a`          | Monta todos los sistemas de ficheros indicados en el fichero `/etc/fstab`                     |
+| `-f`          | Simula el montaje pero sin montar realmente el dispositivo                                    |
+| `-F`          | Junto con el modificador `-a`, monta todos los dispositivos simultáneamente                   |
+| `-v`          | Modo *verboso*, mostrando más información al usuario                                          |
+| `-s`          | Ignorar opciones de montaje no soportadas por el sistema de ficheros                          |         
+| `-r`          | Monta el dispositivo en modo solo lectura                                                     |
+| `-w`          | Monta el dispositivo en modo lectura/escritura (opción por defecto)                           |
+| `-o`          | Para indicar opciones específicas al sistema de ficheros                                      |
 
 
 La última opción (`-o`) permite indicar una serie de opciones adicionales separadas por comas, estas pueden ser:
@@ -83,6 +81,7 @@ La última opción (`-loop`) nos permite montar un fichero que sea una **imagen 
     vgonzalez@ubuntu:~$ sudo mount -t iso9660 -o loop slacko-6.3.0.iso /mnt
     mount: /mnt /home/vgonzalez/Descargas/slack0-6.3.0.iso ya está montado. 
 ``` 
+
 
 ### 5.1.2.- Espacio libre en disco. Comando `df`
 
@@ -110,7 +109,11 @@ La información que nos muestra este comando es:
 - La cantidad de espacio utilizado como un porcentaje
 - El punto de montaje del dispositivo
 
-Un parámetro de este comando es `–h` que nos muestra el espacio en disco de una forma más legible mostrándolo en gigabytes o megabytes.
+
+
+| Modificador       | Descripción                                                                                   |
+| ----------------- | --------------------------------------------------------------------------------------------- |
+| `-h`              | Muestra la información en formato más legible, utilizando gigabytes o megabytes               |
 
 
 ### 5.1.3.- Ocupación de espacio de un directorio. Comando `du`
@@ -129,11 +132,12 @@ El comando `du` muestra la utilización del disco de un directorio específico (
 
 El número de la izquierda muestra el **número de bloques** de disco que ocupa cada directorio o fichero.
 
-Algunos parámetros de este comando que pueden hacer su salida más legible son:
-- `-c`: muestra la ocupación total de todos los ficheros
-- `-h`: muestra el tamaño de una forma legible para los humanos, utilizando k para kilobyte, M para megabyte y G para gigabyte
-- `-s`: solo muestra el tamaño total del directorio.
 
+| Modificador       | Descripción                                                                                   |
+| ----------------- | --------------------------------------------------------------------------------------------- |
+| `-c`              | Muestra la ocupación total de todos los ficheros                                              |
+| `-h`              | Muestra el tamaño de una forma legible para los humanos (k=kilobyte, M=megabyte, G=gigabyte   |
+| `-s`              | Solo muestra el tamaño total del directorio                                                   |
 
 
 ## 5.2.- Trabajando con ficheros de datos
@@ -205,6 +209,20 @@ Por ejemplo, el siguiente comando ordenará el fichero `/etc/passwd` según el i
     man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
     lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
 ```
+
+| Modificador           | Descripción                                                                                   |
+| --------------------- | --------------------------------------------------------------------------------------------- |
+| `-n`                  | Ordena tratando los caracteres numéricos como números     |
+| `-M`                  | Ordena interpretando que los primeros caracteres de cada línea corresponden a meses |
+| `-t=SEP`              | Indica el separador de campo |
+| `-k=KEYDEF`           | Ordena según el campo indicado |
+| `-b`                  | Ignora caracteres en blanco al principio de la línea |
+| `-f`, `--ignore-case` | No distingue entre mayúsculas y minúsculas |
+| `-R`, `--random-sort` | Ordena aleatoriamente |
+| `-r`, `--reverse`     | Invierte el resultado de la ordenación |
+| `-u`, `--unique`      | Si hay varias líneas iguales las elimina dejando solo una |
+
+
   
 ### 5.2.2.- Búsqueda de datos. Comando `grep`
 
@@ -309,7 +327,7 @@ tar –xvf test.tar
 Extrae el contenido del fichero `test.tar`.
  
 
- ## 5.3.- Redireccionamiento
+## 5.3.- Redireccionamiento
 
 En UNIX, y por tanto en Linux, todo es un **flujo** (stream) de bytes. Estos flujos están normalmente representados como ficheros, pero hay tres flujos especiales que raramente son accedidos a través de un nombre de fichero. Estos son los flujos de entrada y salida asociados a cada comando: **la entrada estándar, la salida estándar y la salida de error**. Por defecto, estos flujos o streams están conectados a la terminal.
 
