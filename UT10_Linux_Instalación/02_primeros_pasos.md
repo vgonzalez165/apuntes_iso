@@ -214,7 +214,7 @@ cp (1)               - copy files and directories
  ```
 
 
-## 2.3.- Ejecución de comandos en Linux
+## 2.3.- Algunos comandos básicos de Linux
 
 ### 2.3.1.- ¿Dónde están mis comandos? Comando `which`
 
@@ -291,25 +291,121 @@ Este listado de directorios no está prefijado, sino que hay una variable de ent
 
 Observa en la salida que se indican varios directorios separados por el carácter dos puntos (`:`), de forma que irá buscando consecutivamente en cada uno de ellos hasta que encuentre el comando buscado.
 
-### 2.3.4.- Variables de entorno
+Todo lo anterior implica que únicamente se pueden ejecutar programas que se encuentran dentro del *path*. Pero, ¿qué pasa si se quiere ejecutar un comando que se encuentra en un directorio que no está en el *path*? En ese caso hay que indicar expresamente al sistema dónde se encuentra dicho programa, lo cual se hace anteponiendo la ruta al nombre del ejecutable.
 
-TODO: Pequeña introducción a las variables de entorno
+```bash
+       vgonzalez@ubuntu:~$ /scripts/saluda
+       Hola mundo
+```
+
+Si el ejecutable se encuentra en el directorio de trabajo en el que se encuentra el usuario se puede indicar la ruta mediante una ruta relativa de la forma `./`.
+
+```bash
+       vgonzalez@ubuntu:~$ ./saluda
+       Hola mundo
+```
+
+### 2.3.4.- Variables de entorno. Comandos `printenv` y `export`
+
+Lo que vimos en el punto anterior (`$PATH`), es lo que se llama una **variable de entorno** y no es la única que hay en el sistema. Las variables de entorno almacenan información relativa al sistema que puede ser accedida por los programas. Podemos ver todas las variables de entorno mediante el comando `printenv`.
+
+```bash
+       vgonzalez@ubuntu:/opt$ printenv
+       SHELL=/bin/bash
+       PWD=/opt
+       LOGNAME=vgonzalez
+       XDG_SESSION_TYPE=tty
+       MOTD_SHOWN=pam
+       HOME=/home/vgonzalez
+```
+
+Cada variable se identifica por un nombre que por norma general se escribe en mayúsculas (aunque no es obligatorio). Para ver el valor de una variable de entorno simplemente hay que indicar el nombre de la misma precediéndolo del carácter dólar (`$`).
+
+```bash
+       vgonzalez@ubuntu:/opt$ echo $SHELL
+       /bin/bash
+```
+
+En cualquier sitio donde pongamos una variable de entorno la reemplazará automáticamente por el valor que contiene.
+
+```bash
+       vgonzalez@ubuntu:/$ echo "Tu nombre de usuario es" $USER.
+       Tu nombre de usuario es vgonzalez.
+```
+
+Si se desea crear una nueva variable de entorno o modificar una existente hay que utilizar el comando `export` con el nombre de la variable y el valor que se le quiere adjudicar.
+
+```bash
+       vgonzalez@ubuntu:/opt$ export MSG="Hola mundo"
+       vgonzalez@ubuntu:/opt$ echo $MSG
+       Hola mundo
+       vgonzalez@ubuntu:/opt$ echo $PATH
+       /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+       vgonzalez@ubuntu:/opt$ export PATH=$PATH":/scripts"
+       vgonzalez@ubuntu:/opt$ echo $PATH
+       /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/scripts
+```
+
 
 ### 2.3.5.- Quiero ser root. Comando `sudo`
 
-TODO: Qué implica ser sudo
+Linux es un sistema que incide especialmente en la seguridad, y, entre otras cosas, se traduce en una distinción muy clara entre las tareas de un usuario normal y las tareas de administración. Cuando en Linux se quiere realizar una tarea que requiera privilegios de administración hay que indicarlo explícitamente anteponiendo el comando `sudo` al comando que querramos ejecutar como administrador.
 
-### 2.3.6.- Renombrando los comandos. Comandos `alias` y `unalias`
+Cuando hacemos esto nuestro usuario pasará a ser `root`, que es el único usuario del sistema que puede realizar tareas administrativas. 
 
-TODO: Tal vez es mejor quitar esto por poco relevante.
+```bash
+       vgonzalez@ubuntu:~$ sudo whoami
+       [sudo] password for vgonzalez:
+       root
+```
 
-### 2.3.7.- Navegando por el historial. Comando `history`
+Esto tiene una serie de connotaciones que obligan a que haya que prestar mucha atención siempre que se ejecute un comando con `sudo`. Por ejemplo, si creo un fichero con `sudo` será `root` el propietario de dicho fichero por lo que solamente `root` podrá editarlo.
 
-TODO: Hablar del historial
+
+### 2.3.6.- Quiero ser cualquier otro. Comando `su`
+
+El comanod `su` permite iniciar un **subshell** con otro usuario sin necesidad de cerrar la sesión actual. Su sintaxis es muy sencilla, si no se pasa ningún parámetro se inicia sesión con el usuario `root` mientras que si se le pasa el nombre de un usuario como parámetro se abrirá un intérprete con ese usuario,
+
+```bash
+       vgonzalez@ubuntu:~$ whoami
+       vgonzalez
+       vgonzalez@ubuntu:~$ su pepe
+       Password:
+       pepe@ubuntu:/home/vgonzalez$ whoami
+       pepe
+```
+
 
 ### 2.3.8.- Comando `wget`
 
-TODO: Con un par de líneas es suficiente
+La orden `wget` es un comando que no tiene relación con los que hemos visto hasta ahora, pero que puede ser útil en múltiples ocasiones. Su función es descargar archivos de Internet, lo cual viene muy bien cuando estamos utilizando una terminal de texto donde no hay acceso a un navegador.
+
+Las sintaxis básica es muy sencilla, debiendo indicar como parámetro la URL del fichero que se quiere descargar.
+
+```bash
+       vgonzalez@ubuntu:~$ wget https://releases.ubuntu.com/20.04.4/ubuntu-20.04.4-live-server-amd64.iso
+       --2022-03-15 10:25:29--  https://releases.ubuntu.com/20.04.4/ubuntu-20.04.4-live-server-amd64.iso
+       Resolving releases.ubuntu.com (releases.ubuntu.com)... 91.189.88.248, 91.189.88.247, 91.189.91.123, ...
+       Connecting to releases.ubuntu.com (releases.ubuntu.com)|91.189.88.248|:443... connected.
+       HTTP request sent, awaiting response... 200 OK
+       Length: 1331691520 (1,2G) [application/x-iso9660-image]
+       Saving to: ‘ubuntu-20.04.4-live-server-amd64.iso’
+
+       ubuntu-20.04.4-live-server-a   0%[                                                  ]   6,30M  2,12MB/s 
+```
+
+
+#### Modificadores del comando `wget`
+
+| Modificador        | Descripción                                                             |
+| ------------------ | ----------------------------------------------------------------------- |
+| `-O <name>`        | Guarda el fichero con el nombre indicado |
+| `-P <path>`        | Guarda el fichero descargado en otra ruta |
+| `-b`               | Realiza la descarga en segundo planp |
+| `--ftp-user=<username>` | Nombre de usuario para descargar desde un servidor FTP |
+| `--ftp-password=<pass>` | Contraseña para descargar desde un servidor FTP |
+
+
 
 
 
