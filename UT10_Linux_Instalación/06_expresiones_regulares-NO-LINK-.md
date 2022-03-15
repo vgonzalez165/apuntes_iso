@@ -112,11 +112,13 @@ Otra alternativa que puede dar más claridad a la hora de mostrar la expresión 
 ```
 
 
-### 6.1.4.- OBTENCIÓN DE LOS COMANDOS DE UN FICHERO
+### 6.1.4.- Obtención de los comandos de un fichero
 
 Si tienes muchos comandos de sed es más sencillo almacenarlos todos en un fichero y utilizar la opción –f para referenciarlos.
   
-6.1.5.- MÁS OPCIONES DE SUSTITUCIÓN
+
+### 6.1.5.- Más opciones de sustitución
+
 Cuando se utiliza el comando de sustitución para reemplazar una cadena por defecto solo reemplaza la primera ocurrencia de dicha cadena en cada línea.
  
 Si queremos que reemplace todas las ocurrencias de la cadena en cada línea debes utilizar un flag de sustitución. Los flags de sustitución se indican a continuación de las cadenas.

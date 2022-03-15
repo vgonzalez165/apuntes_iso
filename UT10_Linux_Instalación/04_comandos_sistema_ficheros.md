@@ -12,6 +12,50 @@
 6. [Expresiones regulares](06_expresiones_regulares.md)
 
 
+```
+
+1.- Manipulación de archivos
+touch
+cp
+mv
+rm
+vim/emacs/nano
+
+2.- Manipulación de directorios
+mkdir
+rmdir
+
+3.- Información de ficheros
+stat
+file
+cat
+more/less
+* head/tail
+
+4.- Otros comandos
+* alias/unalias
+* exit
+* shutdown
+* history
+* which
+* wc
+* uname
+* find
+* locate
+* wget
+* clear
+* uptime
+* whoami / who
+
+
+
+4.- Enlaces
+```
+
+
+
+
+
 # 4.- COMANDOS RELATIVOS AL SISTEMA DE FICHEROS
 
 ## 4.1.- Comandos para la manipulación de archivos
