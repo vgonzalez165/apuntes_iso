@@ -8,7 +8,7 @@
 2. [Primeros pasos con Linux](02_primeros_pasos.md)
 3. [**El sistema de ficheros**](03_sistema_ficheros.md)
 4. [Trabajando con datos textuales](04_comandos_texto.md)
-
+5. [Expresiones regulares con el comando `sed`](05_expresiones_regulares.md)
 
 # 3.- EL SISTEMA DE FICHEROS
 
@@ -426,17 +426,60 @@ El comando `less` es una evolución de `more` que, además de las opciones dispo
 
 TODO: A partir de aquí.
 
-## 3.6.- Buscando ficheros
+## 3.6.- Búsqueda y compresión de ficheros
 
-### 3.6.1.- Comprimiendo ficheros. Comandos bzip, gzip y zip
+### 3.6.1.- Comprimiendo ficheros. Comandos `bzip`, `gzip` y `zip`
 
-### 3.6.2.- Más compresión. Comando tar
+### 3.6.2.- Más compresión. Comando `tar`
 
-### 3.6.1.- Comando locate
+### 3.6.1.- Comando `locate`
 
-### 3.6.2.- Comando find
+### 3.6.2.- Comando `find`
 
 ## 3.7.- Enlaces
+
+Hay ocasiones en las que es necesario tener dos o más copias de un mismo fichero en el sistema de ficheros. Una opción que permite el sistema de ficheros de Unix es, en lugar de tener varias copias físicas diferentes, tener **una única copia física y múltiples copias virtuales**, denominadas **enlaces**.
+
+Un enlace es una entrada en un directorio que apunta a la localización real del fichero. En Linux hay dos tipos diferentes de enlaces a ficheros:
+
+- Enlaces simbólicos o blandos
+- Enlaces duros
+
+Un **enlace duro** crea un fichero diferente que contiene información acerca del fichero original y dónde localizarlo. Cuando referencias un enlace duro a un fichero, es igual que si referenciaras al fichero.
+
+Se puede crear un enlace duro a un fichero utilizando el modificador `-l` con el comando de copia `cp`.
+
+```shell
+    vgonzalez@ubuntu:~$ ls -il test
+    40072 -rw-r--r-- 1 vgonzalez vgonzalez 37 Feb 10 13:14 test
+    vgonzalez@ubuntu:~$ cp test test2 -l
+    vgonzalez@ubuntu:~$ ls -il
+    total 8
+    40072 -rw-r--r-- 2 vgonzalez vgonzalez 37 Feb 10 13:14 test
+    40072 -rw-r--r-- 2 vgonzalez vgonzalez 37 Feb 10 13:14 test2
+```
+
+El parámetro `–l` crea un enlace duro para el fichero test1 y lo denomina test2. En esta captura podemos apreciar dos cosas:
+
+- Primero que el número de inodo (primera columna) de ambos ficheros es el mismo indicando que en realidad ambos ficheros son el mismo
+- Y segundo, que el número de enlaces indicados para cada fichero (tercera columna) es dos.
+
+Hay que tener en cuenta que, dado que ambos ficheros comparten el inodo, solo se pueden crear enlaces duros entre ficheros **del mismo dispositivo**.
+
+Por otro lado, para crear un **enlace simbólico** hay que utilizar el comando `cp`, pero con el parámetro –s.
+  
+```shell
+    vgonzalez@ubuntu:~$ cp test test3 -s
+    vgonzalez@ubuntu:~$ ls -il
+    total 8
+    40072 -rw-r--r-- 2 vgonzalez vgonzalez 37 Feb 10 13:14 test
+    40072 -rw-r--r-- 2 vgonzalez vgonzalez 37 Feb 10 13:14 test2
+    40058 lrwxrwxrwx 1 vgonzalez vgonzalez  4 Feb 10 13:25 test3 -> test
+```
+
+Lo primero que podemos apreciar en la captura es que ahora los ficheros tienen números de inodo diferentes, por lo que el sistema los trata como ficheros independientes. Por otro lado, el tamaño del fichero también es diferente. Un fichero enlazado solo necesita guardar información acerca del fichero origen, no los datos que tenga.
+
+Otra forma de crear enlaces es utilizando el comando `ln`. Por defecto este comando crea enlaces duros, pero se puede utilizar el parámetro `–s` para crear enlaces simbólicos.
 
 
 ***
