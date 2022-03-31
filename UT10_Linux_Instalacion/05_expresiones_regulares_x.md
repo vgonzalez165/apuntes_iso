@@ -113,22 +113,53 @@ Otra alternativa que puede dar más claridad a la hora de mostrar la expresión 
 ### 6.1.4.- Obtención de los comandos de un fichero
 
 Si tienes muchos comandos de sed es más sencillo almacenarlos todos en un fichero y utilizar la opción –f para referenciarlos.
+
+```bash
+    vgonzalez@ubuntu:~$ cat script1
+    s/prueba/muestra/
+    s/de Linux/del editor sed/
+    vgonzalez@ubuntu:~$ sed -f script1 datos
+    Esto es una muestra del editor sed
+    Esto es una muestra del editor sed
+```
   
 
 ### 6.1.5.- Más opciones de sustitución
 
-Cuando se utiliza el comando de sustitución para reemplazar una cadena por defecto solo reemplaza la primera ocurrencia de dicha cadena en cada línea.
+Cuando se utiliza el comando de sustitución para reemplazar una cadena por defecto **solo reemplaza la primera ocurrencia de dicha cadena en cada línea**.
  
+```bash
+    vgonzalez@ubuntu:~$ cat datos2
+    el editor sed es más rápido que cualquier otro editor
+    el editor sed es más rápido que cualquier otro editor
+    vgonzalez@ubuntu:~$ sed 's/editor/programa/' datos2
+    el programa sed es más rápido que cualquier otro editor
+    el programa sed es más rápido que cualquier otro editor
+
+```
+
 Si queremos que reemplace todas las ocurrencias de la cadena en cada línea debes utilizar un flag de sustitución. Los flags de sustitución se indican a continuación de las cadenas.
-s/cadena/reemplazo/flags
+
+```bash
+    s/cadena/reemplazo/flags
+```
+
 Hay cuatro flags de sustitución diferentes:
-•	Un número, que indica cuál de las ocurrencias se sustituirá
-•	g: indica que serán reemplazadas todas las ocurrencias
-•	p: indica que el contenido de la línea original debe mostrarse también
-•	w fichero: escribe el resultado de la sustitución en un fichero
-En este ejemplo se reemplaza la segunda ocurrencia de la cadena ‘editor’.
+
+- Un número, que indica cuál de las ocurrencias se sustituirá
+- `g`: indica que serán reemplazadas todas las ocurrencias
+- `p`: indica que el contenido de la línea original debe mostrarse también
+- `w fichero`: escribe el resultado de la sustitución en un fichero
+  
+En este ejemplo se reemplaza la segunda ocurrencia de la cadena `editor`.
+
+```bash
+    vgonzalez@ubuntu:~$ sed 's/editor/programa/2' datos2
+    el editor sed es más rápido que cualquier otro programa
+    el editor sed es más rápido que cualquier otro programa
+```
  
-El flag p muestra por pantalla cada línea que modifique, es decir, cada línea que contenga la cadena a reemplazar. 
+El **flag `p`** muestra por pantalla cada línea que modifique, es decir, cada línea que contenga la cadena a reemplazar. 
  
 Como se puede ver en el ejemplo imprime las líneas en las que ha realizado la comprobación. Sin embargo, podemos ver que como por defecto va a imprimir dos veces todas las líneas en las que realice sustituciones.  Por ello se suele utilizar en combinación con la opción –n del comando sed. Esta opción elimina la salida por defecto de sed.
  

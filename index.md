@@ -46,7 +46,7 @@ Aunque Windows Server dispone de muchas funcionalidades, una de las más relevan
 En los últimos años, aprovechando las continuas mejoras en las conexiones de redes, han aparecido un gran número de nuevas tecnologías relaccionadas con la **nube**, siendo comunes conceptos como **IaaS** (Infrastructure as a Service), **PaaS** (Platform as a Service) o **SaaS** (Software as a Service). En esta unidad abordaremos estas tecnologías a través los servicios de Microsoft en la nube, principalmente **Azure Active Directory** como repositorio de identidades en la nube y **Microsoft 365** como SaaS.
 
 
-### [**UT10.- Linux. Instalación y primeros pasos**](UT10_Linux_Instalación/index_UT10.md)
+### [**UT10.- Linux. Instalación y primeros pasos**](UT10_Linux_Instalacion/index_UT10.md)
 
 Aunque las soluciones de Microsoft dominan el mercado de ordenadores de sobremesa, la mayor parte de los servidores que hay en Internet ejecutan alguna versión de **Linux**. En esta unidad introductoria a Linux daremos los primeros pasos para conocer el funcionamiento de este sistema operativo.
 
