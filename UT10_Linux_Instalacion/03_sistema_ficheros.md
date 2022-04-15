@@ -430,11 +430,226 @@ TODO: A partir de aquí.
 
 ### 3.6.1.- Comprimiendo ficheros. Comandos `bzip`, `gzip` y `zip`
 
+De forma análoga a WinZip en Windows, Linux dispone de un gran número de herramientas de compresión de datos. Algunas de las más utilizadas son las siguientes:
+
+- `bzip2`: es un paquete compuesto por las cuatro herramientas indicadas a continuación:
+  - `bzip2` para comprimir ficheros. Por defecto el comando `bzip2` reemplaza el fichero indicado por el fichero comprimido, el cual se identifica por la extensión `.bz2`.
+  - `bzcat` que muestra el contenido de ficheros de texto comprimidos.
+  - `bunzip2` para descomprimir ficheros
+  - `bzip2recover` cuya utilidad es intentar recuperar datos de ficheros comprimidos dañados.
+
+- `gzip`: probablemente la herramienta de compresión más popular. Como en el caso anterior incluye varias aplicaciones:
+  - `gzip` para comprimir ficheros
+  - `gzcat` para mostrar el contenido de los ficheros comprimidos
+  - `gunzip` para descomprimir ficheros.
+
+-	`zip`: es compatible con la versión de MS-DOS y Windows e incluye cinco utilidades:
+  - `zip` crea un fichero comprimido
+  - `zipcloak` crea un fichero comprimido y cifrado
+  - `zipnote` extrae los comentarios de un fichero zip
+  - `zipsplit` divide un fichero zip en fichero más pequeños del tamaño indicado
+  - `unzip` extrae los ficheros y directorios de un fichero comprimido.
+
+
+
 ### 3.6.2.- Más compresión. Comando `tar`
 
-### 3.6.1.- Comando `locate`
+Aunque el comando `zip` sirve para comprimir varios ficheros y directorios en un solo fichero, es más común utilizar el comando `tar` para archivar varios ficheros en uno solo.
 
-### 3.6.2.- Comando `find`
+El formato del comando `tar` es el siguiente:
+
+```bash
+  tar función [opciones] objeto1 objeto2 …
+```
+
+Donde `función` será la operación que va a realizar (concatenar, crear, diferencia, borrado, anexión, listado, actualización o extracción) y `opciones` los modificadores adicionales que se quieran añadir al comando.
+
+#### Modificadores del comando `tar`
+
+| Modificador | Modificador largo | Descripción |
+| ----------- | ----------------- | ------------|
+| `-A`        | `--concatenate`   | Anexa un archivo *tar* a otro ya existente |
+| `-c`        | `--create`        | Crea un nuevo archivo *tar* |
+| `-d`        | `--diff`          | Comprueba las diferencias entre un archivo *tar* y el sistema de ficheros |
+|             | `--delete`        | Elimina un fichero de un archivo *tar* |
+| `-r`        | `--append`        | Añade ficheros al final de un archivo *tar* |
+| `-t`        | `--list`          | Muestra el contenido de un archivo *tar* existente |
+| `-u`        | `--update`        | Añade ficheros a un archivo *tar* existente que son más recientes que el fichero con el mismo nombre en el archivo *tar* |
+| `-x`        | `--extract`       | Extrae los ficheros de un archivo *tar* |
+| `f file`    |                   | Envía la salida al fichero (o dispositivo) `file` |
+| `-p`        |                   | Conserva los permisos del fichero |
+| `-v`        |                   | Modo *verboso* |
+| `z`         |                   | Redirige la salida al comando `gzip` para compresión |
+| `-j`        |                   | Redirige la salida al comando `bzip2` para compresión |
+
+
+#### Ejemplos de uso
+
+Crea un fichero llamado `test.tar` con el contenido de los directorios `test` y `test2`.
+
+```bash
+  victor@ubuntu:~$ tar -cvf test.tar test/ test2
+  test/
+  test/file2
+  test/file1
+  test2/
+  test2/file3
+```
+
+Muestra, pero no extrae, el contenido del fichero `test.tar`.
+
+```bash
+  victor@ubuntu:~$ tar -tf test.tar
+  test/
+  test/file2
+  test/file1
+  test2/
+  test2/file3
+```
+
+Extrae el contenido del fichero `test.tar`.
+
+```bash
+  victor@ubuntu:~$ tar -xvf test.tar
+  test/
+  test/file2
+  test/file1
+  test2/
+  test2/file3
+```
+
+
+### 3.6.1.- Comando `find`
+
+El comando `find` de Linux es una herramienta sumamente útil cuando queremos localizar archivos o directorios en el sistema de ficheros, ya que permite establecer una gran cantidad de condiciones, como búsquedas por permisos, usuarios, grupos, tipo de fichero, fecha de creación o tamaño.
+
+La sintaxis de este comando es la siguiente:
+
+```bash
+  find [opciones] [ruta...] [expresión]
+```
+
+Donde:
+
+- `opciones` son los modificadores que se pueden aplicar al comando
+- `ruta...` indica el directorio padre a partir del cuál se va a realizar la búsqueda
+- `expresión` indicará las condiciones de búsqueda y puede incluir modificadores, patrones de búsqueda, ...
+
+Por ejemplo:
+
+```bash
+  $ find -L /var/www -name "*.js"
+```
+
+En este ejemplo podemos ver:
+
+- La opción `-L` indica que debe seguir enlaces simbólicos
+- La ruta `/var/www` especifica el directorio en el que se buscará
+- La expersión `-name "*.js"` dice que lo que se quiere buscar son archivos Javascript con extensión `js`.
+
+
+#### Modificadores del comando `find`
+
+| Modificador         | Descripción |
+| ------------------- | ----------- |
+| `-name nombre_fich` | Indica el nombre del fichero (puede incluir comodines) a buscar |
+| `-not`              | Busca los ficheros que **no cumplan** la condición indicada |
+| `-iname`            | No distingue entre mayúsculas y minúsculas en el nombre |
+| `-type tipo`        | Indica qué tipos de ficheros se deben buscar. `tipo` puede ser `f` (fichero regular), `d` (directorio), `l` (enlace simbólico), `c` (dispositivo de caracteres), ... |
+| `-size n`           | Indica el tamaño del fichero a buscar |
+| `-mtime n`          | Busca los archivos modificados en los últimos `n` días |
+| `-atime n`          | Busca los archivos accedidos en los últimos `n` días |
+| `-perm p`           | Indica los permisos que debe tener el fichero |
+| `-user u`           | Usuario propietario del archivo |
+| `-group g`          | Grupo propietario del archivo |
+
+
+
+#### Ejemplos de uso
+
+**Ejemplo 1** 
+
+Muestra todos los ficheros con extensión `pdf` (o cualquier variante con mayúsculas, p.e. `.PDF`) dentro del directorio personal.
+
+```bash
+  $ find ~ -type f -iname *.pdf
+```
+
+En el modificador `type` se indica que queremos buscar ficheros con el valor `f`. Otros valores posibles son:
+
+- `f`: ficheros regulares
+- `d`: directorios
+- `l`: enlaces simbólicos
+- `c`: dispositivos de carácter
+- `b`: dispositivos de bloque
+
+
+**Ejemplo 2**
+
+Muestra todos los ficheros cuyo tamaño sea exactamente 1024 bytes dentro del directorio `/tmp`.
+
+```bash
+  $ find /tmp -type f -size 1024c
+```
+
+La unidad de medida se indica mediante el carácter `c`. Otras unidades de medida pueden ser:
+
+- `b`: bloques de 512 bytes (valor por defecto)
+- `c`: bytes
+- `w`: palabras de 2 bytes
+- `k`: kilobytes
+- `M`: megabytes
+- `G`: gigabytes
+
+Si en lugar de querer un tamaño exacto queremos un tamaño superior o inferior al indicado se indica precediendo el tamaño con los caracteres `-` (menor) p `+` (mayor).
+
+Por ejemplo, para mostrar todos los archivos del sistema de ficheros cuyo tamaño sea superior a 1 gigabyte lo haríamos de la forma:
+
+```bash
+  $ find / -type f -size +1G
+```
+
+Si se quiere indicar un rango entonces habría que poner dos veces el modificador.
+
+```bash
+  $ find / -type f -size +1G -size -2G
+```
+
+**Ejemplo 3**
+
+Muestra todos los archivos con extensión `.conf` del directorio `/etc` que han sido modificados en los últimos cinco días.
+
+```bash
+  $ find /etc/ -name "*.conf" -mtime 5
+```
+
+
+**Ejemplo 4**
+
+Muestra todos los ficheros del directorio `/var/www/html` que tengan exactamente los permisos `664`.
+
+```bash
+  $ find /var/www/html -type f -perm 664
+```
+
+El valor de los permisos puede ir precedido por los caracteres `/` o `-`.
+
+- El **carácter barra `/`** indica que al menos una categoría (usuario, grupo u otros) debe coincidir con los permisos especificados.
+- El **carácter menos `-`** indica que por lo menos se deben complir los permisos indicados, aunque también pueden ser superiores.
+
+
+**Ejemplo 5**
+
+Muestra todos los ficheros que pertencen al usuario `victor`.
+
+```bash
+  $ find / -type f -user victor
+```
+
+
+
+
+### 3.6.2.- Comando `locate`
 
 ## 3.7.- Enlaces
 
