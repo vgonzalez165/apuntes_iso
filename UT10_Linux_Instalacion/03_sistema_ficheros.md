@@ -422,9 +422,35 @@ El comando `more` visualizará una página y esperará antes de seguir mostránd
 
 El comando `less` es una evolución de `more` que, además de las opciones disponibles en `more` permite al usuario moverse libremente por el fichero utilizando las teclas de cursor.
 
+
 ### 3.5.5.- Leyendo partes de un fichero. Comandos `head` y `tail`
 
-TODO: A partir de aquí.
+Hay ocasiones en que no es necesario mostrar un fichero completo, sino que lo que se desea es ver unas pocas líneas del mismo. En estos casos son muy interesantes los comandos `head` y `tail`, que mostrarán respectivamente las primeras o las últimas filas de un fichero.
+
+```bash
+  victor@ubuntu:~$ head /etc/passwd
+  root:x:0:0:root:/root:/bin/bash
+  daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+  bin:x:2:2:bin:/bin:/usr/sbin/nologin
+  sys:x:3:3:sys:/dev:/usr/sbin/nologin
+  sync:x:4:65534:sync:/bin:/bin/sync
+  games:x:5:60:games:/usr/games:/usr/sbin/nologin
+  man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+  lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+  mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+  news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+```
+
+#### Modificadores del comando `tar`
+
+Los modificadores más relevantes de estos comandos son los siguientes.
+
+| Modificador | Descripción |
+| ----------- | ------------|
+| `-c bytes`  | Muestra únicamente los primeros (o últimos) `bytes` caracteres del fichero |
+| `-n lines`  | Muestra únicamente las primeras (o últimas) `lines` líneas del fichero |
+| `-v`        | Modo *verboso* |
+
 
 ## 3.6.- Búsqueda y compresión de ficheros
 
