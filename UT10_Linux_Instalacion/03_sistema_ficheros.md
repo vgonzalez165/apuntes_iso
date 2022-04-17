@@ -450,6 +450,39 @@ Los modificadores más relevantes de estos comandos son los siguientes.
 | `-c bytes`  | Muestra únicamente los primeros (o últimos) `bytes` caracteres del fichero |
 | `-n lines`  | Muestra únicamente las primeras (o últimas) `lines` líneas del fichero |
 | `-v`        | Modo *verboso* |
+| `-q`        | No muestra el nombre del fichero, se aplica cuando se pasa más de un fichero como parámetro |
+
+
+#### Ejemplos de uso
+
+**Ejemplo 1**
+
+Mostrar las 5 últimas líneas del fichero `/etc/passwd`
+
+```bash
+  victor@ubuntu:~$ tail -n 5 /etc/passwd
+  tcpdump:x:108:113::/nonexistent:/usr/sbin/nologin
+  sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
+  landscape:x:110:115::/var/lib/landscape:/usr/sbin/nologin
+  pollinate:x:111:1::/var/cache/pollinate:/bin/false
+  victor:x:1000:1000:,,,:/home/victor:/bin/bash
+```
+
+**Ejemplo 2**
+
+Con el comando `head`, si prededemos el número de líneas del modificador `-n` (o de bytes del modificador `-c`) por el carácter menos (`-`) comenzará a contar las líneas por el final. Por ejemplo, si queremos mostrar todas las líneas del fichero `/etc/passwd` salvo las 25 últimas lo haríamos de la siguiente forma.
+
+```bash
+  victor@ubuntu:~$ head -n -25 /etc/passwd
+  root:x:0:0:root:/root:/bin/bash
+  daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+  bin:x:2:2:bin:/bin:/usr/sbin/nologin
+  sys:x:3:3:sys:/dev:/usr/sbin/nologin
+  sync:x:4:65534:sync:/bin:/bin/sync
+  games:x:5:60:games:/usr/games:/usr/sbin/nologin
+```
+
+Análogamente, con el comando `tail` podremos utilizar el carácter más (`+`) para indicar que comience a contar las líneas por el principio.
 
 
 ## 3.6.- Búsqueda y compresión de ficheros
