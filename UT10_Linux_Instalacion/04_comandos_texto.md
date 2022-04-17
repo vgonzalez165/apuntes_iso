@@ -171,13 +171,13 @@ Los parámetros `–k` y `–t` son muy útiles para ordenar ficheros de datos q
 Por ejemplo, el siguiente comando ordenará el fichero según el identificador del usuario, que por cierto es un valor numérico.
 
 ```
-vgonzalez165@PORTATIL:~$ sort -t ':' -k 3 -n /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
-bin:x:2:2:bin:/bin:/usr/sbin/nologin
-sys:x:3:3:sys:/dev:/usr/sbin/nologin
-sync:x:4:65534:sync:/bin:/bin/sync
-games:x:5:60:games:/usr/games:/usr/sbin/nologin
+    vgonzalez@PORTATIL:~$ sort -t ':' -k 3 -n /etc/passwd
+    root:x:0:0:root:/root:/bin/bash
+    daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+    bin:x:2:2:bin:/bin:/usr/sbin/nologin
+    sys:x:3:3:sys:/dev:/usr/sbin/nologin
+    sync:x:4:65534:sync:/bin:/bin/sync
+    games:x:5:60:games:/usr/games:/usr/sbin/nologin
 ```
  
 ### 4.2.2.- Filtrando. Comando `grep`
@@ -185,23 +185,23 @@ games:x:5:60:games:/usr/games:/usr/sbin/nologin
 Si queremos buscar una línea que contenga un determinado valor en un fichero deberemos utilizar la orden `grep`. El formato para el comando grep es el siguiente:
 
 ```
-grep [opciones] patrón [fichero]
+    grep [opciones] patrón [fichero]
 ```
 
 El comando `grep` busca en el fichero indicado como entrada aquellas líneas que contengan los caracteres que coincidan con el patrón indicado
 
 ``` 
-vgonzalez165@PORTATIL:~$ cat fichero1
-uno
-dos
-tres
-cuatro
-cinco
-vgonzalez165@PORTATIL:~$ grep cuatro fichero1
-cuatro
-vgonzalez165@PORTATIL:~$ grep c fichero1
-cuatro
-cinco
+    vgonzalez@PORTATIL:~$ cat fichero1
+    uno
+    dos
+    tres
+    cuatro
+    cinco
+    vgonzalez@PORTATIL:~$ grep cuatro fichero1
+    cuatro
+    vgonzalez@PORTATIL:~$ grep c fichero1
+    cuatro
+    cinco
 ```
 
 
@@ -215,10 +215,10 @@ Este comando admite multitud de parámetros.
 También admite **expresiones regulares** al indicar el patrón a buscar. Las expresiones regulares ya se verán más adelante, pero a modo de avance un ejemplo puede ser el siguiente:
 
 ```
-vgonzalez165@PORTATIL:~$ grep ^[cu] fichero1
-uno
-cuatro
-cinco
+    vgonzalez@PORTATIL:~$ grep ^[cu] fichero1
+    uno
+    cuatro
+    cinco
 ```
 
 ### 4.2.1.- Contando. Comando `wc`
