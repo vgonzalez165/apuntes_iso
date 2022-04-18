@@ -223,6 +223,9 @@ También admite **expresiones regulares** al indicar el patrón a buscar. Las ex
 
 ### 4.2.1.- Contando. Comando `wc`
 
+
+
+
 ### 4.2.3.- Cortando. Comando `cut`
 
 ### 4.2.4.- Y reemplazando. Comando `tr`
