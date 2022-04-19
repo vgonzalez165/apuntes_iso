@@ -10,6 +10,37 @@
 4. [Trabajando con datos textuales](04_comandos_texto.md)
 5. [Expresiones regulares con el comando `sed`](05_expresiones_regulares.md)
 
+
+## Índice del apartado 3
+
+- [3.1.- Introducción al sistema de ficheros](#31--introducción-al-sistema-de-ficheros)
+- [3.2.- Comandos básicos para trabajar con el sistema de ficheros](#32--comandos-básicos-para-trabajar-con-el-sistema-de-ficheros)
+  - [3.2.1.- ¿Dónde estoy? Comando `pwd`](#321--dónde-estoy-comando-pwd)
+  - [3.2.2.- Cambiando de directorio. Comando `cd`](#322--cambiando-de-directorio-comando-cd)
+  - [3.2.3.- Mostrando el contenido del directorio. Comando `ls`](#323--mostrando-el-contenido-del-directorio-comando-ls)
+- [3.3.- Comandos para la manipulación de archivos](#33--comandos-para-la-manipulación-de-archivos)
+  - [3.3.1.- Tocando ficheros. Comando `touch`](#331--tocando-ficheros-comando-touch)
+  - [3.3.2.- Copiando ficheros. Comando `cp`](#332--copiando-ficheros-comando-cp)
+  - [3.3.3.- Moviendo ficheros. Comando `mv`](#333--moviendo-ficheros-comando-mv)
+  - [3.3.4.- Borrando ficheros. Comando `rm`](#334--borrando-ficheros-comando-rm)
+  - [3.3.5.- Editando ficheros. Comandos `nano`, `pico`, `vim` y `emacs`](#335--editando-ficheros-comandos-nano-pico-vim-y-emacs)
+- [3.4.- Comandos para la manipulación de directorios](#34--comandos-para-la-manipulación-de-directorios)
+  - [3.4.1.- Creando directorios. Comando `mkdir`](#341--creando-directorios-comando-mkdir)
+  - [3.4.2.- Borrando directorios. Comando `rmdir`](#342--borrando-directorios-comando-rmdir)
+- [3.5.- Extrayendo información de ficheros](#35--extrayendo-información-de-ficheros)
+  - [3.5.1.- Metainformación del fichero. Comando `stat`](#351--metainformación-del-fichero-comando-stat)
+  - [3.5.2.- Cómo saber el tipo de fichero. Comando `file`](#352--cómo-saber-el-tipo-de-fichero-comando-file)
+  - [3.5.3.- Echando un vistazo al fichero. Comando `cat`](#353--echando-un-vistazo-al-fichero-comando-cat)
+  - [3.5.4.- Viendo el contenido de un fichero. Comandos `more` y `less`](#354--viendo-el-contenido-de-un-fichero-comandos-more-y-less)
+  - [3.5.5.- Leyendo partes de un fichero. Comandos `head` y `tail`](#355--leyendo-partes-de-un-fichero-comandos-head-y-tail)
+- [3.6.- Búsqueda y compresión de ficheros](#36--búsqueda-y-compresión-de-ficheros)
+  - [3.6.1.- Comprimiendo ficheros. Comandos `bzip`, `gzip` y `zip`](#361--comprimiendo-ficheros-comandos-bzip-gzip-y-zip)
+  - [3.6.2.- Más compresión. Comando `tar`](#362--más-compresión-comando-tar)
+  - [3.6.1.- Comando `find`](#361--comando-find)
+  - [3.6.2.- Comando `locate`](#362--comando-locate)
+- [3.7.- Enlaces](#37--enlaces)
+
+
 # 3.- EL SISTEMA DE FICHEROS
 
 ## 3.1.- Introducción al sistema de ficheros
@@ -400,9 +431,7 @@ El comando `cat` muestra el contenido de un fichero de texto
 | `-s`              | Si el fichero tiene grupos de varias líneas en blanco consecutivas las comprime en una sola   |
 | `-T`              | Muestra visualmente los caracteres de tabulación, reemplazándolos por la combinación de caracteres `^I` |
 
-#### Ejemplos de uso
 
-TODO: Poner algún ejemplo
 
 ### 3.5.4.- Viendo el contenido de un fichero. Comandos `more` y `less`
 
@@ -704,8 +733,6 @@ Muestra todos los ficheros que pertencen al usuario `victor`.
 ```bash
   $ find / -type f -user victor
 ```
-
-
 
 
 ### 3.6.2.- Comando `locate`

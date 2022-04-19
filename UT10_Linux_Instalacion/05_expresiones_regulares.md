@@ -11,6 +11,43 @@
 5. [**Expresiones regulares con el comando `sed`**](05_expresiones_regulares.md)
 
 
+## Índice del apartado 5
+
+
+- [5.1.- El editor `sed`](#51--el-editor-sed)
+  - [5.1.1.- Introducción](#511--introducción)
+  - [5.1.2.- Utilizando el editor en la línea de comandos](#512--utilizando-el-editor-en-la-línea-de-comandos)
+  - [5.1.3.- Múltiples comandos en la misma línea](#513--múltiples-comandos-en-la-misma-línea)
+  - [5.1.4.- Obtención de los comandos de un fichero](#514--obtención-de-los-comandos-de-un-fichero)
+  - [5.1.5.- Más opciones de sustitución](#515--más-opciones-de-sustitución)
+  - [5.1.6.- Direccionamiento de líneas](#516--direccionamiento-de-líneas)
+  - [5.1.7.- Eliminación de líneas](#517--eliminación-de-líneas)
+  - [5.1.8.- Insertando y añadiendo texto](#518--insertando-y-añadiendo-texto)
+  - [5.1.9.- Cambio de líneas](#519--cambio-de-líneas)
+  - [5.1.10.- El comando transformar](#5110--el-comando-transformar)
+  - [5.1.11.-Referencia con el carácter &](#5111-referencia-con-el-carácter-)
+  - [5.1.12.- Agrupación y referencias en `sed`](#5112--agrupación-y-referencias-en-sed)
+- [5.2.- Expresiones regulares](#52--expresiones-regulares)
+  - [5.2.1.- Tipos de expresiones regulares](#521--tipos-de-expresiones-regulares)
+  - [5.2.2.- Motor BRE](#522--motor-bre)
+    - [5.2.2.1- Texto plano](#5221--texto-plano)
+    - [5.2.2.2- Caracteres especiales](#5222--caracteres-especiales)
+    - [5.2.2.3.- Caracteres ancla](#5223--caracteres-ancla)
+    - [5.2.2.4.- El carácter punto](#5224--el-carácter-punto)
+    - [5.2.2.5.- Clases de caracteres](#5225--clases-de-caracteres)
+    - [5.2.2.6.- Clases de caracteres especiales](#5226--clases-de-caracteres-especiales)
+    - [5.2.2.7.- El asterisco](#5227--el-asterisco)
+  - [5.2.3.- Motor ERE](#523--motor-ere)
+    - [5.2.3.1.- La interrogación](#5231--la-interrogación)
+    - [5.2.3.2.- El carácter barra (`|`). Alternancia](#5232--el-carácter-barra--alternancia)
+    - [5.2.3.3.- El carácter más (`+ `)](#5233--el-carácter-más--)
+    - [5.2.3.4.- Las llaves](#5234--las-llaves)
+    - [5.2.3.5.- Los paréntesis](#5235--los-paréntesis)
+    - [5.2.3.6.- Los símbolos `<` y `>`](#5236--los-símbolos--y-)
+    - [5.2.3.7.- Clases](#5237--clases)
+    - [5.2.3.8.- Resumen de expresiones regulares](#5238--resumen-de-expresiones-regulareas)
+
+
 # 5.- EXPRESIONES REGULARES CON EL COMANDO `sed`
 
 ## 5.1.- El editor `sed`
