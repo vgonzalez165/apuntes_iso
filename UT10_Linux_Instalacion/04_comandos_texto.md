@@ -11,6 +11,19 @@
 5. [Expresiones regulares con el comando `sed`](05_expresiones_regulares.md)
 
 
+## Índice del apartado 4
+
+- [4.1.- Redireccionamiento](#41--redireccionamiento)
+  - [4.1.1.- Redirección. `STDIN`, `STDOUT` Y `STDERR`](#411--redirección-stdin-stdout-y-stderr)
+  - [4.1.2.- Tuberías](#412--tuberías)
+- [4.2.- Comandos para trabajar con datos](#42--comandos-para-trabajar-con-datos)
+  - [4.2.1.- Ordenando. Comando `sort`](#421--ordenando-comando-sort)
+  - [4.2.2.- Filtrando. Comando `grep`](#422--filtrando-comando-grep)
+  - [4.2.1.- Contando. Comando `wc`](#421--contando-comando-wc)
+  - [4.2.3.- Cortando. Comando `cut`](#423--cortando-comando-cut)
+  - [4.2.4.- Y reemplazando. Comando `tr`](#424--y-reemplazando-comando-tr)
+
+
 # 4.- TRABAJANDO CON DATOS TEXTUALES
 
 ## 4.1.- Redireccionamiento

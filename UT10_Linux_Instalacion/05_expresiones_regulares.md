@@ -11,6 +11,43 @@
 5. [**Expresiones regulares con el comando `sed`**](05_expresiones_regulares.md)
 
 
+## Índice del apartado 5
+
+
+- [5.1.- El editor `sed`](#51--el-editor-sed)
+  - [5.1.1.- Introducción](#511--introducción)
+  - [5.1.2.- Utilizando el editor en la línea de comandos](#512--utilizando-el-editor-en-la-línea-de-comandos)
+  - [5.1.3.- Múltiples comandos en la misma línea](#513--múltiples-comandos-en-la-misma-línea)
+  - [5.1.4.- Obtención de los comandos de un fichero](#514--obtención-de-los-comandos-de-un-fichero)
+  - [5.1.5.- Más opciones de sustitución](#515--más-opciones-de-sustitución)
+  - [5.1.6.- Direccionamiento de líneas](#516--direccionamiento-de-líneas)
+  - [5.1.7.- Eliminación de líneas](#517--eliminación-de-líneas)
+  - [5.1.8.- Insertando y añadiendo texto](#518--insertando-y-añadiendo-texto)
+  - [5.1.9.- Cambio de líneas](#519--cambio-de-líneas)
+  - [5.1.10.- El comando transformar](#5110--el-comando-transformar)
+  - [5.1.11.-Referencia con el carácter &](#5111-referencia-con-el-carácter-)
+  - [5.1.12.- Agrupación y referencias en `sed`](#5112--agrupación-y-referencias-en-sed)
+- [5.2.- Expresiones regulares](#52--expresiones-regulares)
+  - [5.2.1.- Tipos de expresiones regulares](#521--tipos-de-expresiones-regulares)
+  - [5.2.2.- Motor BRE](#522--motor-bre)
+    - [5.2.2.1- Texto plano](#5221--texto-plano)
+    - [5.2.2.2- Caracteres especiales](#5222--caracteres-especiales)
+    - [5.2.2.3.- Caracteres ancla](#5223--caracteres-ancla)
+    - [5.2.2.4.- El carácter punto](#5224--el-carácter-punto)
+    - [5.2.2.5.- Clases de caracteres](#5225--clases-de-caracteres)
+    - [5.2.2.6.- Clases de caracteres especiales](#5226--clases-de-caracteres-especiales)
+    - [5.2.2.7.- El asterisco](#5227--el-asterisco)
+  - [5.2.3.- Motor ERE](#523--motor-ere)
+    - [5.2.3.1.- La interrogación](#5231--la-interrogación)
+    - [5.2.3.2.- El carácter barra (`|`). Alternancia](#5232--el-carácter-barra--alternancia)
+    - [5.2.3.3.- El carácter más (`+ `)](#5233--el-carácter-más--)
+    - [5.2.3.4.- Las llaves](#5234--las-llaves)
+    - [5.2.3.5.- Los paréntesis](#5235--los-paréntesis)
+    - [5.2.3.6.- Los símbolos `<` y `>`](#5236--los-símbolos--y-)
+    - [5.2.3.7.- Clases](#5237--clases)
+    - [5.2.3.8.- Resumen de expresiones regulares](#5238--resumen-de-expresiones-regulareas)
+
+
 # 5.- EXPRESIONES REGULARES CON EL COMANDO `sed`
 
 ## 5.1.- El editor `sed`
@@ -569,92 +606,226 @@ La otra situación es muy útil cuando queremos eliminar las líneas en blanco d
 
 #### 5.2.2.4.- El carácter punto
 
-El carácter especial punto (.) sirve para coincidir con un único carácter excepto el carácter de nueva línea.
-  
- Fíjate en el ejemplo que el carácter espacio (primera línea) también es válido, mientras que en la segunda línea falla el patrón porque no hay ningún carácter delante de la cadena ‘es’.
+El **carácter especial punto (`.`)** sirve para coincidir con un único carácter excepto el carácter de nueva línea.
+
+```bash
+	vgonzalez@ubuntu:~$ cat datos
+	esta es la línea 1
+	es aquí la línea 2
+	la línea tres antes que la cuatro
+	por último la 4 tras la tres
+	vgonzalez@ubuntu:~$ sed -n '/.es/p' datos
+	esta es la línea 1
+	la línea tres antes que la cuatro
+	por último la 4 tras la tres
+```
+
+Fíjate en el ejemplo que el carácter espacio (primera línea) también es válido, mientras que en la segunda línea falla el patrón porque no hay ningún carácter delante de la cadena `es`.
 
 
 #### 5.2.2.5.- Clases de caracteres
 
 El carácter punto es muy útil para determinar un carácter cualquiera en una posición, pero ¿qué pasa cuando queremos limitar los caracteres que pueden estar en dicha posición?  Para esto disponemos de las clases de caracteres.
-Para definir una clase de caracteres debemos utilizar los corchetes. Dentro de ellos deberá estar cualquier carácter que pueda estar en esa posición como se puede ver en el siguiente ejemplo.
+
+Para definir una **clase de caracteres** debemos utilizar los corchetes (`[]`). Dentro de ellos deberá estar cualquier carácter que pueda estar en esa posición como se puede ver en el siguiente ejemplo.
+
+```bash
+	vgonzalez@ubuntu:~$ cat datos
+	esta es la línea 1
+	y aquí la línea 2
+	la 3 aquí la ves
+	por último la 4 tras la tres
+	vgonzalez@ubuntu:~$ sed -n '/[ r]es/p' datos
+	esta es la línea 1
+	por último la 4 tras la tres
+```
   
 También puedes utilizar más de una clase de caracteres dentro de una expresión.
+
+```bash
+	vgonzalez@ubuntu:~$ echo "Si" | sed -n '/[Ss][Ii]/p'
+	Si
+	vgonzalez@ubuntu:~$ echo "SI" | sed -n '/[Ss][Ii]/p'
+	SI
+```
   
 En el ejemplo anterior nos aseguramos de que se detecte la cadena ‘si’ con cualquier combinación de mayúsculas y minúsculas.
-También es posible utilizar las clases de caracteres para negar la presencia de determinados caracteres. Es decir, en lugar de buscar el patrón que coincida con un determinado carácter buscar un patrón que no tenga un determinado carácter. Esto se hace utilizando el símbolo ^.
+
+También es posible utilizar las clases de caracteres para **negar la presencia de determinados caracteres**. Es decir, en lugar de buscar el patrón que coincida con un determinado carácter buscar un patrón que no tenga un determinado carácter. Esto se hace utilizando el símbolo `^`.
+
+```bash
+	vgonzalez@ubuntu:~$ cat datos
+	esta es la línea 1
+	y aquí la línea 2
+	la 3 aquí la ves
+	por último la 4 tras la tres
+	vgonzalez@ubuntu:~$ sed -n '/[^vr]es/p' datos
+	esta es la línea 1
+```
  
-Sin embargo, este mecanismo puede bastante engorroso cuando se quiere que la cadena encaje con muchos caracteres, por ejemplo, para hacer que sea un dígito habría que ponerlo de la forma [0123456789], lo cual puede ser un poco engorroso. Para solucionar este problema podemos utilizar los rangos. Para especificar un rango debemos utilizar el carácter guion (-). De esta forma la podemos hacer que un carácter sea un dígito de la forma [0-9].
-En una misma expresión también se pueden especificar varios rangos no contiguos, por ejemplo, [a-fm-v].
+Sin embargo, este mecanismo puede bastante engorroso cuando se quiere que la cadena encaje con muchos caracteres, por ejemplo, para hacer que sea un dígito habría que ponerlo de la forma `[0123456789]`. Para solucionar este problema podemos utilizar los **rangos**. Para especificar un rango debemos utilizar el **carácter guion (`-`)**. De esta forma la expresión `[0-9]` será equivalente a `[0123456789]`. En una misma expresión también se pueden especificar varios rangos no contiguos, por ejemplo, `[a-fm-v]`.
 
 
 #### 5.2.2.6.- Clases de caracteres especiales
 
 Cuando un rango contiene sólo un tipo de caracteres, BRE contiene clases de caracteres especiales que nos facilitarán la tarea. Las clases especiales de caracteres se pueden ver en la siguiente tabla.
 
-Clase	Descripción
-[[:alpha:]]	Cualquier carácter alfabético, tanto mayúsculas como minúsculas
-[[:alnum:]]	Cualquier carácter alfanumérico, números y letras mayúsculas o minúsculas
-[[:blank:]]	Un carácter espacio o de tabulación
-[[:digit:]]	Un dígito del 0 al 9
-[[:lower:]]	Un carácter alfabético en minúscula
-[[:print:]]	Un carácter imprimible
-[[:punct:]]	Un símbolo de puntuación
+| Clase | Descripción |
+| ----- | ----------- |
+| [[:alpha:]] | Cualquier carácter alfabético, tanto mayúsculas como minúsculas |
+| [[:alnum:]] | Cualquier carácter alfanumérico, números y letras mayúsculas o minúsculas |
+| [[:blank:]] | Un carácter espacio o de tabulación |
+| [[:digit:]] | Un dígito del 0 al 9 |
+| [[:lower:]] | Un carácter alfabético en minúscula |
+| [[:print:]] | Un carácter imprimible |
+| [[:punct:]] | Un símbolo de puntuación |
 
 Su utilización se puede ver en este ejemplo:
+
+```bash
+	vgonzalez@ubuntu:~$ echo 'abc' | sed -n '/[[:digit:]]/p'
+	vgonzalez@ubuntu:~$ echo 'abc' | sed -n '/[[:alpha:]]/p'
+	abc
+```
  
 
 #### 5.2.2.7.- El asterisco
 
-Si en una expresión regular ponemos un asterisco detrás de un carácter significa que este carácter debe aparecer cero o más veces en la cadena.
-Ten cuidado porque no es igual que el uso del carácter asterisco en Bash donde significa 0 o más caracteres cualesquiera. Aquí significa 0 o más repeticiones del carácter que le precede.
+Si en una expresión regular ponemos un **asterisco (`*`) detrás de un carácter** significa que **este carácter debe aparecer cero o más veces en la cadena**.
+
+Ten cuidado porque no es igual que el uso del carácter asterisco en Bash donde significa 0 o más caracteres cualesquiera. Aquí significa **0 o más repeticiones del carácter que le precede**.
+
+```bash
+	vgonzalez@ubuntu:~$ echo "hla" | sed -n '/ho*l/p'
+	hla
+	vgonzalez@ubuntu:~$ echo "hola" | sed -n '/ho*l/p'
+	hola
+	vgonzalez@ubuntu:~$ echo "hoooooola" | sed -n '/ho*l/p'
+	hoooooola
+```
   
 Una posibilidad también es combinar el carácter punto con el carácter asterisco para hacer coincidir cero o más coincidencias de cualquier carácter.
-  
+
+```bash
+	vgonzalez@ubuntu:~$ echo "esto es una expresión regular" | sed -n '/una.*regular/p'
+	esto es una expresión regular
+```
+
 El carácter asterisco también se puede combinar con clases de caracteres, lo que nos permitirá especificar un grupo o rango de caracteres que deberán tener varias ocurrencias.
-  
+
+```bash
+	vgonzalez@ubuntu:~$ echo "bt" | sed -n '/b[ae]*t/p'
+	bt
+	vgonzalez@ubuntu:~$ echo "bat" | sed -n '/b[ae]*t/p'
+	bat
+	vgonzalez@ubuntu:~$ echo "beaeaeeat" | sed -n '/b[ae]*t/p'
+	beaeaeeat
+```
+
 
 ### 5.2.3.- Motor ERE
 
-Este motor dispone de mayor número de opciones, pero debemos indicar expresamente que vamos a usar este juego utilizando el modificador -E en los comandos grep y sed.
+Este motor dispone de mayor número de opciones, pero debemos indicar expresamente que vamos a usar este juego utilizando el modificador `-E` en los comandos `grep` y `sed`.
 
 
 #### 5.2.3.1.- La interrogación
 
-El carácter interrogación se aplica al carácter que le precede de forma similar a como lo hace el carácter asterisco. En este caso significa que el carácter anterior puede aparecer 0 ó 1 veces.
+El **carácter interrogación (`?`)** se aplica al carácter que le precede de forma similar a como lo hace el carácter asterisco. En este caso significa que el carácter anterior **puede aparecer 0 ó 1 veces**.
 
 
 #### 5.2.3.2.- El carácter barra (`|`). Alternancia
 
-Este carácter sirve para separar varias expresiones regulares y empareja con cualquiera de ellas.
+El **carácter barra (`|`)** sirve para separar varias expresiones regulares y empareja con cualquiera de ellas.
+
+```bash
+	vgonzalez@ubuntu:~$ cat fichero
+	uno
+	dos
+	tres
+	cuatro
+	cinco
+	seis
+	vgonzalez@ubuntu:~$ sed -nE '/uno|dos/p' fichero
+	uno
+	dos
+```
  
 
 #### 5.2.3.3.- El carácter más (`+ `)
 
-Este carácter se aplica al carácter que le precede, al igual que nos pasaba con los caracteres asterisco e interrogación y significa que ese carácter se repite una o más veces.
+El **carácter más (`+`)** se aplica al carácter que le precede, al igual que nos pasaba con los caracteres asterisco e interrogación, y significa que **ese carácter se repite una o más veces**.
 
 
 #### 5.2.3.4.- Las llaves
 
-Deben llevar un valor numérico entre ellas y se refieren al carácter anterior. Indican el número exacto de veces que debe repetirse el carácter anterior.
-Hay que tener cuidado porque las llaves también se pueden utilizar en el motor básico, pero en ese caso sí es necesario escaparlas. Recuerda que para indicarle al comando sed que deseamos utilizar el motor ERE debemos utilizar el modificador -E.
+Nuevamente tenemos una expresión que afecta al carácter inmediatamente anterior. Entre las llaves debe ir un valor numérico que **indica exactamente el número de ocurrencias del carácter anterior**.
+
+Hay que tener cuidado porque las llaves también se pueden utilizar en el motor básico, pero en ese caso **sí es necesario escaparlas**. Recuerda que para indicarle al comando `sed` que deseamos utilizar el motor ERE debemos utilizar el modificador `-E`.
+
+```bash
+	vgonzalez@ubuntu:~$ cat fichero
+	Matrículas
+	2346KSD
+	8332LNK
+	9584HFS
+	vgonzalez@ubuntu:~$ sed -nE '/[0-9]{4}[A-Z]{3}/p' fichero
+	2346KSD
+	8332LNK
+	9584HFS
+	vgonzalez@ubuntu:~$ sed -n '/[0-9]\{4\}[A-Z]\{3\}/p' fichero
+	2346KSD
+	8332LNK
+	9584HFS
+```
  
 También se pueden utilizar rangos dentro de las llaves separando dos valores numéricos por el símbolo coma.
 
+```bash
+	vgonzalez@ubuntu:~$ cat fichero
+	NIFs
+	71892777J
+	10199189K
+	2456723A
+	vgonzalez@ubuntu:~$ sed -n '/[0-9]{7,8}[A-Z]{1}/p' fichero
+	vgonzalez@ubuntu:~$ sed -nE '/[0-9]{7,8}[A-Z]{1}/p' fichero
+	71892777J
+	10199189K
+	2456723A
+```
 
 #### 5.2.3.5.- Los paréntesis
 
-Estos símbolos sirven para agrupar partes de una expresión regular, normalmente con idea de que otro símbolo afecte globalmente a todo lo incluido dentro de los paréntesis.
+Estos símbolos sirven para **agrupar partes de una expresión regular**, normalmente con idea de que otro símbolo afecte globalmente a todo lo incluido dentro de los paréntesis.
+
+```bash
+	vgonzalez@ubuntu:~$ cat fichero
+	abba
+	ababa
+	aa
+	abbbbbbba
+	vgonzalez@ubuntu:~$ sed -nE '/(ab){2}a/p' fichero
+	ababa
+```
  
 En la orden anterior, se buscan todas las ocurrencias en las que la cadena de texto ab se repita exactamente 2 veces.
 
 
 #### 5.2.3.6.- Los símbolos `<` y `>`
 
-Estos símbolos representan el inicio y el fin de palabra respectivamente. Cuando hablamos de principio o fin de palabra nos referimos a que antes o después de la expresión regular haya cualquier carácter no alfabético (símbolos de puntuación, espacios o tabuladores, dígitos, …) o bien el comienzo o fin de línea.
- Ahora bien, para utilizar estos símbolos en una expresión regular es necesario escaparlos ya que si no son tomados literalmente como los símbolos menor y mayor.
+Estos símbolos representan **el inicio y el fin de palabra respectivamente**. Cuando hablamos de principio o fin de palabra nos referimos a que antes o después de la expresión regular haya cualquier carácter no alfabético (símbolos de puntuación, espacios o tabuladores, dígitos, …) o bien el comienzo o fin de línea.
+
+Ahora bien, para utilizar estos símbolos en una expresión regular es necesario **escaparlos** ya que si no son tomados literalmente como los símbolos menor y mayor.
+
+```bash
+	vgonzalez@ubuntu:~$ cat fichero
+	<uno> uno tuno
+	vgonzalez@ubuntu:~$ sed 's/<uno>/XXX/g' fichero
+	XXX uno tuno
+	vgonzalez@ubuntu:~$ sed 's/\<uno\>/XXX/g' fichero
+	<XXX> XXX tuno
+```
  
-Por ejemplo, en el primer comando de la imagen anterior se busca literalmente la cadena <uno>, mientras que en el segundo comando se buscan todas las ocurrencias de la cadena uno en las que se muestre como una palabra completa.
+Por ejemplo, en el primer comando de la imagen anterior se busca literalmente la cadena `<uno>`, mientras que en el segundo comando se buscan todas las ocurrencias de la cadena `uno` en las que se muestre como una palabra completa.
 
 
 #### 5.2.3.7.- Clases
@@ -665,7 +836,38 @@ Además de las clases que vimos en el motor básico, el motor ERE añade más cl
 #### 5.2.3.8.- Resumen de expresiones regulareas
 
 En las siguientes tablas, extraídas de https://sio2sio2.github.io/doc-linux/02.conbas/10.texto/01.regex.html tienes un resumen que te puede ser muy útil para utilizar expresiones regulares.
- 
- 
 
+**Patrones básicos**
+
+| Operación      | Operador BRE | Operador ERE  | Descripción | Ejemplo (ERE) |
+| -------------- | ------------ | ------------- | ----------- | ------------- |
+| Cuantificación | `\?` 		| `?` 			| Una vez o ninguna | `a?` |
+| Cuantificación | `*`			| `*`			| Las veces que sea (incluso ninguna) | `a*`|
+| Cuantificación | `\+`			| `+`			| Al menos una vez | `a+` |
+| Cuantificación | `\{n,m\}`	| `{n,m}`		| Entre `n` y `m` veces. Puede omitirse uno de los límites | a{5,9} |
+| Agrupación 	 | 				| `(?regex)`	| Para modificar el alcance de un operador | `(?123)+`  |
+| Alternativa 	 | `\|`			| `|`			| O lo uno o lo otro | `(?Blas|Luis)` | 
+| Principio		 | `^`			| `^`			| El patrón comienza | `^a` |
+| Fin			 | `$`			| `$`			| El patrón acaba	 | `a$` |
+| Repr. universal| `.`			| `.`			| Cualquier carácter | `.{2,3}`       
+| Escape		 | `\`			| `\`			| No interpretar un carácter especial | `\.`  |
+	
+
+**Patrones avanzados**
+
+| Operación      | Operador BRE | Operador ERE  | Descripción | Ejemplo (ERE) |
+| -------------- | ------------ | ------------- | ----------- | ------------- |
+| Alternativa	 | `[...]`		| `[...]`		| Uno de los caracteres incluidos. Puede ser un rango | `[A-Za.z]` |
+| Alternativa	 | `[^...]`		| `[^...]`		| Un carácter que no sea de los incluidos | `^A-Z` |
+| Clases		 |				| `\w`			| Un carácter de palabra (letra, dígito o subrayado) | `\w+` |
+| Clases		 |				| `\W`			| Un carácter que no sea de palabra | `^\W` | 
+| Clases		 |				| `\d`			| Un dígito, es decir, [0-9] | `\d{4}` |
+| Clases		 |				| `\D`			| Un carácter que no sea un dígito | `\D+` |
+| Clases		 |				| `\s`			| Un carácter de espaciado, es decir `[\t\r\b\f]` | `\w+\s\w+` |
+| Clases		 |				| `\S`			| Un carácter que no sea de espaciado | `\S+\s` |
+| Clases		 |				| `[:nombre:]`	| Un carácter de la clase nombre | `[[:alpha:],;.]+` |
+| Clases		 |				| `[=x=]`		| Cualquier variante del carácter `x` | `[[=a]]` |
+| Límite de palabra |			| `\b`			| Principio o fin de palabra | `\ndado\b` |
+| Grupos		 | `\{regex\}`  | `(regex)`		| Captura un grupo | |
+| Grupos		 | `\1`, `\2`,..| `\1`, `\2`,.. | Refiere un grupo previamente capturado | `(\w+)\s+\1` |
 
