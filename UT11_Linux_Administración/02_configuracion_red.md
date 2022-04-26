@@ -1,43 +1,129 @@
 
 
 
-2.- CONFIGURACIÓN DE RED EN UBUNTU SERVER
-La versión 17.04 de Ubuntu trajo consigo un cambio en la gestión de las conexiones de red. El fichero /etc/interfaces, que había servido tradicionalmente para configurar las interfaces de red sigue estando presente pero simplemente para notificar que ahora la configuración de red se realiza mediante netplan.
-Netplan es una utilidad que permite configurar fácilmente los adaptadores de red, y aunque las ventajas para configuraciones sencillas apenas se aprecian, sí que es bastante mejor cuando se realizan configuraciones más complicadas.
-Netplan utiliza ficheros YAML (YAML Ain’t Markup Language) que se pueden encontrar en diversas localizaciones:
-•	/run/netplan/*.yaml
-•	/etc/netplan/*.yaml
-•	/lib/netplan/*.yaml
+# 2.- CONFIGURACIÓN DE RED EN UBUNTU SERVER
+
+La versión 17.04 de Ubuntu trajo consigo un cambio en la gestión de las conexiones de red. El fichero `/etc/interfaces`, que había servido tradicionalmente para configurar las interfaces de red sigue estando presente pero simplemente para notificar que ahora la configuración de red se realiza mediante **netplan**.
+
+**Netplan** es una utilidad que permite configurar fácilmente los adaptadores de red, y aunque las ventajas para configuraciones sencillas apenas se aprecian, sí que es bastante mejor cuando se realizan configuraciones más complicadas.
+
+Netplan utiliza ficheros **YAML (*YAML Ain’t Markup Language*)** que se pueden encontrar en diversas localizaciones:
+
+- `/run/netplan/*.yaml`
+- `/etc/netplan/*.yaml`
+- `/lib/netplan/*.yaml`
+
 Si hay varios ficheros, las configuraciones nuevas se añadirán y las que tengan el mismo nombre se reemplazarán siguiendo los siguientes principios de precedencia:
-•	El orden en que se leen los directorios es primero /lib, luego /etc y finalmente /run, por lo que la configuración que prevalecerá en caso de contener las mismas claves es la que se encuentra en el directorio /run.
-•	Igualmente, los ficheros se ordenan alfabéticamente, teniendo mayor prioridad los últimos que se encuentren en este orden alfabético.
-2.1.- EL FICHERO DE CONFIGURACIÓN
+
+- El orden en que se leen los directorios es primero `/lib`, luego `/etc` y finalmente `/run`, por lo que la configuración que prevalecerá en caso de contener las mismas claves es la que se encuentra en el directorio `/run`.
+- Igualmente, los ficheros se ordenan alfabéticamente, teniendo mayor prioridad los últimos que se encuentren en este orden alfabético.
+
+
+## 2.1.- El fichero de configuración
+
 Un ejemplo de fichero YAML de Netplan puede ser el siguiente:
  
-Los ficheros YAML tienen una estructura muy clara, con una serie de claves que pueden o bien tener un valor o bien contener a su vez diferentes subclaves. Para indicar que una subclave se está contenida dentro de una clave se utiliza la indentación, por lo que es importante respetarla. Asimismo, no se puede utilizar el carácter de tabulado, sino que hay que utilizar el espacio para la indentación.
+```bash
+vgonzalez@ubuntu:~$ cat /etc/netplan/00-installer-config.yaml
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    eth0:
+      addresses:
+      - 10.0.0.201/8
+      nameservers:
+        addresses: []
+        search: []
+    eth1:
+      dhcp4: yes
+  version: 2
+```
+
+Los ficheros YAML tienen una estructura muy clara, con una serie de claves que pueden o bien tener un valor o bien contener a su vez diferentes subclaves. Para indicar que una subclave se está contenida dentro de una clave se utiliza la **indentación**, por lo que **es importante respetarla**. Asimismo, no se puede utilizar el carácter de tabulado, sino que **hay que utilizar el espacio** para la indentación.
+
 Si una clave tiene un único valor se pone a continuación de esta. Si espera una secuencia de valores deben indicarse en sucesivas líneas precediendo cada valor con el carácter guion.
-Las primeras líneas son siempre las mismas, correspondiendo estas a la versión y el renderer. La primera línea que se puede cambiar es la que indica el renderer que se utilizará. Las opciones son NetworkManager y networkd, siendo este último el deseable ya que permite configuraciones más avanzadas de la red, como, por ejemplo, las tablas de enrutamiento.
-A continuación, se indican los diferentes bloques de tipos de dispositivos (ethernet, wifi, …), indicando dentro de cada uno una entrada para cada dispositivo. Los nombres de las claves serán ethernets, wifis y bonds, correspondiendo con las interfaces claveadas, inalámbricas y los enlaces agregados respectivamente.
-2.1.1.- INTERFACES CABLEADAS
-Las interfaces cableadas se identifican mediante la clave ethernets, dentro de la cual se indicará una subclave para cada una de las interfaces del equipo. Estas subclaves podrán tener las siguientes propiedades:
-•	addresses: Añade direcciones estáticas a la interfaz que se suman a las recibidas a través de DHCP. Cada entrada de la secuencia se indica en notación CIDR de la forma addr/prefixlen. Ten en cuenta que una misma interfaz puede tener diversas direcciones IP indicadas como una secuencia de claves.
-•	dhcp4 y dhcp6: el valor true en una de estas claves indica que se le asignará una IP de forma dinámica mediante un servidor DHCP.
-•	gateway4, gateway6: indica la dirección de la puerta de enlace de la red. Requiere que se establezca también la clave addresses.
-•	nameservers: Establece los servidores DNS y los dominios de búsqueda para la configuración manual. Soporta dos campos:
-o	addresses: una lista de direcciones IPv4 e IPv6
-o	search: lista de dominios de búsqueda
-•	optional: Un dispositivo opcional no es requerido para el arranque. Normalmente, networkd esperará un cierto a que un dispositivo se configure antes de continuar con el arranque. Sin embargo, si un dispositivo está marcado como opcional, networkd no esperará a que se configure. Solo está soportado por networkd.
-•	routes: cuando tenemos varias direcciones de red asignadas a una misma interfaz podemos escoger el enrutamiento deseado mediante la clave routes. Esta clave tendrá una serie de subclaves to de la siguiente forma:
+
+```
+clave1: valor
+clave2: 
+   subclave21: valor
+   subclave22: valor
+clave_secuencia1:
+   - valor1
+   - valor2
+clave_secuencia2: [valor1, valor2]
+```
+
+Las primeras líneas son siempre las mismas, correspondiendo estas a la **versión** y el ***renderer***. La primera línea que se puede cambiar es la que indica el *renderer* que se utilizará. Las opciones son **NetworkManager** y **networkd**, siendo este último el deseable ya que permite configuraciones más avanzadas de la red, como, por ejemplo, las tablas de enrutamiento.
+
+A continuación, se indican los diferentes bloques de tipos de dispositivos (ethernet, wifi, …), indicando dentro de cada uno una entrada para cada dispositivo. Los nombres de las claves serán **ethernets**, **wifis** y **bonds**, correspondiendo con las interfaces claveadas, inalámbricas y los enlaces agregados respectivamente.
+
+
+### 2.1.1.- Interfaces cableadas
+
+Las interfaces cableadas se identifican mediante la clave `ethernets`, dentro de la cual se indicará una subclave para cada una de las interfaces del equipo. Estas subclaves podrán tener las siguientes propiedades:
+
+- `addresses`: Añade direcciones estáticas a la interfaz que se suman a las recibidas a través de DHCP. Cada entrada de la secuencia se indica en notación CIDR de la forma `addr/prefixlen`. Ten en cuenta que una misma interfaz puede tener diversas direcciones IP indicadas como una secuencia de claves.
+- `dhcp4` y `dhcp6`: el valor `true` en una de estas claves indica que se le asignará una IP de forma dinámica mediante un servidor DHCP.
+- `gateway4`, `gateway6`: indica la dirección de la puerta de enlace de la red. Requiere que se establezca también la clave `addresses`.
+- `nameservers`: Establece los servidores DNS y los dominios de búsqueda para la configuración manual. Soporta dos campos:
+    - `addresses`: una lista de direcciones IPv4 e IPv6
+    - `search`: lista de dominios de búsqueda
+
+```yaml
+nerwork:
+    version: 2
+    renderer: networkd
+    ethernets:
+        enp3s0:
+            addresses:
+                - 10.10.10.2/24
+            gateway4: 10.10.10.1
+            nameservers:
+                search: [mydomain, otherdomain]
+                addresses: [10.10.10.1, 1,1,1,1]
+```
+- `optional`: Un dispositivo opcional no es requerido para el arranque. Normalmente, networkd esperará un cierto a que un dispositivo se configure antes de continuar con el arranque. Sin embargo, si un dispositivo está marcado como `opcional`, networkd no esperará a que se configure. Solo está soportado por networkd.
+- `routes`: cuando tenemos varias direcciones de red asignadas a una misma interfaz podemos escoger el enrutamiento deseado mediante la clave `routes`. Esta clave tendrá una serie de subclaves to de la siguiente forma:
+
+```yaml
+ethernets:
+    enp3s0:
+        addresses:
+            - 9.0.0.9/24
+            - 10.0.0.10/24
+            - 11.0.0.11/24
+        #gateway4: # deshabilitado ya que se configuran a continuación las rutas
+        routes:
+            - to: 0.0.0.0/0
+                via: 9.0.0.1
+                metric: 100
+            - to: 0.0.0.0/0
+                via: 10.0.0.1
+                metric: 100
+            - to: 0.0.0.0/0
+                via: 11.0.0.1
+                metric: 100
+```
  
-Después de to: indicamos las redes de destino que corresponden a esta ruta, con via: donde se indica la puerta de enlace para esas redes. Observa que la puerta de enlace debe estar en la misma subred que alguna de las interfaces. Por ejemplo, en la imagen anterior la puerta de enlace 9.0.0.1 está en la misma subred que la interfaz con la IP 9.0.0.9 por lo que los paquetes destinados a esta puerta de enlace se enviarán por dicha interfaz.
-Con la clave metric se indica la métrica, que puede ser útil cuando la tabla de enrutamiento incluye varias rutas para el mismo destino. En ese caso se utiliza la métrica para determinar cuál de ellas tendrá preferencia.
+Después de `to`: indicamos las redes de destino que corresponden a esta ruta, con `via`: donde se indica la puerta de enlace para esas redes. Observa que la puerta de enlace debe estar en la misma subred que alguna de las interfaces. Por ejemplo, en la imagen anterior la puerta de enlace `9.0.0.1` está en la misma subred que la interfaz con la IP `9.0.0.9` por lo que los paquetes destinados a esta puerta de enlace se enviarán por dicha interfaz.
+
+Con la clave `metric` se indica la **métrica**, que puede ser útil cuando la tabla de enrutamiento incluye varias rutas para el mismo destino. En ese caso se utiliza la métrica para determinar cuál de ellas tendrá preferencia.
 Observa también que, si utilizamos tablas de enrutamiento, no hay que indicar la opción puerta de enlace.
-2.1.2.- INTERFACES INALÁMBRICAS
-Las opciones de configuración de las interfaces inalámbricas tienen una configuración muy similar a las interfaces cableadas, requiriendo una asignación dinámica o estática de la dirección IP. Sin embargo, también es necesario indicarle un método de autenticación para poder conectarse con el punto de acceso, lo cual se consigue con la clave access-points.
-Dentro de esta clave tendremos una subclave con el SSID de cada una de las redes inalámbricas a las que nos queramos conectar, indicando la contraseña con la subclave password. Si fuera una red abierta (sin contraseña) indicaríamos como valor del punto de acceso la cadena {}.
+
+
+### 2.1.2.- Interfaces inalámbricas
+
+Las opciones de configuración de las interfaces inalámbricas tienen una configuración muy similar a las interfaces cableadas, requiriendo una asignación dinámica o estática de la dirección IP. Sin embargo, también es necesario indicarle un método de autenticación para poder conectarse con el punto de acceso, lo cual se consigue con la clave **access-points**.
+
+Dentro de esta clave tendremos una subclave con el SSID de cada una de las redes inalámbricas a las que nos queramos conectar, indicando la contraseña con la subclave **password**. Si fuera una red abierta (sin contraseña) indicaríamos como valor del punto de acceso la cadena {}.
  
+ ```
+ FALTA COPIAR EL EJEMPLO
+ ```
  
-2.1.3.- INTERFACES AGREGADAS
+### 2.1.3.- Interfaces agregadas
+
 En la unidad anterior ya vimos cómo crear interfaces agregadas (bonding) desde el instalador de Ubuntu Server. Si queremos realizar esta operación una vez instalado Ubuntu, deberemos recurrir al fichero de configuración de netplan. Las interfaces agregadas se indican dentro de la clave bond, que tendrá una subclave para cada uno de los enlaces agregados que queramos crear.
 Podemos ver un ejemplo en la siguiente imagen:
  
