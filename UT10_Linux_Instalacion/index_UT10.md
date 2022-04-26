@@ -15,6 +15,7 @@
 
 1. [PR1001. Introducción a la línea de comandos](11_pr1001.md)
 2. [PR1003. Redirección](12_pr1003.md)
+3. [PR1004. El comando `sed`](13_pr1004.md)
 
 ***
 [Volver al índice principal](../index.md)
