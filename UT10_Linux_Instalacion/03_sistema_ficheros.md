@@ -737,6 +737,9 @@ Muestra todos los ficheros que pertencen al usuario `victor`.
 
 ### 3.6.2.- Comando `locate`
 
+
+
+
 ## 3.7.- Enlaces
 
 Hay ocasiones en las que es necesario tener dos o más copias de un mismo fichero en el sistema de ficheros. Una opción que permite el sistema de ficheros de Unix es, en lugar de tener varias copias físicas diferentes, tener **una única copia física y múltiples copias virtuales**, denominadas **enlaces**.

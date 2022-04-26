@@ -236,13 +236,120 @@ También admite **expresiones regulares** al indicar el patrón a buscar. Las ex
 
 ### 4.2.1.- Contando. Comando `wc`
 
+El comando `wc` (*word count*) se limita a contar el número de líneas, palabras y caracteres del texto que reciba a la entrada, bien sea desde un fichero o redireccionado desde otro comando mediante una tubería.
 
+```bash
+    victor@ubuntu:~$ cat /usr/share/dict/spanish | wc
+    86016   86016  852190
+```
+
+También se le puede pasar uno o varios ficheros como parámetro.
+
+```bash
+    victor@DESKTOP-483UVTV:~$ wc /usr/share/dict/words /usr/share/dict/spanish
+    86016   86016  852190 /usr/share/dict/words
+    86016   86016  852190 /usr/share/dict/spanish
+    172032  172032 1704380 total
+ ```
+
+ #### Modificadores del comando `wc`
+
+| Modificador         | Descripción |
+| ------------------- | ----------- |
+| `-w` | Cuenta solo el número de palabras  |
+| `-l` | Cuenta solo el número de líneas |
+| `-c` | Cuenta solo el número de caracteres |
+| `-L` | Devuelve el número de caracteres de la línea más larga del fichero |
 
 
 ### 4.2.3.- Cortando. Comando `cut`
 
+El comando sirve para **cortar** secciones de cada línea de la entrada y enviarlas a la salida. Puede servir para cortar partes de una línea por posición de cada caracter o por campos. Siempre se debe incluir el modificador que indique el criterio.
+
+
+ #### Modificadores del comando `wc`
+
+| Modificador         | Descripción |
+| ------------------- | ----------- |
+| `-b` | Indica qué bytes se cortan. Se pueden indicar valores absolutos separados por comas o rangos separándolos por un guión. Ojo con la codificación |
+| `-c` |   |
+| `-f field` | Útil cuando el fichero está tiene una serie de campos separados por un carácter (p.e. CSV). Indica qué campo hay que devolver |
+| `-d delimiter` | Se usa junto con el anterior e indica el delimitador de campo  |
+| `--output-delimiter` | Usado junto con los anteriores, sirve para modificar el separador en la salida   |
+
+
+#### Ejemplos de uso del comando `wc`
+
+El fichero `/etc/passwd` tiene una serie campos separados por el carácter `:`, correspondiendo el primero de ellos con el nombre de cada usuario del sistema. Muestra el listado de usuarios del sistema.
+
+```bash
+    victor@ubuntu:~$ cat /etc/passwd | cut -f 1 -d ":"
+    root
+    daemon
+    bin
+    sys
+    sync
+    games
+```
+
+
 ### 4.2.4.- Y reemplazando. Comando `tr`
+
+El comando `tr` (*translate*)en Linux es una utilidad que permite trasladar o borrar caracteres de la entrada. Incluye un gran número de transformaciones como mayúsculas a minúsculas, comprimir caracteres repetidos, borrar caracteres específicos y tareas básicas de búsqueda y sustitución.
+
+ #### Modificadores del comando `tr`
+
+| Modificador         | Descripción |
+| ------------------- | ----------- |
+| `-s` | Elimina las ocurrencias repetidas del carácter indicado |
+| `-d` | Elimina las ocurrencias del carácter indicado |
+| `-c` | Complementa el conjunto indicado en el modificador anterior |
+
+
+
+#### Ejemplos de uso del comando `tr`
+
+Convertir todos los caracteres de mayúsculas a minúsculas. Se puede hacer de cualquiera de estas dos formas.
+
+```bash
+    victor@ubuntu:~$ echo "Victor J. González" | tr "[A-Z]" "[a-z]"
+    victor j. gonzález
+    victor@ubuntu:~$ echo "Victor J. González" | tr "[:upper:]" "[:lower:]"
+    victor j. gonzález
+```
+
+Reemplazar unos caracteres por otros.
+
+```bash
+    victor@ubuntu:~$ echo "password" | tr 'aeios' '43105'
+    p455w0rd
+```
+
+Eliminar caracteres repetidos (*squeeze*).
+
+```bash
+    victor@ubuntu:~$ echo "Victor      J.   González" | tr -s ' '
+    Victor J. González
+```
+
+Eliminar todas las mayúsculas de la entrada.
+
+```bash
+    victor@ubuntu:~$ echo "Victor J. González" | tr -d "[:upper:]"
+    ictor . onzález
+```
+
+Elimina todos los caracteres de la entrada salvo los dígitos.
+
+```bash
+    victor@ubuntu:~$ echo "Mi clave es 1234" | tr -cd "[:digit:]"
+    1234
+```
+
+### 4.2.4.- Eliminando líneas repetidas. Comando `uniq`
+
 
 
 ***
+>>>>>>> 1ddf28e06ecd51af5460ba4ca752a65b335d7af6
 [Volver al índice principal](index_UT10.md)
