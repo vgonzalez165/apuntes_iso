@@ -17,7 +17,7 @@
 2. [PR1003. Redirección](12_pr1003.md)
 3. [PR1004. El comando `sed`](13_pr1004.md)
 4. [PR1005. El comando `sed` (II)](14_pr1005.md)
-5. [PR1005. El comando `sed` (III)](15_pr1006.md)
+5. [PR1006. El comando `sed` (III)](15_pr1006.md)
 
 ***
 [Volver al índice principal](../index.md)
