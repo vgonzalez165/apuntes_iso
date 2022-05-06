@@ -1,3 +1,18 @@
+<link rel="stylesheet" href="../styles.css">
+
+![Carátula UT11](imgs/caratula_ut11.png)
+
+### Contenidos
+
+1. Gestión del software en Linux
+2. Configuración de red en Ubuntu Server 
+3. Conexión remota al servidor mediante SSH
+4. Administración del almacenamiento
+5. Gestión de usuarios en Linux
+6. Gestión de procesos
+7. Arranque del sistema con `systemd`
+8. El directorio `/proc`
+
 
 
 
@@ -118,66 +133,185 @@ Las opciones de configuración de las interfaces inalámbricas tienen una config
 
 Dentro de esta clave tendremos una subclave con el SSID de cada una de las redes inalámbricas a las que nos queramos conectar, indicando la contraseña con la subclave **password**. Si fuera una red abierta (sin contraseña) indicaríamos como valor del punto de acceso la cadena {}.
  
- ```
- FALTA COPIAR EL EJEMPLO
+ ```yaml
+ network:
+    version: 2
+    renderer: networkd
+    wifis:
+        wlp2s0b1:
+            dhcp4: no
+            dhcp6: no
+            addresses: [192.168.0.21/24]
+            gateway4: 192.168.0.1
+            nameservers:
+                addresses: [192.168.01., 8.8.8.8]
+            access-points:
+                "network_ssid_name":
+                    password: "********"
+        wl0:
+            access-points:
+                opennetwork: {}
+            dhcp4:
+ 
  ```
  
 ### 2.1.3.- Interfaces agregadas
 
-En la unidad anterior ya vimos cómo crear interfaces agregadas (bonding) desde el instalador de Ubuntu Server. Si queremos realizar esta operación una vez instalado Ubuntu, deberemos recurrir al fichero de configuración de netplan. Las interfaces agregadas se indican dentro de la clave bond, que tendrá una subclave para cada uno de los enlaces agregados que queramos crear.
-Podemos ver un ejemplo en la siguiente imagen:
- 
-Las subclaves que tendrá cada enlace agregado pueden ser:
-•	interfaces: lista de las interfaces de red que se agregarán a este enlace.
-•	parameters: los parámetros con que se configurará el enlace. Tiene múltiples subclaves que puedes consultar en la ayuda, pero la más importante es mode, que indica el modo de funcionamiento del enlace. Las opciones son balance-rr (por defecto), active-backup, balance-xor, broadcast, 802.3ad, balance-tlb y balance-alb.
-2.1.5.- MÁS INFORMACIÓN
-Si quieres información más detallada sobre el fichero de configuración de netplan y sus múltiples opciones de configuración puedes recurrir a los siguientes recursos:
-•	Referencia de netplan: https://netplan.io/reference/ 
-•	Ejemplos de uso de netplan: https://netplan.io/examples/ 
-2.2.- APLICANDO LOS CAMBIOS
-Para aplicar los cambios realizados en el fichero de configuración ya no es necesario reiniciar el servicio de red, sino que únicamente hay que invocar el comando netplan con el parámetro apply.
-2.3.- EL COMANDO IP
-Con la desaparición del fichero de configuración /etc/network/interfaces, también desaparecerá el comando ipconfig. Su sustituto será el comando ip. Este comando es bastante similar a ipconfig pero mucho más potente, con muchas funcionalidades asociadas.
-Veamos algunas de las operaciones más comunes que se pueden realizar con el comando ip.
-Mostrar información de las interfaces de red
-La orden para mostrar información de las interfaces de red es:
-$ ip addr show
-Muestra información tal como dirección IP, subred, … Se le puede pasar opcionalmente el identificador de una interfaz para que únicamente muestre información sobre dicha interfaz.
-También se puede abreviar como ip a s
-Habilitar y deshabilitar interfaces de red
-Para habilitar o deshabilitar una interfaz de red utilizamos la siguiente orden.
-$ ip link set {id} up|down
-Asignar dirección IP a una interfaz
-Asignamos una IP con:
-$ ip addr add {address}/{masc} dev {id}
-Esta orden añade una nueva dirección IP al dispositivo de red cuyo identificador se indique. Hay que tener en cuenta que esta IP no reemplaza a la anterior, sino que la interfaz pasará a tener una dirección IP más.
-También podemos indicar la dirección de broadcast de la red.
-$ ip addr add broadcast {broadcast_address} dev {id}
-O indicar ambas de la forma:
-$ ip addr add {address}/{masc} brd + dev {id}
-Eliminar una dirección IP de la interfaz
-Para eliminar una IP de una interfaz utilizamos el siguiente comando.
-$ ip addr del {address}/{masc} dev {id}
-Información de la puerta de enlace
-Para mostrar información sobre la puerta de enlace ejecutamos la siguiente orden.
-$ ip route show
-El resultado muestra información de enrutamiento para todas las interfaces de red. Podemos obtener información de enrutamiento para una IP particular con la orden.
-$ ip route get {address}
-Comprobar las entradas ARP
-Podemos también obtener el contenido de la caché ARP del equipo con el siguiente comando.
-$ ip neigh
-Modificar las entradas ARP
-Aunque la cache ARP se genera automáticamente, podemos editar manualmente las entradas de la misma para eliminar entradas existentes o añadir nuevas. Para eliminar una entrada lo hacemos de la forma:
-$ ip neigh del {ip_address} dev {id}
-Si queremos añadir una nueva entrada los hacemos con el comando:
-$ ip neigh add {ip_address} lladdr {mac_address} dev {id} nud {value}
-Donde nud significa estado vecino y sus valores pueden ser:
-•	perm: permanente, solo puede ser eliminado por el administrador.
-•	noarp: la entrada es válida, pero puede eliminarse una vez que caduque la vida útil
-•	stale: la entrada es válida pero no se sabe si es alcanzable
-•	reachable: la entrada es válida y alcanzable
-Obtener las estadísticas de red
-Por último, podemos obtener las estadísticas de red con la siguiente orden.
-$ ip -s link
+En la unidad anterior ya vimos cómo crear interfaces agregadas (*bonding*) desde el instalador de Ubuntu Server. Si queremos realizar esta operación una vez instalado Ubuntu, deberemos recurrir al fichero de configuración de netplan. Las interfaces agregadas se indican dentro de la clave `bond`, que tendrá una subclave para cada uno de los enlaces agregados que queramos crear.
 
+Podemos ver un ejemplo a continuación:
+ 
+```yaml
+network:
+    version: 2
+    renderer: networkd
+    bonds:
+        bond0:
+            dhcp4: yes
+            interfaces:
+                - enp3s0
+                - enp4s0
+            parameters:
+                mode: active-backup
+                primary: enp3s0
+```
+
+Las subclaves que tendrá cada enlace agregado pueden ser:
+
+- `interfaces`: lista de las interfaces de red que se agregarán a este enlace.
+- `parameters`: los parámetros con que se configurará el enlace. Tiene múltiples subclaves que puedes consultar en la ayuda, pero la más importante es **mode**, que indica el modo de funcionamiento del enlace. Las opciones son:
+  - balance-rr (por defecto), 
+  - active-backup, 
+  - balance-xor, broadcast, 
+  - 802.3ad, 
+  - balance-tlb y 
+  - balance-alb.
+
+
+
+### 2.1.5.- Más información
+
+Si quieres información más detallada sobre el fichero de configuración de netplan y sus múltiples opciones de configuración puedes recurrir a los siguientes recursos:
+
+•	[Referencia de netplan](https://netplan.io/reference/)
+•	[Ejemplos de uso de netplan](https://netplan.io/examples/)
+
+
+
+## 2.2.- Aplicando los cambios
+
+Para aplicar los cambios realizados en el fichero de configuración ya no es necesario reiniciar el servicio de red, sino que únicamente hay que invocar el comando `netplan` con el parámetro `apply`.
+
+
+## 2.3.- El comando `ip`
+
+Con la desaparición del fichero de configuración `/etc/network/interfaces`, también desaparecerá el comando `ipconfig`. Su sustituto será el comando `ip`. Este comando es bastante similar a `ipconfig` pero mucho más potente, con muchas funcionalidades asociadas.
+
+Veamos algunas de las operaciones más comunes que se pueden realizar con el comando `ip`.
+
+### 2.3.1.- Mostrar información de las interfaces de red
+
+La orden para mostrar información de las interfaces de red es:
+
+```
+$ ip addr show
+```
+
+Muestra información tal como dirección IP, subred, … Se le puede pasar opcionalmente el identificador de una interfaz para que únicamente muestre información sobre dicha interfaz. También se puede abreviar como `ip a s`
+
+
+### 2.3.2.- Habilitar y deshabilitar interfaces de red
+
+Para habilitar o deshabilitar una interfaz de red utilizamos la siguiente orden.
+
+```
+$ ip link set {id} up|down
+```
+
+
+### 2.3.3.- Asignar dirección IP a una interfaz
+
+Asignamos una IP con:
+
+```
+$ ip addr add {address}/{masc} dev {id}
+```
+
+Esta orden añade una nueva dirección IP al dispositivo de red cuyo identificador se indique. Hay que tener en cuenta que esta IP no reemplaza a la anterior, sino que la interfaz pasará a tener una dirección IP más.
+
+También podemos indicar la dirección de broadcast de la red.
+
+```
+$ ip addr add broadcast {broadcast_address} dev {id}
+```
+
+O indicar ambas de la forma:
+
+```
+$ ip addr add {address}/{masc} brd + dev {id}
+```
+
+### 2.3.4.- Eliminar una dirección IP de la interfaz
+
+Para eliminar una IP de una interfaz utilizamos el siguiente comando.
+
+```
+$ ip addr del {address}/{masc} dev {id}
+```
+
+### 2.3.5.- Información de la puerta de enlace
+
+Para mostrar información sobre la puerta de enlace ejecutamos la siguiente orden.
+
+```
+$ ip route show
+```
+
+El resultado muestra información de enrutamiento para todas las interfaces de red. Podemos obtener información de enrutamiento para una IP particular con la orden.
+
+```
+$ ip route get {address}
+```
+
+### 2.3.6.- Comprobar las entradas ARP
+
+Podemos también obtener el contenido de la **caché ARP** del equipo con el siguiente comando.
+
+```
+$ ip neigh
+```
+
+### 2.3.7.- Modificar las entradas ARP
+
+Aunque la cache ARP se genera automáticamente, podemos editar manualmente las entradas de la misma para eliminar entradas existentes o añadir nuevas. Para eliminar una entrada lo hacemos de la forma:
+
+```
+$ ip neigh del {ip_address} dev {id}
+```
+
+Si queremos añadir una nueva entrada los hacemos con el comando:
+
+```
+$ ip neigh add {ip_address} lladdr {mac_address} dev {id} nud {value}
+```
+
+Donde `nud` significa estado vecino y sus valores pueden ser:
+
+- `perm`: permanente, solo puede ser eliminado por el administrador.
+- `noarp`: la entrada es válida, pero puede eliminarse una vez que caduque la vida útil
+- `stale`: la entrada es válida pero no se sabe si es alcanzable
+- `reachable`: la entrada es válida y alcanzable
+
+
+### 2.3.8.- Obtener las estadísticas de red
+
+Por último, podemos obtener las estadísticas de red con la siguiente orden.
+
+```
+$ ip -s link
+```
+
+
+***
+[Volver al índice principal](index_UT11.md)
 

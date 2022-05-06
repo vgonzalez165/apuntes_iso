@@ -1,8 +1,23 @@
+<link rel="stylesheet" href="../styles.css">
+
+![Carátula UT11](imgs/caratula_ut11.png)
+
+### Contenidos
+
+1. Gestión del software en Linux
+2. Configuración de red en Ubuntu Server 
+3. Conexión remota al servidor mediante SSH
+4. Administración del almacenamiento
+5. Gestión de usuarios en Linux
+6. Gestión de procesos
+7. Arranque del sistema con `systemd`
+8. El directorio `/proc`
 
 
-# 2.- GESTIÓN DE SOFTWARE EN LINUX
 
-## 2.1.- Introducción
+# 1.- GESTIÓN DE SOFTWARE EN LINUX
+
+## 1.1.- Introducción
 
 Como cualquier otro sistema operativo, Linux dispone de una serie de programas preinstalados, lo cual depende de la distribución escogida, y además podemos instalar nuevos programas, para lo que hay diversos mecanismos.
 
@@ -17,7 +32,7 @@ Pero antes de ver las diversas formas de instalar programas en Linux conviene ac
 - **Dependencias**: cuando instalamos un paquete puede ocurrir que éste necesite que otros paquetes sean instalados previamente. Estos otros paquetes habitualmente son bibliotecas de enlace dinámico, pero pueden ser otros programas. 
 
 
-## 2.2.- El gestor de paquetes de Debian: `dpkg`
+## 1.2.- El gestor de paquetes de Debian: `dpkg`
 
 Una solución a los problemas derivados de compilar directamente los programas es el uso de herramientas de empaquetado que automaticen todo el proceso que debíamos realizar manualmente en el caso de la compilación.
 
@@ -34,7 +49,7 @@ Algunas operaciones que se pueden realizar con dpkg son:
 - `dpkg --contents paquete.deb`: muestra los ficheros que hay en un paquete. También se puede usar la versión corta (-c)
 - `dpkg --info paquete.deb`: muestra información sobre un paquete tal como la versión, la arquitectura o las dependencias del mismo.
 
-## 2.3.- Solucionando el problema de las dependencias: `apt`
+## 1.3.- Solucionando el problema de las dependencias: `apt`
 
 La utilización de `dpkg` facilita mucho la instalación de programas, pero sigue teniendo algunos inconvenientes. El principal de todos ellos es que es responsabilidad del usuario gestionar las dependencias, debiendo instalarlas antes de poder instalar el paquete. 
 
@@ -53,7 +68,7 @@ Para usar `apt` tenemos dos comandos: `apt-get` y `apt-cache`. Algunas de las op
 - ``apt-get clean`: limpia los paquetes descargados e instalados.
 - ``apt-cache show paquete`: muestra información detallada de un paquete
 
-## 2.4.- Mejorando `apt` con `aptitude`
+## 1.4.- Mejorando `apt` con `aptitude`
 
 Aunque con `apt-get` ya podemos gestionar fácilmente el software instalado en nuestro sistema hay una evolución del mismo, denominado `aptitude`, que incluye algunas ventajas. Estas son:
 
@@ -62,7 +77,7 @@ Aunque con `apt-get` ya podemos gestionar fácilmente el software instalado en n
 - La orden `aptitude` puede ser invocada sin argumentos, lo que hará que se muestre un *shell interactivo*.
 
 
-## 2.5.- Gestión de repositorios
+## 1.5.- Gestión de repositorios
 
 Tanto Ubuntu como Mint dividen los repositorios en 4 tipos, cada uno con una serie de paquetes:
 
@@ -80,7 +95,7 @@ $ sudo add-apt-repository {repositorio}
 Recuerda que una vez hecho esto debes actualizar los repositorios realizando un update.
 
 
-## 2.6.- Gestores gráficos de paquetes
+## 1.6.- Gestores gráficos de paquetes
 
 Las versiones de escritorio disponen de aplicaciones gráficas para la instalación de software. Algunas de las más comunes son:
 
@@ -89,7 +104,7 @@ Las versiones de escritorio disponen de aplicaciones gráficas para la instalaci
 - **Gdebi**: otra interfaz gráfica para `apt`
 
 
-## 2.7.- Snaps
+## 1.7.- Snaps
 
 Todos los sistemas que hemos visto hasta ahora están basados en última instancia en `dpkg` y por tanto heredan unos mismos problemas:
 
@@ -127,4 +142,6 @@ Algunas de las operaciones que podemos realizar son:
 
 
 
+***
+[Volver al índice principal](index_UT11.md)
 

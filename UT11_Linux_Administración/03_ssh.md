@@ -42,47 +42,127 @@ Los ficheros de configuración SSH se encuentran todos en el directorio `/etc/ss
     moduli  ssh_config  ssh_config.d  ssh_import_id  sshd_config  sshd_config.d
 ```
 
-El fichero que necesitamos para configurar el servidor es sshd_config. Ten cuidado no lo confundas con el fichero ssh_config, de nombre muy similar pero que sirve para configurar el cliente.
+El fichero que necesitamos para configurar el servidor es `sshd_config`. Ten cuidado no lo confundas con el fichero `ssh_config`, de nombre muy similar pero que sirve para configurar el cliente.
+
 Por seguridad, es buena idea crear una copia del fichero de configuración antes de modificarlo para poder revertir los cambios en caso de realizar una configuración incorrecta.
+
 Como tantos otros ficheros de configuración en Linux, dispone de un gran número de opciones la mayoría de las cuales están por defecto comentadas para que no se apliquen. Algunas de estas opciones que nos pueden interesar son:
-•	Port: un valor diferente a 22 cambiará el puerto por el que escucha el servidor.
-•	ListenAddress: si el equipo tiene varias interfaces de red, se puede especificar exactamente por cuáles responderá a las peticiones SSH entrantes. Si se va a indicar más de una dirección se indicará una en cada línea.
-•	LoginGraceTime: el servidor desconectará después del tiempo indicado si el usuario no ha iniciado sesión con éxito. Si el valor es 0 no tendrá límite.
-•	PermitRootLogin: si el valor está establecido en no, el usuario root no podrá acceder de forma remota.
-•	PasswordAuthentication: especifica si está permitida la autenticación por contraseña.
-•	PermitEmptyPasswords: si está habilitada la autenticación por contraseña, indica si el servidor permite iniciar sesión a cuentas sin contraseña. El valor por defecto es no.
-•	AllowUser: toma como valor una lista de nombres de usuario, permitiendo el inicio de sesión únicamente a los usuarios cuyo nombre esté en dicha lista. Es posible indicar el usuario de la forma USER@HOST para permitir a usuarios de determinados equipos.
-•	DenyUsesr: de forma análoga al anterior, contiene una lista de usuarios a los que no se les permitirá iniciar sesión remota.
-•	Banner: toma como valor el nombre de un fichero (por defecto /etc/issue.net). El contenido de este fichero es mostrado en el equipo que se intenta conectar antes de la autenticación
+
+- `Port`: un valor diferente a 22 cambiará el puerto por el que escucha el servidor.
+- `ListenAddress`: si el equipo tiene varias interfaces de red, se puede especificar exactamente por cuáles responderá a las peticiones SSH entrantes. Si se va a indicar más de una dirección se indicará una en cada línea.
+- `LoginGraceTime`: el servidor desconectará después del tiempo indicado si el usuario no ha iniciado sesión con éxito. Si el valor es 0 no tendrá límite.
+- `PermitRootLogin`: si el valor está establecido en no, el usuario root no podrá acceder de forma remota.
+- `PasswordAuthentication`: especifica si está permitida la autenticación por contraseña.
+- `PermitEmptyPasswords`: si está habilitada la autenticación por contraseña, indica si el servidor permite iniciar sesión a cuentas sin contraseña. El valor por defecto es no.
+- `AllowUser`: toma como valor una lista de nombres de usuario, permitiendo el inicio de sesión únicamente a los usuarios cuyo nombre esté en dicha lista. Es posible indicar el usuario de la forma USER@HOST para permitir a usuarios de determinados equipos.
+- `DenyUsesr`: de forma análoga al anterior, contiene una lista de usuarios a los que no se les permitirá iniciar sesión remota.
+- `Banner`: toma como valor el nombre de un fichero (por defecto /etc/issue.net). El contenido de este fichero es mostrado en el equipo que se intenta conectar antes de la autenticación
+  
 Recuerda que, como siempre que cambiamos un fichero de configuración, debemos reiniciar el servicio para que se apliquen los cambios.
-3.1.3.- PREPARACIÓN DEL CLIENTE
-En la mayoría de las distribuciones de Linux ya está instalado el cliente. El comando se llama ssh y espera como parámetros el nombre de usuario, la IP del equipo remoto y opcionalmente el puerto (modificador -p)
+
+
+### 3.1.3.- Preparación del cliente
+
+En la mayoría de las distribuciones de Linux ya está instalado el cliente. El comando se llama `ssh` y espera como parámetros el nombre de usuario, la IP del equipo remoto y opcionalmente el puerto (modificador `-p`)
  
-3.1.4.- ACCESO SSH CON CLAVE PÚBLICA
-El problema del proceso anterior es que solicita la contraseña cada vez que conectamos. Este proceso se puede simplificar si configuramos el acceso SSH con clave pública.
+### 3.1.4.- Acceso SSH con clave pública
+
+El problema del proceso anterior es que **solicita la contraseña** cada vez que conectamos. Este proceso se puede simplificar si configuramos el acceso SSH con clave pública.
+
 Este proceso comprende tres pasos:
-•	Generación de un par de claves pública/privada en el cliente
-•	Envío de la clave pública al servidor
-•	Deshabilitar el acceso al servidor con contraseña-
-El primer paso es generar un par de claves para lo que utilizaremos el comando ssh-keygen. A este comando se le puede pasar el parámetro -b para indicar el tamaño en bit de la clave que queremos generar.
-Por defecto, las claves se guardan en el directorio ~/.ssh. En este directorio verás dos ficheros, uno que contiene la clave pública (id_rsa.pub) y el otro con la clave privada (id_rsa). 
-Podemos ver el contenido de ambos ficheros ya que la clave, que es un valor binario, está protegida por una armadura ASCII para que pueda mostrarse en modo texto.
+
+- Generación de un par de claves pública/privada en el cliente
+- Envío de la clave pública al servidor
+- Deshabilitar el acceso al servidor con contraseña
+- 
+El primer paso es **generar un par de claves** para lo que utilizaremos el comando `ssh-keygen`. A este comando se le puede pasar el parámetro `-b` para indicar el tamaño en bit de la clave que queremos generar.
+
+```
+vgonzalez@ubuntu:~$ ssh-keygen -b 1024
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/vgonzalez/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/vgonzalez/.ssh/id_rsa
+Your public key has been saved in /home/vgonzalez/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:B1XXDy9v1vmrTkqm3//oeABHzMKotQi3EJsE13k+6g0 vgonzalez@ubuntu
+The key's randomart image is:
++---[RSA 1024]----+
+|  ..+o . o.+. .. |
+|   ooo+ +.o +.. .|
+|    o+ B.. o   o.|
+|      + +.. . . o|
+|       .S..o   oo|
+|      E  .  .  .=|
+|     . o   o o o.|
+|      . . + +....|
+|         ..oo*=o+|
++----[SHA256]-----+
+```
+
+Por defecto, las claves se guardan en el directorio `~/.ssh`. En este directorio verás dos ficheros, uno que contiene la **clave pública** (`id_rsa.pub`) y el otro con la **clave privada** (`id_rsa`). 
+
+Podemos ver el contenido de ambos ficheros ya que la clave, que es un valor binario, está protegida por una **armadura ASCII** para que pueda mostrarse en modo texto.
+
+```
+vgonzalez@ubuntu:~$ cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQDeHkF6GFQyMlK44ReOjzfTXS68lHfCEkBtmBYKtezgzrJ7dGHTMJ5rrpcMm/za+f2Kvz4VE0m9KpfKKcYhvxLa3P5N2pWAUMUIfPIHayG1ueQgD8P7GJFgq2Q7Bf5vGYW9rGpIn45koGWMnyqc99jMH31229aQ30pHGAtJpaJMsw== vgonzalez@ubuntu
+```
+
+El segundo paso que hay que realizar es **enviar la clave pública al servidor**. Esto lo podemos hacer por cualquier medio (correo electrónico, una memoria USB o incluso tecleándolo), pero vamos a ver como enviarlo directamente de un equipo a otro utilizando el comando `scp`, el cual permite transferir ficheros entre dos equipos de la red.
  
-El segundo paso que hay que realizar es enviar la clave pública al servidor. Esto lo podemos hacer por cualquier medio (correo electrónico, una memoria USB o incluso tecleándolo), pero vamos a ver como enviarlo directamente de un equipo a otro utilizando el comando scp, el cual permite transferir ficheros entre dos equipos de la red.
+```
+SCP(1)                                                 BSD General Commands Manual                                                SCP(1)
+
+NAME
+     scp — OpenSSH secure file copy
+
+SYNOPSIS
+     scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file] [-J destination] [-l limit] [-o ssh_option] [-P port] [-S program]
+         source ... target
+
+DESCRIPTION
+     scp copies files between hosts on a network.  It uses ssh(1) for data transfer, and uses the same authentication and provides the
+     same security as ssh(1).  scp will ask for passwords or passphrases if they are needed for authentication.
+
+     The source and target may be specified as a local pathname, a remote host with optional path in the form [user@]host:[path], or a
+     URI in the form scp://[user@]host[:port][/path].  Local file names can be made explicit using absolute or relative pathnames to
+     avoid scp treating file names containing ‘:’ as host specifiers.
+```
+
+El comando `scp` utiliza el protocolo SSH para enviar los ficheros, por lo que es conveniente que hayamos comprobado que funciona con contraseña antes de enviar los ficheros. Se le deben indicar como parámetros el nombre del fichero que queremos transferir y el nombre del fichero de destino, pero con el siguiente formato: `USER@HOST:FILENAME`
  
-El comando scp utiliza el protocolo SSH para enviar los ficheros, por lo que es conveniente que hayamos comprobado que funciona con contraseña antes de enviar los ficheros. Se le deben indicar como parámetros el nombre del fichero que queremos transferir y el nombre del fichero de destino, pero con el siguiente formato: USER@HOST:FILENAME
+TODO: Falta captura de la conexión
+
+Una vez subidas vamos al servidor donde debemos incluirlas en el fichero `~/.ssh/authorized_keys`.  Lo normal es que no exista ni el fichero ni el directorio que lo contiene, por lo que deberemos crearlo.
+
+TODO: Falta captura
+
+Finalmente copiamos la clave y borramos el archivo copiado al servidor.
+
+TODO: Falta captura
  
-Una vez subidas vamos al servidor donde debemos incluirlas en el fichero ~/.ssh/authorized_keys.  Lo normal es que no exista ni el fichero ni el directorio que lo contiene, por lo que deberemos crearlo.
+Para aumentar la seguridad podemos deshabilitar el acceso SSH con contraseña. Para ello editamos el fichero `/etc/ssh/sshd_config` y modificar la siguiente línea. 
  
-Finalmente copiamos la clave y borramos el archivo copiado al servidor
- 
-Para aumentar la seguridad podemos deshabilitar el acceso SSH con contraseña. Para ello editamos el fichero /etc/ssh/sshd_config y modificar la siguiente línea. 
- 
-3.2- CONEXIÓN GRÁFICA CON SSH
-Otra posibilidad es realizar una conexión a un entorno gráfico utilizando un túnel SSH. Para conseguir esto debemos configurar primero el servidor para que tenga habilitado el X11 Forwarding, que permite enviar la interfaz gráfica a través de la red usando SSH.
+TODO: Falta captura
+
+
+## 3.2- Conexión gráfica con SSH
+
+Otra posibilidad es realizar una conexión a un entorno gráfico utilizando un túnel SSH. Para conseguir esto debemos configurar primero el servidor para que tenga habilitado el *X11 Forwarding*, que permite enviar la interfaz gráfica a través de la red usando SSH.
+
 Para ello, únicamente debemos asegurarnos de que el fichero de configuración del servidor tiene habilitada la opción X11Forwarding.
+
+```bash
+#GatewayPorts no
+X11Forwarding yes
+#X11DisplayOffset 10
+```
+
  
-3.2.1.- CONEXIÓN DESDE UN CLIENTE LINUX
+### 3.2.1.- Conexión desde un cliente Linux
+
 Lo más sencillo es configurar la conexión desde una máquina Linux, en este caso simplemente hay que utilizar el modificador -X al invocar el comando ssh desde el cliente.
  
 Al ejecutar este comando nos mostrará la terminal del servidor, pero la diferencia es que si ejecutamos un programa del servidor que requiera entorno gráfico, lo lanzará en una ventana en la máquina cliente. Por ejemplo, si queremos acceder al sistema de ficheros en un Linux Mint podemos invocar el administrador de archivos Nemo.
