@@ -2,8 +2,6 @@
 
 # UT11. LINUX. ADMINISTRACIÓN
 
-PONER EL RESUMEN DE LA UNIDAD
-
 ### Contenidos
 
 1. [Gestión del software en Linux](01_gestion_software.md)
