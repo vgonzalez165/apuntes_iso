@@ -157,7 +157,7 @@ Dentro de esta clave tendremos una subclave con el SSID de cada una de las redes
  
 ### 2.1.3.- Interfaces agregadas
 
-En la unidad anterior ya vimos cómo crear interfaces agregadas (*bonding*) desde el instalador de Ubuntu Server. Si queremos realizar esta operación una vez instalado Ubuntu, deberemos recurrir al fichero de configuración de netplan. Las interfaces agregadas se indican dentro de la clave `bond`, que tendrá una subclave para cada uno de los enlaces agregados que queramos crear.
+Las **interfaces agregadas** o ***bonding*** son el equivalente en Linux a los equipos NIC de Windows, donde varios adaptadores de red se combinan en una única conexión de red para conseguir alta disponibilidad. Se puede configurar durante el proceso de instalación de Ubuntu Server, mientras que para hacerlo una vez instalado el sistema deberemos recurrir al fichero de configuración de `netplan`. Las interfaces agregadas se indican dentro de la clave `bond`, que tendrá una subclave para cada uno de los enlaces agregados que queramos crear.
 
 Podemos ver un ejemplo a continuación:
  
@@ -182,7 +182,8 @@ Las subclaves que tendrá cada enlace agregado pueden ser:
 - `parameters`: los parámetros con que se configurará el enlace. Tiene múltiples subclaves que puedes consultar en la ayuda, pero la más importante es **mode**, que indica el modo de funcionamiento del enlace. Las opciones son:
   - balance-rr (por defecto), 
   - active-backup, 
-  - balance-xor, broadcast, 
+  - balance-xor,
+  - broadcast, 
   - 802.3ad, 
   - balance-tlb y 
   - balance-alb.
