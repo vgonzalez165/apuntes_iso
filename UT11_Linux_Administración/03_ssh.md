@@ -78,15 +78,15 @@ Este proceso comprende tres pasos:
 El primer paso es **generar un par de claves** para lo que utilizaremos el comando `ssh-keygen`. A este comando se le puede pasar el parámetro `-b` para indicar el tamaño en bit de la clave que queremos generar.
 
 ```
-vgonzalez@ubuntu:~$ ssh-keygen -b 1024
+remote@ubuntu:~$ ssh-keygen -b 1024
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/vgonzalez/.ssh/id_rsa):
+Enter file in which to save the key (/home/remote/.ssh/id_rsa):
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
-Your identification has been saved in /home/vgonzalez/.ssh/id_rsa
-Your public key has been saved in /home/vgonzalez/.ssh/id_rsa.pub
+Your identification has been saved in /home/remote/.ssh/id_rsa
+Your public key has been saved in /home/remote/.ssh/id_rsa.pub
 The key fingerprint is:
-SHA256:B1XXDy9v1vmrTkqm3//oeABHzMKotQi3EJsE13k+6g0 vgonzalez@ubuntu
+SHA256:B1XXDy9v1vmrTkqm3//oeABHzMKotQi3EJsE13k+6g0 remote@ubuntu
 The key's randomart image is:
 +---[RSA 1024]----+
 |  ..+o . o.+. .. |
@@ -106,8 +106,8 @@ Por defecto, las claves se guardan en el directorio `~/.ssh`. En este directorio
 Podemos ver el contenido de ambos ficheros ya que la clave, que es un valor binario, está protegida por una **armadura ASCII** para que pueda mostrarse en modo texto.
 
 ```
-vgonzalez@ubuntu:~$ cat ~/.ssh/id_rsa.pub
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQDeHkF6GFQyMlK44ReOjzfTXS68lHfCEkBtmBYKtezgzrJ7dGHTMJ5rrpcMm/za+f2Kvz4VE0m9KpfKKcYhvxLa3P5N2pWAUMUIfPIHayG1ueQgD8P7GJFgq2Q7Bf5vGYW9rGpIn45koGWMnyqc99jMH31229aQ30pHGAtJpaJMsw== vgonzalez@ubuntu
+remote@ubuntu:~$ cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQDeHkF6GFQyMlK44ReOjzfTXS68lHfCEkBtmBYKtezgzrJ7dGHTMJ5rrpcMm/za+f2Kvz4VE0m9KpfKKcYhvxLa3P5N2pWAUMUIfPIHayG1ueQgD8P7GJFgq2Q7Bf5vGYW9rGpIn45koGWMnyqc99jMH31229aQ30pHGAtJpaJMsw== remote@ubuntu
 ```
 
 El segundo paso que hay que realizar es **enviar la clave pública al servidor**. Esto lo podemos hacer por cualquier medio (correo electrónico, una memoria USB o incluso tecleándolo), pero vamos a ver como enviarlo directamente de un equipo a otro utilizando el comando `scp`, el cual permite transferir ficheros entre dos equipos de la red.
@@ -133,20 +133,92 @@ DESCRIPTION
 
 El comando `scp` utiliza el protocolo SSH para enviar los ficheros, por lo que es conveniente que hayamos comprobado que funciona con contraseña antes de enviar los ficheros. Se le deben indicar como parámetros el nombre del fichero que queremos transferir y el nombre del fichero de destino, pero con el siguiente formato: `USER@HOST:FILENAME`
  
-TODO: Falta captura de la conexión
+```
+remote@SERVER2:~/.ssh$ scp ./id_rsa.pub remote@10.0.0.1:id_rsa.remote.pub
+remote@10.0.0.1's password:
+id_rsa.pub                                                                            100%  569     1.3MB/s   00:00
+remote@SERVER2:~/.ssh$
+```
 
-Una vez subidas vamos al servidor donde debemos incluirlas en el fichero `~/.ssh/authorized_keys`.  Lo normal es que no exista ni el fichero ni el directorio que lo contiene, por lo que deberemos crearlo.
+En el código anterior se está copiando el fichero `id_rsa.pub` desde el directorio de trabajo del equipo local al equipo con IP 10.0.0.1 utilizando las credenciales del usuario llamado `remote`. La ruta donde se guardará es el directorio personal del usuario (`/home/remote`) y, si te fijas, se indica un nombre diferente del fichero para renomobrarlo, de forma que en el equipo remoto se sepa a quien pertence esa clave pública.
 
-TODO: Falta captura
+Una vez subidas vamos al servidor donde debemos incluirlas en el fichero `~/.ssh/authorized_keys`.  Lo normal es que no exista ni el fichero ni tal vez el directorio que lo contiene, por lo que deberemos crearlo. Tras crear el archivo copiamos la clave en él.
 
-Finalmente copiamos la clave y borramos el archivo copiado al servidor.
+```
+remote@server-1:~$ ls -la
+total 36
+drwxr-xr-x 4 remote remote 4096 May 22 06:15 .
+drwxr-xr-x 4 root   root   4096 May 22 06:03 ..
+-rw------- 1 remote remote   12 May 22 06:04 .bash_history
+-rw-r--r-- 1 remote remote  220 May 22 06:03 .bash_logout
+-rw-r--r-- 1 remote remote 3771 May 22 06:03 .bashrc
+drwx------ 2 remote remote 4096 May 22 06:04 .cache
+-rw-r--r-- 1 remote remote  807 May 22 06:03 .profile
+drwxrwxr-x 2 remote remote 4096 May 22 06:15 .ssh
+-rw-r--r-- 1 remote remote  569 May 22 06:08 id_rsa.remote.pub
+remote@server-1:~$ mkdir .ssh
+remote@server-1:~$ cat id_rsa.remote.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDtoQP98FmYRtbE3Fkuy9AVpCJV8yAlot1tHOjYPrXO7PA2dgK2JGN3kPZ5L8qTKUx/EOXl3aH0lZhyrtr3gkQeWKtUGeQ2qOcWMcxYf4TF1xvSJ8qOCbdehsGvXkH3/O3NSf3OHeSomHwEV74jl5tFDWVPkLmT4zuPnsVYfbbZxzPxFWpQtKwksXBkjLkgjdb3C9jvEayNALdOZiqrsQmmrvaB+1tc0KF7Ky/vH5uh/j+lYk0L05vVLtIMD4A+suKaOlrHzvMfkuAdLZXX88OIsZRdjfcdsIiPYm16I+ARCjyzTrsGKbok9fYfWNt9B1vaqQm5XypPNn+PzdXJDt6mZjMmdstushmOmYo1I5DlJ4xhlbSffkDHfGjQp8N/N4TfLtms6vB5HvX2TnLrJMHPd+4Z/tQKX7S821LdpRwJcpl8dqeUk+acX4p+10xwAKeR3wIu+7YzekFzUKIM3UZdSnJq8IUF3cDE9kEjTnkK+sl5w9zGAFoMxBvHzfXPHT8= remote@server-1
+remote@server-1:~$ cat id_rsa.remote.pub >> .ssh/authorized_keys
+```
 
-TODO: Falta captura
+Para aumentar la seguridad podemos **deshabilitar el acceso SSH con contraseña**. Para ello editamos el fichero `/etc/ssh/sshd_config` y modificar la siguiente línea. 
  
-Para aumentar la seguridad podemos deshabilitar el acceso SSH con contraseña. Para ello editamos el fichero `/etc/ssh/sshd_config` y modificar la siguiente línea. 
- 
-TODO: Falta captura
+```bash
+#LoginGraceTime 2m
+#PermitRootLogin prohibit-password
+#StrictModes yes
+#MaxAuthTries 6
+#MaxSessions 10
 
+PubkeyAuthentication yes
+
+# Expect .ssh/authorized_keys2 to be disregarded by default in future.
+#AuthorizedKeysFile     .ssh/authorized_keys .ssh/authorized_keys2
+
+#AuthorizedPrincipalsFile none
+
+#AuthorizedKeysCommand none
+#AuthorizedKeysCommandUser nobody
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#HostbasedAuthentication no
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# HostbasedAuthentication
+#IgnoreUserKnownHosts no
+# Don't read the user's ~/.rhosts and ~/.shosts files
+#IgnoreRhosts yes
+
+# To disable tunneled clear text passwords, change to no here!
+PasswordAuthentication no
+#PermitEmptyPasswords no
+
+```
+
+Y ya podremos conectarnos al equipo remoto sin necesidad de introducir las credenciales.
+
+```
+remote@SERVER2:~$ ssh remote@10.0.0.1
+Welcome to Ubuntu 20.04.4 LTS (GNU/Linux 5.4.0-110-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sun May 22 06:21:10 UTC 2022
+
+  System load:  0.0                Processes:             116
+  Usage of /:   3.6% of 123.47GB   Users logged in:       1
+  Memory usage: 16%                IPv4 address for eth0: 172.29.2.58
+  Swap usage:   0%                 IPv4 address for eth1: 10.0.0.1
+
+
+0 updates can be applied immediately.
+
+
+*** System restart required ***
+Last login: Sun May 22 06:05:53 2022 from 10.0.0.2
+```
 
 ## 3.2- Conexión gráfica con SSH
 
@@ -169,20 +241,29 @@ Al ejecutar este comando nos mostrará la terminal del servidor, pero la diferen
  
 
 
-3.2.2.- CONEXIÓN GRÁFICA DESDE UN CLIENTE WINDOWS
-Si queremos conectarnos a un entorno gráfico desde un cliente Windows, debemos hacerlo con Putty, pero necesitamos un programa adicional, Xming, que puedes descargar de Sourceforge (https://sourceforge.net/projects/xming/).
+### 3.2.2.- Conexión gráfica desde un cliente Windows
+
+Si queremos conectarnos a un entorno gráfico desde un cliente Windows, debemos hacerlo con **Putty**, pero necesitamos un programa adicional, **Xming**, que puedes descargar de [Sourceforge](https://sourceforge.net/projects/xming/).
 Tras descargarlo e instalarlo, se puede configurar yendo a Inicio -> XLaunch.
 Con esta aplicación podrás seleccionar cómo quieres que se muestren las ventanas, como se va a lanzar el programa o como ser va a gestionar el portapapeles.
 Una vez instalado y configurado a nuestro gusto hay que utilizar Putty para iniciar la conexión SSH. Al igual que desde Linux teníamos que habilitar el IP Forwarding. En este caso hay que ir a Connection -> SSH -> X11 y marcar la casilla Enable IP Forwarding.
  
 Tras hacerlo, establecer una conexión tal y como la hemos hecho otras veces. Al igual que cuando nos conectamos desde Linux, accederemos a una terminal en la que, si introducimos un comando que requiera entorno gráfico, abrirá una ventana en nuestra máquina Windows cliente.
-3.3.- SSH CON CHROOTED JAIL (OPCIONAL)
+
+
+
+## 3.3.- SSH con **chrooted jail** (OPCIONAL)
+
 Algo en lo que te habrás fijado al configurar el acceso SSH a un servidor para diferentes usuarios es que cualquier usuario que se conecte mediante SSH podrá ver todos los ficheros del sistema de ficheros, incluso los de otros usuarios. Indudablemente, este comportamiento no es deseable en entornos en que múltiples usuarios comparten el acceso a un mismo servidor, por ejemplo, en un servidor web.
-La técnica que permite solventar este problema se denomina jaula chroot (chroot jail) y se basa en el comando chroot, el cual sirve para ejecutar un proceso bajo un directorio raíz simulado, de manera que dicho proceso no pueda acceder a ficheros fuera de ese directorio.
+
+La técnica que permite solventar este problema se denomina **jaula chroot (*chroot jail*)** y se basa en el comando `chroot`, el cual sirve para ejecutar un proceso bajo un **directorio raíz simulado**, de manera que dicho proceso no pueda acceder a ficheros fuera de ese directorio.
+
 Veamos los pasos para conseguir esto .
 
-3.3.1.- CREAR EL SSH CHROOT JAIL
-Comenzamos creando el directorio al que restringiremos el acceso al usuario. En este caso el usuario que tendrá acceso remoto se llamará test.
+
+### 3.3.1.- Crear el SSH chroot jail
+
+Comenzamos creando el directorio al que restringiremos el acceso al usuario. En este caso el usuario que tendrá acceso remoto se llamará `test`.
  
 Con el modificador -p simplemente indicamos que si no existiera el directorio padre lo cree. 
 En el fichero de configuración sshd_config, hay una entrada denominada ChrootDirectory que es la que utilizaremos. Podemos ir a la página del manual de sshd_config y buscar la parte correspondiente a esta entrada.

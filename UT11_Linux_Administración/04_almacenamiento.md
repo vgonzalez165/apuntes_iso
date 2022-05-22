@@ -32,39 +32,41 @@ Aunque durante el proceso de instalación de Linux se configuran todo el almacen
 El comando para monitorizar el espacio que tenemos libre en Linux es `df`, que muestra todos los sistemas de ficheros con información sobre los mismos. Por defecto utiliza como unidad de medida el byte, lo que hace incómodo calcular el tamaño exacto de los sistemas de ficheros, para evitarlo, es conveniente utilizar este comando en combinación con el modificador `-h` para que muestre los tamaños en megabytes.
  
 ``
-vgonzalez@ubuntu:~$ df -h
-Filesystem                         Size  Used Avail Use% Mounted on
-udev                               916M     0  916M   0% /dev
-tmpfs                              192M  948K  191M   1% /run
-/dev/mapper/ubuntu--vg-ubuntu--lv   61G  5,7G   53G  10% /
-tmpfs                              960M     0  960M   0% /dev/shm
-tmpfs                              5,0M     0  5,0M   0% /run/lock
-tmpfs                              960M     0  960M   0% /sys/fs/cgroup
-/dev/sda2                          1,5G  308M  1,1G  23% /boot
-/dev/sda1                          1,1G  5,3M  1,1G   1% /boot/efi
-tmpfs                              192M     0  192M   0% /run/user/1000
+vgonzalez@SERVER2:~$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            916M     0  916M   0% /dev
+tmpfs           192M  996K  191M   1% /run
+/dev/sda2       124G  4.5G  113G   4% /
+tmpfs           960M     0  960M   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           960M     0  960M   0% /sys/fs/cgroup
+/dev/loop0       69M   69M     0 100% /snap/lxd/14804
+/dev/loop1       28M   28M     0 100% /snap/snapd/7264
+/dev/loop2       55M   55M     0 100% /snap/core18/1705
+/dev/sda1       1.1G  5.3M  1.1G   1% /boot/efi
+tmpfs           192M     0  192M   0% /run/user/1000
 ``
-
-TODO: Revisar valores y hacer captura de un sistema sin LVM
 
 Como se puede apreciar en la salida, se muestran todos los sistemas de ficheros, incluidos algunos sistemas de ficheros especiales de Linux. En nuestro caso nos interesan los que corresponden a las unidades de almacenamiento, es decir, las que están debajo del directorio `/dev`.
 
-Como se puede ver en la imagen, el sistema de ficheros está ocupado en un 23% (`/dev/sda2`), conteniendo 8GB de datos de un total de 20GB disponibles. Sin embargo, la capacidad de almacenamiento no es lo único en lo que hay que fijarse en el sistema de ficheros ya que es posible que tengamos espacio libre y no podamos almacenar más ficheros en el disco. Esto se debe a la forma que tiene el sistema de ficheros en Linux de hacer seguimiento de los ficheros que hay en el disco, que es mediante los denominados **inodos**. Un inodo es una estructura de datos que almacena toda la metainformación del fichero, así como los datos necesarios para acceder al contenido de este. El número de inodos es fijo en el sistema de ficheros, ya que se crean al formatear el disco, y por tanto no es posible tener más ficheros que inodos. Normalmente es muy difícil ocupar todos los inodos dado que su número es muy alto, pero es un factor a tener en cuenta en sistemas donde tengamos muchísimos ficheros pequeños.
+Como se puede ver en la imagen, el sistema de ficheros está ocupado en un 4% (`/dev/sda2`), conteniendo 4.5GB de datos de un total de 124GB disponibles. Sin embargo, la capacidad de almacenamiento no es lo único en lo que hay que fijarse en el sistema de ficheros ya que es posible que tengamos espacio libre y no podamos almacenar más ficheros en el disco. Esto se debe a la forma que tiene el sistema de ficheros en Linux de hacer seguimiento de los ficheros que hay en el disco, que es mediante los denominados **inodos**. Un inodo es una estructura de datos que almacena toda la metainformación del fichero, así como los datos necesarios para acceder al contenido de este. El número de inodos es fijo en el sistema de ficheros, ya que se crean al formatear el disco, y por tanto no es posible tener más ficheros que inodos. Normalmente es muy difícil ocupar todos los inodos dado que su número es muy alto, pero es un factor a tener en cuenta en sistemas donde tengamos muchísimos ficheros pequeños.
 
 Para ver el número de inodos ocupados podemos utilizar el modificador `-i` del comando `df`.
  
 ```
-vgonzalez@ubuntu:~$ df -i
-Filesystem                         Inodes  IUsed   IFree IUse% Mounted on
-udev                               234267    436  233831    1% /dev
-tmpfs                              245512    659  244853    1% /run
-/dev/mapper/ubuntu--vg-ubuntu--lv 4079616 154594 3925022    4% /
-tmpfs                              245512      4  245508    1% /dev/shm
-tmpfs                              245512      3  245509    1% /run/lock
-tmpfs                              245512     18  245494    1% /sys/fs/cgroup
-/dev/sda2                           98304    312   97992    1% /boot
-/dev/sda1                               0      0       0     - /boot/efi
-tmpfs                              245512     22  245490    1% /run/user/1000
+vgonzalez@SERVER2:~$ df -i
+Filesystem      Inodes IUsed   IFree IUse% Mounted on
+udev            234299   410  233889    1% /dev
+tmpfs           245543   604  244939    1% /run
+/dev/sda2      8257536 81252 8176284    1% /
+tmpfs           245543     4  245539    1% /dev/shm
+tmpfs           245543     3  245540    1% /run/lock
+tmpfs           245543    18  245525    1% /sys/fs/cgroup
+/dev/loop0        1465  1465       0  100% /snap/lxd/14804
+/dev/loop1         459   459       0  100% /snap/snapd/7264
+/dev/loop2       10765 10765       0  100% /snap/core18/1705
+/dev/sda1            0     0       0     - /boot/efi
+tmpfs           245543    22  245521    1% /run/user/1000
 ```
 
 Si queremos saber el espacio ocupado por cada directorio tenemos el comando `du`. Es recomendable utilizarlo con los modificadores `-hsc`. Asimismo, se le pasan como parámetro los directorios de los que queremos extraer la información.
@@ -77,7 +79,7 @@ vgonzalez@ubuntu:~$ du -hc *
 6,8M    total
 ```
 
-Alternativamente, podemos utilizar la herramienta ncdu que nos mostrará el espacio ocupado en los discos mediante una aplicación interactiva
+Alternativamente, podemos utilizar la herramienta `ncdu` que nos mostrará el espacio ocupado en los discos mediante una aplicación interactiva
  
 ```
 ncdu 1.14.1 ~ Use the arrow keys to navigate, press ? for help
@@ -104,7 +106,7 @@ ncdu 1.14.1 ~ Use the arrow keys to navigate, press ? for help
 
 ## 4.3.- Particionamiento con `fdisk`
 
-Si queremos crear particiones en un disco duro tenemos a nuestra disposición un gran número de herramientas en cualquier sistema operativo. Por ejemplo, *GParted* en Linux, el *Administrador de Discos en Windows* o alguna de las múltiples herramientas comerciales disponibles como Partition Magic. Sin embargo, hay ocasiones, sobre todo cuando estamos trabajando con servidores, en las que no disponemos de una interfaz gráfica por lo que debemos acudir a una herramienta en línea de comandos.
+Si queremos crear particiones en un disco duro tenemos a nuestra disposición un gran número de herramientas en cualquier sistema operativo. Por ejemplo, *GParted* en Linux, el *Administrador de Discos en Windows* o alguna de las múltiples herramientas comerciales disponibles como *Partition Magic*. Sin embargo, hay ocasiones, sobre todo cuando estamos trabajando con servidores, en las que no disponemos de una interfaz gráfica por lo que debemos acudir a una herramienta en línea de comandos.
 
 Para ello disponemos en entornos Linux de `fdisk`, una aplicación en línea de comandos con la que podremos obtener toda la información que necesitemos respecto a la organización lógica del disco duro, así como crear, eliminar, modificar y formatear particiones en los discos.
 
@@ -133,11 +135,23 @@ Options:
 Lo primero que tenemos que hacer cuando vamos a trabajar con un disco duro es ejecutar el comando con el parámetro `–l`. Este parámetro hará que se nos muestre un listado de todos los discos que tenemos en el sistema, así como las particiones que hay en cada uno de los discos.
  
 ```
-vgonzalez@ubuntu:~$ sudo fdisk -l
-Disk /dev/loop0: 61,92 MiB, 64901120 bytes, 126760 sectors
+vgonzalez@SERVER2:~$ sudo fdisk -l
+Disk /dev/loop0: 68.99 MiB, 72318976 bytes, 141248 sectors
 Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+Disk /dev/loop1: 27.9 MiB, 28405760 bytes, 55480 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop2: 54.97 MiB, 57614336 bytes, 112528 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
 
 Disk /dev/sda: 127 GiB, 136365211648 bytes, 266338304 sectors
 Disk model: Virtual Disk
@@ -145,14 +159,15 @@ Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 4096 bytes
 I/O size (minimum/optimal): 4096 bytes / 4096 bytes
 Disklabel type: gpt
-Disk identifier: CDCE0FC9-5443-4168-B75E-6DB710C9179F
+Disk identifier: 147DB9EF-F508-4ACA-8F25-1E00D2C93112
 
-Device       Start       End   Sectors   Size Type
-/dev/sda1     2048   2203647   2201600   1,1G EFI System
-/dev/sda2  2203648   5349375   3145728   1,5G Linux filesystem
-/dev/sda3  5349376 266336255 260986880 124,5G Linux filesystem
+Device       Start       End   Sectors  Size Type
+/dev/sda1     2048   2203647   2201600  1.1G EFI System
+/dev/sda2  2203648 266336255 264132608  126G Linux filesystem
 
-Disk /dev/mapper/ubuntu--vg-ubuntu--lv: 62,23 GiB, 66811068416 bytes, 130490368 sectors
+
+Disk /dev/sdb: 30 GiB, 32212254720 bytes, 62914560 sectors
+Disk model: Virtual Disk
 Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 4096 bytes
 I/O size (minimum/optimal): 4096 bytes / 4096 bytes
@@ -162,7 +177,14 @@ Si se quiere obtener información de un único disco habría que indicar como pa
 
 Así por ejemplo para mostrar información únicamente del segundo disco del equipo debemos ejecutar el comando:
 
-TODO: Captura
+```
+vgonzalez@SERVER2:~$ sudo fdisk -l /dev/sdb
+Disk /dev/sdb: 30 GiB, 32212254720 bytes, 62914560 sectors
+Disk model: Virtual Disk
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+```
 
 De la información proporcionada la más reseñable es la siguiente:
 - **Tamaño del disco**, indicada en GB, bytes y sectores.
@@ -179,7 +201,18 @@ De la información proporcionada la más reseñable es la siguiente:
 
 Una vez que hemos decidido el disco duro sobre el que queremos trabajar tenemos que ejecutar el comando **fdisk** pasándole como parámetro el identificador del disco. Esto lanzará el programa interactivo que se quedará esperando nuestras órdenes.
  
-TODO: Código
+```
+vgonzalez@SERVER2:~$ sudo fdisk /dev/sdb
+
+Welcome to fdisk (util-linux 2.34).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier 0x3921f320.
+
+Command (m for help):
+```
 
 La captura anterior corresponde a un disco que está sin inicializar por lo que nos indica que no dispone de tabla de particiones. 
 
@@ -232,7 +265,13 @@ Para crear una nueva partición debemos utilizar la orden `n`. Al hacerlo nos pe
 
 En la siguiente captura no nos muestra la opción de crear lógicas porque aún no tenemos creada la partición extendida. Si ya la hubiéramos creado entonces nos permitiría elegir entre primarias y lógicas.
 
-TODO: Captura
+```
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p):
+```
  
 Para crear una partición primaria pulsamos la tecla `p`, tras lo que nos pedirá el número de partición, es decir, en qué entrada de la tabla de particiones de almacenará dicha partición. Lo siguiente que nos pide es la dirección del primer sector de la partición. Si queremos que la partición se ubique en el primer espacio libre del disco simplemente pulsamos la tecla `Enter`.
 
@@ -247,12 +286,29 @@ Por ejemplo, el valor +500M crearía una partición de 500 MB.
 
 Una vez hecho esto ya tendríamos creada nuestra partición.
 
-TODO: Captura
+```
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): p
+Partition number (1-4, default 1): 1
+First sector (2048-62914559, default 2048):
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-62914559, default 62914559): +100M
+
+Created a new partition 1 of type 'Linux' and of size 100 MiB.
+```
 
 Hay que tener en cuenta que, al igual que pasa con los programas en entorno gráfico como *GParted*, no se escriben los cambios en el disco hasta apliquemos los cambios.
 
 Para aplicar los cambios en `fdisk` debemos utilizar la orden `w` que escribirá todos los cambios a la tabla de particiones y saldrá del programa.
- 
+
+```
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+```
 
 #### 4.3.2.2.- Borrado de una partición
 
@@ -266,11 +322,32 @@ La orden `p` imprimirá la tabla de particiones del disco de forma análoga a co
 
 Si queremos información más detallada sobre una única partición entonces debemos utilizar la orden `i`. 
  
-TODO: Captura
+```
+Command (m for help): i
+Selected partition 1
+         Device: /dev/sdb1
+          Start: 2048
+            End: 206847
+        Sectors: 204800
+      Cylinders: 49
+           Size: 100M
+             Id: 83
+           Type: Linux
+    Start-C/H/S: 0/32/33
+      End-C/H/S: 12/223/19
+```
 
 Para ver el espacio libre que aún nos queda sin particionar tenemos que usar la orden `F` que nos indica la ubicación y tamaño del espacio sin particionar.
  
- TODO: Captura
+```
+Command (m for help): F
+Unpartitioned space /dev/sdb: 29.92 GiB, 32106348544 bytes, 62707712 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+
+ Start      End  Sectors  Size
+206848 62914559 62707712 29.9G
+```
 
 
 ### 4.3.3.- Formatear y montar particiones
@@ -286,13 +363,37 @@ Como se comentó formatear una partición consiste en asignarle un sistema de fi
 Hay múltiples sistemas de ficheros, pero los más comunes son **ext3** y **ext4** para Linux y FAT y NTFS para Windows.
 Los comandos para formatear en ext3 y ext4 son `mkfs.ext3` y `mkfs.ext4` respectivamente y su sintaxis es muy sencilla. Únicamente debemos indicar la partición que queremos formatear y ya está. 
 
-TODO: Captura
+```
+vgonzalez@SERVER2:~$ sudo fdisk -l /dev/sdb
+Disk /dev/sdb: 30 GiB, 32212254720 bytes, 62914560 sectors
+Disk model: Virtual Disk
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: dos
+Disk identifier: 0x3921f320
+
+Device     Boot Start    End Sectors  Size Id Type
+/dev/sdb1        2048 206847  204800  100M 83 Linux
+vgonzalez@SERVER2:~$ sudo mkfs.ext4 /dev/sdb1
+mke2fs 1.45.5 (07-Jan-2020)
+Discarding device blocks: done
+Creating filesystem with 25600 4k blocks and 25600 inodes
+
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (1024 blocks): done
+Writing superblocks and filesystem accounting information: done
+```
 
 Si quisiéramos formatear la partición en FAT porque queremos que sea accesible desde Windows necesitamos comprobar que esté instalado el paquete `dosfstools` e instalarlo en caso de que no estuviera.
 
 La orden para formatear en FAT será:
 
-TODO: Captura
+```
+vgonzalez@SERVER2:~$ sudo mkfs.vfat -F 32 -n DATOS /dev/sdb1
+mkfs.fat 4.1 (2017-01-24)
+```
 
 El parámetro `–F` sirve para indicar el tamaño de la FAT, en este caso estamos asignando el formato FAT32. El parámetro `–n` sirve para indicar la etiqueta del disco. Para evitar problemas es conveniente que esta etiqueta esté en mayúsculas.
 
@@ -307,7 +408,18 @@ La mayoría de las actuales distribuciones Linux montan automáticamente algunas
 
 El comando utilizado para montar dispositivos es el comando `mount`. Por defecto `mount` muestra una lista de los dispositivos actualmente montados en el sistema.
 
-TODO: Captura
+```
+vgonzalez@SERVER2:~$ mount
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+udev on /dev type devtmpfs (rw,nosuid,noexec,relatime,size=937188k,nr_inodes=234297,mode=755)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,noexec,relatime,size=196436k,mode=755)
+/dev/sda2 on / type ext4 (rw,relatime)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)
+tmpfs on /run/lock type tmpfs (rw,nosuid,nodev,noexec,relatime,size=5120k)
+```
 
 La información que proporciona el comando `mount` es:
 
@@ -317,7 +429,11 @@ La información que proporciona el comando `mount` es:
 - El estado de acceso del dispositivo montado
 
 Por ejemplo, la sexta entrada hace referencia a una partición del disco duro (sda1). El fichero que representa al dispositivo es `/dev/sda1` y está montado en el directorio raíz (`/`). El tipo del sistema de ficheros es ext4. Al final de la línea se muestra otra información del dispositivo como por ejemplo que es de lectura y escritura (rw, read and write).
- 
+
+```
+/dev/sda1 on /boot/efi type ext4 (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro)
+```
+
 Para montar un dispositivo manualmente primero debes tener privilegios de administrador. La sintaxis del comando `mount` es:
 
 ```
@@ -350,7 +466,10 @@ La última opción (`-o`) permite indicar una serie de opciones adicionales sepa
   
 La última opción nos permite montar un fichero que sea una imagen de un dispositivo, por ejemplo, un fichero **ISO**, tal y como se puede ver en la siguiente imagen.
 
-TODO: Captura
+```
+vgonzalez@ubuntu:~$ sudo mount -t iso9660 -o loop slacko-6.3.0.iso /mnt
+mount: /mnt: /home/vgonzalez/Descargas/slacko-6.3.0.iso ya está montado
+```
 
 Una vez que hemos acabado de utilizar el dispositivo podemos desmontarlo con la orden `umount`. Este comando admite como parámetro o bien la ruta del dispositivo o bien el directorio donde está montado.
 
@@ -381,8 +500,12 @@ vgonzalez@ubuntu:~$ cat /etc/fstab
 
 Todas las líneas que comienzan con el carácter almohadilla son comentarios. Si obviamos los comentarios podremos ver que hay tres líneas que corresponden a las tres particiones creadas durante la instalación del sistema. El siguiente fragmento corresponde a la partición identificada como `/dev/sda5` durante el arranque.
 
-TODO: Captura
+```
+# <file system> <mount point>    <type> <options>         <dump>   <pass>
+# /was on /dev/sda5 during installation
+UUID=1b6887d4-65ab-4796-887b-0e47e4b7939c  /              ext4      errors=remount-ro 0       1
 
+```
 En ella podemos apreciar los siguientes campos, separados por espacios o tabuladores:
 
 `<file system>`
@@ -428,9 +551,11 @@ Una vez que hemos configurado el fichero `fstab` ya podremos montar automáticam
 
 Si queremos montar dispositivos con la opción `noauto` deberemos hacerlo explícitamente, ejecutando el comando `mount` y pasando como parámetro el punto de montaje.
 
-4.4.- CONFIGURAR VOLÚMENES LVM
 
-4.5.- CONFIGURAR VOLÚMENES RAID 
+***
+[Volver al índice principal](index_UT11.md)
+
+
 
 
 

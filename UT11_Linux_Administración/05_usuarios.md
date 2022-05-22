@@ -139,7 +139,20 @@ La información relativa a los grupos de usuarios se almacena en el fichero `/et
 
 El comando para añadir un nuevo grupo al sistema es `groupadd`. Cuando se crea un grupo nuevo no se le añaden usuarios por defecto y dicho comando no permite hacer esto. Para ello debemos utilizar el comando `usermod`.
 
-TODO: Captura
+```
+vgonzalez@SERVER2:~$ sudo usermod -G miGrupo alumno
+vgonzalez@SERVER2:~$ tail /etc/group
+uuidd:x:112:
+tcpdump:x:113:
+ssh:x:114:
+landscape:x:115:
+lxd:x:116:vgonzalez
+systemd-coredump:x:999:
+vgonzalez:x:1000:
+remote:x:1001:
+alumno:x:1002:
+miGrupo:x:1003:alumno
+```
 
 El comando `usermod` también permite cambiar otra información de los grupos. El parámetro `–g` permitirá modificar el GID del grupo mientras que el parámetro `–n` permite cambiar el nombre del grupo.
 
@@ -192,9 +205,17 @@ chmod opciones modo fichero
 
 El parámetro `modo` permite establecer los permisos utilizando una **notación simbólica u octal**. La **notación octal** consiste en asignar a cada grupo de permisos un dígito octal (3 bits). Cada bit de ese dígito corresponderá a cada uno de los permisos diferentes disponibles. Por ejemplo, el permiso de lectura y escritura (`rw-`) correspondería con la secuencia de bits 110, cuyo valor en octal es el dígito 6.
 
-TODO: Captura
+```
+vgonzalez@SERVER2:~$ ls -l
+total 0
+-rw-rw-r-- 1 vgonzalez vgonzalez 0 May 22 06:29 fichero
+vgonzalez@SERVER2:~$ chmod 760 fichero
+vgonzalez@SERVER2:~$ ls -l
+total 0
+-rwxrw---- 1 vgonzalez vgonzalez 0 May 22 06:29 fichero
+```
 
-Si queremos utilizar la habitual secuencia de caracteres (rwx), el comando `chmod` toma una aproximación diferente. El formato para especificar un permiso en el modo simbólico es:
+Si queremos utilizar la habitual secuencia de caracteres (`rwx`), el comando `chmod` toma una aproximación diferente. El formato para especificar un permiso en el modo simbólico es:
 
 ```
 	[ugoa...][+-=][rwxXstugo...]
@@ -229,11 +250,24 @@ chown opciones owner[.grupo] file
 
 Se puede especificar tanto el nombre de usuario como su UID para referenciar al usuario. Además, este comando también nos permite modificar el grupo propietario.
 
-TODO: Captura
+```
+vgonzalez@SERVER2:~$ ls -l
+total 0
+-rw-rw-r-- 1 vgonzalez vgonzalez 0 May 22 06:29 fichero
+vgonzalez@SERVER2:~$ sudo chown alumno.alumno fichero
+vgonzalez@SERVER2:~$ ls -l
+total 0
+-rw-rw-r-- 1 alumno alumno 0 May 22 06:29 fichero
+```
 
 Incluso yendo más lejos se podría modificar únicamente el grupo propietario del objeto aplicando el comando de la siguiente forma:
 
-TODO: Captura
+```
+vgonzalez@SERVER2:~$ sudo chown .vgonzalez fichero
+vgonzalez@SERVER2:~$ ls -l
+total 0
+-rw-rw-r-- 1 alumno vgonzalez 0 May 22 06:29 fichero
+```
 
 El funcionamiento del comando `chgrp` es muy similar al anterior, con la única excepción de que el valor modificado es el grupo propietario y no el usuario propietario.
 
@@ -265,7 +299,9 @@ El bit SGID se puede establecer con el comando `chmod`. Se puede añadir antepon
  
 Así, para crear un directorio compartido que mantenga la propiedad de los ficheros creados dentro de él para el grupo propietario del directorio podríamos hacer lo siguiente:
  
- TODO: Captura
+ ```
+
+ ```
 
 
  
