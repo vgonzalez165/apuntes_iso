@@ -16,7 +16,7 @@
 
 ### Prácticas
 
-- [PR1101: Configuración de la red](11_pr11.md)
+- [PR1101: Configuración de la red](11_pr1101.md)
 - PR1102: Conexión SSH
 - PR1103: Permisos en Linux
 
