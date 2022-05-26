@@ -17,8 +17,8 @@
 ### Prácticas
 
 - [PR1101: Configuración de la red](11_pr1101.md)
-- PR1102: Conexión SSH
-- PR1103: Permisos en Linux
+- [PR1102: Permisos en Linux](12_pr1102.md)
+- PR1103: Conexión SSH
 
 
 ### Proyecto 3ª evaluación
