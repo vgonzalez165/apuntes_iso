@@ -27,7 +27,28 @@ En este servidor vamos a añadir un segundo disco duro de 50 gigas, teniendo en 
 - Contendrá un subdirectorio para cada uno de los usuarios que has creado y en el cual el usuario correspondiente podrá leer y escribir.
 - Además, habrá otro subdirectorio llamado `general` en el que todos los usuarios que has creado tendrán permisos de lectura y escritura.
 
-## 4. Conexión SSH (2 puntos)
+
+## 4. Carpetas personales
+
+Ahora vamos a asignar a cada uno de los usuarios una carpeta de almacenamiento fuera de su directorio personal. Para ello tienes que añadir otros disco duro más a la máquina virtual con una capacidad de 500GB. En este disco:
+
+- Crea un directorio llamado `datos`
+- Dentro de ese directorio crea un subdirectorio para cada uno de los usuarios.
+- Asigna permisos a esos subdirectorios para que solo el usuario correspondiente pueda acceder a cada uno.
+- Crea un **enlace simbólico** en el directorio personal de cada usuario que le lleve a su directorio personal. Puedes crear un enlace simbólico con la orden `ln -s /mnt/datos datos`
 
 
-## 5. 
+## 5. Conexión SSH (2 puntos)
+
+Configura la conexión SSH para todos los usuarios que has creado. Para ello necesitarás que tus compañeros te faciliten sus claves de forma que puedas configurar la conexión transparente sin contraseña. Aunque no es algo que se haría en la vida real, será necesario que también te faciliten la clave privada para que puedas comprobar que funciona.
+
+Aunque puedes intercambiar las claves de la forma que quieras, una buena opción sería que uno cree un repositorio en Github al que pertenezcáis todos y que luego cada uno añada sus claves.
+
+
+# Criterios de calificación
+
+Se ha configurado correctamente la red
+El servidor enruta los paquetes de los clientes
+Los clientes tienen resolución de nombres
+Se han creado las cuentas de usuario
+Se ha creado el grupo y añadido los usuarios
