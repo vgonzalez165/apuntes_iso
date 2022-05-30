@@ -31,7 +31,7 @@ Aunque durante el proceso de instalación de Linux se configuran todo el almacen
 
 El comando para monitorizar el espacio que tenemos libre en Linux es `df`, que muestra todos los sistemas de ficheros con información sobre los mismos. Por defecto utiliza como unidad de medida el byte, lo que hace incómodo calcular el tamaño exacto de los sistemas de ficheros, para evitarlo, es conveniente utilizar este comando en combinación con el modificador `-h` para que muestre los tamaños en megabytes.
  
-``
+```
 vgonzalez@SERVER2:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 udev            916M     0  916M   0% /dev
@@ -45,7 +45,7 @@ tmpfs           960M     0  960M   0% /sys/fs/cgroup
 /dev/loop2       55M   55M     0 100% /snap/core18/1705
 /dev/sda1       1.1G  5.3M  1.1G   1% /boot/efi
 tmpfs           192M     0  192M   0% /run/user/1000
-``
+```
 
 Como se puede apreciar en la salida, se muestran todos los sistemas de ficheros, incluidos algunos sistemas de ficheros especiales de Linux. En nuestro caso nos interesan los que corresponden a las unidades de almacenamiento, es decir, las que están debajo del directorio `/dev`.
 
