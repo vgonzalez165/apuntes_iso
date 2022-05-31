@@ -24,16 +24,17 @@ Vamos a suponer que este servidor va a ser utilizado por todos tus compañeros d
 En este servidor vamos a añadir un segundo disco duro de 50 gigas, teniendo en cuenta lo siguiente:
 
 - El disco estará formateado en `ext4` y se montará de forma permanente en la carpeta `/iso`.
-- Contendrá un subdirectorio para cada uno de los usuarios que has creado y en el cual el usuario correspondiente podrá leer y escribir.
-- Además, habrá otro subdirectorio llamado `general` en el que todos los usuarios que has creado tendrán permisos de lectura y escritura.
+- Esta carpeta será accesible para todos los usuarios que has creado con permisos de lectura y escritura. Estos mismos permisos también los tendrá el usuario `root`.
+- Ningún otro usuario del sistema tendrá acceso a la carpeta.
 
 
 ## 4. Carpetas personales
 
 Ahora vamos a asignar a cada uno de los usuarios una carpeta de almacenamiento fuera de su directorio personal. Para ello tienes que añadir otros disco duro más a la máquina virtual con una capacidad de 500GB. En este disco:
 
-- Crea un directorio llamado `datos`
-- Dentro de ese directorio crea un subdirectorio para cada uno de los usuarios.
+- Crea una partición que ocupe todo el disco y aplica formato `ext4`.
+- Monta permanentemente el disco en el directorio `/datos`
+- Dentro de `/datos` crea un subdirectorio para cada uno de los usuarios.
 - Asigna permisos a esos subdirectorios para que solo el usuario correspondiente pueda acceder a cada uno.
 - Crea un **enlace simbólico** en el directorio personal de cada usuario que le lleve a su directorio personal. Puedes crear un enlace simbólico con la orden `ln -s /mnt/datos datos`
 
@@ -47,8 +48,19 @@ Aunque puedes intercambiar las claves de la forma que quieras, una buena opción
 
 # Criterios de calificación
 
-Se ha configurado correctamente la red
-El servidor enruta los paquetes de los clientes
-Los clientes tienen resolución de nombres
-Se han creado las cuentas de usuario
-Se ha creado el grupo y añadido los usuarios
+El proyecto se corregirá directamente sobre el equipo del alumno, en concreto sobre las máquinas virtuales correspondientes al servidor y un cliente. Solo se valorarán los criterios conseguidos en su totalidad, los criterios no conseguidos o con una consecución parcial tendrán una valoración de 0 puntos.
+
+| Criterio                                                                                      | Valor | Obtenido | Nota |
+| --------------------------------------------------------------------------------------------- | ----- | -------- | ---- |
+| Se ha configurado correctamente la red                                                        |  1.0  |          |      |
+| El servidor enruta los paquetes de los clientes                                               |  1.0  |          |      |
+| Los clientes tienen resolución de nombres                                                     |  0.5  |          |      |
+| Se han creado las cuentas de usuario                                                          |  0.5  |          |      |
+| Se ha creado el grupo y añadido los usuarios                                                  |  0.5  |          |      |
+| Se ha montado el disco de 50GB en la carpeta `/iso` mediante el fichero `fstab`               |  0.5  |          |      |
+| Únicamente los usuarios creados y `root` tienen permisos de lectura escritura sobre `/iso`    |  1.5  |          |      |
+| Se ha preparado y montado el segundo disco en `/datos`                                        |  0.5  |          |      |
+| Se han creado los subdirectorios de `/datos` con los permisos correctos                       |  1.5  |          |      |
+| Se han creado los enlaces simbólicos a las carpetas personales de los usuarios                |  0.5  |          |      |
+| Se ha configurado la conexión SSH mediante el par de claves pública-privada a los usuarios    |  2.0  |          |      |
+

@@ -530,11 +530,11 @@ Aquí se indican las opciones de montaje del dispositivo, indicadas como una lis
 
 Para añadir otros dispositivos que no sean el directorio raíz, se suele utilizar la opción `defaults`, que engloba las siguientes opciones:
 
-    - `rw`: el sistema será de lectura y escritura.
-    - `exec`: permite que los archivos de este sistema de ficheros se puedan ejecutar.
-    - `auto`: monta automáticamente el dispositivo en el arranque. La opción opuesta sería noauto, que indica que el dispositivo no se debe montar automáticamente en el arranque.
-    - `nouser`: solo el usuario root puede montar este sistema de ficheros. Si queremos que cualquier usuario pueda montar el sistema de ficheros podemos usar la opción user.
-    - `async`: la salida al dispositivo debe ser asíncrona.
+- `rw`: el sistema será de lectura y escritura.
+- `exec`: permite que los archivos de este sistema de ficheros se puedan ejecutar.
+- `auto`: monta automáticamente el dispositivo en el arranque. La opción opuesta sería noauto, que indica que el dispositivo no se debe montar automáticamente en el arranque.
+- `nouser`: solo el usuario root puede montar este sistema de ficheros. Si queremos que cualquier usuario pueda montar el sistema de ficheros podemos usar la opción user.
+- `async`: la salida al dispositivo debe ser asíncrona.
 
 Sin embargo, estas opciones se pueden adaptar según nuestras necesidades. Por ejemplo, si los usuarios no necesitan cambiar el contenido de los archivos es preferible montar el dispositivo como de sólo lectura con la opción `ro`. De esta forma podríamos evitar el borrado accidental de los datos por parte de estos. O si por ejemplo tenemos una partición destinada a contener copias de seguridad podríamos utilizar la opción `noexec` para impedir que un usuario malintencionado pueda lanzar un script desde dicha unidad.
 
