@@ -31,7 +31,7 @@ Aunque durante el proceso de instalación de Linux se configuran todo el almacen
 
 El comando para monitorizar el espacio que tenemos libre en Linux es `df`, que muestra todos los sistemas de ficheros con información sobre los mismos. Por defecto utiliza como unidad de medida el byte, lo que hace incómodo calcular el tamaño exacto de los sistemas de ficheros, para evitarlo, es conveniente utilizar este comando en combinación con el modificador `-h` para que muestre los tamaños en megabytes.
  
-``
+```
 vgonzalez@SERVER2:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 udev            916M     0  916M   0% /dev
@@ -45,7 +45,7 @@ tmpfs           960M     0  960M   0% /sys/fs/cgroup
 /dev/loop2       55M   55M     0 100% /snap/core18/1705
 /dev/sda1       1.1G  5.3M  1.1G   1% /boot/efi
 tmpfs           192M     0  192M   0% /run/user/1000
-``
+```
 
 Como se puede apreciar en la salida, se muestran todos los sistemas de ficheros, incluidos algunos sistemas de ficheros especiales de Linux. En nuestro caso nos interesan los que corresponden a las unidades de almacenamiento, es decir, las que están debajo del directorio `/dev`.
 
@@ -508,7 +508,7 @@ UUID=1b6887d4-65ab-4796-887b-0e47e4b7939c  /              ext4      errors=remou
 ```
 En ella podemos apreciar los siguientes campos, separados por espacios o tabuladores:
 
-`<file system>`
+**`<file system>`**
 
 El primer campo es el identificador del dispositivo. Es reseñable ver que el dispositivo está identificado por el **Identificador Único Universal (UUID)** en lugar de la representación habitual de la forma `/dev/sda5`. En realidad, también sería válido identificar los discos de esta forma, pero tiene un inconveniente, y es que está condicionada por la ubicación física del hardware. 
 
@@ -516,36 +516,35 @@ Supongamos que este disco duro está ubicado en el conector SATA3 de la placa ba
 
 Para evitar este problema es aconsejable utilizar el **UUID**, que es un valor numérico que identifica de forma inequívoca cada disco y partición. Si queremos saber el UUID de nuestros dispositivos de almacenamiento podemos utilizar el comando `blkid`.
  
-<mount point>
+**`<mount point>`**
 
 En este campo se indica el directorio en el que se montará el dispositivo. Por supuesto, este directorio deberá existir.
 
-<type>
+**`<type>`**
 
 En el siguiente campo se indica el sistema de ficheros con el que hemos formateado la partición, habitualmente ext4.
 
-<options>
+**`<options>`**
 
 Aquí se indican las opciones de montaje del dispositivo, indicadas como una lista separada por comas. Por defecto, el directorio raíz se monta con las opciones `errors=remount-ro`, que indica que si ocurre algún error el sistema se debe remontar como sistema de solo lectura.
 
 Para añadir otros dispositivos que no sean el directorio raíz, se suele utilizar la opción `defaults`, que engloba las siguientes opciones:
 
-    - `rw`: el sistema será de lectura y escritura.
-    - `exec`: permite que los archivos de este sistema de ficheros se puedan ejecutar.
-    - `auto`: monta automáticamente el dispositivo en el arranque. La opción opuesta sería noauto, que indica que el dispositivo no se debe montar automáticamente en el arranque.
-    - `nouser`: solo el usuario root puede montar este sistema de ficheros. Si queremos que cualquier usuario pueda montar el sistema de ficheros podemos usar la opción user.
-    - `async`: la salida al dispositivo debe ser asíncrona.
+- `rw`: el sistema será de lectura y escritura.
+- `exec`: permite que los archivos de este sistema de ficheros se puedan ejecutar.
+- `auto`: monta automáticamente el dispositivo en el arranque. La opción opuesta sería noauto, que indica que el dispositivo no se debe montar automáticamente en el arranque.
+- `nouser`: solo el usuario root puede montar este sistema de ficheros. Si queremos que cualquier usuario pueda montar el sistema de ficheros podemos usar la opción user.
+- `async`: la salida al dispositivo debe ser asíncrona.
 
 Sin embargo, estas opciones se pueden adaptar según nuestras necesidades. Por ejemplo, si los usuarios no necesitan cambiar el contenido de los archivos es preferible montar el dispositivo como de sólo lectura con la opción `ro`. De esta forma podríamos evitar el borrado accidental de los datos por parte de estos. O si por ejemplo tenemos una partición destinada a contener copias de seguridad podríamos utilizar la opción `noexec` para impedir que un usuario malintencionado pueda lanzar un script desde dicha unidad.
 
-<dump>
+**`<dump>`**
 
 Este campo puede tener el valor 0 o 1 siendo lo más frecuente el primero. Antiguamente se utilizaba para indicar a las aplicaciones de copia de seguridad si había que realizar copia de seguridad de esta partición (valor 1) o no (valor 0). Pero en la actualidad no es utilizado por lo que siempre dejaremos el valor 0.
 
-<pass>
+**`<pass>`**
 
 Este campo puede contener los valores 0, 1, o 2 y hace referencia al orden en que se comprobarán los sistemas de ficheros cuando utilicemos el comando `fsck`. El valor 0 indica que el sistema de fichero no se comprobará, los que tienen el valor 1 se comprobarán los primeros y el valor 2 indica que son los ficheros que menos prioridad tienen. Por regla general, se pondrá el valor 1 para el sistema de ficheros principal y 2 para el resto.
-
 
 Una vez que hemos configurado el fichero `fstab` ya podremos montar automáticamente los dispositivos. Esto realizará durante el inicio del sistema o también podemos forzarlo utilizando el comando mount `-a`, el cual montará todos los dispositivos que hayamos marcado con la opción `auto`.
 
