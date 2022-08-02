@@ -23,9 +23,9 @@ Adicionalmente, hay otro enfoque diferente en la virtualización que no se podr�
 
 ## 3.1.- Hipervisores de tipo 1
 
-También se denominan **unhosted**, **nativos** o **bare metal**. Este tipo de hipervisores no se instalan sobre ningún sistema operativo, sino que se ejecutan directamente sobre el hardware. En realidad, lo normal es que el propio hipervisor incluya su propio sistema operativo, el cual únicamente incluye las funciones estrictamente necesarias para ejecutar el hipervisor. Por ejemplo, VMWare ESXi incluye se propio kernel, llamado VMkernel, y algunas aplicaciones básicas de Linux (como un servidor `ssh` o un intérprete bash)
+También se denominan **unhosted**, **nativos** o **bare metal**. Este tipo de hipervisores no se instalan sobre ningún sistema operativo, sino que se ejecutan directamente sobre el hardware. En realidad, lo normal es que el propio hipervisor incluya su propio sistema operativo, el cual únicamente incluye las funciones estrictamente necesarias para ejecutar el hipervisor. Por ejemplo, **VMWare ESXi** incluye su propio kernel, llamado VMkernel, y algunas aplicaciones básicas de Linux (como un servidor `ssh` o un intérprete bash)
 
-El que estos hipervisores estén ellos solos a la máquina, unido al hecho de que este tipo de soluciones profesionales de virtualización están orientadas a su instalación en grandes servidores que no suelen estar dotados de teclado ni de monitor, hace que si acceso y administración siempre se realice de forma remota, normalmente por SSH, RDP o a través de portales web.
+El que estos hipervisores estén ellos solos en la máquina, unido al hecho de que este tipo de soluciones profesionales de virtualización están orientadas a su instalación en grandes servidores que no suelen estar dotados de teclado ni de monitor, hace que su acceso y administración siempre se realice de forma remota, normalmente por SSH, RDP o a través de portales web.
 
 La principal **ventaja** de los hipervisores de tipo 1 es que al eliminar la capa de sistema operativo entre el hipervisor y el hardware subyacente se consigue un mejor rendimiento. Además, al eliminar el sistema operativo de base se consigue una menor superficie de ataque que redunda en una menor probabilidad de que haya agujeros de seguridad.
 
@@ -39,7 +39,7 @@ Como se ha dicho, estos hipervisores están orientados a entornos profesionales.
 
 También denominados **hosted**, se caracterizan porque son programas que se ejecutan sobre un sistema operativo. Obviamente, esto introduce un alto nivel de ineficiencia, ya que cualquier operación que realice el sistema operativo instalado en la máquina virtual deberá ser procesado primero por el hipervisor, luego por el sistema operativo de base, para finalmente llegar al hardware.
 
-Como son aplicaciones normales, su interfaz con el usuario es como el de una aplicación normal, siendo accesible desde el entorno de ventanas de Windows o del sistema operativo en el que esté instalado el hipervisor.
+Como son aplicaciones normales, su interfaz con el usuario suele ser a través de una aplicación de escritorio, siendo accesible desde el entorno de ventanas de Windows o del sistema operativo en el que esté instalado el hipervisor.
 
 La mayor **ventaja** de los hipervisores de tipo 2 es que tienen una funcionalidad bastante limitada que se traduce en una fácil administración. Esto hace que sean útiles para la realización de pruebas a nivel personal o en entornos académicos, en los que prima la facilidad de manejo frente a la capacidad de realizar un gran número de funciones.
 
@@ -52,7 +52,7 @@ Algunos de los hipervisores de tipo 2 más utilizados son:
 
 ## 3.3.- Contenedores
 
-Este tipo de virtualización difiere de los tipos anteriores, siendo incluso discutible el que se trate de virtualización. Los contenedores también se denominan **virtualización del sistema operativo**. Mientras que los hipervisores que hemos visto buscan reproducir una máquina hardware mediante software, los contenedores únicamente virtualizan o duplican el kernel del sistema operativo y las librerías necesarias para realizar una determinada tarea.
+Este tipo de virtualización difiere de los tipos anteriores. Los contenedores también se denominan **virtualización del sistema operativo**. Mientras que los hipervisores que hemos visto buscan reproducir una máquina hardware mediante software, los contenedores únicamente virtualizan o duplican el **kernel** del sistema operativo y las librerías necesarias para realizar una determinada tarea.
 
 Los contenedores no contienen sistemas operativos como las máquinas virtuales, sino que por norma general contienen servicios. Es decir, únicamente la parte del sistema que necesita para lanzar un servicios determinado (por ejemplo, un servidor Web), la cual se ejecuta en un entorno aislado a disposición únicamente de los servicios que ejecuta.
 

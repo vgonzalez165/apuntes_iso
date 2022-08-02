@@ -25,7 +25,7 @@ La edición de Windows instalada se puede ver en *Panel de Control -> Sistema*, 
 
 La que interesa en este caso es [**CoreInfo**](https://docs.microsoft.com/en-us/sysinternals/downloads/coreinfo), que extrae información sobre las características del microprocesador. Esta herramienta debe ser ejecutada en la consola, y si lo hacemos con el parámetro `-v` mostrará únicamente las características del procesador relativas a la virtualización.
 
-```powershell
+```
 PS C:\> .\Coreinfo64.exe -v
 
 Coreinfo v3.52 - Dump information on system CPU and memory topology
