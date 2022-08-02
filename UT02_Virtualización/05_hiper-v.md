@@ -52,6 +52,8 @@ La instalación de estas características requiere del reinicio del sistema ya q
 
 ![Interfaz de Hyper-V](imgs/hyperv_interfaz.png)
 
+**NOTA**: si en tu ordenador tienes instalado Windows Home verás que no tienes disponible la característica de Hyper-V, pero aún tienes las posibilidad de añadirlo con un poco de trabajo extra modificando la imagen de Windows. Lo tienes muy claramente explicado en [esta web](https://www.jasoft.org/Blog/post/como-instalar-hyper-v-en-windows-10-home-edition) donde se explican todos los pasos que hay que realizar para poder utilizar Hyper-V con Windows Home.
+
 
 ## 5.2.- Creación de una máquina virtual
 
@@ -76,12 +78,22 @@ Y con estas opciones ya estaría creada la máquina virtual. Ahora ya se puede a
 
 ![Botones de opciones de Hyper-V](imgs/hyperv_botones.png)
 
+
 ## 5.3.- Conexión a la máquina virtual
 
-Cuando se realiza una conexión a la máquina virtual se muestra un cuadro de diálogo como el de la imagen inferior. Inpendientemente de que se pulse el botón *Conectar* o se cierre  este diálogo pulsando en la X de la esquina superior derecha la conexión a la máquina virtual se realizará, sin embargo, hay una gran diferencia en función de la acción escogida que se puede ver con más detalle cuando se pulsa en *Mostrar opciones*. Esto hará que aparezca una nueva pestaña denominada *recursos locales* y que refleja los recursos de la máquina física a los que tendrá acceso la máquina virtual como si fueran propios. Estos recursos solo serán accesibles si se accede tras pulsar el botón *Conectar*, mientras que acceder tras cerrar la ventana implica no acceder a ningún recurso físico.
+Cuando se realiza una conexión a la máquina virtual se muestra un cuadro de diálogo como el de la imagen inferior. Inpendientemente de que se pulse el botón *Conectar* o se cierre  este diálogo pulsando en la X de la esquina superior derecha la conexión a la máquina virtual se realizará, sin embargo, hay una gran diferencia en función de la acción escogida. 
 
-Por defecto, los recursos compartidos son cualquier impresora que haya conectada a la máquina física y el portapapeles, pero también se podría compartir cualquier dispositivo periférico conectado por USB, como por ejemplo una webcam, o incluso las unidades de almacenamiento de la máquina física.
+Cuando se pulsa el botón *Conectar* se inicia la conexión con el  **Modo de Sesión Mejorada** *(Enhanced Session Mode)* que proporciona unas funcionalides similares a las obtenidas cuandos nos conectamos a una máquina remota en la red mediante el *Cliente de Escritorio Remoto* pero sin necesidad de tener conexión de red. Esta conexión se realizará utilizando el protocolo **RDP (Remote Desktop Protocol)** a través del **VMBus**.
 
+Las funcionalidades proporcionadas por esta conexión son:
+
+- Configuración de la pantalla, con la posibilida de redimensionarla o mostrarla a pantalla completa.
+- Redirección del audio
+- Redirección de las impresoras
+- Portapapeles compartido entre la máquina física y la virtual
+- Redirección de dispositivos USB y unidades de almacenamiento
+
+También es posible determinar qué funcionalidades estarán habilitados si se pulsa en el botón *Mostrar opciones*.
 
 ![Conexión a la máquina virtual](imgs/hyperv_conexion.png)
 
