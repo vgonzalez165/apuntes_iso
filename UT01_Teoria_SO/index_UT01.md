@@ -8,10 +8,14 @@
 4. [Arquitectura de los sistemas operativos](04_arquitectura.md)
 5. [Clasificación de los sistemas operativos](05_clasificación.md)
 
+## Presentaciones
+
+1. [UT01: Teoría de los sistemas operativos](presentaciones/UT01_presentacion.pdf)
+
+
 ## Prácticas
 
-- PR0101: Desarrollo de un sistema operativo
-- PR0102: Comparativa de sistemas operativos
+
 
 ***
 [Volver al índice principal](../index.md)

@@ -1,8 +1,6 @@
 ![Carátula UT02](imgs/caratula_ut02.png)
 
-# UT02. VIRTUALIZACIÓN
-
-### Contenidos
+## Contenidos
 
 1. [Conceptos básicos de virtualización](01_conceptos_básicos.md)
 2. [Tipos de máquinas virtuales](02_tipos_MV.md)
@@ -10,7 +8,12 @@
 4. [Oracle VirtualBox](04_virtualbox.md)
 5. [Microsoft Hyper-V](05_hiper-v.md)
 
-### Prácticas
+
+## Presentaciones
+
+1. [UT02: Virtualización](presentaciones/UT02_presentacion.pdf)
+
+## Prácticas
 
 - PR0201: VirtualBox
 - PR0202: Hyper-V (I)
