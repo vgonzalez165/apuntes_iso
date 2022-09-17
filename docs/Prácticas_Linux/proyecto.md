@@ -1,3 +1,10 @@
+---
+layout: default
+title: Proyecto tercera evaluación
+parent: Prácticas de Linux
+nav_order: 10
+---
+
 # Proyecto EV3. Configuración de un servidor Linux
 
 El objetivo final de este proyecto será preparar un servidor Ubuntu Linux y configurarlo según las instrucciones que se indican a continuación.

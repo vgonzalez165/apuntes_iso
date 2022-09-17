@@ -1,3 +1,13 @@
+---
+layout: default
+title: Prácticas de Linux
+nav_order: 13
+has_children: true
+permalink: /docs/Prácticas_Linux
+---
+
+# Prácticas de Linux
+
 # Guía para la realización de las prácticas en la 3ª Evaluación
 
 Con objeto de ir familiarizándonos con distintas herramientas utilizadas frecuentemente, en esta tercera evaluación cambiará la forma de entregar las prácticas
@@ -35,3 +45,8 @@ El primer paso que hay que hacer es **inicializar el repositorio**, es decir, pr
 
 
 ## Github
+
+
+
+
+{: .fs-6 .fw-300 }
