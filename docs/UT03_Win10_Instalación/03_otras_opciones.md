@@ -1,19 +1,11 @@
-<link rel="stylesheet" href="../styles.css">
+---
+layout: default
+title: Panel de control. Otras opciones
+parent: UT03. Windows 10. Instalación
+nav_order: 3
+---
 
-<link rel="stylesheet" href="../styles.css">
-
-![Carátula UT03](imgs/caratula_ut03.png)
-
-## Contenidos
-
-1. [Herramientas de administración](01_herramientas_administración.md)
-2. [Panel de control. Sistema](02_sistema.md)
-3. [**Panel de control. Otras opciones**](03_otras_opciones.md)
-4. [Gestión de usuarios](04_usuarios.md)
-5. [Gestión de grupos](05_grupos.md)
-
-
-# 3.- PANEL DE CONTROL. OTRAS OPCIONES
+# 3.- Panel de control. Otras opciones
 
 ## 3.1.- Opciones de energía
 
@@ -62,8 +54,3 @@ Desde **Programas** podremos realizar las siguientes operaciones:
 - **Programas predeterminados**: Cuando el usuario hace doble click sobre un archivo para abrirlo, Windows mira la extensión de dicho archivo y selecciona un programa acorde para abrirlo con él. Por ejemplo, si pulsa un fichero con extensión `.html` lo abrirá con un navegador. En *Programas predeterminados* es donde se selecciona exactamente qué aplicación se utilizará para abrir cada archivo en función de la extensión.
 
 
-
-
-*** 
-
-[Volver al índice](index_UT03.md)

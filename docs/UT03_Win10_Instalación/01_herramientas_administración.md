@@ -1,19 +1,11 @@
-<link rel="stylesheet" href="../styles.css">
+---
+layout: default
+title: Herramientas administrativas
+parent: UT03. Windows 10. Instalación
+nav_order: 1
+---
 
-<link rel="stylesheet" href="../styles.css">
-
-![Carátula UT03](imgs/caratula_ut03.png)
-
-## Contenidos
-
-1. [**Herramientas de administración**](01_herramientas_administración.md)
-2. [Panel de control. Sistema](02_sistema.md)
-3. [Panel de control. Otras opciones](03_otras_opciones.md)
-4. [Gestión de usuarios](04_usuarios.md)
-5. [Gestión de grupos](05_grupos.md)
-
-
-# 1.- HERRAMIENTAS ADMINISTRATIVAS
+# 1.- Herramientas administrativas
 
 En versiones anteriores de Windows, prácticamente todas las opciones de configuración se encontraban en el **Panel de Control**, el cual era el punto de partida para realizar cualquier tarea administrativa que se deseara en el sistema, desde crear usuarios hasta configurar la conexión a la red. Sin embargo, en los últimos años Microsoft ha ido aligerando la funcionalidad de esta herramienta en detrimento de otras herramientas, principalmente en la denominada *Configuración*.
 
@@ -45,10 +37,4 @@ Al contrario de lo que ocurre con el *Panel de control* y *Configuración*, que 
 Para utilizar el MMC debemos invocar el comando `mmc.exe` y cargar los complementos que necesitemos desde el menú *Archivo -> Agregar o quitar complemento...*. Sin embargo, también podemos acceder a una consola de administración precargada con los complementos más habituales haciendo click derecho en *Este Equipo* y seleccionando *Administrar*. A esta consola preconfigurada Microsoft la denomina **Administrador de equipos**.
 
 ![Microsoft Management Console](imgs/mmc.png)
-
-
-
-*** 
-
-[Volver al índice](index_UT03.md)
 

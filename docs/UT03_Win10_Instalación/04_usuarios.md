@@ -1,19 +1,11 @@
-<link rel="stylesheet" href="../styles.css">
+---
+layout: default
+title: Gestión de usuarios en Windows
+parent: UT03. Windows 10. Instalación
+nav_order: 4
+---
 
-<link rel="stylesheet" href="../styles.css">
-
-![Carátula UT03](imgs/caratula_ut03.png)
-
-## Contenidos
-
-1. [Herramientas de administración](01_herramientas_administración.md)
-2. [Panel de control. Sistema](02_sistema.md)
-3. [Panel de control. Otras opciones](03_otras_opciones.md)
-4. [**Gestión de usuarios**](04_usuarios.md)
-5. [Gestión de grupos](05_grupos.md)
-
-
-# 4.- GESTIÓN DE USUARIOS EN WINDOWS
+# 4.- Gestión de usuarios en Windows
 
 Las cuentas de usuario y los grupos son un elemento muy importante en la administración de un sistema operativo, ya que a través de ellos se gestiona toda la seguridad del sistema mediante los permisos sobre el sistema de ficheros y a través de los derechos de usuario. Todo lo que un usuario puede hacer en el sistema está validado a través de sus credenciales.
 
@@ -233,8 +225,3 @@ Al abrir el registro se pueden apreciar 5 nodos principales que dan paso a las 5
 - **HKEY_CURRENT_CONFIG**: este nodo no almacena información, sino que apunta a un nodo dentro de HKEY_LOCAL_MACHINE que contiene información sobre el perfil hardware utilizado.
 - **HKEY_CURRENT_USER**: contiene la configuración del usuario que ha iniciado sesión. El contenido de este nodo es almacenado en el fichero NTUSER.DAT.
 
-
-
-*** 
-
-[Volver al índice](index_UT03.md)

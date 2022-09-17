@@ -1,19 +1,11 @@
-<link rel="stylesheet" href="../styles.css">
+---
+layout: default
+title: Panel de control. Sistema
+parent: UT03. Windows 10. Instalación
+nav_order: 2
+---
 
-<link rel="stylesheet" href="../styles.css">
-
-![Carátula UT03](imgs/caratula_ut03.png)
-
-## Contenidos
-
-1. [Herramientas de administración](01_herramientas_administración.md)
-2. [**Panel de control. Sistema**](02_sistema.md)
-3. [Panel de control. Otras opciones](03_otras_opciones.md)
-4. [Gestión de usuarios](04_usuarios.md)
-5. [Gestión de grupos](05_grupos.md)
-
-
-# 2.- PANEL DE CONTROL. SISTEMA
+# 2.- Panel de control. Sistema
 
 La primera opción del *Panel de control* es **Sistema y seguridad**, que muestra información general del sistema y además proporciona acceso a otros diálogos de administración. Veamos todo lo que podemos hacer desde aquí.
 
@@ -136,7 +128,3 @@ El otro apartado es el de **Escritorio remoto**, cuyo fin es permitir conexiones
 - Seleccionar qué usuarios se podrán conectar por escritorio remoto
 - Y, en el equipo desde el que nos vayamos a conectar, abrir la aplicación **Conexión a escritorio remoto** e introducir la dirección IP o nombre del equipo al que nos vayamos a conectar.
 
-
-*** 
-
-[Volver al índice](index_UT03.md)

@@ -1,19 +1,11 @@
-<link rel="stylesheet" href="../styles.css">
+---
+layout: default
+title: Gestión de grupos en Windows
+parent: UT03. Windows 10. Instalación
+nav_order: 5
+---
 
-<link rel="stylesheet" href="../styles.css">
-
-![Carátula UT03](imgs/caratula_ut03.png)
-
-## Contenidos
-
-1. [Herramientas de administración](01_herramientas_administración.md)
-2. [Panel de control. Sistema](02_sistema.md)
-3. [Panel de control. Otras opciones](03_otras_opciones.md)
-4. [Gestión de usuarios](04_usuarios.md)
-5. [**Gestión de grupos**](05_grupos.md)
-
-
-# 5.- GESTIÓN DE GRUPOS EN WINDOWS
+# 5.- Gestión de grupos en Windows
 
 Los grupos son otro de los denominados **principales de seguridad** de Windows, y, al igual que sucedía con los usuarios, son una parte fundamental en las tareas de administración del sistema, permitiendo asignar permisos y derechos a conjuntos de usuarios en lugar de hacerlo individualmente.
 
@@ -89,7 +81,3 @@ También es posible eliminar grupos, que, al no tener asociados datos como como 
 
 Si eliminamos un grupo y posteriormente creamos otro grupo con el mismo nombre, no habrá ningún problema, ya que, al igual que en el caso de los usuarios, internamente los grupos están identificados mediante su **identificador de seguridad (SID)**. 
 
-
-*** 
-
-[Volver al índice](index_UT03.md)
