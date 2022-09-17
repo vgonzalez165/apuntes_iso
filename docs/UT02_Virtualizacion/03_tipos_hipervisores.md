@@ -5,10 +5,10 @@ parent: UT02. Virtualización
 nav_order: 3
 ---
 
-# Typography
+# UT02: Virtualización
 {: .no_toc }
 
-## Table of contents
+## Índice
 {: .no_toc .text-delta }
 
 1. TOC
@@ -65,9 +65,4 @@ La principal ventaja de los contenedores es que son extremadamente livianos. Est
 
 Al ser una tecnología reciente no hay muchas soluciones de contenedores, siendo la más popular **Docker**.
 
-
-
-*** 
-
-[Volver al índice](index_UT02.md)
 

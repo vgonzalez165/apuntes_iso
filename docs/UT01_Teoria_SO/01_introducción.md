@@ -8,7 +8,7 @@ nav_order: 1
 # UT01: Teoría de los Sistemas Operativos
 {: .no_toc }
 
-## Table of contents
+## Índice
 {: .no_toc .text-delta }
 
 1. TOC
@@ -59,7 +59,3 @@ Hay varias razones por las que un sistema operativo debe estar en continua evolu
 - **Nuevos servicios**: los sistemas operativos deben ir añadiendo nuevos servicios para facilitar la labor de los usuarios.
 - **Correcciones**: un sistema operativo es un programa muy complejo con millones de líneas de código, por lo que es habitual que con el tiempo se detecten fallos y problemas de seguridad. Por tanto, será necesario ir solucionando estos bugs a medida que se detecten mediante parches y actualizaciones.
 
-
-*** 
-
-[Volver al índice](index_UT01.md)

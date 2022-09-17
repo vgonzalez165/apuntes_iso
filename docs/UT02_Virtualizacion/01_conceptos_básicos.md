@@ -5,10 +5,10 @@ parent: UT02. Virtualización
 nav_order: 1
 ---
 
-# Typography
+# UT02: Virtualización
 {: .no_toc }
 
-## Table of contents
+## Índice
 {: .no_toc .text-delta }
 
 1. TOC
@@ -73,7 +73,3 @@ Aunque son muy pocos, las máquinas virtuales también tienen algunos **inconven
 - **Se vuelve inestables a nivel de velocidad si hay varias máquinas ejecutándose simultáneamente**. El reparto de recursos entre las máquinas virtuales puede no ser todo lo equitativo que debiera, provocando incrementos de latencia temporales. Aunque hay que tener en cuenta que esto no afectará a la estabilidad a nivel de resultados.
 - **Los usuarios pueden instalar programas no permitidos en el anfitrión**.
 
-
-*** 
-
-[Volver al índice](index_UT02.md)

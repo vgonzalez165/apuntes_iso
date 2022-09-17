@@ -5,16 +5,17 @@ parent: UT02. Virtualización
 nav_order: 5
 ---
 
-# Typography
+# UT02: Virtualización
 {: .no_toc }
 
-## Table of contents
+## Índice
 {: .no_toc .text-delta }
 
 1. TOC
 {:toc}
 
 ---
+
 # 5. Microsoft Hyper-V
 
 ## 5.1.- Habilitar Hyper-V en Windows 10
@@ -151,7 +152,3 @@ Para **importar** una máquina hay que seleccionar esta opción en el panel de a
 
 ![Importación de máquinas virtuales en Hyper-V](imgs/hyperv_importar.png)
 
-
-*** 
-
-[Volver al índice](index_UT02.md)

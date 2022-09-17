@@ -5,18 +5,18 @@ parent: UT02. Virtualización
 nav_order: 4
 ---
 
-# Typography
+# UT02: Virtualización
 {: .no_toc }
 
-## Table of contents
+## Índice
 {: .no_toc .text-delta }
 
 1. TOC
 {:toc}
 
 ---
-# 4.- Oracle VirtualBox
 
+# 4.- Oracle VirtualBox
 
 ## 4.1.- Introducción a VirtualBox
 
@@ -210,10 +210,3 @@ De forma análoga al modo *solo-anfitrión*, es posible crear diferentes redes e
 
 
 
-
-
-
-
-*** 
-
-[Volver al índice](index_UT02.md)

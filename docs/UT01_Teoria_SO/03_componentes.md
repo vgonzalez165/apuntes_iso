@@ -5,10 +5,10 @@ parent: UT01. Teoría de los Sistemas Operativos
 nav_order: 3
 ---
 
-# Typography
+# UT01: Teoría de los Sistemas Operativos
 {: .no_toc }
 
-## Table of contents
+## Índice
 {: .no_toc .text-delta }
 
 1. TOC
@@ -41,7 +41,3 @@ El sistema operativo proporciona al usuario diversos **servicios**. Algunos de l
 Es el componente que se encuentra al más alto nivel, en contacto directo con el usuario y por tanto, el que será responsable de interpretar las órdenes de este.
 
 El intérprete de comandos puede ser textual, en el que el usuario introduce los comandos en modo texto siguiendo una sintaxis determinada, o gráfico, en el que el usuario interacciona a través de una interfaz gráfica mediante un ratón o dispositivo similar.
-
-*** 
-
-[Volver al índice](index_UT01.md)

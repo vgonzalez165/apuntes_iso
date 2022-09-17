@@ -5,16 +5,17 @@ parent: UT02. Virtualización
 nav_order: 2
 ---
 
-# Typography
+# UT02: Virtualización
 {: .no_toc }
 
-## Table of contents
+## Índice
 {: .no_toc .text-delta }
 
 1. TOC
 {:toc}
 
 ---
+
 # 2.- Tipos de máquinas virtuales
 
 Si nos fijamos en la funcionalidad del software de virtualización, podemos distinguir dos grandes tipos:
@@ -60,7 +61,3 @@ Que un procesador no disponga de estos juegos de instrucciones no quiere decir q
 
 Por norma general estos juegos de instrucciones hay que habilitarlos en la BIOS (se accede a ella pulsando Supr, F2 o alguna similar durante el arranque del sistema)
 
-
-*** 
-
-[Volver al índice](index_UT02.md)

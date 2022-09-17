@@ -5,10 +5,10 @@ parent: UT01. Teoría de los Sistemas Operativos
 nav_order: 5
 ---
 
-# Typography
+# UT01: Teoría de los Sistemas Operativos
 {: .no_toc }
 
-## Table of contents
+## Índice
 {: .no_toc .text-delta }
 
 1. TOC
@@ -53,7 +53,3 @@ Hay diversos métodos de clasificación de sistemas operativos en función del a
 - **Sistemas en red**: mantienen varios equipos conectados entre sí para compartir recursos e información, pero manteniendo cada una autonomía en cuando a capacidad de proceso. Ejemplos: Novell Netware, Windows Server, Banyan VINES, …
 - **Sistemas distribuidos**: conjunto de equipos interconectados que se reparten los diferentes trabajos de forma transparente para el usuario. Ejemplos: Amoeba, Sprite, …
 
-
-*** 
-
-[Volver al índice](index_UT01.md)

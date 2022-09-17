@@ -5,10 +5,10 @@ parent: UT01. Teoría de los Sistemas Operativos
 nav_order: 4
 ---
 
-# Typography
+# UT01: Teoría de los Sistemas Operativos
 {: .no_toc }
 
-## Table of contents
+## Índice
 {: .no_toc .text-delta }
 
 1. TOC
@@ -48,27 +48,23 @@ El corazón del sistema, llamado **monitor de máquina virtual**, se ejecuta dir
 Otro ejemplo es el modo 8086 virtual disponible en los procesadores de 32 bits de Intel que permite ejecutar antiguos programas de MS-DOS.
 
 
-### Exokernels
+### 4.4.- Exokernels
 
 Va un paso más allá de los sistemas operativos de máquina virtual proporcionando a cada usuario un clon de la computadora real, pero con un subconjunto de los recursos. En la capa más baja se encuentra un programa llamado **exokernel** que asigna recursos a las máquinas virtuales y que garantiza que ninguna máquina utilice los recursos de otra.
 
 Su ventaja es que ahorra una capa de mapeo o correspondencia. Algunos sistemas operativos que siguen esta filosofía son Nemesis, de la Universidad de Cambridge, y ExOS, del MIT.
 
 
-### Micronúcleo o microkernel
+### 4.5.- Micronúcleo o microkernel
 
 Una tendencia reciente es quitar lo posible del modo kernel, dejando un microkernel mínimo que provee un conjunto de primitivas o llamadas mínimas para implementar los servicios básicos. Sus ventajas son una reducción de la complejidad y la descentralización de los fallos.
 
 Algunos ejemplos son Amoeba, Minix, Hurd o Symbian.
 
 
-### Sistemas por módulos
+### 4.6.- Sistemas por módulos
 
 Es el enfoque de la mayoría de los sistemas modernos. El núcleo está formado por módulos independientes entre sí. Los módulos se cargan en el núcleo cuando se necesiten, ya sea en tiempo de ejecución o durante el arranque.
 
 Ejemplos: Linux (con el comando `lsmod` se pueden ver los módulos cargados) o Solaris.
 
-
-*** 
-
-[Volver al índice](index_UT01.md)
