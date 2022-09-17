@@ -1,7 +1,7 @@
 ---
 layout: default
 title: UT04. Windows 10. Almacenamiento
-nav_order: 4
+nav_order: 5
 has_children: true
 permalink: /docs/UT04_Almacenamiento
 ---
