@@ -20,8 +20,8 @@ remote_theme: just-the-docs/just-the-docs
 # in the templates via {{ site.myvariable }}.
 title: Apuntes de ISO (ASIR1)
 description: Apuntes del módulo Implantación de Sistemas Operativos (ASIR1)
-baseurl: "/pruebas" # the subpath of your site, e.g. /blog
-url: "https://vgonzalez165.github.io/pruebas/" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/apuntes_iso" # the subpath of your site, e.g. /blog
+url: "https://vgonzalez165.github.io/apuntes_iso/" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: pretty
 exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile", "vendor"]
