@@ -72,7 +72,7 @@ heading_anchors: true
 # Aux links for the upper right navigation
 aux_links:
   "Apuntes de ISO en GitHub":
-    - "//github.com/apuntes_iso"
+    - "https://github.com/vgonzalez165/apuntes_iso"
 
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: true
@@ -82,9 +82,9 @@ aux_links_new_tab: true
 nav_sort: case_sensitive # Capital letters sorted before lowercase
 
 # External navigation links
-nav_external_links:
-  - title: Apuntes de ISO
-    url: https://github.com/vgonzalez165/apuntes_iso
+# nav_external_links:
+#   - title: Apuntes de ISO
+#     url: https://github.com/vgonzalez165/apuntes_iso
 
 # Footer content
 # appears at the bottom of every page's main content
@@ -93,7 +93,7 @@ nav_external_links:
 back_to_top: true
 back_to_top_text: "Volver al principio"
 
-footer_content: "Curso 2022-23 Víctor J. González. Distributed by an <a href=\"https://github.com/just-the-docs/just-the-docs/tree/main/LICENSE.txt\">MIT license.</a> <a href=\"https://www.netlify.com/\">This site is powered by Netlify.</a>"
+footer_content: "Curso 2022-23 - Víctor J. González"
 
 # Footer last edited timestamp
 last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
