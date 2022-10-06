@@ -64,7 +64,11 @@ Cuando vamos al apartado Cuentas de *Configuración* tenemos las siguientes opci
         - **Contraseña de imagen**: en este caso nos identificaremos mediante una serie de movimientos predefinidos con el ratón sobre una imagen.
     - **Requerir inicio de sesión**: para indicar si el usuario tiene que autenticarse cuando el equipo vuelve de la suspensión o no.
     - **Bloqueo dinámico**: si nuestro equipo tiene Bluetooth podemos activar esta opción, en la cual se empareja nuestro ordenador con otro dispositivo, por ejemplo, un teléfono móvil, de forma que si no se detecta ese dispositivo cerca del ordenador lo bloquee.
-- **Familia y otros usuarios**: si queremos agregar otras cuentas al equipo. Aquí también tenemos la opción de quisco multimedia, interesante en ordenadores que están expuestos al público y se quiere que este muestre una única aplicación de la que los usuarios no podrán salir. 
+    - **Reiniciar las aplicaciones**: cuando el usuario cierra sesión se cierran todas las aplicaciones que el usuario tuviera abiertas en ese momento. Desde esta opción se puede hacer que Windows intente volver a abrir las apliaciones cuando el usuario vuelva a iniciar sesión para obtener un sistema tal y como lo dejó.
+    - **Privacidad**: en este apartado se pueden realizar dos configuraciones:
+      - Seleccionar si queremos que se muestre el correo de la cuenta de Microsoft en la ventana de inicio de sesión. Obviamente, esta opción solo tiene sentido si nuestro sistema está vinculado a una cuenta de Microsoft.
+      - Indicar si queremos que el sistema utilice nuestras credenciales para iniciar sesión automáticamente (sin necesidad de que el usuario las introduzca) tras un reinicio durante la actualización del sistema.
+- **Familia y otros usuarios**: si queremos agregar otras cuentas al equipo. Aquí también tenemos la opción de **quiosco multimedia**, interesante en ordenadores que están expuestos al público y se quiere que este muestre una única aplicación de la que los usuarios no podrán salir. 
 - **Sincronizar la configuración**: para esto necesitamos una cuenta de Microsoft que utilicemos en varios ordenadores y permite compartir automáticamente información entre ellos.
 
 
