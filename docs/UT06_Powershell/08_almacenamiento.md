@@ -1,20 +1,11 @@
-![Carátula UT06](imgs/caratula_ut06.png)
+---
+layout: default
+title: Powershell y el almacenamiento
+parent: UT06. Powershell
+nav_order: 7
+---
 
-
-### Contenidos
-
-1. [Introducción a Powershell](01_introducción.md)
-2. [Objetos y el pipeline](02_pipelines.md)
-3. [Tipos de datos y variables](03_tipos_datos_y_variables.md)
-4. [Gestión de usuarios y grupos](04_usuarios.md)
-5. [Gestión avanzada de usuarios y grupos](05_usuarios_avanzado.md)
-6. [Conexión remota](06_conexion_remota.md)
-7. [Gestión de Hyper-V desde Powershell](07_hyperv.md)
-8. [**Powershell y el almacenamiento**](08_almacenamiento.md)
-9. [El sistema de ficheros en Powershell](09_sistema_ficheros.md)
-
-
-# 8.- POWERSHELL Y EL ALMACENAMIENTO
+# 8.- Powershell y el almacenamiento
 
 Como no puede ser de otra manera, también es posible gestionar los discos del sistema utilizando Powershell. Sin embargo, en este caso hay una serie de limitaciones ya que no está implementada en Powershell la administración de discos básicos y dinámicos, limitándose la funcionalidad disponible a la gestión básica de discos y de particiones.
 

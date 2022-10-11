@@ -25,12 +25,12 @@ En este apartado veremos con más detalle qué son las variables y algunos de lo
 Una **variable** es un **espacio en memoria en el que se puede guardar información**, normalmente para hacer referencia a dicha información posteriormente. Las variables se identifican por un nombre cuyo primer carácter es el símbolo dólar (`$`). Algunas características de los nombres de las variables son:
 
 - No se distinguen mayúsculas de minúsculas
-- El nombre de la variable puede contener letras, números y algunos caracteres especiales, sin embargo, lo más aconsejable es utilizar únicamente letras, dígitos y el carácter subrayado (`_`).
-- Conviene que los nombres de las variables sea representativos del valor que van a contener.
-- Con objeto de evitar caracteres no estándar como vocales con tilde, eñes o similares, no es mal hábito poner el nombre de las variables en inglés.
-- Es aconsejable utilizar una nomenclatura consistente en el uso de mayúsculas y minúsculas. Dos opciones habituales son:
-  - CamelCase: en el caso de nombres de variables con varias palabras, se escriben todas las letras en minúsculas salvo la primera letra de la segunda palabra y sucesivas. Por ejemplo, `$userProcesses`.
-  - Snake_case: en este caso se utiliza el guión bajo como separador de palabras y todas las letras en minúsculas. Por ejmplo, `$user_processes`.
+- El nombre de la variable puede contener letras, números y algunos caracteres especiales. Sin embargo, lo más aconsejable es **utilizar únicamente letras, dígitos y el carácter subrayado (`_`)**.
+- Conviene que los **nombres de las variables sea representativos** del valor que van a contener.
+- Con objeto de evitar caracteres no estándar como vocales con tilde, eñes o similares, un buen hábito sería **poner el nombre de las variables en inglés**.
+- Es aconsejable utilizar una **nomenclatura consistente** en el uso de mayúsculas y minúsculas. Dos opciones habituales son:
+  - ***CamelCase***: en el caso de nombres de variables con varias palabras, se escriben todas las letras en minúsculas salvo la primera letra de la segunda palabra y sucesivas. Por ejemplo, `$userProcesses`.
+  - ***Snake_case***: en este caso se utiliza el guión bajo como separador de palabras y todas las letras en minúsculas. Por ejmplo, `$user_processes`.
 
 
 ### 3.2.- Definición y uso de variables

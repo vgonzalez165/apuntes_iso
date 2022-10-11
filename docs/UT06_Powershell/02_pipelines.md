@@ -41,7 +41,7 @@ Por ejemplo,supongamos que MS-DOS ejecutamos la orden:
 C:\> dir c:\datos\*.txt
 ```
 
-Cuando ejecutamos esa orden el sistema mira el contenido del directorio ```C:\datos``` buscando los ficheros que tengan extensión `txt` y, a partir del mismo, genera una salida por pantalla, es decir, una secuencia de caracteres, que muestran el contenido de dicho directorio. Si quisiéramos realizar algún tipo de operación automatizada con la salida de este comando, tendremos que trabajar con esa secuencia de caracteres que ha generado. Por ejemplo, podríamos guardar todos esos caracteres en un fichero, o filtrarlos para que muestre todas las líneas que contengan una determinada cadena, pero solo operaciones que trabajen con esa cadena de texto.
+Cuando ejecutamos esa orden el sistema mira el contenido del directorio `C:\datos` buscando los ficheros que tengan extensión `txt` y, a partir del mismo, genera una salida por pantalla, es decir, una secuencia de caracteres, que muestran el contenido de dicho directorio. Si quisiéramos realizar algún tipo de operación automatizada con la salida de este comando, tendremos que trabajar con esa secuencia de caracteres que ha generado. Por ejemplo, podríamos guardar todos esos caracteres en un fichero, o filtrarlos para que muestre todas las líneas que contengan una determinada cadena, pero solo operaciones que trabajen con esa cadena de texto.
 
 Veamos ahora la orden equivalente en Powershell, que será:
 
@@ -166,7 +166,7 @@ Hay comandos que proporcionan un gran número de elementos al ejecutarse por lo 
 
 ### 2.3.1.- Ordenando con el comando `Sort-Object`
 
-El comando `Sort-Object` admite un conjunto de objetos como entrada y devuelve es mismo conjunto de objetos pero **ordenados** según el valor de la propiedad que se indique. 
+El comando `Sort-Object` admite un conjunto de objetos como entrada y devuelve ese mismo conjunto de objetos pero **ordenados** según el valor de la propiedad que se indique. 
 
 Por ejemplo, para ordenar los procesos que se están ejecutando actualmente en el sistema ordenados por uso de CPU ejecutaríamos la orden:
 
@@ -281,7 +281,7 @@ Lo más destacable de esta sintaxis es:
 
 - Las comparaciones se incluyen entre llaves, en lo que se llama un bloque de script
 - El bloque de script se indica mediante el parámetro `-FilterScript`, sin embargo, esto es opcional y podríamos omitir el nombre del parámetro.
-- La variable `$_` hace referencia a cada uno de los objetos que recibe. Es decir, el comando `Get-Process` devuelve un conjunto de objetos y, para cada uno de esos
+- La variable `$_` hace referencia a cada uno de los objetos que recibe. Es decir, el comando `Get-Process` devuelve un conjunto de objetos, los cuales comprueba mediante el filtro de `Where-Object` en sucesivas iteraciones. La forma de hacer referencia a cada uno de los objetos en cada iteración es mediante la variable `$_`.
 
 
 La otra forma de hacerlo se muestra en el siguiente código, donde se puede ver que no es necesario incluir llaves ni ningún parámetro:
