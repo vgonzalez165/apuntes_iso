@@ -184,6 +184,62 @@ Tras iniciar sesión se puede apreciar que hay tres nuevas herramientas en el me
 La herramienta *Sitios y servicios de Active Directory* no se verá en el presente curso
 
 
-## 1.3.- Agregar equipos al dominio
+## 1.3.- Equipos del dominio
 
-En este punto hay un dominio de Active Directory que únicamente tiene un controlador de dominio y un usuario
+### 1.3.1.- Agregar un equipo al dominio
+
+En este punto hay un dominio de Active Directory que únicamente tiene un controlador de dominio y un usuario, por lo que ya es el momento de poblarlo con los diferentes objetos o recursos que haya en nuestra red, y el primer paso serán los **equipos**.
+
+Lo primero que debemos tener claro es que en un directorio activo hay dos tipos de equipos:
+
+- **Ordenadores**: cualquier equipo o servidor que haya en la red. Por defecto, se ubicarán en el contenedor *Computers* dentro de *Usuarios y equipos de Active Directory*.
+- **Controladores de dominio**: cualquier ordenador que sea controlador de dominio, bien sea principal o secundario. En esta caso se encontrarán en *Domain Controllers* dentro de *Usuarios y equipos de Active Directory*.
+
+Para agregar un equipo al dominio hay que hacerlo desde el propio equipo, y no desde el controlador de dominio.
+
+Los pasos para ello serían:
+
+- **Establecer la dirección del servidor DNS del dominio** en la configuración de red del cliente como servidor DNS del equipo. De esta forma conseguiremos que el cliente tenga la capacidad de resolver nombres del dominio. Podemos verificar este punto simplemente haciendo `ping` al nombre del dominio.
+- **Agregamos el equipo al dominio**, para lo que debemos a ir a *Propiedades del sistema -> Nombre del equipo* y click en *Cambiar* (es el mismo lugar donde cambiamos el nombre del equipo). Ahí seleccionamos *Dominio* e indicamos el nombre del dominio al que queremos agregar el equipo.
+- **Introducimos las credenciales** de un usuario con suficientes privilegios para agregar el equipo al dominio. Por ejemplo, el *Administrador del dominio*. Ten en cuenta que el *Administrador local* no tendría privilegios suficientes para realizar esta operación.
+- Tras **reiniciar el equipo** ya estará incluido en el dominio. A partir de este momentos se podrá iniciar sesión en este equipo con dos tipos de cuentas:
+  - **Cuentas locales**, cualquier cuenta que hubiera en el equipo antes de introducirlo al dominio. Por ejemplo, `w10\vgonzalez` para el caso del usuario `vgonzalez` en un equipo cuyo nombre sea `w10`.
+  - **Cuentas del dominio**, que son las cuentas gestionadas desde el controlador de dominio. Por ejemplo, `vjgr.local\vgonzalez` para el caso del usuarios `vgonzalez` en un dominio llamado `vjgr.local`.
+
+
+### 1.3.2.- Agregar un equipo al dominio con Powershell
+
+Como no podía ser de otra manera, también podemos agregar un equipo al dominio desde la línea de comandos utilizando Powershell. Esto puede ser importante si, por ejemplo, queremos agregar un servidor en modo Core al dominio.
+
+Las funciones que hay que realizar son las mismas: establecer la dirección IP del servidor DNS del dominio como servidor DNS del equipo y agregar el equipo al dominio.
+
+
+#### Establecer el servidor DNS desde Powershell
+
+Es posible establecer el servidor DNS para un equipo mediante el comando `Set-DnsClientServerAddress`. Algunos de sus parámetros más destacables son:
+
+- `-InterfaceIndex`: con el identificador del adaptador de red al que le vamos a asignar los servidores DNS.
+- `-ServerAddress`: para indicar las direcciones IP de los servidores DNS. Hay que indicarlos entre paréntesis y separados por comas.
+
+Por ejemplo: 
+
+```powershell
+Set-DnsClientServerAddress -InterfaceIndex 12 -ServerAddresses ("10.0.0.1","8.8.8.8")
+```
+
+
+#### Agregar equipo al dominio desde Powershell
+
+El comando para agregar un equipo al dominio es `Add-Computer` cuyo funcionamiento es muy sencillo. Los parámetros que se le pueden añadir son:
+
+- `-DomainName`: este parámetro es el único obligatorio y servirá para indicar el nombre del dominio al que queramos añadir el equipo.
+- `-Credential`: si queremos agregar en la línea de comandos las credenciales del usuario autorizado para agregar equipos al dominio.
+- `-NewName`: si agregamos este parámetro podremos cambiar el nombre del equipo a la vez que lo agregamos al dominio.
+- `-OUPath`: agrega el equipo a la Unidad Organizativa que le indiquemos.
+- `-Restart`: para que reinicie automática al ejecutar el comando.
+
+
+
+***
+[Volver al índice principal](index_UT08.md)
+
