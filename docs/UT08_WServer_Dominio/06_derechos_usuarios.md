@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Asignación de derechos a usuarios y grupos
-parent: UT09. Windows Server. Derechos, privilegios y permisos
-nav_order: 1
+parent: UT08. Windows Server. Administración del dominio
+nav_order: 6
 ---
 
 # 1.- Asignación de derechos a usuarios y grupos

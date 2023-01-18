@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Distributed File System (DFS)
-parent: UT09. Windows Server. Derechos, privilegios y permisos
-nav_order: 5
+parent: UT08. Windows Server. Administración del dominio
+nav_order: 10
 ---
 
 # 5.- Distributed File System (DFS)

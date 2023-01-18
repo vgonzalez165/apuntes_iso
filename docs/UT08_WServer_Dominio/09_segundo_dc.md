@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Segundo controlador de dominio
-parent: UT09. Windows Server. Derechos, privilegios y permisos
-nav_order: 4
+parent: UT08. Windows Server. Administración del dominio
+nav_order: 9
 ---
 
 # 4.- Segundo controlador de dominio

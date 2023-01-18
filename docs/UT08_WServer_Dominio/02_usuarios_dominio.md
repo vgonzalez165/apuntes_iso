@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Usuarios y grupos del dominio
-parent: UT07. Windows Server. Administración del dominio
+parent: UT08. Windows Server. Administración del dominio
 nav_order: 2
 ---
 

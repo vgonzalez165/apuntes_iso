@@ -6,7 +6,7 @@ has_children: true
 permalink: /docs/UT08_WServer_Dominio
 ---
 
-# UT07. Windows Server. Administración del dominio
+# UT08. Windows Server. Administración del dominio
 
 XXXXXXXXXXXXX
 

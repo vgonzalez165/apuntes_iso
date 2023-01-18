@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Carpetas compartidas por un grupo
-parent: UT07. Windows Server. Administración del dominio
+parent: UT08. Windows Server. Administración del dominio
 nav_order: 4
 ---
 
