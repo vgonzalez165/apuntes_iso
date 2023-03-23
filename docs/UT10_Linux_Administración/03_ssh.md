@@ -1,10 +1,3 @@
----
-layout: default
-title: Conexión remota al servidor mediante SSH
-parent: UT10. Linux. Administración
-nav_order: 1
----
-
 # 3.- Conexión remota al servidor mediante SSH
 
 ## 3.1.- Secure Shell (SSH)

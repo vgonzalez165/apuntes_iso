@@ -36,9 +36,104 @@ La primera palabra debe ser el comando a ejecutar, tras el que se indican los **
 - Por defecto, cualquier orden introducida se ejecuta sin privilegios de administrador. Para ejecutar una orden con privilegios de administrador hay que ejecutarla anteponiéndole el comando `sudo`. Algo importante a tener encuenta es que, en este caso, el usuario que ejecutará la orden no será el nuestro, sino que será el usuario `root`, con todas las consecuencias que ello tiene (por ejemplo, `root` será el propietario de los ficheros que se creen).
 
 
-## 2.2.- Primeros comandos de Linux
+## 2.2.- Consideraciones preliminares
 
-### 2.2.1.- El intérprete de comandos: bash, sh, fish, ...
+Antes de comenzar con Bash vamos a ver algunas tareas que debemos conocer para interactuar con nuestro sistema una vez que ha sido instalado.
+
+
+### 2.2.1.- Configuración de red
+
+La configuración de red en Ubuntu Server 22.04 se realiza mediante la herramienta **Netplan**, que reemplaza al antiguo NetworkManager. Para saber la configuración de red que tenemos en nuestro equipo debemos utilizar la orden `ip`.
+
+```
+victor@ubuntu:~$ ip address
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:15:5d:01:66:1d brd ff:ff:ff:ff:ff:ff
+    inet 10.0.0.1/8 brd 10.255.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::215:5dff:fe01:661d/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:15:5d:01:66:1e brd ff:ff:ff:ff:ff:ff
+    inet 172.28.114.218/20 metric 100 brd 172.28.127.255 scope global dynamic eth1
+       valid_lft 83503sec preferred_lft 83503sec
+    inet6 fe80::215:5dff:fe01:661e/64 scope link
+       valid_lft forever preferred_lft forever
+```
+
+En la salida de este comando podemos destacar:
+
+- Se enumeran todos los adaptadores de red que tenemos en el equipo, representados cada uno por su identificador único. En la salida anterior se puede ver la **interfaz de bucle local** representada por **lo** y dos adaptadores de red cableados identificados por `eth0` y `eth1`.
+- Para cada adaptador se muestra información entre la que destaca la dirección MAC y las direcciones IPv4 e IPv6.
+
+
+### 2.2.2.- Instalación de software
+
+El enfoque de la instalación de apliciones en Linux difiere enormemente de la forma en que se hace en Windows. Mientras que en Windows se obtienen las apliaciones de diversas fuentes y se instalan manualmente, en Linux se centraliza todo el software disponible en **repositorios**, de forma que la adquisición de software se realiza automáticamente.
+
+El comando para gestionar el software instalado en Ubuntu es `apt`, siendo algunas de las opciones más comunes las siguientes:
+
+- **`sudo apt update`**: actualiza en el equipo local el listado de software disponible en el repositorio, así como su versión. Siempre que realicemos cualquier operación con `apt` debemos ejecutar primero esta orden. Este comando debemos ejecutarlo como administrador, lo que se indica precediéndolo de la orden `sudo`.
+- **`sudo apt upgrade`**: compara la versión de los paquetes instalados en nuestro sistema con la última versión disponible en el repositorio, y lo actualiza si esta última es más reciente.
+- **`apt search nombre_paquete`**: devuelve un listado de paquetes disponibles en el repositorio cuyo nombre coincide con el indicado.
+- **`sudo apt install nombre_paquete`**: instala el paquete cuyo nombre se ha indicado. Hay que tener en cuenta que el paquete que indiquemos puede tener **dependencias**, es decir, otros paquetes que necesite para funcionar, por lo que se nos avisará y nos permitirá instalarlos.
+
+
+### 2.2.3.- Conexión remota con SSH
+
+**SSH** (Secure Shell) es un protocolo que permite acceder de forma **remota** y **segura** a otra máquina Linux. Veremos todas las opciones de este protocolo en detalle en la próxima unidad, pero ahora adelantaremos la forma de conectarnos a una máquina utilizando este protocolo.
+
+El primer requisito para realizar una conexión SSH es que el equipo al que nos queramos conectar tenga instalado el servidor. Durante la instalación de Ubuntu Server se nos da la posibilidad de instalarlo, pero, si no se ha hecho en ese momento, se podrá hacer instalando el paquete `openssh-server`.
+
+Podemos comprobar si está instalado verificando que el servicio correspondiente esté en ejecución:
+
+```
+victor@ubuntu:~$ service sshd status
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2023-03-23 09:02:43 UTC; 28min ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 1341 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+...
+```
+
+Si no estuviera instalado podemos hacerlo instalando el paquete `openssh-server`.
+
+Una vez instalado solo nos queda conectarnos desde cualquier otro equipo utilizando el cliente `ssh`, disponible tanto en Powershell como en cualquier terminal de Linux. A este comando hay que pasarle como parámetro la dirección IP del equipo al que nos queremos conectar y el nombre de usuario con el que queremos indicar la sesión remota.
+
+```
+PS C:\Users\Victor> ssh victor@10.0.0.1
+victor@10.0.0.1's password:
+Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-67-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of jue 23 mar 2023 10:17:39 UTC
+
+  System load:  0.0                Processes:             101
+  Usage of /:   5.5% of 123.41GB   Users logged in:       1
+  Memory usage: 7%                 IPv4 address for eth0: 10.0.0.1
+  Swap usage:   0%                 IPv4 address for eth1: 172.28.114.218
+...
+Last login: Thu Mar 23 09:04:19 2023 from 10.0.0.2
+victor@ubuntu:~$
+```
+
+En cualquier momento podremos cerrar la sesión remota utilizando el comando `exit`.
+
+
+## 2.3.- Primeros comandos de Linux
+
+### 2.3.1.- El intérprete de comandos: bash, sh, fish, ...
 
 El **intérprete de comandos** es el programa que se encarga de interpretar las órdenes que introducimos en la terminal. El intérprete de comandos que utiliza Ubuntu Linux, y por tanto el que utilizaremos este curso, es **Bash (GNU Bourne Again Shell)**, que es el intérprete más extendido y popular. Sin embargo, la gran flexibilidad de Linux permite la utilización de otros intérpretes simplemente instalándolos y ejecutándolos. Se escapa del ámbito de este curso, pero algunos de estos intérpretes son:
 
@@ -47,13 +142,13 @@ El **intérprete de comandos** es el programa que se encarga de interpretar las 
 - **tcsh**: es el intérprete que viene por defecto en los sistemas basados en BSD, como FreeBSD. Es heredero del *shell* original de UNIX **C Shell (csh)** y uno de sus puntos fuertes es el lenguaje de scripting, muy similar al lenguaje C.
 - **Friendly Interactive Shell (fish)**: un *shell* reciente, del año 2005, que se esfuerza en ser amigable para el usuario. Tienen múltiples funcionalidades en este sentido, como el coloreado en rojo de la sintaxis errónea o las sugerencias completadas codificadas por colores y basadas en el historia.
 
-### 2.2.2.- Cerrando la sesión. Comando `exit`
+### 2.3.2.- Cerrando la sesión. Comando `exit`
 
 Cada vez que el usuario inicia sesión en el ordenador y se le presenta el *prompt* está interactuando con el intérprete de comandos que tenga por defecto independientemente de que se conecte en local o en remoto a través de `ssh`. 
 
 El comando para cerrar la sesión en ambos casos es `exit`, que no tienen ningún parámetro, y que cerrará la sesión que tengamos abierta en ese momento.
 
-### 2.2.3.- Cerrando el sistema. Comando `shutdown`.
+### 2.3.3.- Cerrando el sistema. Comando `shutdown`.
 
 El comando `shutdown` sirve para planificar el apagado de la máquina, que puede ser de tres tipos:
 
@@ -84,7 +179,7 @@ En el siguiente código puedes ver algunos ejemplos de uso del comando.
     $  shutdown -r09:35	    # Programa el reinicio del sistemas para las 09:35 h.
 ```
 
-### 2.2.4.- Otras formas de cerrar el sistema. Comandos `halt`, `poweroff` y `reboot`
+### 2.3.4.- Otras formas de cerrar el sistema. Comandos `halt`, `poweroff` y `reboot`
 
 Cuando se quiere detener el sistema inmediatamente sin necesidad de programar el apagado hay otros tres comandos equivalentes a `shutdown`:
 
@@ -95,7 +190,7 @@ Cuando se quiere detener el sistema inmediatamente sin necesidad de programar el
 Como curiosidad, estos comandos son intercambiables mediante modificadores, pudiendo, por ejemplo, realizar un apagado total del sistema con la orden `halt -p` o un reinicio con `halt --reboot`, al igual que se puede realizar una parada con `reboot --halt`.
 
 
-### 2.2.5.- ¿Quén soy? Comando `whoami`
+### 2.3.5.- ¿Quén soy? Comando `whoami`
 
 Siempre que estamos interactuando en Linux a través de una terminal lo hacemos a través de una credenciales definidas por nuestro nombre de usuario y su contraseña, de forma que los límites de seguridad que se nos impondrán serán los de nuestro usuario. Por norma general, el nombre de nuestro usuario se muestra en el **prompt**, pero habrá ocasiones en que no sea así por lo que puede que en algún momento dudemos de cuál es el usuario con el que estamos trabajando, sobre todo si estamos trabajando con diversas sesiones en remoto.
 
@@ -109,7 +204,7 @@ $ whoami
 victor
 ```
 
-### 2.2.6.- ¿Cómo se llama mi máquina? Comando `hostname`
+### 2.3.6.- ¿Cómo se llama mi máquina? Comando `hostname`
 
 Análogo al ejemplo anterior es el caso del nombre del equipo. Este se muestra habitualmente en el *prompt*, por lo que siempre está a la vista, pero habrá ocasiones en que no sea así y dudemos de la máquina en la que estamos introduciendo órdenes. 
 
@@ -120,7 +215,7 @@ victor@ubuntu:~$ hostname
 ubuntu
 ```
 
-### 2.2.7.- ¿Quiénes están? Comando `who`
+### 2.3.7.- ¿Quiénes están? Comando `who`
 
 Linux es un **sistema multiusuario** lo que implica que puede haber múltiples usuarios conectados simultáneamente. Un ejemplo es cuando varios usuarios se conectan mediante `ssh` a la misma máquina desde diferentes ubicaciones.
 
@@ -138,7 +233,7 @@ Independientemente de la forma en que se conecten, es posible saber qué usuario
 Por ejemplo, en el código anterior el usuario `paco` ha iniciado sesión desde la primera terminal (`tty1`), mientras que los usuarios `vgonzalez` y `pepe` lo están haciendo mediante una conexión remota desde el equipo con IP `10.0.0.101`.
 
 
-### 2.2.8.- ¿Qué kernel tengo? Comando `uname`
+### 2.3.8.- ¿Qué kernel tengo? Comando `uname`
 
 El comando `uname` es muy interesante para extraer información sobre el kernel de la máquina con la que estoy trabajando. Tiene un gran número de modificadores para determinar qué tipo de información quiero conocer.
 
@@ -160,7 +255,7 @@ Linux ubuntu 5.10.60.1-microsoft-standard-WSL2 #1 SMP Wed Aug 25 23:20:18 UTC 20
 ```
 
 
-### 2.2.9.- La ayuda en Linux. Comando `man` y `whatis`
+### 2.3.9.- La ayuda en Linux. Comando `man` y `whatis`
 
 Linux dispone de un gran número de comandos y muchos con una sintaxis bastante compleja y con muchas opciones, por lo que habitualmente será necesario acceder a la ayuda. Afortunadamente, la ayuda en Linux es muy extensa y accesible.
 
@@ -210,9 +305,9 @@ cp (1)               - copy files and directories
  ```
 
 
-## 2.3.- Algunos comandos básicos de Linux
+## 2.4.- Algunos comandos básicos de Linux
 
-### 2.3.1.- ¿Dónde están mis comandos? Comando `which`
+### 2.4.1.- ¿Dónde están mis comandos? Comando `which`
 
 Cuando introducimos un comando en Linux estamos simplemente invocando la ejecución de un programa cuyo nombre es el del comando. Estos programas se encuentran en el sistema de ficheros, habitualmente en el directorio `/usr/bin`, aunque no tiene por qué ser así.
 
@@ -223,7 +318,7 @@ victor@ubuntu:~$ ls -l /usr/bin/bash
 -rwxr-xr-x 1 root root 1183448 Feb 25  2020 /usr/bin/bash
 ```
 
-### 2.3.2.- Comando `echo`
+### 2.4.2.- Comando `echo`
 
 El comando `echo` es un comando muy sencillo pero que es sorpredentemente útil en muchas situaciones. Lo único que hace en mostrar por pantalla el texto que se le pase como parámetro.
 
@@ -271,7 +366,7 @@ Algunos de los caracteres escapados más comunes se muestran en la siguiente tab
 | `\a`        | Alerta (emite un sonido)  |
 
 
-### 2.3.3.- Variable `$PATH` y `./`
+### 2.4.3.- Variable `$PATH` y `./`
 
 Cuando hablamos del comando `which`  vimos que cada comando de Linux se corresponde con un programa que se encuentra alojado en algún directorio de nuestro disco duro, por ejemplo, `bash` se encuentra en `/usr/bin`
 En el punto anterior hemos visto que cada comando de Linux se corresponde con un fichero que se encuentra almacenado en algún lugar del disco duro, por ejemplo, el programa correspondiente a `bash` se encuentra en `/usr/bin`.
@@ -301,7 +396,7 @@ Si el ejecutable se encuentra en el directorio de trabajo en el que se encuentra
        Hola mundo
 ```
 
-### 2.3.4.- Variables de entorno. Comandos `printenv` y `export`
+### 2.4.4.- Variables de entorno. Comandos `printenv` y `export`
 
 Lo que vimos en el punto anterior (`$PATH`), es lo que se llama una **variable de entorno** y no es la única que hay en el sistema. Las variables de entorno almacenan información relativa al sistema que puede ser accedida por los programas. Podemos ver todas las variables de entorno mediante el comando `printenv`.
 
@@ -343,7 +438,7 @@ Si se desea crear una nueva variable de entorno o modificar una existente hay qu
 ```
 
 
-### 2.3.5.- Quiero ser root. Comando `sudo`
+### 2.4.5.- Quiero ser root. Comando `sudo`
 
 Linux es un sistema que incide especialmente en la seguridad, y, entre otras cosas, se traduce en una distinción muy clara entre las tareas de un usuario normal y las tareas de administración. Cuando en Linux se quiere realizar una tarea que requiera privilegios de administración hay que indicarlo explícitamente anteponiendo el comando `sudo` al comando que querramos ejecutar como administrador.
 
@@ -358,7 +453,7 @@ Cuando hacemos esto nuestro usuario pasará a ser `root`, que es el único usuar
 Esto tiene una serie de connotaciones que obligan a que haya que prestar mucha atención siempre que se ejecute un comando con `sudo`. Por ejemplo, si creo un fichero con `sudo` será `root` el propietario de dicho fichero por lo que solamente `root` podrá editarlo.
 
 
-### 2.3.6.- Quiero ser cualquier otro. Comando `su`
+### 2.4.6.- Quiero ser cualquier otro. Comando `su`
 
 El comanod `su` permite iniciar un **subshell** con otro usuario sin necesidad de cerrar la sesión actual. Su sintaxis es muy sencilla, si no se pasa ningún parámetro se inicia sesión con el usuario `root` mientras que si se le pasa el nombre de un usuario como parámetro se abrirá un intérprete con ese usuario,
 
@@ -372,7 +467,7 @@ El comanod `su` permite iniciar un **subshell** con otro usuario sin necesidad d
 ```
 
 
-### 2.3.8.- Comando `wget`
+### 2.4.7.- Comando `wget`
 
 La orden `wget` es un comando que no tiene relación con los que hemos visto hasta ahora, pero que puede ser útil en múltiples ocasiones. Su función es descargar archivos de Internet, lo cual viene muy bien cuando estamos utilizando una terminal de texto donde no hay acceso a un navegador.
 
