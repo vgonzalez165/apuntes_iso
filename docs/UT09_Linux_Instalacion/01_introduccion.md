@@ -6,7 +6,7 @@
 
 Para analizar cómo se ha llegado a las versiones actuales de Linux debemos remontarnos al **año 1964**, donde los Laboratorios Bell (AT&T), General Electric y otras compañías estaban trabajando para desarrollar un sistema operativo muy complejo denominado **MULTICS**. La idea detrás de este sistema operativo era crear un sistema que diera servicio simultáneamente a múltiples usuarios. Aunque el proyecto fue finalmente abandonado por su bajo rendimiento, algunas de las ideas que implantó han servido de base a todos los sistemas operativos posteriores.
 
-Tras dejar el proyecto, dos de los desarrolladores de este: **Ken Thompson** y **Dennis Ritchie**, decidieron aprovechar el trabajo que habían realizado con MULTICS para crear un nuevo sistema operativo más sencillo utilizando una vieja máquina DEC PDP-11, a este sistema operativo lo denominaron UNICS. La primera versión de este sistema operativo fue publicada en el año 1969 rebautizada como **UNIX**.
+Tras dejar el proyecto, dos de los desarrolladores de este: **Ken Thompson** y **Dennis Ritchie**, decidieron aprovechar el trabajo que habían realizado con MULTICS para crear un nuevo sistema operativo más sencillo utilizando una vieja máquina [DEC PDP-11](https://en.wikipedia.org/wiki/PDP-11), a este sistema operativo lo denominaron UNICS. La primera versión de este sistema operativo fue publicada en el año 1969 rebautizada como **UNIX**.
 
 ![Thompson y Ritchie](imgs/01_thompson_ritchie.jpg)
 

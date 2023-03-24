@@ -1,6 +1,6 @@
 # 2.- Primeros pasos en Linux
 
-## 2.1.- Introducción a la línea de comandos
+## 2.1.- Conceptos básicos sobre la línea de comandos
 
 Dado que toda la interacción que realizaremos con el sistema operativo se realizará a través de la línea de comandos, es muy importante tener muy clara la **sintaxis** de los comandos en Linux, así como algunas normas básicas al introducir las órdenes en la terminal, ya que el cambio de un único carácter en los parámetros de un comando puede alterar por completo el comportamiento del mismo.
 
