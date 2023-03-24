@@ -9,8 +9,8 @@ permalink: /
 
 # INDICE DE CONTENIDOS DEL CURSO
 
-- [UT01: Teoría de Sistemas Operativos](docs/UT01_Teoria_SO/ut01_Teoria_SO.md)
-- [UT02: Virtualización](docs/UT02_Virtualizacion/UT02_Virtualización.md)
+- [UT01: Teoría de Sistemas Operativos](docs/UT01_Teoria_SO/index_ut01.md)
+- [UT02: Virtualización](docs/UT02_Virtualizacion/index_ut02.md)
 - [UT03: Windows 10. Instalación y configuración](docs/UT03_Win10_Instalación/index_UT03.md)
 - [UT04: Windows 10. Organización del almacenamiento](docs/UT04_Win10_Almacenamiento/index_UT04.md)
 - [UT05: Windows 10. Administración](docs/UT05_Win10_Administración/index_UT05.md)

@@ -1,10 +1,3 @@
----
-layout: default
-title: Gestión de procesos
-parent: UT10. Linux. Administración
-nav_order: 6
----
-
 # 6.- Gestión de procesos
 
 Todo lo que hacemos en un servidor Linux toma la forma de procesos, por lo que es muy importante aprender a trabajar con ellos. Linux dispone de un gran número de comandos para monitorizar los procesos en nuestro sistema. Veamos los más importantes.

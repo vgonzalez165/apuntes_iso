@@ -1,10 +1,3 @@
----
-layout: default
-title: Trabajando con datos de texto
-parent: UT09. Linux. Instalación y primeros pasos
-nav_order: 4
----
-
 # 4.- Trabajando con datos de texto
 
 ## 4.1.- Redireccionamiento

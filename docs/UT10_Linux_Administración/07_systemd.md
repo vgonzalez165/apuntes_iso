@@ -1,10 +1,3 @@
----
-layout: default
-title: Arranque del sistema con systemd
-parent: UT10. Linux. Administración
-nav_order: 7
----
-
 # 7.- Arranque del sistema con `systemd`
 
 Systemd es un bloque de construcción básico que gestiona el sistema de inicio de Linux y que también permite gestionar todos los servicios que se están ejecutando en el sistema. El objetivo de systemd es reemplazar el sistema de inicio init de los antiguos sistemas Linux. 

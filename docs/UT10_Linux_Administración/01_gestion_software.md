@@ -1,10 +1,3 @@
----
-layout: default
-title: Gestión de software en Linux
-parent: UT10. Linux. Administración
-nav_order: 1
----
-
 # 1.- Gestión de software en Linux
 
 ## 1.1.- Introducción

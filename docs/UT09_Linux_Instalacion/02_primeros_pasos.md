@@ -1,10 +1,3 @@
----
-layout: default
-title: Primeros pasos en Linux
-parent: UT09. Linux. Instalación y primeros pasos
-nav_order: 2
----
-
 # 2.- Primeros pasos en Linux
 
 ## 2.1.- Introducción a la línea de comandos

@@ -1,10 +1,3 @@
----
-layout: default
-title: Configuración de red en Ubuntu Server
-parent: UT10. Linux. Administración
-nav_order: 2
----
-
 # 2.- Configuración de red en Ubuntu Server
 
 La versión 17.04 de Ubuntu trajo consigo un cambio en la gestión de las conexiones de red. El fichero `/etc/interfaces`, que había servido tradicionalmente para configurar las interfaces de red sigue estando presente pero simplemente para notificar que ahora la configuración de red se realiza mediante **netplan**.

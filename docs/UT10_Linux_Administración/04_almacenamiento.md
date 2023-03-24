@@ -1,10 +1,3 @@
----
-layout: default
-title: Administración del almacenamiento
-parent: UT10. Linux. Administración
-nav_order: 4
----
-
 # 4.- Administración del almacenamiento
 
 ## 4.1.- Introducción

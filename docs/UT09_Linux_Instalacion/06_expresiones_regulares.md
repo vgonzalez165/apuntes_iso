@@ -1,10 +1,3 @@
----
-layout: default
-title: Expresiones regulares con el comando sed
-parent: UT09. Linux. Instalación y primeros pasos
-nav_order: 5
----
-
 # 5.- Expresiones regulares con el comando `sed`
 
 ## 5.1.- El editor `sed`

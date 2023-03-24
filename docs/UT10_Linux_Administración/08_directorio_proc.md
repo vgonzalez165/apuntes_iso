@@ -1,10 +1,3 @@
----
-layout: default
-title: El directorio /proc
-parent: UT10. Linux. Administración
-nav_order: 8
----
-
 # 8.- EL DIRECTORIO /PROC
 
 Cada sistema operativo ofrece un mecanismo para que el administrador de sistemas investigue las interioridades del sistema operativo y para configurar los parámetros cuando lo necesite. En Linux este mecanismo es el sistema de archivos /proc.

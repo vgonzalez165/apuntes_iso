@@ -1,10 +1,3 @@
----
-layout: default
-title: El sistema de fichero
-parent: UT09. Linux. Instalación y primeros pasos
-nav_order: 3
----
-
 # 3.- El sistema de ficheros
 
 ## 3.1.- Introducción al sistema de ficheros

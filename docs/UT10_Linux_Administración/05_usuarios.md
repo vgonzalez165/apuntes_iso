@@ -1,10 +1,3 @@
----
-layout: default
-title: Gestión de usuarios en Linux
-parent: UT10. Linux. Administración
-nav_order: 5
----
-
 # 5.- Gestión de usuarios en Linux
 
 ## 5.1.- La seguridad en Linux

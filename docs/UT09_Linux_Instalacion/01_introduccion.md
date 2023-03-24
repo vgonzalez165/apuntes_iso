@@ -1,9 +1,4 @@
----
-layout: default
-title: Introducción a Linux
-parent: UT09. Linux. Instalación y primeros pasos
-nav_order: 1
----
+<link rel="stylesheet" href="style.css">
 
 # 1.- Introducción a Linux
 
