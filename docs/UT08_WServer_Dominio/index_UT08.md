@@ -1,13 +1,14 @@
----
-layout: default
-title: UT08. Windows Server. Administración del dominio
-nav_order: 9
-has_children: true
-permalink: /docs/UT08_WServer_Dominio
----
-
 # UT08. Windows Server. Administración del dominio
 
 XXXXXXXXXXXXX
 
-{: .fs-6 .fw-300 }
+1. [Introducción a Active Directory](01_active_directory.md)
+2. [Usuarios del dominio](02_usuarios_dominio.md)
+3. [Carpetas personales en el dominio](03_carpetas_personales.md)
+4. [Carpetas compartidas por un grupo](04_carpetas_compartidas_grupo.md)
+5. [Perfiles de usuario en el dominio](05_perfiles_usuarios.md)
+6. [Derechos de usuario](06_derechos_usuarios.md)
+7. [Objetos de directiva de grupo (GPOs)](07_gpo_gpp.md)
+8. [Despliegue de aplicaciones](08_despliegue_aplicaciones.md)
+9. [Implantacion de un segundo controlador de dominio](09_segundo_dc.md)
+10. [Distributed File System (DFS)](10_dfs.md)
