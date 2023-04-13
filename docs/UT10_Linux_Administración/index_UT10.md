@@ -8,3 +8,7 @@
 5. [Usuarios en Linux](05_usuarios.md)
 6. [Gestión de procesos con `systemd`](07_systemd.md)
 7. [El directorio `proc`](08_directorio_proc.md)
+
+**PRÁCTICAS**
+
+[PR1001](../practicas/pr1001.md)
