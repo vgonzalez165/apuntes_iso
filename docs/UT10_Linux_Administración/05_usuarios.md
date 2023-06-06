@@ -60,7 +60,7 @@ Los nueve campos de cada fila son:
 - Campo reservado
 
 
-## 5.2.- Añadir un nuevo usuario
+## 5.2.- Añadir un nuevo usuario con `useradd`
 
 El comando para añadir nuevos usuarios en Linux es `useradd`. Este comando proporciona un medio sencillo para crear una nueva cuenta de usuario y establecer el directorio HOME del usuario a la vez. El comando `useradd` utiliza una combinación de valores predefinidos por el sistema y parámetros en la línea de comandos para definir una cuenta de usuario. Para ver los valores predefinidos por el sistema hay invocar el comando con el parámetro `–D`.
 
@@ -76,17 +76,43 @@ Este comando nos mostrará:
 - 
 Si se desea cambiar alguno de los parámetros por defecto al crear un nuevo usuario se puede hacer mediante la utilización del parámetro `–D` junto con otro parámetro que representará el valor que cambiará.
 
-## 5.3.- Eliminación de un usuario
+
+## 5.3.- Añadir usuarios con `adduser`
+
+El problema del comando `useradd` es que si no indicamos en los parámetros las características de la cuenta que vamos a crear no aplicará ningún valor predefinido. Por ejemplo, si no indicamos el parámetro `--home-dir` no creará un directorio personal para el usuario.
+
+Para solventar estos problemas tenemos el comando `adduser`, el cual es una versión interactiva de `useradd` que aplicará opciones por defecto (por ejemplo, el directorio personal) y otras nos preguntará de forma interactiva (por ejemplo, la contraseña del usuario).
+
+Las opciones por defecto que establecerá este comando las podemos configurar con el fichero `/etc/adduser.conf`.
+
+
+## 5.4.- Eliminación de un usuario con `userdel`
 
 Para eliminar un usuario del sistema el comando que hay que utilizar es `userdel`. Por defecto, este comando solo elimina la información del usuario del fichero `/etc/passwd`. No elimina ningún fichero de la cuenta.
 
 Si se utiliza `userdel` con el parámetro `–r` también eliminará el directorio HOME del usuario, junto con el directorio de correo del usuario.
 
-## 5.4.- Modificando un usuario
+
+## 5.5.- Eliminar usuarios con `deluser`
+
+El comando `deluser` es una alternativa a `userdel` que tiene unas algunas opciones que ayudan a la eliminación de los usuarios, por ejemplo, eliminando el directorio personal del usuario eliminado o el grupo correspondiente.
+
+De forma análoga a como ocurre con el comando `adduser`, la configuración por defecto la toma del fichero `/etc/deluser.conf`.
+
+Si queremos cambiar la configuración por defecto podemos hacerlo mediante parámetros. Las opciones más interesantes son:
+
+- `--remove-home`: elimina el directorio personal del usuario
+- `--remove-all-files`: elimina todos los ficheros pertenecientes al usuario en el sistema. 
+- `--backup`: hace una copia de seguridad de todos los ficheros antes de eliminarlos. Esto creará un fichero `nombreusuario.tar`.
+- `--backup-to`: permite indicar el directorio en que se guardará la copia de seguridad.
+
+
+
+## 5.6.- Modificando un usuario
 
 Linux proporciona unas pocas utilidades para modificar la información para cuentas de usuario existentes.
 
-### 5.4.1.- El comando `usermod`
+### 5.6.1.- El comando `usermod`
 
 El comando usermod proporciona opciones para modificar la mayoría de los campos del fichero /etc/passwd. Para hacer esto solo es necesario utilizarlo con el parámetro correspondiente al campo que se quiere modificar. Algunos de estos parámetros son:
 
@@ -99,7 +125,7 @@ El comando usermod proporciona opciones para modificar la mayoría de los campos
 - `-U` para desbloquear la cuenta.
 
 
-### 5.4.2.- Los comandos `passwd` y `chpasswd`
+### 5.6.2.- Los comandos `passwd` y `chpasswd`
 
 La forma más rápida de cambiar la contraseña de un usuario es mediante el comando `passwd`. Si no se le indican parámetros modificará la contraseña del usuario actual. Si se le indica un nombre de usuario cambiará la contraseña de dicho usuario. Únicamente el usuario **root** puede cambiar la contraseña del resto de usuarios.
 
@@ -108,7 +134,7 @@ El parámetro `–e` forzará al usuario a modificar su contraseña la próxima 
 Si necesitas modificar la contraseña de un gran número de usuario la mejor opción es el comando `chpasswd`. Este comando lee una lista de pares nombre de `usuario, contraseña` (separados por una coma) de la entrada estándar y automática asigna cada contraseña a cada usuario.
 
 
-## 5.5.- Grupos en Linux
+## 5.7.- Grupos en Linux
 
 Las cuentas de usuario son útiles para controlar la seguridad de usuarios individuales, pero no son muy útiles a la hora de permitir a grupos de usuarios compartir recursos. Para esta labor Linux dispone del concepto de **grupos**.
 
@@ -141,7 +167,7 @@ miGrupo:x:1003:alumno
 El comando `usermod` también permite cambiar otra información de los grupos. El parámetro `–g` permitirá modificar el GID del grupo mientras que el parámetro `–n` permite cambiar el nombre del grupo.
 
 
-## 5.6.- Permisos
+## 5.8.- Permisos
 
 Como se ha visto anteriormente, al ejecutar el comando `ls` con el modificador `–l` se nos muestra una serie de caracteres al principio de cada línea. El primero de estos caracteres define el tipo del objeto.
 
@@ -167,7 +193,7 @@ Si un permiso está negado se mostrará con el símbolo guion en su posición. L
 Cuando creamos un fichero nuevo este tiene unos permisos por defectos predefinidos. Estos permisos predefinidos vienen dados por el comando `umask`, el cual establece los permisos por defecto para cualquier fichero o directorio que crees.
 
 
-### 5.6.1.- El comando `umask`
+### 5.8.1.- El comando `umask`
 
 El comando `umask` nos servirá para modificar los permisos por defecto que se asignarán a cada nuevo fichero o directorio creado en el sistema. Si lo ejecutamos veremos que nos muestra por pantalla 4 dígitos octales que representan los permisos por defecto. El primero corresponde al denomina **sticky bit**. Los otros tres son los permisos por defecto para el usuario que crea el objeto, el grupo del usuario y el resto de los usuarios respectivamente en la representación octal.
 
@@ -179,7 +205,7 @@ Sin embargo, el comando `umask` no muestra los permisos que se asignan tal cual,
 Esto quiere decir que si tenemos una máscara definida como 022 los permisos efectivos que se aplicarán a un fichero serán los resultantes de quitar los permisos de la máscara (022) a los permisos máximos (666), quedando unos permisos efectivos de 644 (lectura/escritura para el usuario y lectura para el resto).	
 
 
-### 5.6.2.- Modificando permisos
+### 5.8.2.- Modificando permisos
 
 El comando `chmod` es el que nos permitirá modificar los permisos asociados a un fichero o directorio. El formato de este comando es:
 
@@ -222,7 +248,7 @@ Finalmente, el último símbolo es el permiso que se va a modificar. Hay muchas 
 - `s` para establecer el SUID o el SGID
 
 
-### 5.6.3.- Cambio de propietario
+### 5.8.3.- Cambio de propietario
 
 Para cambiar el propietario de un fichero Linux dispone de dos comandos. El comando `chown` para cambiar el usuario propietario y el comando `chgrp` para cambiar el grupo propietario del objeto.
 
@@ -256,7 +282,7 @@ total 0
 El funcionamiento del comando `chgrp` es muy similar al anterior, con la única excepción de que el valor modificado es el grupo propietario y no el usuario propietario.
 
 
-## 5.7.- Compartición de ficheros
+## 5.9.- Compartición de ficheros
 
 El mecanismo que hemos visto para compartir fichero en Linux hasta ahora se basa en el establecimiento de permisos para usuarios y grupos. Así si queremos que un determinado usuario pueda acceder a un objeto podemos incluirlo en el grupo propietario de ese objeto y así obtener los permisos que tenga ese grupo.
 
