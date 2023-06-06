@@ -114,15 +114,17 @@ Linux proporciona unas pocas utilidades para modificar la información para cuen
 
 ### 5.6.1.- El comando `usermod`
 
-El comando usermod proporciona opciones para modificar la mayoría de los campos del fichero /etc/passwd. Para hacer esto solo es necesario utilizarlo con el parámetro correspondiente al campo que se quiere modificar. Algunos de estos parámetros son:
+El comando `usermod` proporciona opciones para modificar la mayoría de los campos del fichero `/etc/passwd`. Para hacer esto solo es necesario utilizarlo con el parámetro correspondiente al campo que se quiere modificar. Algunos de estos parámetros son:
 
 - `-c` para cambiar el campo de comentario
 - `-e` para cambiar la fecha de expiración
-- `-g` para cambiar el grupo de login por defecto
+- `-g` para cambiar el grupo de usuario por defecto
+- `-G` para agregrar el usuario a uno más grupos secundarios (separados por comas)
 - `-l` para cambiar el nombre de login del usuario
 - `-p` para cambiar la contraseña del usuario
 - `-L` para bloquear la cuenta
 - `-U` para desbloquear la cuenta.
+- `-R` para eliminar el usuario de un grupo secundario
 
 
 ### 5.6.2.- Los comandos `passwd` y `chpasswd`
@@ -147,7 +149,7 @@ La información relativa a los grupos de usuarios se almacena en el fichero `/et
 - El GID del grupo. Los grupos utilizados por cuentas del sistema tienen GIDs por debajo del número 500, mientras que los grupos de usuarios tienen el GID por encima de este valor.
 - Lista de las cuentas de usuario que pertenecen a este grupo.
 
-El comando para añadir un nuevo grupo al sistema es `groupadd`. Cuando se crea un grupo nuevo no se le añaden usuarios por defecto y dicho comando no permite hacer esto. Para ello debemos utilizar el comando `usermod`.
+El comando para añadir un nuevo grupo al sistema es `groupadd` (también hay un comando `addgroup`). Cuando se crea un grupo nuevo no se le añaden usuarios por defecto y dicho comando no permite hacer esto. Para ello debemos utilizar el comando `usermod`.
 
 ```
 vgonzalez@SERVER2:~$ sudo usermod -G miGrupo alumno
@@ -163,8 +165,6 @@ remote:x:1001:
 alumno:x:1002:
 miGrupo:x:1003:alumno
 ```
-
-El comando `usermod` también permite cambiar otra información de los grupos. El parámetro `–g` permitirá modificar el GID del grupo mientras que el parámetro `–n` permite cambiar el nombre del grupo.
 
 
 ## 5.8.- Permisos
@@ -193,19 +193,9 @@ Si un permiso está negado se mostrará con el símbolo guion en su posición. L
 Cuando creamos un fichero nuevo este tiene unos permisos por defectos predefinidos. Estos permisos predefinidos vienen dados por el comando `umask`, el cual establece los permisos por defecto para cualquier fichero o directorio que crees.
 
 
-### 5.8.1.- El comando `umask`
-
-El comando `umask` nos servirá para modificar los permisos por defecto que se asignarán a cada nuevo fichero o directorio creado en el sistema. Si lo ejecutamos veremos que nos muestra por pantalla 4 dígitos octales que representan los permisos por defecto. El primero corresponde al denomina **sticky bit**. Los otros tres son los permisos por defecto para el usuario que crea el objeto, el grupo del usuario y el resto de los usuarios respectivamente en la representación octal.
-
-Sin embargo, el comando `umask` no muestra los permisos que se asignan tal cual, sino que lo hace mediante una máscara, es decir, los permisos indicados por este comando serán los que se restarán de los permisos máximos que puede tener el objeto. Los permisos máximos de un objeto serán:
-
-- Para los ficheros los permisos 666 (lectura y escritura para todos)
-- Para los directorios los permisos 777 (lectura, escritura y ejecución, es decir, recorrido, para todos)
-
-Esto quiere decir que si tenemos una máscara definida como 022 los permisos efectivos que se aplicarán a un fichero serán los resultantes de quitar los permisos de la máscara (022) a los permisos máximos (666), quedando unos permisos efectivos de 644 (lectura/escritura para el usuario y lectura para el resto).	
 
 
-### 5.8.2.- Modificando permisos
+### 5.8.1.- Modificando permisos
 
 El comando `chmod` es el que nos permitirá modificar los permisos asociados a un fichero o directorio. El formato de este comando es:
 
@@ -248,7 +238,7 @@ Finalmente, el último símbolo es el permiso que se va a modificar. Hay muchas 
 - `s` para establecer el SUID o el SGID
 
 
-### 5.8.3.- Cambio de propietario
+### 5.8.2.- Cambio de propietario
 
 Para cambiar el propietario de un fichero Linux dispone de dos comandos. El comando `chown` para cambiar el usuario propietario y el comando `chgrp` para cambiar el grupo propietario del objeto.
 
@@ -282,6 +272,53 @@ total 0
 El funcionamiento del comando `chgrp` es muy similar al anterior, con la única excepción de que el valor modificado es el grupo propietario y no el usuario propietario.
 
 
+
+### 5.8.3.- El comando `umask`
+
+El comando `umask` nos servirá para modificar los permisos por defecto que se asignarán a cada nuevo fichero o directorio creado en el sistema. Si lo ejecutamos veremos que nos muestra por pantalla 4 dígitos octales que representan los permisos por defecto. El primero corresponde al denomina **sticky bit**. Los otros tres son los permisos por defecto para el usuario que crea el objeto, el grupo del usuario y el resto de los usuarios respectivamente en la representación octal.
+
+Sin embargo, el comando `umask` no muestra los permisos que se asignan tal cual, sino que lo hace mediante una máscara, es decir, los permisos indicados por este comando serán los que se restarán de los permisos máximos que puede tener el objeto. Los permisos máximos de un objeto serán:
+
+- Para los ficheros los permisos 666 (lectura y escritura para todos)
+- Para los directorios los permisos 777 (lectura, escritura y ejecución, es decir, recorrido, para todos)
+
+Esto quiere decir que si tenemos una máscara definida como 022 los permisos efectivos que se aplicarán a un fichero serán los resultantes de quitar los permisos de la máscara (022) a los permisos máximos (666), quedando unos permisos efectivos de 644 (lectura/escritura para el usuario y lectura para el resto).	
+
+Es posible establecer el valor de umask para la sesión ejecutando el comando con la máscara que queremos aplicar:
+
+```bash
+victor@ubuntu:~$ umask 027
+victor@ubuntu:~$ touch file
+victor@ubuntu:~$ ls -l
+-rw-r----- 1 victor victor         0 jun  6 10:23  file
+```
+
+Si queremos cambiar el valor de umask permanentemente será necesario editar el fichero de configuración `/etc/login.defs`, lo que hará que se aplique a todos los usuarios.
+
+```bash
+# The ERASECHAR and KILLCHAR are used only on System V machines.
+#
+# UMASK is the default umask value for pam_umask and is used by
+# useradd and newusers to set the mode of the new home directories.
+# 022 is the "historical" value in Debian for UMASK
+# 027, or even 077, could be considered better for privacy
+# There is no One True Answer here : each sysadmin must make up his/her
+# mind.
+#
+# If USERGROUPS_ENAB is set to "yes", that will modify this UMASK default value
+# for private user groups, i. e. the uid is the same as gid, and username is
+# the same as the primary group name: for these, the user permissions will be
+# used as group permissions, e. g. 022 will become 002.
+#
+# Prefix these values with "0" to get octal, "0x" to get hexadecimal.
+#
+ERASECHAR       0177
+KILLCHAR        025
+UMASK           022
+```
+
+
+
 ## 5.9.- Compartición de ficheros
 
 El mecanismo que hemos visto para compartir fichero en Linux hasta ahora se basa en el establecimiento de permisos para usuarios y grupos. Así si queremos que un determinado usuario pueda acceder a un objeto podemos incluirlo en el grupo propietario de ese objeto y así obtener los permisos que tenga ese grupo.
@@ -289,23 +326,23 @@ El mecanismo que hemos visto para compartir fichero en Linux hasta ahora se basa
 Sin embargo, en entornos con múltiples usuarios este proceso puede ser complicado y nada cómodo de utilizar. Para ello Linux dispone de una solución muy simple que viene ligada a 3 bits adicionales que almacena para cada fichero y directorio.
 
 - **El set user id (SUID)**: cuando un fichero es ejecutado por un usuario, el programa se ejecuta bajo los permisos del propietario.
-- **El set group id (SGID)**: en fichero el programa se ejecuta utilizando los permisos del grupo propietario del fichero. Para directorios, los nuevos ficheros creados bajo ese directorio utilizan el grupo del directorio como grupo por defecto.
+- **El set group id (SGID)**: el programa se ejecuta utilizando los permisos del grupo propietario del fichero. Para directorios, los nuevos ficheros creados bajo ese directorio utilizan el grupo del directorio como grupo por defecto.
 - **El sticky bit**: el fichero permanece en memoria una vez que el proceso ha finalizado.
 
 El bit SGID es importante para compartir ficheros. Habilitando el bit SGID, puedes forzar que todos los ficheros creados en un directorio compartido pertenezcan al grupo del directorio y no al grupo del usuario individual que lo ha creado.
 
 El bit SGID se puede establecer con el comando `chmod`. Se puede añadir anteponiéndolo al valor de 3 dígitos octales de los permisos (quedando en ese caso 4 dígitos), o se puede utilizarse la notación simbólica.
 
-| Binario	| Octal	| Descripción |
-| --------- | ----- | ----------- |
-|  000      |  0    | Ningún bit activado   |
-|  001      |  1    | Activado el *sticky bit*   |
-|  010      |  2    | Activado el bit *SGID*   |
-|  011      |  3    | Activado los bits *SGID* y *sticky bit*   |
-|  100      |  4    | Activado el bit *SUID*   |
-|  101      |  5    | Activados los bits *SUID* y *sticky bit*   |
-|  110      |  6    | Activados los bits *SUID* y *SGID*   |
-|  111      |  7    | Activados todos los bits (*sticky bit*, *SUID* y *SGID*)   |
+| Binario	| Octal	| Descripción 													|
+| --------- | ----- | ------------------------------------------------------------- |
+|  000      |  0    | Ningún bit activado   										|
+|  001      |  1    | Activado el *sticky bit*   									|
+|  010      |  2    | Activado el bit *SGID*   										|
+|  011      |  3    | Activado los bits *SGID* y *sticky bit*   					|
+|  100      |  4    | Activado el bit *SUID*   										|
+|  101      |  5    | Activados los bits *SUID* y *sticky bit*   					|
+|  110      |  6    | Activados los bits *SUID* y *SGID*   							|
+|  111      |  7    | Activados todos los bits (*sticky bit*, *SUID* y *SGID*)   	|
  
 Así, para crear un directorio compartido que mantenga la propiedad de los ficheros creados dentro de él para el grupo propietario del directorio podríamos hacer lo siguiente:
  
